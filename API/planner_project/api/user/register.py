@@ -7,11 +7,6 @@ from planner_project.data_access import mysql
 from planner_project.sql.user import user_sql
 
 
-@app.route("/helloworld", methods=['GET','POST'])
-def hello_world():
-    print(str(uuid.uuid1()))
-    return str(uuid.uuid1())
-
 #注册用户
 @app.route("/user/register", methods=['POST'])
 def register():
