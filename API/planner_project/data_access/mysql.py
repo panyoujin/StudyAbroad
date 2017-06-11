@@ -50,7 +50,6 @@ def operate__many(sql_list,args_list):
   with mysql() as cursor:
     count = 0
     for sql_item in sql_list:
-      if cursor.execute(sql_item%args_list[count]) <= 0 :
-        return 0
-      count += 1
+      cursor.execute(sql_item%args_list[count])
+      count+=1
     return count

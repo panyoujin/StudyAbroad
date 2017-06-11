@@ -6,6 +6,9 @@ from planner_project.common import api_response
 from planner_project.data_access import mysql
 from planner_project.sql.user import user_sql
 
+@app.route("/helloworld", methods=['GET'])
+def helloworld():
+    return "helloworld"
 
 #注册用户
 @app.route("/user/register", methods=['POST'])
@@ -27,8 +30,9 @@ def register():
         ApiResponse.status = 0
         return api_response.response_return(ApiResponse)
 
+    guid = str(uuid.uuid1())
     sql_list = [user_sql.insert_user,user_sql.insert_userinfo]
-    args_list = [(str(uuid.uuid1()),Account,Password),(Account)]
+    args_list = [(guid,Account,Password),(guid)]
 
     data_register = mysql.operate__many(sql_list,args_list)
     if data_register > 0:
