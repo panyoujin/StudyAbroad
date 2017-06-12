@@ -8,7 +8,7 @@ from planner_project.sql.user import user_sql
 
 @app.route("/helloworld", methods=['GET'])
 def helloworld():
-    return "helloworld"
+    return "旭江很帅"
 
 #注册用户
 @app.route("/user/register", methods=['POST'])
