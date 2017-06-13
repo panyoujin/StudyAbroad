@@ -8,7 +8,7 @@ from planner_project.sql.user import user_sql
 
 @app.route("/helloworld", methods=['GET'])
 def helloworld():
-    return "旭江很帅"
+    return "旭江很丑"
 
 #注册用户
 @app.route("/user/register", methods=['POST'])
@@ -18,16 +18,16 @@ def register():
     Password = request.form.get("Password", type=str, default=None)
     if Account == None:
         ApiResponse.message = "账号不能为空"
-        ApiResponse.status = 0
+        ApiResponse.status = 500
         return api_response.response_return(ApiResponse)
     if Password == None:
         ApiResponse.message = "密码不能为空"
-        ApiResponse.status = 0
+        ApiResponse.status = 500
         return api_response.response_return(ApiResponse)
     data_exists = mysql.get_list(user_sql.select_exists_user,(Account))
     if len(data_exists):
         ApiResponse.message = "账号已经存在"
-        ApiResponse.status = 0
+        ApiResponse.status = 500
         return api_response.response_return(ApiResponse)
 
     guid = str(uuid.uuid1())
@@ -37,14 +37,13 @@ def register():
     data_register = mysql.operate__many(sql_list,args_list)
     if data_register > 0:
         ApiResponse.message = "注册成功"
-        ApiResponse.status = 1
+        ApiResponse.status = 200
         return api_response.response_return(ApiResponse)
 
     # date = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     ApiResponse.message = "注册失败"
-    ApiResponse.status = 1
+    ApiResponse.status = 500
     return api_response.response_return(ApiResponse)
-
 
 
 

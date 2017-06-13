@@ -1,0 +1,255 @@
+swagger: '2.0'
+info:
+  version: 0.0.2
+  title: swagger-api
+paths:
+  /user/register:
+    post:
+      summary: 用户注册
+      description: 注册用户
+      tags:
+        - register
+      operationId: register
+      parameters:
+        - name: Account
+          in: query
+          description: 帐号
+          required: true
+          type: string
+        - name: Password
+          in: query
+          description: 密码
+          required: true
+          type: string
+        - name: VerificationCode
+          in: query
+          description: 验证码
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 成功
+          schema:
+            $ref: '#/definitions/results'
+        default:
+          description: 成功
+          schema:
+            $ref: '#/definitions/results'
+  /user/login:
+    post:
+      summary: service endpoint for Account operations
+      description: 登录
+      tags:
+        - login
+      operationId: login
+      parameters:
+        - name: Account
+          in: query
+          description: 帐号
+          required: true
+          type: string
+        - name: Password
+          in: query
+          description: 密码
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 成功
+          schema:
+            $ref: '#/definitions/login_results'
+        default:
+          description: 成功
+          schema:
+            $ref: '#/definitions/results'
+  /home/carousel:
+    post:
+      summary: 获取首页轮播图
+      description: 获取首页轮播图
+      tags:
+        - carousel
+      operationId: carousel
+      parameters:
+        - name: Count
+          in: query
+          description: 数量
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 成功
+          schema:
+            $ref: '#/definitions/carousel_results'
+        default:
+          description: 成功
+          schema:
+            $ref: '#/definitions/results'
+  /home/planner:
+    post:
+      summary: 获取首页规划师
+      description: 获取首页规划师
+      tags:
+        - planner
+      operationId: planner
+      parameters:
+        - name: Count
+          in: query
+          description: 数量
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 成功
+          schema:
+            $ref: '#/definitions/planner_results'
+        default:
+          description: 成功
+          schema:
+            $ref: '#/definitions/results'
+  /home/service:
+    post:
+      summary: 获取首页服务
+      description: 获取首页服务
+      tags:
+        - service
+      operationId: service
+      parameters:
+        - name: Count
+          in: query
+          description: 数量
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 成功
+          schema:
+            $ref: '#/definitions/service_results'
+        default:
+          description: 成功
+          schema:
+            $ref: '#/definitions/results'
+    
+            
+definitions:
+  results:
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int64
+        description: '200 sussess,500 logic errors,600 no login errors, -99 unknow error'
+      message:
+        type: string
+        format: bytes
+        description: error message
+      data:
+        type: string
+        items:
+          type: string
+          description: data json
+  login_results:
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int64
+        description: '200 sussess,500 logic errors,600 no login errors, -99 unknow error'
+      message:
+        type: string
+        format: bytes
+        description: error message
+      data:
+        description: data json
+        $ref: '#/definitions/login'
+  login:
+    type: object
+    properties:
+      token:
+        type: string
+        format: bytes
+        description: 'token'
+      datetime:
+        type: string
+        format: bytes
+        description: '登录时间'
+  carousel_results:
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int64
+        description: '200 sussess,500 logic errors,600 no login errors, -99 unknow error'
+      message:
+        type: string
+        format: bytes
+        description: error message
+      data:
+        description: data json
+        $ref: '#/definitions/carousel'
+  carousel:
+    type: object
+    properties:
+      url:
+        type: string
+        format: bytes
+        description: '地址'
+      click_url:
+        type: string
+        format: bytes
+        description: '点击地址'
+      description:
+        type: string
+        format: bytes
+        description: '描述'
+  planner_results:
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int64
+        description: '200 sussess,500 logic errors,600 no login errors, -99 unknow error'
+      message:
+        type: string
+        format: bytes
+        description: error message
+      data:
+        description: data json
+        $ref: '#/definitions/planner'
+  planner:
+    type: object
+    properties:
+      head_image:
+        type: string
+        format: bytes
+        description: '头像'
+      name:
+        type: string
+        format: bytes
+        description: '名称'
+      area:
+        type: string
+        format: bytes
+        description: '区域'
+  service_results:
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int64
+        description: '200 sussess,500 logic errors,600 no login errors, -99 unknow error'
+      message:
+        type: string
+        format: bytes
+        description: error message
+      data:
+        description: data json
+        $ref: '#/definitions/service'
+  service:
+    type: object
+    properties:
+      name:
+        type: string
+        format: bytes
+        description: '名称'
+          
+          
