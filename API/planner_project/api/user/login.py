@@ -23,7 +23,8 @@ def login():
         ApiResponse.status = 500
         return api_response.response_return(ApiResponse)
     guid = str(uuid.uuid1())
-    count = mysql.operate_object(user_sql.update_user_token,(guid,"172.17.16.191",Account,Password))
+    ip = request.remote_addr
+    count = mysql.operate_object(user_sql.update_user_token,(guid,ip,Account,Password))
     if count<=0 :
         ApiResponse.message = "账号或密码不正确"
         ApiResponse.status = 500
@@ -55,11 +56,10 @@ def get_login_user():
     #     return api_response.response_return(ApiResponse)
     #本地缓存中不存在去数据库拿
     user = mysql.get_list(user_sql.select_user_login_info,(token))
-    print(user)
     if any(user):
         ApiResponse.message = "成功"
         ApiResponse.status = 200
-        ApiResponse.data = json.dumps(user, cls=api_response.ComplexEncoder)
+        ApiResponse.data = user
         return api_response.response_return(ApiResponse)
     ApiResponse.message = "请先登录"
     ApiResponse.status = 600

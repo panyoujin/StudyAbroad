@@ -8,9 +8,9 @@ class ApiResponse(object):
     message = "成功"
 
 def response_return(ApiResponse):
-    return json.dumps({'status':ApiResponse.status,'message':ApiResponse.message,'data':ApiResponse.data}, ensure_ascii=False)
+    return json.dumps({'status':ApiResponse.status,'message':ApiResponse.message,'data':ApiResponse.data}, ensure_ascii=False,cls=ComplexEncoder)
 
-
+#需要解决bytes转换的问题
 class ComplexEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, datetime):
