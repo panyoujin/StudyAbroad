@@ -4,7 +4,7 @@ import uuid
 import time
 import json
 from planner_project import app
-from planner_project.common import api_response
+from planner_project.common import api_response,request_helper
 from planner_project.data_access import mysql
 from planner_project.sql.user import user_sql
 
@@ -44,18 +44,7 @@ def login():
 @app.route("/user/get_login_user", methods=['POST'])
 def get_login_user():
     ApiResponse = api_response.ApiResponse
-    token = request.form.get("token", type=str, default=None)
-    if token == None:
-        ApiResponse.message = "请先登录"
-        ApiResponse.status = 600
-        return api_response.response_return(ApiResponse)
-    # if session[token] != None:
-    #     ApiResponse.message = "成功"
-    #     ApiResponse.status = 200
-    #     ApiResponse.data = json.dumps(session[token])
-    #     return api_response.response_return(ApiResponse)
-    #本地缓存中不存在去数据库拿
-    user = mysql.get_list(user_sql.select_user_login_info,(token))
+    user = request_helper.current_user()
     if any(user):
         ApiResponse.message = "成功"
         ApiResponse.status = 200
