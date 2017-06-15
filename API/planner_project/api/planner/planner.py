@@ -9,7 +9,7 @@ from planner_project.sql.planner import planner_sql
 #规划师搜索
 @app.route("/planner/search", methods=['POST'])
 def search():
-    ApiResponse = api_response.ApiResponse("",200,"成功")
+    ApiResponse = api_response.ApiResponse()
     size = request.form.get("size", type=int, default=10)
     name = request.form.get("name", type=str, default="")
     page = request.form.get("page", type=int, default=1)
@@ -28,7 +28,7 @@ def search():
 #关注
 @app.route("/planner/follow", methods=['POST'])
 def follow():
-    ApiResponse = api_response.ApiResponse("",200,"成功")
+    ApiResponse = api_response.ApiResponse()
     user = request_helper.current_user()
     plannerId = request.form.get("plannerId", type=str, default=None)
     if any(user) and plannerId !=None:
@@ -40,7 +40,7 @@ def follow():
 #我的关注列表
 @app.route("/planner/follow_list", methods=['POST'])
 def follow_list():
-    ApiResponse = api_response.ApiResponse("",200,"成功")
+    ApiResponse = api_response.ApiResponse()
     size = request.form.get("size", type=int, default=10)
     page = request.form.get("page", type=int, default=1)
     user = request_helper.current_user()

@@ -11,7 +11,7 @@ from planner_project.sql.user import user_sql
 #登录
 @app.route("/user/login", methods=['POST'])
 def login():
-    ApiResponse = api_response.ApiResponse("",200,"成功")
+    ApiResponse = api_response.ApiResponse()
     Account = request.form.get("Account", type=str, default=None)
     Password = request.form.get("Password", type=str, default=None)
     if Account == None:
@@ -37,7 +37,7 @@ def login():
 #登录
 @app.route("/user/get_login_user", methods=['POST'])
 def get_login_user():
-    ApiResponse = api_response.ApiResponse("",200,"成功")
+    ApiResponse = api_response.ApiResponse()
     user = request_helper.current_user()
     if any(user):
         ApiResponse.message = "成功"

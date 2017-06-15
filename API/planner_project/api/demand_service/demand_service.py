@@ -9,7 +9,7 @@ from planner_project.sql.demand_service import demand_service_sql
 #需求服务搜索
 @app.route("/demand_service/searchds", methods=['POST'])
 def searchds():
-    ApiResponse = api_response.ApiResponse("",200,"成功")
+    ApiResponse = api_response.ApiResponse()
     size = request.form.get("size", type=int, default=10)
     page = request.form.get("page", type=int, default=1)
     if page<=0:
@@ -26,7 +26,7 @@ def searchds():
 #收藏
 @app.route("/demand_service/collection", methods=['POST'])
 def collection():
-    ApiResponse = api_response.ApiResponse("",200,"成功")
+    ApiResponse = api_response.ApiResponse()
     user = request_helper.current_user_mush_login()
     demandServiceId = request.form.get("demandServiceId", type=str, default=None)
     if any(user) and demandServiceId !=None:
@@ -38,7 +38,7 @@ def collection():
 #我的收藏列表
 @app.route("/demand_service/collection_list", methods=['POST'])
 def collection_list():
-    ApiResponse = api_response.ApiResponse("",200,"成功")
+    ApiResponse = api_response.ApiResponse()
     size = request.form.get("size", type=int, default=10)
     page = request.form.get("page", type=int, default=1)
     user = request_helper.current_user_mush_login()

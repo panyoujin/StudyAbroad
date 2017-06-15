@@ -13,7 +13,7 @@ def helloworld():
 #注册用户
 @app.route("/user/register", methods=['POST'])
 def register():
-    ApiResponse = api_response.ApiResponse("",200,"成功")
+    ApiResponse = api_response.ApiResponse()
     Account = request.form.get("Account", type=str, default=None)
     Password = request.form.get("Password", type=str, default=None)
     if Account == None:
