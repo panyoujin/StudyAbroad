@@ -3,12 +3,16 @@ from planner_project.common import custom_error
 from planner_project.common import api_response
 
 app = Flask(__name__)
+@app.errorhandler(500)
+def system_error(error):
+    #部署时需要去掉error.args[1]
+    ApiResponse = api_response.ApiResponse(error.args[1],500,"系统错误")
+    return api_response.response_return(ApiResponse)
+
 @app.errorhandler(custom_error.CustomFlaskErr)
 def handle_flask_error(error):
 
-    ApiResponse = api_response.ApiResponse
-    ApiResponse.message = error.message
-    ApiResponse.status = error.status_code
+    ApiResponse = api_response.ApiResponse("",error.status_code,error.message)
     return api_response.response_return(ApiResponse)
 
 import  planner_project.api.user.register

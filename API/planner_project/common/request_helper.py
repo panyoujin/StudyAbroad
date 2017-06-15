@@ -25,4 +25,4 @@ def current_user_mush_login():
     if user!=None and any(user):
         return  user
     #调用统一异常处理
-    raise custom_error.CustomFlaskErr(600, status_code=600,message="请先登录")
+    raise custom_error.CustomFlaskErr(status_code=600,message="请先登录")
