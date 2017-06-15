@@ -27,7 +27,7 @@ def searchds():
 @app.route("/demandservice/collection", methods=['POST'])
 def collection():
     ApiResponse = api_response.ApiResponse
-    user = request_helper.current_user()
+    user = request_helper.current_user_mush_login()
     demandServiceId = request.form.get("demandServiceId", type=str, default=None)
     if any(user) and demandServiceId !=None:
         count = mysql.operate_object(demand_service_sql.demand_service_collection, (user["Id"],demandServiceId))
@@ -41,7 +41,7 @@ def collection_list():
     ApiResponse = api_response.ApiResponse
     size = request.form.get("size", type=int, default=10)
     page = request.form.get("page", type=int, default=1)
-    user = request_helper.current_user()
+    user = request_helper.current_user_mush_login()
     if page<=0:
         page=1
     if size<=0:
