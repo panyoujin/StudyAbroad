@@ -147,4 +147,11 @@
     <FileParam></FileParam>
     <BodyParam></BodyParam>
   </Interface>
+  <Interface>
+    <Name>文件上传</Name>
+    <Url>http://localhost:7000/upload</Url>
+    <PostParam></PostParam>
+    <FileParam>file=G:\1.jpg</FileParam>
+    <BodyParam></BodyParam>
+  </Interface>
 </InterfaceList>
