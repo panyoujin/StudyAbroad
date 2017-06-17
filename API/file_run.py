@@ -5,7 +5,7 @@ import uuid
 import os
 import sys
 app = Flask(__name__)
-#UPLOAD_FOLDER = 'static/Uploads'
+#UPLOAD_FOLDER = 'static/Uploads' 
 UPLOAD_FOLDER = '/home/attachment'
 app.config['MAX_CONTENT_LENGTH'] = 3 * 1024 * 1024
 
