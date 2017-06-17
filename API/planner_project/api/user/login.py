@@ -34,7 +34,7 @@ def login():
     return api_response.response_return(ApiResponse)
 
 
-#登录
+#获取登录用户
 @app.route("/user/get_login_user", methods=['POST'])
 def get_login_user():
     ApiResponse = api_response.ApiResponse()

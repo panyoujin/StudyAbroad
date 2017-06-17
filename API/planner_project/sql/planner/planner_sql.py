@@ -23,16 +23,19 @@ select_search_planner = "SELECT * FROM ( SELECT u.`Id`,ui.`Name`,ui.`HeadImage`,
                        "ORDER BY Sort DESC ,`Id` " \
                        "LIMIT %s , %s "
 #关注
-planner_follw="INSERT INTO `U_Follow` (`UserId`,`FollwUserId`,`FollwTime`) VALUES('%s','%s',NOW()) "
+planner_follw="INSERT INTO `U_Follow` (`UserId`,`FollwUserId`,`FollwTime`) VALUES('%s','%s',NOW()) " \
+                          " ON DUPLICATE KEY UPDATE FollwTime=NOW() "
+#取消关注
+planner_unfollw="DELETE  FROM `StudyAbroad`.`U_Follow`  WHERE `UserId`='%s' AND `FollwUserId` = '%s' "
 
 #查询关注的 规划师
 select_follw_planner = "SELECT u.`Id`,ui.`Name`,ui.`HeadImage`,ps.`NewEvaluate`,ps.`CustomerCount`" \
-                     ",ps.`PraiseCount`,ps.`BadReviewCount`,t.`Name` AS TeamName,Lables,ps.Sort " \
+                     ",ps.`PraiseCount`,ps.`BadReviewCount`,t.`Name` AS TeamName,Lables,ps.Sort,f.FollwTime " \
                        "FROM `U_Follow` f " \
                        "JOIN `U_User` u ON f.`FollwUserId`=u.`Id` " \
                        "LEFT JOIN `U_UserInfo` ui ON ui.`UserId`=u.`Id` " \
                        "JOIN `U_PlannerStatistics` ps ON ps.`UserId`=u.`Id` " \
                        "LEFT JOIN `T_Team` t ON ps.`TeamId`=t.`Id` " \
                        "WHERE f.UserId='%s' AND u.`IsDelete`=FALSE AND u.`UserType` IN (2,3) " \
-                       "ORDER BY ps.Sort DESC ,u.`Id` " \
+                       "ORDER BY f.FollwTime DESC " \
                        "LIMIT %s , %s "
