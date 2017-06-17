@@ -37,6 +37,18 @@ def follow():
     ApiResponse.status = 200
     return api_response.response_return(ApiResponse)
 
+#取消关注
+@app.route("/planner/unfollow", methods=['POST'])
+def unfollow():
+    ApiResponse = api_response.ApiResponse()
+    user = request_helper.current_user()
+    plannerId = request.form.get("plannerId", type=str, default=None)
+    if any(user) and plannerId !=None:
+        count = mysql.operate_object(planner_sql.planner_unfollw, (user["Id"],plannerId))
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    return api_response.response_return(ApiResponse)
+
 #我的关注列表
 @app.route("/planner/follow_list", methods=['POST'])
 def follow_list():

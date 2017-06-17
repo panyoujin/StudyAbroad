@@ -18,7 +18,7 @@ def carousel():
     data = mysql.get_list(carousel_sql.select_top_carousel,(count))
     ApiResponse.message = "成功"
     ApiResponse.status = 200
-    ApiResponse.data = json.dumps(data)
+    ApiResponse.data = data
     return api_response.response_return(ApiResponse)
 
 

@@ -3,6 +3,12 @@ from planner_project.common import api_response,custom_error
 from planner_project.data_access import mysql
 from planner_project.sql.user import user_sql
 
+
+def get_token():
+    token = request.cookies["token"]
+    if token != None:
+        return token
+    raise custom_error.CustomFlaskErr(status_code=600,message="请先登录")
 #获取当前登录用户 未登录返回None
 def current_user():
     ApiResponse = api_response.ApiResponse
