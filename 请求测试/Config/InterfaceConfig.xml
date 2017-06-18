@@ -203,4 +203,11 @@
     <FileParam></FileParam>
     <BodyParam></BodyParam>
   </Interface>
+  <Interface>
+    <Name>申请注册规划师</Name>
+    <Url>http://localhost:5000/userinfo/upgrade_user</Url>
+    <PostParam>Sex=1#;#Name=徐大师#;#Address=房贷首付发射点发#;#ServiceId=1#;#ServiceAreaId=1#;#Email=12545@44#;#Experience=很吊的经历#;#IDCardPic=附件路径</PostParam>
+    <FileParam></FileParam>
+    <BodyParam></BodyParam>
+  </Interface>
 </InterfaceList>
