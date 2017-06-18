@@ -55,3 +55,4 @@ select_browse_demand_service =  "SELECT ds.`Id`,ds.UserId,ds.`Name`,ds.`Type`,ds
                        "WHERE ds.`IsDelete` = FALSE  AND br.UserId='%s' " \
                        "ORDER BY br.BrowseTime DESC " \
                        "LIMIT %s , %s "
+
