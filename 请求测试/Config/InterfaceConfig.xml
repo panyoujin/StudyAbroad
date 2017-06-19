@@ -210,4 +210,18 @@
     <FileParam></FileParam>
     <BodyParam></BodyParam>
   </Interface>
+  <Interface>
+    <Name>查询认证服务列表</Name>
+    <Url>http://localhost:5000/basic/servicelist</Url>
+    <PostParam></PostParam>
+    <FileParam></FileParam>
+    <BodyParam></BodyParam>
+  </Interface>
+  <Interface>
+    <Name>查询认证区域列表</Name>
+    <Url>http://localhost:5000/basic/arealist</Url>
+    <PostParam></PostParam>
+    <FileParam></FileParam>
+    <BodyParam></BodyParam>
+  </Interface>
 </InterfaceList>
