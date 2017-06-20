@@ -37,7 +37,7 @@ def upgrade_user():
     userId = request_helper.current_user_mush_login()["Id"]
 
     data_exists = mysql.get_list(user_upgrade.select_exists_upgrade,(userId))
-    print(data_exists)
+
     if len(data_exists):
         raise custom_error.CustomFlaskErr(status_code=500, message="你已经存在申请过注册规划师")
 
