@@ -224,4 +224,11 @@
     <FileParam></FileParam>
     <BodyParam></BodyParam>
   </Interface>
+  <Interface>
+    <Name>新增需求/服务</Name>
+    <Url>http://localhost:5000/demand_service/insert_browse_service</Url>
+    <PostParam>Name=#;#TimeStart=#;#TimeEnd=#;#PriceStart=#;#PriceEnd=#;#Description=#;#ServiceId=#;#ServiceAreaId=</PostParam>
+    <FileParam></FileParam>
+    <BodyParam></BodyParam>
+  </Interface>
 </InterfaceList>

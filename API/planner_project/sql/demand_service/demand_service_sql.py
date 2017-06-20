@@ -56,6 +56,6 @@ select_browse_demand_service =  "SELECT ds.`Id`,ds.UserId,ds.`Name`,ds.`Type`,ds
                        "ORDER BY br.BrowseTime DESC " \
                        "LIMIT %s , %s "
 
-#新增需求
+#新增需求 
 insert_demand_service="INSERT INTO `DS_DemandService` (`Id`,`UserId`,`Name`,`Type`,`ServiceAreaId`,`ServiceTypeId`,`PriceStart`,`PriceEnd`,`TimeStart`,`TimeEnd`,`Description`,`CreateUserID`,`CreateTime`,`ModifUserID`,`ModifTime`) " \
                       "VALUES(  '%s',  '%s',  '%s',  '%s',  '%s',  '%s',  '%s',  '%s',  '%s',  '%s',  '%s',  '%s',  NOW(),  '%s',  NOW()) ";
