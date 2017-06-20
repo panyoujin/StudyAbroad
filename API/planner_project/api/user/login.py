@@ -25,12 +25,12 @@ def login():
         raise custom_error.CustomFlaskErr(status_code=500, message="账号或密码不正确")
     #写token
     # date = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-    user = mysql.get_list(user_sql.select_user_info,(Account))
-    #session[guid]=json.dumps(user)
-    data = {"token":guid,"datetime":time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}
+    user = mysql.get_object(user_sql.select_user_login_info, (guid))
+    #session[guid]=user
+    data = {"token":guid,"datetime":time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),"user":user}
     ApiResponse.message = "登录成功"
     ApiResponse.status = 200
-    ApiResponse.data=json.dumps(data)
+    ApiResponse.data=data
     return api_response.response_return(ApiResponse)
 
 
@@ -38,7 +38,7 @@ def login():
 @app.route("/user/get_login_user", methods=['POST'])
 def get_login_user():
     ApiResponse = api_response.ApiResponse()
-    user = request_helper.current_user()
+    user = request_helper.current_user_mush_login()
     if any(user):
         ApiResponse.message = "成功"
         ApiResponse.status = 200
