@@ -1,4 +1,5 @@
 #coding:utf-8
+import uuid
 from flask import request
 from planner_project import app
 from planner_project.common import api_response,request_helper,custom_error
@@ -175,4 +176,237 @@ def order_list():
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = complete_order_list
+    return api_response.response_return(ApiResponse)
+
+
+
+#新增学历
+@app.route("/planner/insert_education", methods=['POST'])
+def insert_education():
+    ApiResponse = api_response.ApiResponse()
+    TimeStart = request.form.get("TimeStart", type=str, default=None)
+    TimeEnd = request.form.get("TimeEnd", type=str, default=None)
+    if TimeStart == None or TimeStart=="" or TimeEnd==None or TimeEnd=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="起止时间不能为空")
+    University = request.form.get("University", type=str, default=None)
+    if University == None or University=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="毕业学校不能为空")
+    Degree = request.form.get("Degree", type=str, default=None)
+    if Degree == None or Degree=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="学位不能为空")
+    Sort = request.form.get("Sort", type=int, default=0)
+    user= request_helper.current_user_mush_login()
+    guid = str(uuid.uuid1())
+    data = mysql.operate_object(planner_sql.insert_education,(guid,user["Id"],TimeStart,TimeEnd,University,Degree,Sort,user["Id"],user["Id"]))
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = data
+    return api_response.response_return(ApiResponse)
+
+
+#修改学历
+@app.route("/planner/update_education", methods=['POST'])
+def update_education():
+    ApiResponse = api_response.ApiResponse()
+    Id = request.form.get("Id", type=str, default=None)
+    if Id == None or Id=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="请选择需要修改的学历")
+    TimeStart = request.form.get("TimeStart", type=str, default=None)
+    TimeEnd = request.form.get("TimeEnd", type=str, default=None)
+    if TimeStart == None or TimeStart=="" or TimeEnd==None or TimeEnd=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="起止时间不能为空")
+    University = request.form.get("University", type=str, default=None)
+    if University == None or University=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="毕业学校不能为空")
+    Degree = request.form.get("Degree", type=str, default=None)
+    if Degree == None or Degree=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="学位不能为空")
+    Sort = request.form.get("Sort", type=int, default=0)
+    user= request_helper.current_user_mush_login()
+    data = mysql.operate_object(planner_sql.update_education,(TimeStart,TimeEnd,University,Degree,Sort,user["Id"],Id,user["Id"]))
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = data
+    return api_response.response_return(ApiResponse)
+
+#删除学历
+@app.route("/demand_service/delete_education", methods=['POST'])
+def delete_education():
+    ApiResponse = api_response.ApiResponse()
+    Id = request.form.get("Id", type=str, default=None)
+    if Id == None or Id=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="请选择需要修改的学历")
+    user= request_helper.current_user_mush_login()
+    data = mysql.operate_object(planner_sql.delete_education,(user["Id"],Id,user["Id"]))
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = data
+    return api_response.response_return(ApiResponse)
+
+#新增资源背景
+@app.route("/planner/insert_resour", methods=['POST'])
+def insert_resour():
+    ApiResponse = api_response.ApiResponse()
+    TimeStart = request.form.get("TimeStart", type=str, default=None)
+    TimeEnd = request.form.get("TimeEnd", type=str, default=None)
+    if TimeStart == None or TimeStart=="" or TimeEnd==None or TimeEnd=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="起止时间不能为空")
+    Description = request.form.get("Description", type=str, default=None)
+    if Description == None or Description=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="社会背景不能为空")
+    Sort = request.form.get("Sort", type=int, default=0)
+    user= request_helper.current_user_mush_login()
+    guid = str(uuid.uuid1())
+    data = mysql.operate_object(planner_sql.insert_resour,(guid,user["Id"],TimeStart,TimeEnd,Description,Sort,user["Id"],user["Id"]))
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = data
+    return api_response.response_return(ApiResponse)
+
+
+#修改资源背景
+@app.route("/planner/update_society", methods=['POST'])
+def update_resour():
+    ApiResponse = api_response.ApiResponse()
+    Id = request.form.get("Id", type=str, default=None)
+    if Id == None or Id=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="请选择需要修改的资源背景")
+    TimeStart = request.form.get("TimeStart", type=str, default=None)
+    TimeEnd = request.form.get("TimeEnd", type=str, default=None)
+    if TimeStart == None or TimeStart=="" or TimeEnd==None or TimeEnd=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="起止时间不能为空")
+    Description = request.form.get("Description", type=str, default=None)
+    if Description == None or Description=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="资源背景不能为空")
+    Sort = request.form.get("Sort", type=int, default=0)
+    user= request_helper.current_user_mush_login()
+    data = mysql.operate_object(planner_sql.update_resour,(TimeStart,TimeEnd,Description,Sort,user["Id"],Id,user["Id"]))
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = data
+    return api_response.response_return(ApiResponse)
+
+#删除社会背景
+@app.route("/planner/delete_resour", methods=['POST'])
+def delete_resour():
+    ApiResponse = api_response.ApiResponse()
+    Id = request.form.get("Id", type=str, default=None)
+    if Id == None or Id=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="请选择需要修改的资源背景")
+    user= request_helper.current_user_mush_login()
+    data = mysql.operate_object(planner_sql.delete_society,(user["Id"],Id,user["Id"]))
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = data
+    return api_response.response_return(ApiResponse)
+
+#新增社会背景
+@app.route("/planner/insert_society", methods=['POST'])
+def insert_society():
+    ApiResponse = api_response.ApiResponse()
+    TimeStart = request.form.get("TimeStart", type=str, default=None)
+    TimeEnd = request.form.get("TimeEnd", type=str, default=None)
+    if TimeStart == None or TimeStart=="" or TimeEnd==None or TimeEnd=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="起止时间不能为空")
+    Description = request.form.get("Description", type=str, default=None)
+    if Description == None or Description=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="社会背景不能为空")
+    Sort = request.form.get("Sort", type=int, default=0)
+    user= request_helper.current_user_mush_login()
+    guid = str(uuid.uuid1())
+    data = mysql.operate_object(planner_sql.insert_society,(guid,user["Id"],TimeStart,TimeEnd,Description,Sort,user["Id"],user["Id"]))
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = data
+    return api_response.response_return(ApiResponse)
+
+
+#修改社会背景
+@app.route("/planner/update_society", methods=['POST'])
+def update_society():
+    ApiResponse = api_response.ApiResponse()
+    Id = request.form.get("Id", type=str, default=None)
+    if Id == None or Id=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="请选择需要修改的社会背景")
+    TimeStart = request.form.get("TimeStart", type=str, default=None)
+    TimeEnd = request.form.get("TimeEnd", type=str, default=None)
+    if TimeStart == None or TimeStart=="" or TimeEnd==None or TimeEnd=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="起止时间不能为空")
+    Description = request.form.get("Description", type=str, default=None)
+    if Description == None or Description=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="社会背景不能为空")
+    Sort = request.form.get("Sort", type=int, default=0)
+    user= request_helper.current_user_mush_login()
+    data = mysql.operate_object(planner_sql.update_education,(TimeStart,TimeEnd,Description,Sort,user["Id"],Id,user["Id"]))
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = data
+    return api_response.response_return(ApiResponse)
+
+#删除社会背景
+@app.route("/planner/delete_society", methods=['POST'])
+def delete_society():
+    ApiResponse = api_response.ApiResponse()
+    Id = request.form.get("Id", type=str, default=None)
+    if Id == None or Id=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="请选择需要修改的社会背景")
+    user= request_helper.current_user_mush_login()
+    data = mysql.operate_object(planner_sql.delete_society,(user["Id"],Id,user["Id"]))
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = data
+    return api_response.response_return(ApiResponse)
+
+#新增相片
+@app.route("/planner/insert_album", methods=['POST'])
+def insert_album():
+    ApiResponse = api_response.ApiResponse()
+    PhotoName = request.form.get("PhotoName", type=str, default=None)
+    if PhotoName == None or PhotoName=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="照片名称不能为空")
+    Url = request.form.get("Url", type=str, default=None)
+    if Url == None or Url=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="照片地址不能为空")
+    Sort = request.form.get("Sort", type=int, default=0)
+    user= request_helper.current_user_mush_login()
+    data = mysql.operate_object(planner_sql.insert_album,(user["Id"],PhotoName,Url,Sort,user["Id"],user["Id"]))
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = data
+    return api_response.response_return(ApiResponse)
+
+
+#修改相片
+@app.route("/planner/update_album", methods=['POST'])
+def update_album():
+    ApiResponse = api_response.ApiResponse()
+    Id = request.form.get("Id", type=int, default=0)
+    if Id <=0:
+        raise custom_error.CustomFlaskErr(status_code=500, message="请选择需要修改的照片")
+    PhotoName = request.form.get("PhotoName", type=str, default=None)
+    if PhotoName == None or PhotoName=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="照片名称不能为空")
+    Url = request.form.get("Url", type=str, default=None)
+    if Url == None or Url=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="照片地址不能为空")
+    Sort = request.form.get("Sort", type=int, default=0)
+    user= request_helper.current_user_mush_login()
+    data = mysql.operate_object(planner_sql.update_album,(PhotoName,Url,Sort,user["Id"],Id,user["Id"]))
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = data
+    return api_response.response_return(ApiResponse)
+
+#删除相片
+@app.route("/planner/delete_album", methods=['POST'])
+def delete_album():
+    ApiResponse = api_response.ApiResponse()
+    Id = request.form.get("Id", type=int, default=0)
+    if Id <=0:
+        raise custom_error.CustomFlaskErr(status_code=500, message="请选择需要删除的照片")
+    user= request_helper.current_user_mush_login()
+    data = mysql.operate_object(planner_sql.delete_society,(user["Id"],Id,user["Id"]))
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = data
     return api_response.response_return(ApiResponse)

@@ -105,3 +105,46 @@ select_planner_evaluate="SELECT e.`OrderId`,e.`Content`,e.`CreateTime` ,ui.`Name
 select_planner_lables="SELECT ul.`LableName` FROM `U_UserLable` ul " \
                       "WHERE ul.`UserId`='%s' "\
                       "LIMIT %s , %s"
+
+#新增学历
+insert_education ="INSERT INTO `U_Education` ( `Id`, `UserId`, `TimeStart`, `TimeEnd`, `University`, `Degree`, `Sort`, `CreateUserID`, `CreateTime`, `ModifUserID`, `ModifTime`, `IsDelete`) " \
+                  "VALUES ( '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', NOW(), '%s', NOW(), FALSE ) ;"
+#修改学历
+update_education ="UPDATE `U_Education` SET`TimeStart` = '%s',`TimeEnd` = '%s',`University` = '%s',`Degree` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW()'" \
+                  " WHERE `Id` = '%s'  AND `UserId` = '%s';"
+#删除学历
+delete_education ="UPDATE `U_Education` SET `IsDelete`=TRUE, `ModifUserID`='%s', `ModifTime`=NOW() " \
+                  "WHERE `Id` = '%s' AND `UserId` = '%s'"
+
+#新增资源背景
+insert_resour ="INSERT INTO `U_Resour` (`Id`,`UserId`,`TimeStart`,`TimeEnd`,`Description`,`Sort`,`CreateUserID`,`CreateTime`,`ModifUserID`,`ModifTime`,`IsDelete`) " \
+               "VALUES('%s','%s','%s','%s','%s','%s','%s',NOW(),'%s',NOW(),FALSE) "
+#修改资源背景
+update_resour ="UPDATE `U_Resour` SET `TimeStart` = '%s',`TimeEnd` = '%s',`Description` = '%s',`Sort` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW() " \
+               "WHERE `Id` = 'Id' AND `UserId` = 'UserId'"
+#删除资源背景
+delete_resour ="UPDATE `U_Resour` SET `IsDelete`=TRUE, `ModifUserID`='%s', `ModifTime`=NOW() " \
+               "WHERE `Id` = '%s' AND `UserId` = '%s'"
+
+
+#新增社会背景
+insert_society ="INSERT INTO `U_Society` (`Id`,`UserId`,`TimeStart`,`TimeEnd`,`Description`,`Sort`,`CreateUserID`,`CreateTime`,`ModifUserID`,`ModifTime`,`IsDelete`) " \
+                "VALUES('%s','%s','%s','%s','%s','%s','%s',NOW(),'%s',NOW(),FALSE)"
+#修改社会背景
+update_society ="UPDATE `U_Society`  SET `TimeStart` = '%s',`TimeEnd` = '%s',`Description` = '%s',`Sort` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW() " \
+                "WHERE `Id` = 'Id' AND `UserId` = '%s'"
+#删除社会背景
+delete_society ="UPDATE `U_Society` SET `IsDelete`=TRUE, `ModifUserID`='%s', `ModifTime`=NOW() " \
+                "WHERE `Id` = '%s' AND `UserId` = '%s'"
+
+
+
+#新增相片
+insert_album ="INSERT INTO `U_Album` (`UserId`,`PhotoName`,`Url`,`Sort`,`CreateUserID`,`CreateTime`,`ModifUserID`,`ModifTime`,`IsDelete`) " \
+                "VALUES('%s','%s','%s','%s','%s',NOW(),'%s',NOW(),FALSE)"
+#修改相片
+update_album ="UPDATE `U_Album`  SET `PhotoName` = '%s',`Url` = '%s',`Sort` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW() " \
+                "WHERE `Id` = 'Id' AND `UserId` = '%s'"
+#删除相片
+delete_album ="UPDATE `U_Album` SET `IsDelete`=TRUE, `ModifUserID`='%s', `ModifTime`=NOW() " \
+                "WHERE `Id` = '%s' AND `UserId` = '%s'"

@@ -127,9 +127,54 @@ def insert_browse_service():
     if user["UserType"]==1:
         Type=1
     guid = str(uuid.uuid1())
-    data = mysql.get_list(demand_service_sql.insert_demand_service,(guid,user["Id"],Name,Type,ServiceAreaId,ServiceTypeId,PriceStart,PriceEnd,TimeStart,TimeEnd,Description,user["Id"],user["Id"]))
+    data = mysql.operate_object(demand_service_sql.insert_demand_service,(guid,user["Id"],Name,Type,ServiceAreaId,ServiceTypeId,PriceStart,PriceEnd,TimeStart,TimeEnd,Description,user["Id"],user["Id"]))
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data
     return api_response.response_return(ApiResponse)
 
+
+#修改需求/服务
+@app.route("/demand_service/update_browse_service", methods=['POST'])
+def update_browse_service():
+    ApiResponse = api_response.ApiResponse()
+    Id = request.form.get("Id", type=str, default=None)
+    if Id == None or Id=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="请选择需要修改的需求")
+    Name = request.form.get("Name", type=str, default=None)
+    if Name == None or Name=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="名称不能为空")
+    TimeStart = request.form.get("TimeStart", type=str, default=None)
+    TimeEnd = request.form.get("TimeEnd", type=str, default=None)
+    if TimeStart == None or TimeStart=="" or TimeEnd==None or TimeEnd=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="起止时间不能为空")
+    PriceStart = request.form.get("PriceStart", type=float, default=0.0)
+    PriceEnd = request.form.get("PriceEnd", type=float, default=0.0)
+    Description = request.form.get("Description", type=str, default=None)
+    if Description == None or Description=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="需求描述不能为空")
+    ServiceTypeId = request.form.get("ServiceId", type=int, default=0)
+    ServiceAreaId = request.form.get("ServiceAreaId", type=int, default=0)
+    if ServiceAreaId == 0:
+        raise custom_error.CustomFlaskErr(status_code=500, message="服务区域不能为空")
+    user= request_helper.current_user_mush_login()
+    data = mysql.operate_object(demand_service_sql.update_browse_service,(Name,ServiceAreaId,ServiceTypeId,PriceStart,PriceEnd,TimeStart,TimeEnd,Description,user["Id"],Id,user["Id"]))
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = data
+    return api_response.response_return(ApiResponse)
+
+
+#删除需求/服务
+@app.route("/demand_service/delete_browse_service", methods=['POST'])
+def delete_browse_service():
+    ApiResponse = api_response.ApiResponse()
+    Id = request.form.get("Id", type=str, default=None)
+    if Id == None or Id=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="请选择需要修改的需求")
+    user= request_helper.current_user_mush_login()
+    data = mysql.operate_object(demand_service_sql.update_browse_service,(user["Id"],Id,user["Id"]))
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = data
+    return api_response.response_return(ApiResponse)

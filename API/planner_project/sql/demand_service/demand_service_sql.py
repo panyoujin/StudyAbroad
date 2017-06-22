@@ -56,6 +56,17 @@ select_browse_demand_service =  "SELECT ds.`Id`,ds.UserId,ds.`Name`,ds.`Type`,ds
                        "ORDER BY br.BrowseTime DESC " \
                        "LIMIT %s , %s "
 
-#新增需求 
-insert_demand_service="INSERT INTO `DS_DemandService` (`Id`,`UserId`,`Name`,`Type`,`ServiceAreaId`,`ServiceTypeId`,`PriceStart`,`PriceEnd`,`TimeStart`,`TimeEnd`,`Description`,`CreateUserID`,`CreateTime`,`ModifUserID`,`ModifTime`) " \
-                      "VALUES(  '%s',  '%s',  '%s',  '%s',  '%s',  '%s',  '%s',  '%s',  '%s',  '%s',  '%s',  '%s',  NOW(),  '%s',  NOW()) ";
+#新增需求
+insert_demand_service="INSERT INTO `DS_DemandService` (`Id`,`UserId`,`Name`,`Type`,`ServiceAreaId`,`ServiceTypeId`,`PriceStart`,`PriceEnd`,`TimeStart`,`TimeEnd`,`Description`,`CreateUserID`,`CreateTime`,`ModifUserID`,`ModifTime`,`IsDelete`) " \
+                      "VALUES(  '%s',  '%s',  '%s',  '%s',  '%s',  '%s',  '%s',  '%s',  '%s',  '%s',  '%s',  '%s',  NOW(),  '%s',  NOW(),FALSE) ";
+
+#修改需求
+update_browse_service="UPDATE `DS_DemandService` SET `Name` = '%s', `ServiceAreaId` = '%s', `ServiceTypeId` = '%s'" \
+                      ", `PriceStart` = '%s', `PriceEnd` = '%s', `TimeStart` = '%s', `TimeEnd` = '%s', `Description` = '%s'" \
+                      ", `ModifUserID`='%s', `ModifTime`=NOW() " \
+                      "WHERE `Id` = '%s' AND `UserId` = '%s'";
+
+
+#删除需求
+delete_browse_service ="UPDATE `DS_DemandService` SET `IsDelete`=TRUE, `ModifUserID`='%s', `ModifTime`=NOW()  " \
+                       "WHERE `Id` = '%s' AND `UserId` = '%s'"
