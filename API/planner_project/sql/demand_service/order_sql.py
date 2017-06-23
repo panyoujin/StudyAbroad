@@ -21,3 +21,10 @@ select_order_evaluate="SELECT e.`OrderId`,e.`Content`,e.`CreateTime` ,ui.`Name` 
                       "WHERE e.`OrderId`='%s' AND e.`IsFirst`=1 " \
                       "ORDER BY e.`CreateTime` " \
                       "LIMIT %s , %s"
+
+insert_order="INSERT INTO `StudyAbroad`.`DS_Order` (`Id`,`PlannerUserId`,`UserId`,`ContractId`,`Type`,`DemandServiceId`,`DemandServiceDescription`," \
+              "`Description`,`ServiceAreaId`,`ServiceTypeId`,`PriceStart`,`PriceEnd`,`TimeStart`,`TimeEnd`," \
+              "`CreateUserID`,`CreateTime`) " \
+              "VALUES (UUID(),'%s','%s',%s,%s,'%s','%s','%s',%s,%s,%s,%s,'%s','%s','%s',NOW())"
+
+select_order_createtime = "SELECT IF(DATE_ADD(`CreateTime`,INTERVAL 30 SECOND) >= NOW(),0,1) AS isCanInsert FROM `DS_Order` WHERE `CreateUserID`='%s' ORDER BY `CreateTime` DESC LIMIT 1"

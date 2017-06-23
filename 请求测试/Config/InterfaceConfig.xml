@@ -336,4 +336,11 @@
     <FileParam></FileParam>
     <BodyParam></BodyParam>
   </Interface>
+  <Interface>
+    <Name>创建订单</Name>
+    <Url>http://localhost:5000/order/insert_order</Url>
+<PostParam>PlannerUserId=1#;#ContractId=1#;#Type=1#;#DemandServiceId=1#;#DemandServiceDescription=1#;#Description=1#;#ServiceAreaId=1#;#ServiceTypeId=1#;#PriceStart=1#;#PriceEnd=1#;#TimeStart=2017-06-23#;#TimeEnd=2017-06-30</PostParam>
+    <FileParam></FileParam>
+    <BodyParam></BodyParam>
+  </Interface>
 </InterfaceList>
