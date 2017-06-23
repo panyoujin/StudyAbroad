@@ -329,4 +329,11 @@
     <FileParam></FileParam>
     <BodyParam></BodyParam>
   </Interface>
+  <Interface>
+    <Name>申请承接需求</Name>
+    <Url>http://localhost:5000/demand_undertake/insert_undertake</Url>
+    <PostParam>DemandId=1</PostParam>
+    <FileParam></FileParam>
+    <BodyParam></BodyParam>
+  </Interface>
 </InterfaceList>
