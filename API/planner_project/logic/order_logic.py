@@ -28,3 +28,21 @@ def select_order_evaluate(orderId,page,size):
         size=10
     return mysql.get_list(order_sql.select_order_evaluate,(orderId,(page-1)*size,size))
 
+
+#新增评论
+def insert_evaluate(orderId,userId,content,sort,synthesis,quality,efficiency,lable):
+    if synthesis<=0 or synthesis>5:
+        synthesis=5
+    if quality<=0 or quality>5:
+        quality=5
+    if efficiency<=0 or efficiency>5:
+        efficiency=5
+    return mysql.operate_object(order_sql.insert_evaluate,(content,synthesis,quality,efficiency,lable,orderId,userId,orderId
+                                                           ,orderId,userId,orderId
+                                                           ,orderId,userId,content,sort,userId,userId,orderId,userId,orderId))
+
+
+#回复评论
+def replay_evaluate(orderId,userId,content,sort):
+    return mysql.operate_object(order_sql.replay_evaluate,(orderId,userId,content,sort,userId,userId,orderId,userId,userId,orderId))
+

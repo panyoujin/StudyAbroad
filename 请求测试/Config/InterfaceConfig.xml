@@ -343,4 +343,18 @@
     <FileParam></FileParam>
     <BodyParam></BodyParam>
   </Interface>
+  <Interface>
+    <Name>新增评论</Name>
+    <Url>http://localhost:5000/order/insert_evaluate</Url>
+    <PostParam>orderId=08c1ffea-57fe-11e7-a958-0242c0a80005#;#content=首评#;#lable=帅#;#Sort=1#;#synthesis=5#;#quality=5#;#efficiency=5</PostParam>
+    <FileParam></FileParam>
+    <BodyParam></BodyParam>
+  </Interface>
+  <Interface>
+    <Name>回复评论</Name>
+    <Url>http://localhost:5000/order/replay_evaluate</Url>
+    <PostParam>orderId=08c1ffea-57fe-11e7-a958-0242c0a80005#;#content=回复评论#;#lable=帅#;#Sort=1</PostParam>
+    <FileParam></FileParam>
+    <BodyParam></BodyParam>
+  </Interface>
 </InterfaceList>
