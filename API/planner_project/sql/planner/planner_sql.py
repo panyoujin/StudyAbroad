@@ -92,7 +92,7 @@ select_planner_resour = "SELECT r.`Id`,CONCAT(YEAR(r.`TimeStart`),'-',YEAR(r.`Ti
 
 
 #获取指定规划师评论列表
-select_planner_evaluate="SELECT e.`OrderId`,e.`Content`,e.`CreateTime` ,ui.`Name` " \
+select_planner_evaluate="SELECT e.`OrderId`,e.`Content`,e.`CreateTime` ,ui.`Name`, ui.`HeadImage` " \
                       "FROM `U_Evaluate` e " \
                       "LEFT JOIN `U_UserInfo` ui ON e.`UserId` = ui.`UserId` " \
                       "LEFT JOIN `DS_Order` o ON o.`Id`=e.`OrderId` " \

@@ -1,0 +1,124 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>用户信息</title>
+    <link href="/Resource/Style/ivory.css?v=3" rel="stylesheet" type="text/css" />
+    <link href="/Resource/Style/main.css?v=3" rel="stylesheet" type="text/css" />
+    <link href="/Resource/Style/FortAwesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <script src="/Resource/Script/jquery.min.js" type="text/javascript"></script>
+    <script src="/Resource/Script/common.js?v=5" type="text/javascript"></script>
+    <script type="text/javascript" src="/Resource/Script/jquery.validate.js"></script>
+
+
+
+</head>
+<body>
+    <form id="submitForm">
+        <div id="contentheader">
+            <div id="contentheader_title">编辑用户</div>
+            <div id="contentheader_button">
+                <button type="submit" class="orange" onclick="submitForm();"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
+                <button onclick="parent.gotoPage('/System/UserIndex');" type="button"><i class="fa fa-times"></i>&nbsp;取消</button>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+
+        <div id="content">
+            <div class="area_title">用户信息</div>
+            <div class="area">
+                <table border="1" cellpadding="0" cellspacing="0" style="width: 80%;">
+                    <tr>
+                        <th width="100">用户名称</th>
+                        <td>
+                            <input id="NickName" maxlength="20" name="NickName" placeholder="输入用户名称" value="" type="text">
+                        </td>
+                        <th width="100">登录名</th>
+                        <td>
+                            <input id="UserName" maxlength="36" name="UserName" placeholder="输入登录名" value="" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="100">手机</th>
+                        <td>
+                            <input id="Phone" maxlength="13" name="Phone" placeholder="输入手机" value="" type="text">
+                        </td>
+                        <th width="100">邮箱</th>
+                        <td>
+                            <input id="Email" maxlength="36" name="Email" placeholder="输入邮箱" value="" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="100">描述</th>
+                        <td colspan="3">
+                            <textarea cols="80" id="Descript" maxlength="300" name="Descript" placeholder="输入描述" rows="3" style="width: 400px;"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+<script type="text/javascript">
+    var submitForm = function () {
+        $("#submitForm").validate({
+            rules: {
+                NickName: {
+                    required: true
+                }, UserName: {
+                    required: true
+                }, Password: {
+                    required: true
+                }, PassAgain: {
+                    required: true,
+                    equalTo: "#Password"
+                }, Phone: {
+                    required: true,
+                    telAndPhone: true
+                }, Email: {
+                    required: true,
+                    email: true
+                },Descript: {
+                    maxlength:300
+                }
+            }, messages: {
+                NickName: {
+                    required: "请输入用户名"
+                }, UserName: {
+                    required: "请输入登录名"
+                }, Password: {
+                    required: "请输入密码"
+                }, PassAgain: {
+                    required: "请再次输入密码",
+                    equalTo: "两次输入的密码不一样"
+                }, Phone: {
+                    required: "联系方式不能为空",
+                    telAndPhone: "联系方式格式不正确"
+                }, Email: {
+                    required: "邮箱不能为空",
+                    email: "邮箱格式不正确"
+                },Descript: {
+                    maxlength:"最多填写300个字"
+                }
+            }, submitHandler: function () {
+                $.ajaxForm("/System/UserEdit", "submitForm",
+                function (result) {
+                    if (result.IsOk) {
+                        $.alert("用户修改成功", function () {
+                            parent.gotoPage("/System/UserIndex");
+                        });
+                    } else {
+                        $.alert("联系人修改失败");
+                    }
+                },
+                function () {
+                    $.alert("网络故障，请稍候重试!");
+                });
+            }
+        });
+
+    };
+
+
+</script>

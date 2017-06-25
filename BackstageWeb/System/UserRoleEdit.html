@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="/Resource/Style/ivory.css?v=3" rel="stylesheet" type="text/css" />
+    <link href="/Resource/Style/main.css?v=3" rel="stylesheet" type="text/css" />
+    <link href="/Resource/Style/FortAwesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <script src="/Resource/Script/jquery.min.js" type="text/javascript"></script>
+    <script src="/Resource/Script/common.js?v=5" type="text/javascript"></script>
+</head>
+<body>
+    <form id="submitForm">
+        <div id="content" style="height:380px; overflow-y:auto;">
+            <table border="1" cellpadding="0" cellspacing="0" class="table" id="dataList">
+                <thead>
+                    <tr>
+                        <th width="60px"></th>
+                        <th width="35%">角色名称</th>
+                        <th>角色备注</th>
+                    </tr>
+                </thead>
+                <tbody><tr><td colspan='3'><i class='fa fa-spinner fa-pulse'></i></td></tr></tbody>
+            </table>
+        </div>
+         <div style="text-align:center;padding-top:10px;padding-bottom:10px;">
+            <button id="submitButton" type="button" class="orange"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
+            <button onclick="$.layerClose()" type="button"><i class="fa fa-times"></i>&nbsp;取消</button>
+        </div>
+    </form>
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var roles = "";
+        $.ajaxJson("/System/GetRoleByUserId", { "userId": '@ViewBag.UserId' }, function (result) {
+            if (result.IsOk) {
+                roles = result.ReturnData;
+                $.ajaxJson("/System/GetRoleList", null, function (result2) {
+                    if (result2.IsOk && result2.ListCount > 0) {
+                        var html = "";
+                        for (var i = 0; i < result2.ReturnData.length; i++) {
+                            var entity = result2.ReturnData[i];
+                            html += "<tr>";
+                            if (roles.indexOf(","+entity.RoleId+",") >-1) {
+                                html += "<td><input type='checkbox' value='" + entity.RoleId + "' checked /></td>";
+                            } else {
+                                html += "<td><input type='checkbox' value='" + entity.RoleId + "' /></td>";
+                            }
+                            html += "<td>" + (entity.RoleName ? entity.RoleName : "") + "</td>";
+                            html += "<td>" + (entity.Remark ? entity.Remark : "") + "</td>";
+                            html += "</tr>";
+                        }
+                        $("#dataList tbody").html(html);
+                    } else {
+                        $("#dataList tbody").html("<tr><td colspan='" + $("#dataList thead tr th").length + "'>没有可配置的角色!</td></tr>");
+                    }
+                }, function () {
+                    $("#dataList tbody").html("<tr><td colspan='" + $("#dataList thead tr th").length + "'>网络故障，请稍候重试！</td></tr>");
+                });
+            } else {
+                $("#dataList tbody").html("<tr><td colspan='" + $("#dataList thead tr th").length + "'>网络故障，请稍候重试！</td></tr>");
+            }
+        }, function () {
+            $("#dataList tbody").html("<tr><td colspan='" + $("#dataList thead tr th").length + "'>网络故障，请稍候重试！</td></tr>");
+        });
+    });
+
+    $("#submitButton").click(function () {
+        var roleId = "";
+        $(":checkbox").each(function () {
+            if (this.checked == true) {
+                roleId += $(this).val() + ",";
+            }
+        });
+        if (roleId.length > 0) {
+            $.ajaxJson("/System/UserRoleConfig", { roleId: roleId, userId: '@ViewBag.UserId' }, function (result) {
+                if (result.IsOk) {
+                    $.alert("保存成功!",null,"close");
+                }
+
+            }, function () {
+                $.alert("保存失败");
+            });
+        } else {
+            $.alert("请选择一个角色");
+        }
+    });
+</script>
+</html>

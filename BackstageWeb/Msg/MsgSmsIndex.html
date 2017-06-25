@@ -1,0 +1,157 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>短信查询</title>
+    <link href="/Resource/Style/ivory.css?v=3" rel="stylesheet" type="text/css" />
+    <link href="/Resource/Style/main.css?v=3" rel="stylesheet" type="text/css" />
+    <link href="/Resource/Style/FortAwesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <script src="/Resource/Script/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/Resource/Script/common.js?v=5"></script>
+    <script type="text/javascript" src="/Resource/Script/page.js"></script>
+    <link href="/Resource/Script/datetimepicker/datetimepicker.css" rel="stylesheet" />
+    <script type="text/javascript" src="/Resource/Script/datetimepicker/datetimepicker.js"></script>
+</head>
+<body>
+    <div id="contentheader">
+        <div id="contentheader_title">短信列表</div>
+    </div>
+    <div id="contentsearch">
+        <label>短信状态</label>
+        <select id="Status" name="Status"><option value="-1">请选择</option>
+            <option value="0">待发送</option>
+            <option value="1">发送成功</option>
+            <option value="2">发送失败</option>
+        </select>
+        <label>手&nbsp;&nbsp;机</label><input type="text" placeholder="输入手机号码" id="Phone" maxlength="11" onkeyup="value=value.replace(/[^1234567890-]+/g,'')" />
+        <label>标&nbsp;&nbsp;题</label><input type="text" placeholder="输入标题" id="Title" maxlength="36" />
+        
+        <br /><br /><label>内&nbsp;&nbsp;容</label><input type="text" placeholder="输入内容" id="Content" maxlength="36" />
+        <label>发送时间</label><input type="text" placeholder="选择开始时间" class="date" id="StartTime" />
+        至
+        <input type="text" placeholder="选择结束时间" class="date" id="EndTime" />
+        <button type="button" class="blue" style="float:right;" id="serarch"><i class="fa fa-search"></i>&nbsp;查询</button>
+        <div class="clear"></div>
+    </div>
+    <div id="content">
+        <table class="table" id="dataList">
+            <thead>
+                <tr>
+                    <th width="50">
+                        <i class='fa fa-plus thead-th-fonticon' onclick='showAllDetailTable(this)' title='全部展开'></i>
+                    </th>
+                    <th width="13%">手机号码</th>
+                    <th width="15%">短信标题</th>
+                    <th>短信内容</th>
+                    <th width="13%">发送时间</th>
+                    <th width="10%">发送状态</th>
+                    <th class="data-detail-th">所属平台</th>
+                    <th class="data-detail-th">系统</th>
+                    <th class="data-detail-th">IP</th>
+                    <th class="data-detail-th">短信通道</th>
+                    <th class="data-detail-th">完成时间</th>
+                    <th class="data-detail-th">发送次数</th>
+                    <th class="data-detail-th">结果说明</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="paginationbox">
+            <ul class="pagin text-right">
+                <li><a href="javascript:void(0)" ondragstart="return false" id="first">首页</a></li>
+                <li><a href="javascript:void(0)" ondragstart="return false" id="next">下一页</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#StartTime").datetimepicker({ format: "Y-m-d H:i", datepicker: true, timepicker: true, step: 30 });
+        $("#EndTime").datetimepicker({ format: "Y-m-d H:i", datepicker: true, timepicker: true, step: 30 });
+        $("#paginationbox").hide();
+        $("#dataList tbody").html("<tr><td colspan='" + $("#dataList thead tr th").length + "'>没有任何数据</td></tr>");
+       
+
+        //回车事件
+        document.onkeydown = function (event) {
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if (e && e.keyCode == 13) {
+                $("#serarch").click();
+            }
+        };
+    });
+
+    $("#serarch").click(function() {
+            setSystemIdForSort(systemId);
+            GetData();
+    });
+
+    function GetData() {
+        var phone = $.trim($("#Phone").val());
+        var title = $.trim($("#Title").val());
+        var content = $.trim($("#Content").val());
+        var status = $("#Status").val();
+        var start = $("#StartTime").val();
+        var end = $("#EndTime").val();
+        $("#dataList tbody").html("<tr><td colspan='" + $("#dataList thead tr th").length + "'><i class='fa fa-spinner fa-pulse'></i></td></tr>");
+        $.ajaxJson("/Msg/MsgSmsData", { phone: phone, title: title, content: content, status: status,start:start,end:end },
+            function (result) {
+                if (result.IsOk && result.ListCount > 0) {
+                    var html = "";
+                    var list = result.ReturnData;
+                    $("#dataList tbody").html('');
+                    for (var j = 0; j < result.ListCount; j++) {
+                        html += "<tr " + (j % 2 == 1 ? "class='even'" : "") + ">";
+                        html += "<td style='cursor:pointer' onclick='showDetailTable(this)'><input type='hidden' value='" + list[j].Id + "' /><i class='fa fa-plus' ></i></td>";
+                        html += "<td>" + (list[j].Mobile ? textSelected(phone,list[j].Mobile) : "") + "</td>";
+                        html += "<td>" + (list[j].Title ? textSelected(title,list[j].Title) : "") + "</td>";
+                        html += "<td style='text-align:left;'>" + (list[j].SMSContent ? textSelected(content,list[j].SMSContent) : "") + "</td>";
+                        html += "<td>" + (list[j].CreateTime ? list[j].CreateTime.toDateTime() : "") + "</td>";
+                        html += "<td>" + (list[j].SmsStatus ? list[j].SmsStatus: "") + "</td>";
+                        html += "<td class='data-detail-td'>" + (list[j].SystemParentName ? list[j].SystemParentName : "") + "</td>";
+                        html += "<td class='data-detail-td'>" + (list[j].SystemName ? list[j].SystemName : "") + "</td>";
+                        html += "<td class='data-detail-td'>" + (list[j].IP+" ["+list[j].HostIP+"]") + "</td>";
+                        html += "<td class='data-detail-td'>" + (list[j].ChannelName ? list[j].ChannelName : "") + "</td>";
+                        html += "<td class='data-detail-td'>" + (list[j].CompleteTime ? list[j].CompleteTime.toDateTime() : "") + "</td>";
+                        html += "<td class='data-detail-td'>" + (list[j].SendCount ? list[j].SendCount : 0) + "</td>";
+                        html += "<td class='data-detail-td'>" + (list[j].StatusRemark ? list[j].StatusRemark : "") + "</td>";
+                        html += "</tr>";
+                    }
+                    $("#dataList tbody").append(html);
+                    $("#paginationbox").show();
+                } else {
+                    $("#paginationbox").hide();
+                    $("#dataList tbody").html("<tr><td colspan='" + $("#dataList thead tr th").length + "'>没有任何数据</td></tr>");
+                }
+            }, function () {
+                $.alert("系统加载失败!");
+            });
+    }
+
+    $("#first").click(function () {
+        GetData();
+    });
+
+    $("#next").click(function () {
+        var id = $("#dataList tbody").find("tr").last().find("input").val();
+        GetData(id);
+    });
+
+    var textSelected = function (keyWord, text) {
+        var beginWord = "```";
+        var endWord = "'''";
+        if (keyWord && keyWord.length > 0 && text && text.length > 0) {
+            var keyWordArr = $.trim(keyWord).split(" ").join(",").split("，").join(",").split(",");
+            for (var i = 0; i < keyWordArr.length; i++) {
+                if (keyWordArr[i].length > 0)
+                    text = text.replace(new RegExp(keyWordArr[i], 'g'), beginWord + keyWordArr[i] + endWord);
+            }
+        }
+        text = text.replace(new RegExp(beginWord, 'g'), "<span style='background-color:#ff5c00;color:#fff;'>");
+        text = text.replace(new RegExp(endWord, 'g'), "</span>");
+        return text;
+    }
+</script>

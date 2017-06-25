@@ -50,3 +50,23 @@ def replay_evaluate():
     ApiResponse.status = 200
     ApiResponse.data = data
     return api_response.response_return(ApiResponse)
+
+
+#查询指定订单的评论详情
+@app.route("/order/select_evaluate_info", methods=['POST'])
+def select_evaluate_info():
+    ApiResponse = api_response.ApiResponse()
+    size = request.form.get("size", type=int, default=10)
+    page = request.form.get("page", type=int, default=1)
+    orderId = request.form.get("orderId", type=str, default=None)
+    if orderId == None or orderId=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="订单号不能为空")
+    if page <= 0:
+        page = 1
+    if size <= 0:
+        size = 10
+    evaluate = order_logic.select_evaluate_info(orderId,page,size)
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = evaluate
+    return api_response.response_return(ApiResponse)

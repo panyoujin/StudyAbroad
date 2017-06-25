@@ -1,0 +1,54 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>创建角色</title>
+    <link href="/Resource/Style/ivory.css?v=3" rel="stylesheet" type="text/css" />
+    <link href="/Resource/Style/main.css?v=3" rel="stylesheet" type="text/css" />
+    <link href="/Resource/Style/FortAwesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <script src="/Resource/Script/jquery.min.js" type="text/javascript"></script>
+    <script src="/Resource/Script/common.js?v=5" type="text/javascript"></script>
+    <script src="/Resource/Script/jquery.validate.js" type="text/javascript"></script>
+</head>
+<body>
+    <form id="SubmitForm" class="vform" style="padding:20px;">
+        <fieldset>
+            <label>角色名称</label>
+            <input id="RoleName" maxlength="30" name="RoleName" placeholder="输入角色名称" value="" type="text">
+        </fieldset>
+        <fieldset>
+            <label>角色说明</label>
+            <textarea cols="80" id="Remark" maxlength="150" name="Remark" placeholder="输入角色说明" rows="3" style="width: 400px;"></textarea>
+        </fieldset>
+        <div style="float:right;">
+            <button type="submit" class="orange" onclick="doSubmit()"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
+        </div>
+    </form>
+</body>
+</html>
+<script type="text/javascript">
+
+    var doSubmit = function () {
+
+        $("#SubmitForm").validate({
+            rules: {
+                RoleName: { required: true }
+            },
+            messages: {
+                NickName: { required: "请输入角色名称" }
+            }, submitHandler: function () {
+                $.ajaxForm("/System/RoleAdd", "SubmitForm",
+                function (result) {
+                    if (result && result.IsOk) {
+                        $.alert("保存成功！", function () {
+                            $(window.top.document).contents().find("#pageContent")[0].contentWindow.location.reload();
+                            $.layerClose();
+                        });
+                    }
+                },
+                function () { $.alert("网络故障，请稍候重试!"); });
+            }
+        });
+    };
+
+</script>

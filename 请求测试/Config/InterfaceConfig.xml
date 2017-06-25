@@ -357,4 +357,11 @@
     <FileParam></FileParam>
     <BodyParam></BodyParam>
   </Interface>
+  <Interface>
+    <Name>查询指定订单的评论详情</Name>
+    <Url>http://localhost:5000/order/select_evaluate_info</Url>
+    <PostParam>page=1#;#size=10#;#orderId=08c1ffea-57fe-11e7-a958-0242c0a80005</PostParam>
+    <FileParam></FileParam>
+    <BodyParam></BodyParam>
+  </Interface>
 </InterfaceList>

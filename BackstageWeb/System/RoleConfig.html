@@ -1,0 +1,136 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>权限配置</title>
+    <link href="/Resource/Style/ivory.css?v=3" rel="stylesheet" type="text/css" />
+    <link href="/Resource/Style/main.css?v=3" rel="stylesheet" type="text/css" />
+    <link href="/Resource/Style/FortAwesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <script src="/Resource/Script/jquery.min.js" type="text/javascript"></script>
+    <script src="/Resource/Script/common.js?v=5" type="text/javascript"></script>
+    <script src="/Resource/Script/abixTreeList/abixTreeList.js" type="text/javascript"></script>
+    <link href="/Resource/Script/abixTreeList/abixTreeList.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        #permissionlist label{font-size:12px; }
+    </style>
+</head>
+<body>
+    <form id="SubmitForm">
+        <div id="content">
+            <div class="area">
+                <table border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+                    <tr>
+                    <tr>
+                        <td width="80" style="font-size:12px;">角色名称</td>
+                        <td colspan="3">
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="80" style="font-size:12px;">角色说明</td>
+                        <td colspan="3">
+                            
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="area_title" style="overflow:hidden;">权限信息</div>
+            <div id="permissionlist" class="area" style="height:260px;margin-bottom:0px; overflow-y:scroll; "></div>
+        </div>
+        <div style="text-align:center;padding-top:10px;padding-bottom:10px;">
+            <button type="button" class="orange" onclick="doSubmit()"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
+            <button type="button" onclick="$.layerClose()"><i class="fa fa-times"></i>&nbsp;取消</button>
+        </div>
+    </form>
+</body>
+</html>
+
+<script type="text/javascript">
+    var dataJson = [{"PermissionId":10000,"ParentId":0,"Name":"System","MenuName":"系统管理","Url":"","Orderby":0,"Visible":true,"Remark":"系统管理","Icon":null,"Scope":null,"Child":[{"PermissionId":10100,"ParentId":10000,"Name":"SystemUserIndex","MenuName":"用户管理","Url":"/System/UserIndex","Orderby":0,"Visible":true,"Remark":"用户管理","Icon":null,"Scope":null,"Child":[{"PermissionId":10101,"ParentId":10100,"Name":"SystemUserList","MenuName":"查看用户列表","Url":"/System/UserList","Orderby":0,"Visible":true,"Remark":"查看用户列表","Icon":null,"Scope":null,"Child":[]},{"PermissionId":10102,"ParentId":10100,"Name":"SystemUserDetail","MenuName":"查看用户信息","Url":"/System/UserDetail","Orderby":0,"Visible":true,"Remark":"查看用户信息","Icon":null,"Scope":null,"Child":[]},{"PermissionId":10103,"ParentId":10100,"Name":"SystemUserAdd","MenuName":"增加用户","Url":"/System/UserAdd","Orderby":0,"Visible":true,"Remark":"增加用户","Icon":null,"Scope":null,"Child":[]},{"PermissionId":10104,"ParentId":10100,"Name":"SystemUserEdit","MenuName":"修改用户信息","Url":"/System/UserEdit","Orderby":0,"Visible":true,"Remark":"修改用户信息","Icon":null,"Scope":null,"Child":[]},{"PermissionId":10105,"ParentId":10100,"Name":"SystemUserUpdateStatus","MenuName":"变更用户状态","Url":"/System/UpdateUserStatus","Orderby":0,"Visible":true,"Remark":"变更用户状态","Icon":null,"Scope":null,"Child":[]},{"PermissionId":10106,"ParentId":10100,"Name":"SystemUserRoleEdit","MenuName":"修改用户角色","Url":"/System/UserRoleEdit","Orderby":0,"Visible":true,"Remark":"修改用户角色","Icon":null,"Scope":null,"Child":[]},{"PermissionId":10107,"ParentId":10100,"Name":"SystemUserDelete","MenuName":"删除用户","Url":"/System/UserDelete","Orderby":0,"Visible":true,"Remark":"删除用户","Icon":null,"Scope":null,"Child":[]}]},{"PermissionId":10200,"ParentId":10000,"Name":"SystemRoleIndex","MenuName":"角色权限","Url":"/System/RoleIndex","Orderby":0,"Visible":true,"Remark":"角色权限","Icon":null,"Scope":null,"Child":[{"PermissionId":10201,"ParentId":10200,"Name":"SystemRoleList","MenuName":"查看角色列表","Url":"/System/RoleList","Orderby":0,"Visible":true,"Remark":"角色列表","Icon":null,"Scope":null,"Child":[]},{"PermissionId":10202,"ParentId":10200,"Name":"SystemRoleAdd","MenuName":"创建角色","Url":"/System/RoleAdd","Orderby":0,"Visible":true,"Remark":"创建角色","Icon":null,"Scope":null,"Child":[]},{"PermissionId":10203,"ParentId":10200,"Name":"SystemRoleConfig","MenuName":"角色权限配置","Url":"/System/RoleConfig","Orderby":0,"Visible":true,"Remark":"角色权限配置","Icon":null,"Scope":null,"Child":[]},{"PermissionId":10204,"ParentId":10200,"Name":"SystemRoleDelete","MenuName":"角色删除","Url":"/System/RoleDelete","Orderby":0,"Visible":true,"Remark":"角色删除","Icon":null,"Scope":null,"Child":[]},{"PermissionId":10205,"ParentId":10200,"Name":"SystemRoleSystemConfig","MenuName":"数据权限配置","Url":"/System/RoleSystemConfig","Orderby":0,"Visible":true,"Remark":"数据权限配置","Icon":null,"Scope":null,"Child":[]}]},{"PermissionId":10300,"ParentId":10000,"Name":"SystemPlatform","MenuName":"平台系统管理","Url":"/System/BusinessSystem","Orderby":0,"Visible":true,"Remark":"平台系统管理","Icon":null,"Scope":null,"Child":[{"PermissionId":10301,"ParentId":10300,"Name":"SystemBusinessSystem","MenuName":"查看系统列表","Url":"/System/BusinessSystem","Orderby":0,"Visible":true,"Remark":"系统列表","Icon":null,"Scope":null,"Child":[]},{"PermissionId":10302,"ParentId":10300,"Name":"SystemParentSystemAdd","MenuName":"创建平台","Url":"/System/ParentSystemAdd","Orderby":0,"Visible":true,"Remark":"创建平台","Icon":null,"Scope":null,"Child":[]},{"PermissionId":10303,"ParentId":10300,"Name":"SystemParentSystemEdit","MenuName":"修改平台","Url":"/System/ParentSystemEdit","Orderby":0,"Visible":true,"Remark":"修改平台","Icon":null,"Scope":null,"Child":[]},{"PermissionId":10304,"ParentId":10300,"Name":"SystemParentSystemDel","MenuName":"删除平台","Url":"/System/ParentSystemDel","Orderby":0,"Visible":true,"Remark":"删除平台","Icon":null,"Scope":null,"Child":[]},{"PermissionId":10305,"ParentId":10300,"Name":"SystemBusinessSystemAdd","MenuName":"创建系统","Url":"/System/BusinessSystemAdd","Orderby":0,"Visible":true,"Remark":"创建系统","Icon":null,"Scope":null,"Child":[]},{"PermissionId":10306,"ParentId":10300,"Name":"SystemBusinessSystemEdit","MenuName":"修改系统","Url":"/System/BusinessSystemEdit","Orderby":0,"Visible":true,"Remark":"修改系统","Icon":null,"Scope":null,"Child":[]},{"PermissionId":10307,"ParentId":10300,"Name":"SystemBusinessSystemDel","MenuName":"删除系统","Url":"/System/BusinessSystemDel","Orderby":0,"Visible":true,"Remark":"删除系统","Icon":null,"Scope":null,"Child":[]},{"PermissionId":10308,"ParentId":10300,"Name":"SystemBusinessSystemConfig","MenuName":"系统配置","Url":"/System/BusinessSystemConfig","Orderby":0,"Visible":true,"Remark":"系统配置","Icon":null,"Scope":null,"Child":[]},{"PermissionId":10309,"ParentId":10300,"Name":"SystemManagerSetting","MenuName":"设置项目经理","Url":"/System/SystemManagerSetting","Orderby":0,"Visible":true,"Remark":"设置项目经理","Icon":null,"Scope":null,"Child":[]},{"PermissionId":10310,"ParentId":10300,"Name":"SystemResetOrderBy","MenuName":"重置系统排序","Url":"/System/SystemResetOrderBy","Orderby":0,"Visible":true,"Remark":"重置系统排序","Icon":null,"Scope":null,"Child":[]},{"PermissionId":10311,"ParentId":10300,"Name":"APPGateWayConfig","MenuName":"App安全网关配置","Url":"/System/APPGateWayConfig","Orderby":0,"Visible":true,"Remark":"App安全网关配置","Icon":null,"Scope":null,"Child":[]}]}]},{"PermissionId":20000,"ParentId":0,"Name":"EarlyWarn","MenuName":"预警数据","Url":"","Orderby":30,"Visible":true,"Remark":"预警数据","Icon":null,"Scope":null,"Child":[{"PermissionId":20100,"ParentId":20000,"Name":"EarlyWarnStatistics","MenuName":"预警统计","Url":"/EralyWarn/EarlyWarnStatistics","Orderby":0,"Visible":true,"Remark":"预警统计","Icon":null,"Scope":null,"Child":[{"PermissionId":20101,"ParentId":20100,"Name":"EarlyWarnStatisticsData","MenuName":"查看预警统计","Url":"/EralyWarn/EarlyWarnStatisticsData","Orderby":0,"Visible":true,"Remark":"查看预警统计","Icon":null,"Scope":null,"Child":[]}]},{"PermissionId":20200,"ParentId":20000,"Name":"EarlyWarnHeartbeatOverview","MenuName":"心跳总览","Url":"/EralyWarn/HeartbeatOverview","Orderby":0,"Visible":true,"Remark":"心跳总览","Icon":null,"Scope":null,"Child":[{"PermissionId":20201,"ParentId":20200,"Name":"EarlyWarnHeartbeatOverviewList","MenuName":"查看心跳总览","Url":"/EralyWarn/HeartbeatOverviewList","Orderby":0,"Visible":true,"Remark":"查看心跳总览","Icon":null,"Scope":null,"Child":[]}]},{"PermissionId":20300,"ParentId":20000,"Name":"EarlyWarnAlarmRecord","MenuName":"预警消息","Url":"/EralyWarn/AlarmRecord","Orderby":0,"Visible":true,"Remark":"预警消息","Icon":null,"Scope":null,"Child":[{"PermissionId":20301,"ParentId":20300,"Name":"EarlyWarnAlarmRecordList","MenuName":"查看预警消息","Url":"/EralyWarn/AlarmRecordList","Orderby":0,"Visible":true,"Remark":"查看预警消息","Icon":null,"Scope":null,"Child":[]}]},{"PermissionId":20400,"ParentId":20000,"Name":"EarlyWarnHeartbeat","MenuName":"心跳记录","Url":"/EralyWarn/Heartbeat","Orderby":0,"Visible":true,"Remark":"心跳记录","Icon":null,"Scope":null,"Child":[{"PermissionId":20401,"ParentId":20400,"Name":"EarlyWarnHeartbeatList","MenuName":"查看心跳记录","Url":"/EralyWarn/HeartbeatList","Orderby":0,"Visible":true,"Remark":"查看心跳记录","Icon":null,"Scope":null,"Child":[]}]},{"PermissionId":20500,"ParentId":20000,"Name":"EarlyWarnLinkManIndex","MenuName":"预警联系人","Url":"/EralyWarn/LinkManIndex","Orderby":0,"Visible":true,"Remark":"预警联系人","Icon":null,"Scope":null,"Child":[{"PermissionId":20501,"ParentId":20500,"Name":"EarlyWarnLinkManList","MenuName":"查看联系人","Url":"/EralyWarn/LinkManList","Orderby":0,"Visible":true,"Remark":"查看联系人","Icon":null,"Scope":null,"Child":[]},{"PermissionId":20502,"ParentId":20500,"Name":"EarlyWarnLinkManAdd","MenuName":"增加联系人","Url":"/EralyWarn/LinkManAdd","Orderby":0,"Visible":true,"Remark":"增加联系人","Icon":null,"Scope":null,"Child":[]},{"PermissionId":20503,"ParentId":20500,"Name":"EarlyWarnLinkManEdit","MenuName":"修改联系人","Url":"/EralyWarn/LinkManEdit","Orderby":0,"Visible":true,"Remark":"修改联系人","Icon":null,"Scope":null,"Child":[]},{"PermissionId":20504,"ParentId":20500,"Name":"EarlyWarnLinkManDelete","MenuName":"删除联系人","Url":"/EralyWarn/LinkManDelete","Orderby":0,"Visible":true,"Remark":"删除联系人","Icon":null,"Scope":null,"Child":[]}]}]},{"PermissionId":30000,"ParentId":0,"Name":"Log","MenuName":"日志管理","Url":"","Orderby":40,"Visible":true,"Remark":"日志管理","Icon":null,"Scope":null,"Child":[{"PermissionId":30100,"ParentId":30000,"Name":"LogIndex","MenuName":"日志查询","Url":"/Log/LogIndex","Orderby":0,"Visible":true,"Remark":"日志查询","Icon":null,"Scope":null,"Child":[{"PermissionId":30101,"ParentId":30100,"Name":"LogList","MenuName":"查看日志信息","Url":"/Log/LogList","Orderby":0,"Visible":true,"Remark":"查看日志信息","Icon":null,"Scope":null,"Child":[]},{"PermissionId":30102,"ParentId":30100,"Name":"LogExport","MenuName":"导出日志信息","Url":"/Log/LogExport","Orderby":0,"Visible":true,"Remark":"导出日志信息","Icon":null,"Scope":null,"Child":[]}]},{"PermissionId":30200,"ParentId":30000,"Name":"LogStatistics","MenuName":"日志统计","Url":"/Log/LogStatistics","Orderby":0,"Visible":true,"Remark":"日志查询","Icon":null,"Scope":null,"Child":[{"PermissionId":30201,"ParentId":30200,"Name":"LogStatisticsData","MenuName":"日志统计信息","Url":"/Log/LogStatisticsData","Orderby":0,"Visible":true,"Remark":"日志统计信息","Icon":null,"Scope":null,"Child":[]}]},{"PermissionId":30300,"ParentId":30000,"Name":"DurableLogIndex","MenuName":"永久日志","Url":"/Log/DurableLogIndex","Orderby":0,"Visible":true,"Remark":"永久日志","Icon":null,"Scope":null,"Child":[{"PermissionId":30301,"ParentId":30300,"Name":"DurableLogList","MenuName":"查看永久日志信息","Url":"/Log/DurableLogList","Orderby":0,"Visible":true,"Remark":"查看永久日志信息","Icon":null,"Scope":null,"Child":[]},{"PermissionId":30302,"ParentId":30300,"Name":"DurableLogExport","MenuName":"导出永久日志信息","Url":"/Log/DurableLogExport","Orderby":0,"Visible":true,"Remark":"导出永久日志信息","Icon":null,"Scope":null,"Child":[]}]},{"PermissionId":30400,"ParentId":30000,"Name":"WatchLogIndex","MenuName":"监控分析","Url":"/Log/WatchLogIndex","Orderby":0,"Visible":true,"Remark":"监控分析","Icon":null,"Scope":null,"Child":[{"PermissionId":30401,"ParentId":30400,"Name":"WatchLogSysList","MenuName":"查看监控系统列表","Url":"/Log/WatchLogSysList","Orderby":0,"Visible":true,"Remark":"查看监控系统列表","Icon":null,"Scope":null,"Child":[]}]}]},{"PermissionId":40000,"ParentId":0,"Name":"Msg","MenuName":"消息管理","Url":" ","Orderby":20,"Visible":true,"Remark":"消息管理","Icon":null,"Scope":null,"Child":[{"PermissionId":40100,"ParentId":40000,"Name":"MsgSmsIndex","MenuName":"短信查询","Url":"/Msg/MsgSmsIndex","Orderby":0,"Visible":true,"Remark":"短信查询","Icon":null,"Scope":null,"Child":[{"PermissionId":40101,"ParentId":40100,"Name":"MsgSmsData","MenuName":"短信数据","Url":"/Msg/MsgSmsData","Orderby":0,"Visible":true,"Remark":"短信数据","Icon":null,"Scope":null,"Child":[]}]},{"PermissionId":40200,"ParentId":40000,"Name":"MsgEmailIndex","MenuName":"邮件查询","Url":"/Msg/MsgEmailIndex","Orderby":0,"Visible":true,"Remark":"邮件查询","Icon":null,"Scope":null,"Child":[{"PermissionId":40201,"ParentId":40200,"Name":"MsgEmailData","MenuName":"邮件数据","Url":"/Msg/MsgEmailData","Orderby":0,"Visible":true,"Remark":"邮件数据","Icon":null,"Scope":null,"Child":[]}]},{"PermissionId":40300,"ParentId":40000,"Name":"MsgStatisticsIndex","MenuName":"消息统计","Url":"/Msg/MsgStatisticsIndex","Orderby":0,"Visible":true,"Remark":"消息统计","Icon":null,"Scope":null,"Child":[{"PermissionId":40301,"ParentId":40300,"Name":"MsgStatisticsData","MenuName":"消息统计数据","Url":"/Msg/MsgStatisticsData","Orderby":0,"Visible":true,"Remark":"消息统计数据","Icon":null,"Scope":null,"Child":[]}]},{"PermissionId":40500,"ParentId":40000,"Name":"MsgChannelAccountIndex","MenuName":"通道账户","Url":"/Msg/MsgChannelAccountIndex","Orderby":0,"Visible":true,"Remark":"通道账户查询","Icon":null,"Scope":null,"Child":[{"PermissionId":40501,"ParentId":40500,"Name":"MsgChannelAccountUpdate","MenuName":"通道账户编辑","Url":"/Msg/MsgChannelAccountUpdate","Orderby":0,"Visible":true,"Remark":"通道账户编辑","Icon":null,"Scope":null,"Child":[]},{"PermissionId":40502,"ParentId":40500,"Name":"MsgChannelAccountAdd","MenuName":"通道账户添加","Url":"/Msg/MsgChannelAccountAdd","Orderby":0,"Visible":true,"Remark":"通道账户添加","Icon":null,"Scope":null,"Child":[]}]}]},{"PermissionId":50000,"ParentId":0,"Name":"Monitor","MenuName":"性能监控","Url":"","Orderby":10,"Visible":true,"Remark":"性能监控","Icon":null,"Scope":null,"Child":[{"PermissionId":50100,"ParentId":50000,"Name":"MonitorLiveIndex","MenuName":"实时监控","Url":"/Monitor/MonitorLiveIndex","Orderby":0,"Visible":true,"Remark":"实时监控","Icon":null,"Scope":null,"Child":[{"PermissionId":50101,"ParentId":50100,"Name":"MonitorLiveList","MenuName":"实时监控查询","Url":"/Monitor/MonitorLiveList","Orderby":0,"Visible":true,"Remark":"实时监控查询","Icon":null,"Scope":null,"Child":[]}]},{"PermissionId":50200,"ParentId":50000,"Name":"MonitorHistoryIndex","MenuName":"趋势监控","Url":"/Monitor/MonitorHistoryIndex","Orderby":0,"Visible":true,"Remark":"趋势监控","Icon":null,"Scope":null,"Child":[{"PermissionId":50201,"ParentId":50200,"Name":"MonitorHistoryList","MenuName":"趋势监控查询","Url":"/Monitor/MonitorHistoryList","Orderby":0,"Visible":true,"Remark":"趋势监控查询","Icon":null,"Scope":null,"Child":[]}]},{"PermissionId":50300,"ParentId":50000,"Name":"MonitorDataIndex","MenuName":"监控数据","Url":"/Monitor/MonitorDataIndex","Orderby":0,"Visible":true,"Remark":"监控数据","Icon":null,"Scope":null,"Child":[{"PermissionId":50301,"ParentId":50300,"Name":"MonitorDataList","MenuName":"监控数据查询","Url":"/Monitor/MonitorDataList","Orderby":0,"Visible":true,"Remark":"监控数据查询","Icon":null,"Scope":null,"Child":[]}]},{"PermissionId":50400,"ParentId":50000,"Name":"DBMonitorRecordChartIndex","MenuName":"DB监控报表","Url":"/Monitor/DBMonitorRecordChartIndex","Orderby":0,"Visible":true,"Remark":"DB监控报表","Icon":null,"Scope":null,"Child":[{"PermissionId":50401,"ParentId":50400,"Name":"DBMonitorRecordChartData","MenuName":"查看DB监控报表","Url":"","Orderby":0,"Visible":true,"Remark":"查看DB监控报表","Icon":null,"Scope":null,"Child":[]}]},{"PermissionId":50500,"ParentId":50000,"Name":"DBMonitorRecordIndex","MenuName":"DB监控记录","Url":"/Monitor/DBMonitorRecordIndex","Orderby":0,"Visible":true,"Remark":"监控数据","Icon":null,"Scope":null,"Child":[{"PermissionId":50501,"ParentId":50500,"Name":"DBMonitorRecordData","MenuName":"查看DB监控数据","Url":"","Orderby":0,"Visible":true,"Remark":"监控数据","Icon":null,"Scope":null,"Child":[]}]}]},{"PermissionId":60000,"ParentId":0,"Name":"Config","MenuName":"配置中心","Url":"","Orderby":0,"Visible":true,"Remark":"配置中心","Icon":null,"Scope":null,"Child":[{"PermissionId":60101,"ParentId":60000,"Name":"ConfigIndex","MenuName":"应用列表","Url":"/Config/Index","Orderby":0,"Visible":true,"Remark":"应用列表","Icon":null,"Scope":null,"Child":[{"PermissionId":60102,"ParentId":60101,"Name":"ConfigGetParentSystemList","MenuName":"获取平台数据","Url":"/Config/GetParentSystemList","Orderby":0,"Visible":true,"Remark":"获取平台数据","Icon":null,"Scope":null,"Child":[]},{"PermissionId":60103,"ParentId":60101,"Name":"ConfigGetSystemList","MenuName":"查看应用列表","Url":"/Config/GetSystemList","Orderby":0,"Visible":true,"Remark":"查看应用列表","Icon":null,"Scope":null,"Child":[]},{"PermissionId":60201,"ParentId":60101,"Name":"ConfigConfigIndex","MenuName":"配置管理","Url":"/Config/ConfigIndex","Orderby":0,"Visible":true,"Remark":"配置管理","Icon":null,"Scope":null,"Child":[]},{"PermissionId":60202,"ParentId":60101,"Name":"ConfigGetConfigList","MenuName":"获取配置列表数据","Url":"/Config/GetConfigList","Orderby":0,"Visible":true,"Remark":"获取配置列表数据","Icon":null,"Scope":null,"Child":[]},{"PermissionId":60203,"ParentId":60101,"Name":"ConfigAddConfig","MenuName":"新增配置","Url":"/Config/AddConfig","Orderby":0,"Visible":true,"Remark":"新增配置","Icon":null,"Scope":null,"Child":[]},{"PermissionId":60204,"ParentId":60101,"Name":"ConfigEditConfig","MenuName":"编辑配置","Url":"/Config/EditConfig","Orderby":0,"Visible":true,"Remark":"编辑配置","Icon":null,"Scope":null,"Child":[]},{"PermissionId":60205,"ParentId":60101,"Name":"ConfigSubmitConfig","MenuName":"提交配置","Url":"/Config/SubmitConfig","Orderby":0,"Visible":true,"Remark":"提交配置","Icon":null,"Scope":null,"Child":[]},{"PermissionId":60206,"ParentId":60101,"Name":"ConfigDeleteConfig","MenuName":"删除配置","Url":"/Config/DeleteConfig","Orderby":0,"Visible":true,"Remark":"删除配置","Icon":null,"Scope":null,"Child":[]},{"PermissionId":60207,"ParentId":60101,"Name":"ConfigDownloadConfig","MenuName":"下载配置","Url":"/Config/DownloadConfig","Orderby":0,"Visible":true,"Remark":"下载配置","Icon":null,"Scope":null,"Child":[]},{"PermissionId":60301,"ParentId":60101,"Name":"ConfigClientRecordIndex","MenuName":"客户端列表","Url":"/Config/ClientRecordIndex","Orderby":0,"Visible":true,"Remark":"客户端列表","Icon":null,"Scope":null,"Child":[]},{"PermissionId":60302,"ParentId":60101,"Name":"ConfigGetClientRecord","MenuName":"获取客户端列表数据","Url":"/Config/GetClientRecord","Orderby":0,"Visible":true,"Remark":"获取客户端列表数据","Icon":null,"Scope":null,"Child":[]},{"PermissionId":60303,"ParentId":60101,"Name":"ConfigDeleteClient","MenuName":"删除客户端","Url":"/Config/DeleteClient","Orderby":0,"Visible":true,"Remark":"删除客户端","Icon":null,"Scope":null,"Child":[]},{"PermissionId":60304,"ParentId":60101,"Name":"ConfigSetClientMonitorType","MenuName":"设置客户端监控类型","Url":"/Config/SetClientMonitorType","Orderby":0,"Visible":true,"Remark":"设置客户端监控类型","Icon":null,"Scope":null,"Child":[]},{"PermissionId":60401,"ParentId":60101,"Name":"ConfigCopyConfig","MenuName":"复制配置","Url":"/Config/CopyConfig","Orderby":0,"Visible":true,"Remark":"复制配置","Icon":null,"Scope":null,"Child":[]},{"PermissionId":60402,"ParentId":60101,"Name":"ConfigGetContrastConfigList","MenuName":"获取比较配置列表数据","Url":"/Config/GetContrastConfigList","Orderby":0,"Visible":true,"Remark":"获取比较配置列表数据","Icon":null,"Scope":null,"Child":[]},{"PermissionId":60403,"ParentId":60101,"Name":"ConfigCopy","MenuName":"复制","Url":"/Config/Copy","Orderby":0,"Visible":true,"Remark":"复制","Icon":null,"Scope":null,"Child":[]}]}]}];
+    var rolePermission = [{"PermissionId":60000},{"PermissionId":60101},{"PermissionId":60102},{"PermissionId":60103},{"PermissionId":60201},{"PermissionId":60202},{"PermissionId":60203},{"PermissionId":60204},{"PermissionId":60205},{"PermissionId":60206},{"PermissionId":60301},{"PermissionId":60302},{"PermissionId":60303},{"PermissionId":60304},{"PermissionId":60401},{"PermissionId":60402},{"PermissionId":60403}];
+    //页面初始化
+    $(document).ready(function () {
+
+        $("#permissionlist").html(initPermission(dataJson));
+
+        $("#permissionlist input[type=checkbox]").click(function(){
+            var check = $(this).prop("checked");
+            $(this).parent("li").find("input[type=checkbox]").prop("checked",check);
+        });
+
+        checkPermission();
+
+        $('#permissionlist').children("ul").abixTreeList({expandAll:true});
+    });
+
+    //初始化权限列表
+    function initPermission(data) {
+        var html = "";
+        if (data.length > 0) {
+            html += '<ul>';
+            for (var i = 0; i < data.length; i++) {
+                var child = data[i].Child;
+                html += '<li><input type="checkbox" id="c_'+data[i].PermissionId+'" value="' + data[i].PermissionId + '" /><label for="c_'+data[i].PermissionId+'">' + data[i].MenuName +"</label>";
+                if (child.length > 0) {
+                    html += initPermission(child);
+                }
+                html += '</li>';
+            }
+            html += '</ul>';
+        }
+        return html;
+    }
+
+    //选中
+    function checkPermission(){
+        $("#permissionlist input[type=checkbox]").each(function(){
+            var pId = $(this).val();
+            for(var i=0;i<rolePermission.length;i++){
+                if (pId==rolePermission[i].PermissionId) {
+                    $(this).prop("checked",true);
+                }
+            }
+        });
+    }
+
+    //提交
+    var doSubmit = function () {
+        if($.trim($("#RoleName").val()).length==0){
+            $.alert("请输入角色名称！");
+            return false;
+        }
+        var permissionids = "";
+        $("#permissionlist li input[type=checkbox]:checked").each(function(){
+            var pId = $(this).val();
+            permissionids = permissionids + pId+",";
+        });
+
+        var paramter = {
+            RoleId:$("#RoleId").val(),
+            RoleName:$("#RoleName").val(),
+            Remark:$("#Remark").val(),
+            CreateDate:$("#CreateDate").val(),
+            permissionids:permissionids
+        };
+        $.ajaxJson("/System/RoleConfig", paramter,
+            function (result) {
+                if (result && result.IsOk) {
+                    $.alert("保存成功！", function () {
+                        $(window.top.document).contents().find("#pageContent")[0].contentWindow.location.reload();
+                        $.layerClose();
+                    });
+                } else if (result) {
+                    $.alert(result.Message,function(){
+                        $.layerClose();
+                    });
+                }
+            },
+            function (result) {
+                $.alert(result.Message,function(){
+                    $.layerClose();
+                });
+            }
+        );
+    };
+
+</script>

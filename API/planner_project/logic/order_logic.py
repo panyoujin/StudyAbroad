@@ -46,3 +46,11 @@ def insert_evaluate(orderId,userId,content,sort,synthesis,quality,efficiency,lab
 def replay_evaluate(orderId,userId,content,sort):
     return mysql.operate_object(order_sql.replay_evaluate,(orderId,userId,content,sort,userId,userId,orderId,userId,userId,orderId))
 
+
+#查询指定订单的评论详情
+def select_evaluate_info(orderId,page=1,size=10):
+    if page<=0:
+        page=1
+    if size<=0:
+        size=10
+    return mysql.get_list(order_sql.select_evaluate_info,(orderId,(page-1)*size,size))

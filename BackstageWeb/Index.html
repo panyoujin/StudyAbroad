@@ -3,8 +3,65 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <title>管理后台</title>
+    <link href="/Resource/Style/ivory.css?v=3" rel="stylesheet" type="text/css" />
+    <link href="/Resource/Style/main.css?v=3" rel="stylesheet" type="text/css" />
+    <link href="/Resource/Style/FortAwesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <script src="/Resource/Script/jquery.min.js" type="text/javascript"></script>
+    <script src="/Resource/Script/common.js?v=5" type="text/javascript"></script>
+    <script src="/Resource/Script/layer/layer.js" type="text/javascript"></script>
 </head>
 <body style="background-color:#314057;">
-   
+    <div id="top">
+        <div id="topbox">
+            <div id="topbox_header_text">管理后台</div>
+            <div id="topbox_header_user"><i class="fa fa-user"></i> admin 您好! </div>
+            <div id="topbox_header_menu" style="margin-right:5px;">
+                <a href='javascript:;' onclick="gotoPage('/Home/IndexPage');"><i class="fa fa-home"></i>首页</a>
+                <a href='javascript:;' onclick="gotoPage('/System/UserPassword');"><i class="fa fa-key"></i>密码修改</a>
+                <a href="javascript:;" onclick="gotoLoginOut();"><i class="fa fa-sign-out"></i>退出</a>
+            </div>
+        </div>
+    </div>
+    <div id="menubox"></div>
+    <div id="contentbox">
+        <input type="hidden" id="Permissions" value="这是一个权限控制" />
+        <iframe id="pageContent" frameborder="0" scrolling="no" seamless="seamless"></iframe>
+        <div id="footer"><a href="#" target="_blank">有限公司</a></div>
+    </div>
 </body>
 </html>
+<script type="text/javascript">
+    $(function () {
+        gotoPage("/Home/IndexPage.html", null);
+        initMenu();
+        $("#menubox ul").first().show();
+        $("#menubox .nav-header").click(function () {
+            $("#menubox ul").each(function () {
+                if ($(this).css("display") == "block") {
+                    $(this).slideUp(200);
+                }
+            });
+            $(this).next().slideDown(200);
+        });
+        $("#pageContent").load(function () { autoHeight(); });
+    });
+     var initMenu = function () { 
+        var json = [{"PermissionId":10000,"ParentId":0,"Name":"System","MenuName":"系统管理","Url":"","Orderby":0,"Visible":true,"Remark":"系统管理","Icon":"<i class=\"fa fa-cogs\"></i>","Scope":null,"Child":[{"PermissionId":10100,"ParentId":10000,"Name":"SystemUserIndex","MenuName":"用户管理","Url":"/System/UserIndex.html","Orderby":0,"Visible":true,"Remark":"用户管理","Icon":"","Scope":null,"Child":null},{"PermissionId":10200,"ParentId":10000,"Name":"SystemRoleIndex","MenuName":"角色权限","Url":"/System/RoleIndex.html","Orderby":0,"Visible":true,"Remark":"角色权限","Icon":"","Scope":null,"Child":null}]},{"PermissionId":20000,"ParentId":0,"Name":"System","MenuName":"日志管理","Url":"","Orderby":0,"Visible":true,"Remark":"日志管理","Icon":"<i class=\"fa fa-book\"></i>","Scope":null,"Child":[{"PermissionId":20100,"ParentId":20000,"Name":"LogIndex","MenuName":"日志查询","Url":"/Log/LogIndex.html","Orderby":0,"Visible":true,"Remark":"日志查询","Icon":"","Scope":null,"Child":null},{"PermissionId":20200,"ParentId":20000,"Name":"LogStatistics","MenuName":"日志统计","Url":"/Log/LogStatistics.html","Orderby":0,"Visible":true,"Remark":"LogStatistics","Icon":"","Scope":null,"Child":null}]},{"PermissionId":30000,"ParentId":0,"Name":"System","MenuName":"消息管理","Url":"","Orderby":0,"Visible":true,"Remark":"消息管理","Icon":"<i class=\"fa fa-envelope\"></i>","Scope":null,"Child":[{"PermissionId":30100,"ParentId":30000,"Name":"MsgSmsIndex","MenuName":"短信查询","Url":"/Msg/MsgSmsIndex.html","Orderby":0,"Visible":true,"Remark":"短信查询","Icon":"","Scope":null,"Child":null}]}];
+        var html = "";
+        for (var i = 0; i < json.length; i++) {
+            html += "<a href='javascript:;' ondragstart='return false' class='nav-header'>" + json[i].Icon + json[i].MenuName + "</a>";
+            if (json[i].Child && json[i].Child.length >0) {
+                html += '<ul>';
+                for (var j = 0; j < json[i].Child.length; j++) {
+                    html += "<li><a href='javascript:;' onclick=\"gotoPage('" + json[i].Child[j].Url + "',this)\">" + json[i].Child[j].Icon + json[i].Child[j].MenuName + "</a></li>";
+                }
+                html += '</ul>';
+            }
+        }
+        $("#menubox").html(html);
+     }
+    var gotoPage = function (url, obj) { $("#menubox a").removeClass("active"); if (obj) { $(obj).addClass("active"); } var UToken = sessionStorage["UToken"];url = url.indexOf("?") > 0 ? (url + "&"+ Math.random()+"&UToken=" + UToken) :( url + "?"+ Math.random()+"&UToken=" + UToken);$("#pageContent").attr("src", url); }
+    var gotoLogin = function(){location = "/Home/Login.html";}
+    var gotoLoginOut = function(){ var UToken = sessionStorage["UToken"];location = "/Home/Login.html?UToken="+UToken;}
+    var autoHeight = function () { var mainheight = $("#pageContent").contents().find("body").height() + 30; mainheight = mainheight < 450 ? 450 : mainheight; $("#pageContent").height(mainheight); }
+</script>

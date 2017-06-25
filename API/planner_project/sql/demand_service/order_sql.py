@@ -42,7 +42,7 @@ insert_evaluate="UPDATE `DS_Order` SET `EvaluateContent`='%s',`Synthesis`='%s',`
                 "AND NOT EXISTS (SELECT Id FROM U_Evaluate WHERE OrderId='%s') LIMIT 0,1;"
 #新增评论
 insert_evaluate="UPDATE `DS_Order` SET `EvaluateContent`='%s',`Synthesis`='%s',`Quality`='%s',`Efficiency`='%s',`Lable`='%s' " \
-                "WHERE `Id`='%s' AND `UserId`='%s' AND `OrderStatus`=100" \
+                "WHERE `Id`='%s' AND `UserId`='%s' AND `OrderStatus`=100 " \
                 "AND NOT EXISTS (SELECT Id FROM U_Evaluate WHERE OrderId='%s');"\
                 "UPDATE `U_PlannerStatistics` ps,`DS_Order` o  SET ps.`NewEvaluate` = o.`EvaluateContent`" \
                 ",ps.`PraiseCount`=`PraiseCount`+(CASE o.`Synthesis`>=3 WHEN TRUE THEN 1 ELSE 0 END)" \
@@ -58,3 +58,12 @@ replay_evaluate="INSERT INTO `U_Evaluate` ( `OrderId`, `UserId`, `Content`, `Sor
                  "SELECT  '%s', '%s', '%s', '%s',0, '%s', NOW(), '%s', NOW(), FALSE " \
                 "FROM DS_Order WHERE `Id`='%s' AND (`UserId`='%s' OR PlannerUserId='%s') AND `OrderStatus`=100 " \
                 "AND EXISTS (SELECT Id FROM U_Evaluate WHERE OrderId='%s') LIMIT 0,1;"
+
+
+#查询指定订单的评论详情
+select_evaluate_info="SELECT e.`OrderId`,e.`Content`,e.`CreateTime` ,ui.`Name`, ui.`HeadImage` " \
+                      "FROM `U_Evaluate` e " \
+                      "LEFT JOIN `U_UserInfo` ui ON e.`UserId` = ui.`UserId` " \
+                      "WHERE e.`OrderId`='%s' " \
+                      "ORDER BY e.`IsFirst` DESC,e.`Sort` DESC,e.`CreateTime` DESC " \
+                      "LIMIT %s , %s"
