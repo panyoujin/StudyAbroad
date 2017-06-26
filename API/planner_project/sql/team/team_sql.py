@@ -24,3 +24,9 @@ select_team_member_list="SELECT ui.`Name`,ui.`HeadImage`,ps.`NewEvaluate`,ps.`Cu
                         "WHERE tm.`TeamId`='%s' AND tm.`IsDelete`= FALSE " \
                         "ORDER BY tm.`Sort` DESC,tm.`CreateTime` DESC " \
                         "LIMIT %s, %s "
+
+#获取用户的团队通知列表
+select_team_notice_list="SELECT tn.`Id`,tn.`UserId`,tn.`TeamId`,tn.`Message`,tn.`Status`,tn.`IsAdmin`,tn.`CreateTime`,t.`Name`,tn.`UnionId`  FROM T_TeamNotice tn JOIN `T_Team` t ON tn.`TeamId`=t.`Id`  WHERE UserId='%s' ORDER BY tn.`CreateTime` DESC"
+
+#新增团队通知
+insert_team_notice="INSERT INTO `StudyAbroad`.`T_TeamNotice` (`Id`,`UserId`,`TeamId`,`Message`,`Status`,`IsAdmin`,`CreateUserID`,`CreateTime`,`UnionId` ) VALUES(UUID(),'%s','%s','%s',%s,%s,'%s',NOW(),'%s')"
