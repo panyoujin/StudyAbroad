@@ -1,4 +1,4 @@
-﻿var APIHost='localhost/backweb';//localhost:8083';
+﻿var APIHost='/backweb';//localhost:8083';
 //异步ajax操作,返回json结果集
 jQuery.ajaxJson = function (url, param, successCallBack, failCallBack) {
     var UToken = sessionStorage["UToken"];

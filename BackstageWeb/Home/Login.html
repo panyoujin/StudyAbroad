@@ -2,25 +2,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<title>服务平台()</title>
+<title>留学管理平台</title>
 <link href="/Resource/Style/ivory.css?v=3" rel="stylesheet" type="text/css" />
 <link href="/Resource/Style/main.css?v=3" rel="stylesheet" type="text/css" />
 <link href="/Resource/Style/FortAwesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <script src="/Resource/Script/jquery.min.js" type="text/javascript"></script>
 <script src="/Resource/Script/common.js?v=5" type="text/javascript"></script>
 <script src="/Resource/Script/simplersa/simplersa.js" type="text/javascript"></script>
+<script src="/Resource/Script/simplersa/md5.js" type="text/javascript"></script>
 </head>
 <body style="text-align:center;background-color:#314057;font-family:微软雅黑,Georgia,Serif;overflow:hidden;">
 <div id="loginbox" style="display:none;">
 <div class="loginItem" style="text-align:center;color:#96805b; margin-bottom:25px;">
-<div style="font-size:20px; margin-bottom:15px; font-weight:bold; "><span style="color:#f06127;font-size:28px;font-style:italic;text-shadow: 1px 1px 1px #492516;margin-right:15px;"></span>服务平台<span style="font-size:14px;color:#ff5500;"></span></div>
+<div style="font-size:20px; margin-bottom:15px; font-weight:bold; "><span style="color:#f06127;font-size:28px;font-style:italic;text-shadow: 1px 1px 1px #492516;margin-right:15px;"></span>留学管理平台<span style="font-size:14px;color:#ff5500;"></span></div>
 <div style="color:#96805b;font-size:14px;">用户登录</div>
 </div>
 <div class="loginItem" >
-<input id="account" type="text" placeholder="登录账号"  maxlength="36" autocomplete="off" />
+<input id="account" type="text" placeholder="登录账号"  maxlength="36" autocomplete="off" value="admin" />
 </div>
 <div class="loginItem" >
-<input id="password" type="text" placeholder="登录密码"  maxlength="24" autocomplete="off" onfocus="chagePasswordType(this);" />
+<input id="password" type="text" placeholder="登录密码"  maxlength="24" autocomplete="off" onfocus="chagePasswordType(this);" value="123456" />
 </div>  
 <div class="loginItem" >
 <input id="code" type="text" placeholder="验证码" maxlength="4" style="float:left;width:180px; " />
@@ -43,7 +44,7 @@
         else { alert("您使用的浏览器版本过低!低版本浏览器已无法提供更好的用户体验,请使用最新版本浏览器访问!"); }
     }
     $(function () {
-        $("#account,#password").val("");
+        //$("#account,#password").val("");
         document.onkeydown = function (event) {
             var e = event || window.event || arguments.callee.caller.arguments[0];
             if (e && e.keyCode == 13) {//回车事件
@@ -53,51 +54,35 @@
         refreshValidateCode();
     });
     var login = function (obj) {
-        window.location.href = "/";
+        //window.location.href = "/";
         $("#loginInfo").hide();
         var account = $.trim($("#account").val());
         var password = $.trim($("#password").val());
-        var code = $.trim($("#code").val());
+        // var code = $.trim($("#code").val());
         if (account.length==0 || password.length == 0) {
             $("#loginInfo").show().html("请输入账号和密码!");
             return;
         }
-        if (code.length==0) {
-            $("#loginInfo").show().html("请输入验证码!");
-            return;
-        }
-        showloginButton(true);
-        $.ajaxJson("/Home/GetPublicKey", null,
+        // if (code.length==0) {
+        //     $("#loginInfo").show().html("请输入验证码!");
+        //     return;
+        // }
+        setMaxDigits(131);
+        password = hex_md5(password);
+
+        $.ajaxJson("/home/login", { UserName: account, Password: password },
             function (result) {
-                if (result && result.IsOk && result.ReturnData) {
-                    setMaxDigits(131);
-                    var key = new RSAKeyPair(result.ReturnData.exponent, "", result.ReturnData.modulus);
-                    password = encryptedString(key, base64encode(password));
-                    $.ajaxJson("/Home/Login", { account: account, password: password, code: code },
-                        function (result) {
-                            if (result && result.IsOk) {
-                                if (result.ReturnData.IsMultiUserLogin == true) {
-                                    alert("您的账号正在异地【" + result.ReturnData.LoginIP + "】登录使用！\n异地登录时间：" + result.ReturnData.LoginTime.toDateTime() + "，\n最近活动时间：" + result.ReturnData.LastActionTime.toDateTime() + "。\n\n如果非本人授权操作，则可能账号信息已泄露，请及时修改账号密码。");
-                                }
-                                sessionStorage.removeItem("UToken");
-                                sessionStorage["UToken"] = result.ReturnData.UToken;
-                                window.location.href = "/";
-                            } else {
-                                $("#loginInfo").show().html(result.Message);
-                                refreshValidateCode();
-                                showloginButton(false);
-                                $("#code").val("");
-                            }
-                        },
-                        function () {
-                            $("#loginInfo").show().html("网络故障，请稍候重试!");
-                            showloginButton(false);
-                        }
-                    );
+                if (result && result.status==200) {
+                    sessionStorage.removeItem("UToken");
+                    sessionStorage["UToken"] = result.data.token;
+                    sessionStorage.removeItem("user");
+                    sessionStorage["user"] = result.data.user;
+                    window.location.href = "/";
                 } else {
-                    $("#loginInfo").show().html("加密失败,请刷新重试!");
+                    $("#loginInfo").show().html(result.message);
                     refreshValidateCode();
                     showloginButton(false);
+                    $("#code").val("");
                 }
             },
             function () {
@@ -118,7 +103,8 @@
             $("#loginButton").html("<i class='fa fa-user'></i>&nbsp;登录").addClass("orange").removeAttr("disabled");
     }
     var refreshValidateCode = function () {
-        $("#validateCode").attr("src", "/Home/GetValidateCode?" + Math.random()).show();
+        //return;
+        //$("#validateCode").attr("src", APIHost+"/Home/GetValidateCode?" + Math.random()).show();
     }
 
 </script>
