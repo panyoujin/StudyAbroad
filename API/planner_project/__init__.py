@@ -1,8 +1,24 @@
-from flask import Flask
+from flask import Flask,request
 from planner_project.common import custom_error
-from planner_project.common import api_response
-
+from planner_project.common import api_response,request_helper
 app = Flask(__name__)
+
+@app.before_request
+def before_request():
+    #如果请求不是从小程序过来，直接返回失败
+    #if(request.user_agent!=""):
+    #    raise custom_error.CustomFlaskErr(status_code=500, message="系统错误")
+    #获取url权限
+    #判断当前url是否需要登录
+    #判断当前url是否有权限
+    #user = request_helper.current_user_mush_login()
+    print("before_request"+request.remote_addr+request.url_rule+request.user_agent)
+
+#@app.teardown_request
+#def teardown_request(e):
+ #   #对数据进行压缩操作
+ #   print("teardown_request"+request.remote_addr+request.url_rule+request.user_agent)
+
 @app.errorhandler(500)
 def system_error(error):
     #部署时需要去掉error.args[1]
