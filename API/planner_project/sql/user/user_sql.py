@@ -16,3 +16,6 @@ select_user_login_info = "SELECT u.`Id`,u.`Account`,u.`Phone`,u.`UserType`,ui.`N
                          "WHERE LoginToken ='%s'"
 #修改Token
 update_user_token = "UPDATE `U_User` SET `LoginTime` = NOW(), `LoginToken` = '%s', `LoginIP` = '%s' WHERE `Account` = '%s' AND `Password`='%s'"
+
+#修改用户密码
+update_user_password="UPDATE `U_User` SET `Password`='%s' WHERE Account='%s'"

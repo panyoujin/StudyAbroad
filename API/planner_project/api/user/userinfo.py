@@ -4,7 +4,8 @@ import uuid
 from planner_project import app
 from planner_project.common import api_response,custom_error,request_helper
 from planner_project.data_access import mysql
-from planner_project.sql.user import user_info_sql
+from planner_project.sql.user import user_info_sql,user_sql
+from planner_project.sql.basic import  verification_code_sql
 
 #修改用户
 @app.route("/userinfo/updateuserinfo", methods=['POST'])
@@ -57,3 +58,34 @@ def get_user_info():
         ApiResponse.data=userinfo
         return api_response.response_return(ApiResponse)
     raise custom_error.CustomFlaskErr(status_code=500, message="用户不存在")
+
+#忘记密码功能  修改用户密码
+@app.route("/userinfo/update_user_password", methods=['POST'])
+def update_user_password():
+    ApiResponse = api_response.ApiResponse()
+    Phone= request.form.get("Phone", type=str, default=None)
+    NewPassword = request.form.get("NewPassword", type=str, default=None)
+    VCode = request.form.get("VCode", type=str, default=None)
+    if Phone == None or Phone=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="手机号码不能为空")
+    if NewPassword == None or NewPassword=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="新密码不能为空")
+    if VCode == None or VCode=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="验证码不能为空")
+
+    vocde_exists = mysql.get_object(verification_code_sql.select_verification_lastcode, (Phone,2))
+    if vocde_exists== None :
+        raise custom_error.CustomFlaskErr(status_code=500, message="验证码已失效")
+    if vocde_exists["VCode"]!=VCode:
+        raise custom_error.CustomFlaskErr(status_code=500, message="验证码不正确")
+    #设置验证码已读
+    mysql.operate_object(verification_code_sql.update_verificatioin_vcode,(vocde_exists["Id"]))
+
+    data_exce = mysql.operate_object(user_sql.update_user_password,(NewPassword,Phone))
+
+    if data_exce > 0:
+        ApiResponse.message = "修改成功"
+        ApiResponse.status = 200
+        return api_response.response_return(ApiResponse)
+
+    raise custom_error.CustomFlaskErr(status_code=500, message="修改失败")

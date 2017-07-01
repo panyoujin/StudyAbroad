@@ -4,6 +4,7 @@ from planner_project import app
 from planner_project.common import api_response,request_helper,custom_error
 from planner_project.data_access import mysql
 from planner_project.sql.basic import verification_code_sql
+from planner_project.sql.user import  user_sql
 import  random
 
 #服务区域列表
@@ -17,6 +18,7 @@ def get_vcode():
     if CodeType == None or CodeType=="":
         raise custom_error.CustomFlaskErr(status_code=500, message="短信类型不能为空")
 
+
     vcode=str(random.randint(0, 9))
     vcode+=str(random.randint(0, 9))
     vcode+=str(random.randint(0, 9))
@@ -24,7 +26,7 @@ def get_vcode():
 
     ApiResponse = api_response.ApiResponse()
     data = mysql.operate_object(verification_code_sql.insert_verification_codel,(Phone,vcode,CodeType))
-    print(data)
+
     ApiResponse.message = "成功"
     ApiResponse.data = data
     return api_response.response_return(ApiResponse)

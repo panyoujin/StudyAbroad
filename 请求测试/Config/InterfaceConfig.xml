@@ -371,4 +371,11 @@
     <FileParam></FileParam>
     <BodyParam></BodyParam>
   </Interface>
+  <Interface>
+    <Name>忘记密码</Name>
+    <Url>http://localhost:5000/userinfo/update_user_password</Url>
+    <PostParam>Phone=13672760122#;#NewPassword=12563#;#VCode=1235</PostParam>
+    <FileParam></FileParam>
+    <BodyParam></BodyParam>
+  </Interface>
 </InterfaceList>
