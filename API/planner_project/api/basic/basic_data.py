@@ -11,7 +11,6 @@ def area_list():
     ApiResponse = api_response.ApiResponse()
     data = mysql.get_list(service_sql.select_area_list,())
     ApiResponse.message = "成功"
-    ApiResponse.status = 200
     ApiResponse.data = data
     return api_response.response_return(ApiResponse)
 
