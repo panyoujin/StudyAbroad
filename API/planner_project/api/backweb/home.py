@@ -1,5 +1,5 @@
 #coding:utf-8
-from flask import request,session
+from flask import request,session,make_response
 import uuid
 import time
 import json
@@ -26,7 +26,7 @@ def home_login():
     #写token
     # date = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     user = mysql.get_object(home_sql.select_sysuser_login_info, (guid))
-    #session[guid]=user
+    session["user"]=user
     data = {"token":guid,"datetime":time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),"user":user}
     ApiResponse.message = "登录成功"
     ApiResponse.status = 200

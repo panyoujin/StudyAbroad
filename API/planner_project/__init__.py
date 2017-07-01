@@ -3,6 +3,8 @@ from planner_project.common import custom_error
 from planner_project.common import api_response,request_helper
 app = Flask(__name__)
 
+app.secret_key = '123456'
+
 @app.before_request
 def before_request():
     #如果请求不是从小程序过来，直接返回失败
@@ -12,7 +14,7 @@ def before_request():
     #判断当前url是否需要登录
     #判断当前url是否有权限
     #user = request_helper.current_user_mush_login()
-    print("before_request"+request.remote_addr+request.url_rule+request.user_agent)
+    print("before_request:{0}{1}{2}{3}",request.remote_addr,request.url_rule,request.user_agent)
 
 #@app.teardown_request
 #def teardown_request(e):
@@ -50,3 +52,4 @@ import  planner_project.api.demand_service.order
 import  planner_project.api.demand_service.demand_undertake
 import  planner_project.api.order.order
 import  planner_project.api.backweb.home
+import  planner_project.api.backweb.back_user

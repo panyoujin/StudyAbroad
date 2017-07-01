@@ -1,0 +1,120 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>用户列表</title>
+    <link href="/Resource/Style/ivory.css?v=3" rel="stylesheet" type="text/css" />
+    <link href="/Resource/Style/main.css?v=3" rel="stylesheet" type="text/css" />
+    <link href="/Resource/Style/FortAwesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <script src="/Resource/Script/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/Resource/Script/common.js?v=5"></script>
+    <link href="/Resource/Script/datetimepicker/datetimepicker.css" rel="stylesheet" />
+    <script type="text/javascript" src="/Resource/Script/datetimepicker/datetimepicker.js"></script>
+    <script type="text/javascript" src="/Resource/Script/page.js"></script>
+</head>
+
+<body>
+    <div id="contentheader">
+        <div id="contentheader_title">团队列表</div>
+       
+        <div style="clear:both;"></div>
+    </div>
+
+    <div id="contentsearch">
+        <label>姓名</label><input type="text" placeholder="输入姓名" id="Name" maxlength="20" />
+        <button type="button" class="blue" style="float:right;" onclick="search();"><i class="fa fa-search"></i>&nbsp;查询</button>
+        <div class="clear"></div>
+    </div>
+
+    <div id="content">
+        <table border="1" cellpadding="0" cellspacing="0" class="table" id="dataList">
+            <thead>
+                <tr>
+                    <th width="13%">名称</th>
+                    <th width="13%">创建人姓名</th>
+                    <th width="13%">联系电话</th>
+                    <th width="13%">地区</th>
+                    <th width="15%">模块</th>
+                    <th>创建时间</th>
+                    <th>是否置顶</th>
+                    <th width="10%">操作</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="paginationbox">
+
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(function () {
+        queryList(1);
+        //回车事件
+        document.onkeydown = function (event) {
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if (e && e.keyCode == 13) {
+                search();
+            }
+        };
+    });
+    function member_list(id) {
+        parent.gotoPage('/User/TeamMemberIndex.html?id=' + id);
+    }
+
+    function Delete(id) {
+        $.confirm("是否确认删除?", function () {
+            $.ajaxJson("/user/delete_team", { teamId: id },
+            function (result) {
+                queryList(1);
+            },
+            function (result) {
+                $.alert("删除失败!");
+            });
+        });
+    }
+
+    var search = function () {
+        pageIndex = 1;
+        queryList(1);
+    };
+    var indexPage = function (index) { queryList(index); };
+    var queryList = function (index) {
+        $("#dataList tbody").html("<tr style='height:" + $("#dataList tbody").height() + "px'><td colspan='" + $("#dataList thead tr th").length + "'><i class='fa fa-spinner fa-pulse'></i></td></tr>");
+        var name = $.trim($("#Name").val());
+        $.ajaxJson("/user/select_team_list", { page: index, name: name,size:30 },
+            function (result) {
+                if (result && result.data.length > 0) {
+                    var list = result.data;
+                    var html = "";
+                    for (var i = 0; i < result.data.length; i++) {
+                        html += "<tr " + (i % 2 == 1 ? "class='even'" : "") + ">";
+                        html += "<td>" + (list[i].TeamName ? list[i].TeamName : "") + "</td>";
+                        html += "<td>" + (list[i].Name ? list[i].Name : "") + "</td>";
+                        html += "<td>" + (list[i].Phone ? list[i].Phone : "") + "</td>";
+                        html += "<td>" + (list[i].AreaName ? list[i].AreaName : "") + "</td>";
+                        html += "<td>" + (list[i].TypeName ? list[i].TypeName : "") + "</td>";
+                        html += "<td>" + (list[i].CreateTime ? list[i].CreateTime : "") + "</td>";
+                        html += "<td>" + (list[i].IsTop==1 ? "是" : "否") + "</td>";
+                        html += "<td>";
+                            html += "<a href='javascript:void(0);' onclick='member_list(\"" + list[i].Id + "\")' title='编辑'><i class='fa fa-pencil'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;";
+                            html += "<a href='javascript:void(0);' onclick='Delete(\"" + list[i].Id + "\")' title='删除'><i class='fa fa-trash-o'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;";
+
+                        html += "</td>";
+                        html += "</tr>";
+                    }
+                    $("#dataList tbody").html(html);
+                } else {
+                    $("#dataList tbody").html("<tr><td colspan='" + $("#dataList thead tr th").length + "'>没有任何数据</td></tr>");
+                }
+                $("#paginationbox").html($.InitPagin(index, 15, result.ListCount));
+            },
+
+            function () {
+                $("#paginationbox").html($.InitPagin(index, 15, 0));
+                $("#dataList tbody").html("<tr><td colspan='" + $("#dataList thead tr th").length + "'>网络故障，请稍候重试！</td></tr>");
+            }
+        );
+    };
+</script>
