@@ -364,4 +364,11 @@
     <FileParam></FileParam>
     <BodyParam></BodyParam>
   </Interface>
+  <Interface>
+    <Name>获取短信验证码</Name>
+    <Url>http://localhost:5000/basic/get_vcode</Url>
+    <PostParam>Phone=13672760122#;#CodeType=1</PostParam>
+    <FileParam></FileParam>
+    <BodyParam></BodyParam>
+  </Interface>
 </InterfaceList>
