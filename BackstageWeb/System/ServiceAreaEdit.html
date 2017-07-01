@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>用户信息</title>
+    <title>编辑服务区域</title>
     <link href="/Resource/Style/ivory.css?v=3" rel="stylesheet" type="text/css" />
     <link href="/Resource/Style/main.css?v=3" rel="stylesheet" type="text/css" />
     <link href="/Resource/Style/FortAwesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -16,47 +16,35 @@
 <body>
     <form id="submitForm">
         <div id="contentheader">
-            <div id="contentheader_title">编辑用户</div>
+            <div id="contentheader_title">编辑服务区域</div>
             <div id="contentheader_button">
                 <button type="submit" class="orange" onclick="submitForm();"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
-                <button onclick="parent.gotoPage('/User/UserIndex.html');" type="button"><i class="fa fa-times"></i>&nbsp;取消</button>
+                <button onclick="parent.gotoPage('/System/ServiceAreaIndex.html');" type="button"><i class="fa fa-times"></i>&nbsp;取消</button>
             </div>
             <div style="clear:both;"></div>
         </div>
 
         <div id="content">
-            <div class="area_title">用户信息</div>
+            <div class="area_title">区域信息</div>
             <div class="area">
                 <table border="1" cellpadding="0" cellspacing="0" style="width: 80%;">
                     <tr>
-                        <th width="100">姓名</th>
+                        <th width="100">名称</th>
                         <td>
                             <input id="Name" maxlength="20" name="Name" placeholder="输入用户名称" value="" type="text">
-                            <input id="UserId" maxlength="20" name="UserId" placeholder="输入用户名称" value="" type="hidden">
-                        </td>
-                        <th width="100">学历</th>
-                        <td>
-                            <input id="Education" maxlength="36" name="Education" placeholder="输入学历" value="" type="text">
+                            <input id="AreaId" maxlength="20" name="AreaId" value="" type="hidden">
                         </td>
                     </tr>
                     <tr>
-                        <th width="100">性别</th>
+                        <th width="100">是否置顶</th>
                         <td>
-                            <input id="Sex" maxlength="13" name="Sex" placeholder="输入性别 1男 2女" value="" type="text">
-                        </td>
-                        <th width="100">年龄</th>
-                        <td>
-                            <input id="Age" maxlength="3" name="Age" placeholder="输入年龄" value="" type="text">
+                            <input id="IsTop" maxlength="13" name="IsTop" placeholder="输入是否置顶 1置顶 0不置顶" value="" type="text">
                         </td>
                     </tr>
                     <tr>
-                        <th width="100">地址</th>
+                        <th width="100">排序</th>
                         <td>
-                            <input id="Address" maxlength="13" name="Address" placeholder="输入地址" value="" type="text">
-                        </td>
-                        <th width="100">邮箱</th>
-                        <td>
-                            <input id="Email" maxlength="36" name="Email" placeholder="输入邮箱" value="" type="text">
+                            <input id="Sort" maxlength="3" name="Sort" placeholder="输入排序" value="" type="text">
                         </td>
                     </tr>
                 </table>
@@ -71,32 +59,28 @@
             rules: {
                 Name: {
                     required: true
-                }, Education: {
-                    required: false
-                }, Sex: {
-                    required: false
-                }, Age: {
+                }, IsTop: {
                     number: true
-                }, Email: {
-                    email: true
+                }, Sort: {
+                    number: true
                 }
             }, messages: {
                 Name: {
                     required: "请输入名称"
-                }, Age: {
-                    number: "年龄必须为数字"
-                }, Email: {
-                    email: "邮箱格式不正确"
+                }, IsTop: {
+                    number: "是否置顶必须为数字"
+                }, Sort: {
+                    number: "排序必须为数字"
                 }
             }, submitHandler: function () {
-                $.ajaxForm("/user/back_updateuserinfo", "submitForm",
+                $.ajaxForm("/system/update_service_area_info", "submitForm",
                 function (result) {
                     if (result.status=="200") {
-                        $.alert("用户修改成功", function () {
-                            parent.gotoPage("/User/UserIndex.html");
+                        $.alert("服务区域修改成功", function () {
+                            parent.gotoPage("/System/ServiceAreaIndex.html");
                         });
                     } else {
-                        $.alert("用户修改失败,失败原因："+result.message);
+                        $.alert("服务区域修改失败,失败原因："+result.message);
                     }
                 },
                 function () {
@@ -107,16 +91,15 @@
 
     };
 $(function(){
-    var userid = getUrlParam("id");
-    $.ajaxJson("/user/select_user_info", { userid: userid },
+    var areaId = getUrlParam("id");
+    $.ajaxJson("/system/select_service_area_info", { areaId: areaId },
             function (result) {
                 if (!!result.data) {
-                    $("#UserId").val(result.data.Id)
+                    $("#AreaId").val(result.data.Id)
                     $("#Name").val(result.data.Name)
-                    $("#Education").val(result.data.Education)
-                    $("#Age").val(result.data.Age)
-                    $("#Address").val(result.data.Address)
-                    $("#Email").val(result.data.Email)
+                    $("#Description").val(result.data.Description)
+                    $("#IsTop").val(result.data.IsTop)
+                    $("#Sort").val(result.data.Sort)
                 } else {
                     $.alert(result.message);
                 }

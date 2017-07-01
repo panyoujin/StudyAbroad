@@ -4,7 +4,7 @@ import uuid
 import time
 import json
 from planner_project import app
-from planner_project.common import api_response,custom_error
+from planner_project.common import api_response,custom_error,request_back_helper
 from planner_project.data_access import mysql
 from planner_project.sql.backweb import home_sql
 
@@ -31,4 +31,16 @@ def home_login():
     ApiResponse.message = "登录成功"
     ApiResponse.status = 200
     ApiResponse.data=data
+    return api_response.response_return(ApiResponse)
+
+
+
+#登录
+@app.route("/backweb/home/get_current_login_user", methods=['POST'])
+def get_current_login_user():
+    ApiResponse = api_response.ApiResponse()
+    user = request_back_helper.current_user_mush_login()
+    ApiResponse.message = "获取成功"
+    ApiResponse.status = 200
+    ApiResponse.data=user
     return api_response.response_return(ApiResponse)

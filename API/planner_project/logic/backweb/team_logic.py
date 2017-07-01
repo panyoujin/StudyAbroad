@@ -34,5 +34,5 @@ def delete_team(teamid,current_user_id):
 def delete_team_member(teamid,userid,current_user_id):
     if teamid == None or teamid=="" or userid == None or userid=="" or current_user_id == None or current_user_id=="":
         raise custom_error.CustomFlaskErr(status_code=500, message="参数不正确，请刷新后重试")
-    data_register = mysql.operate_object(team_sql.delete_team_member,(current_user_id,userid,teamid,teamid,teamid))
+    data_register = mysql.operate_object(team_sql.delete_team_member,(current_user_id,userid,teamid,userid))
     return data_register > 0

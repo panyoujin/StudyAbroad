@@ -268,5 +268,23 @@ var getUrlParam=function(name) {
 //页面初始化时过滤权限
 //有些页面按钮是异步生成的，所以也要在异步请求成功，执行成功函数后，再次过滤权限。
 jQuery(document).ready(function () {
+    //获取用户信息
+    var test = window.location.pathname;
+    if(test.toLowerCase() != "/Home/Login.html".toLowerCase()){
+        $.ajaxJson("/home/get_current_login_user", { },
+            function (result) {
+                if (jsonData.status=="600") {
+                    window.top.gotoLogin();
+                }
+                if (result && result.status==200) {
+                    //
+                } 
+            },
+            function () {
+                $("#loginInfo").show().html("网络故障，请稍候重试!");
+                showloginButton(false);
+            }
+        );
+    }
     $.filterPermission();
 });

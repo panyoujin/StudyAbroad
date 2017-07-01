@@ -11,7 +11,7 @@ def get_token():
     raise custom_error.CustomFlaskErr(status_code=600,message="请先登录")
 #获取当前登录用户 未登录返回None
 def current_user():
-    user = session.get("user", False)
+    user = session.get("user", None)
     if user != None and any(user):
         return user
     token= get_token()

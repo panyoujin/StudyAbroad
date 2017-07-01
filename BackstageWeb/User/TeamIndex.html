@@ -65,7 +65,7 @@
 
     function Delete(id) {
         $.confirm("是否确认删除?", function () {
-            $.ajaxJson("/user/delete_team", { teamId: id },
+            $.ajaxJson("/team/delete_team", { teamId: id },
             function (result) {
                 queryList(1);
             },
@@ -83,7 +83,7 @@
     var queryList = function (index) {
         $("#dataList tbody").html("<tr style='height:" + $("#dataList tbody").height() + "px'><td colspan='" + $("#dataList thead tr th").length + "'><i class='fa fa-spinner fa-pulse'></i></td></tr>");
         var name = $.trim($("#Name").val());
-        $.ajaxJson("/user/select_team_list", { page: index, name: name,size:30 },
+        $.ajaxJson("/team/select_team_list", { page: index, name: name,size:30 },
             function (result) {
                 if (result && result.data.length > 0) {
                     var list = result.data;

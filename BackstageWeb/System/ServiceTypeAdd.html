@@ -1,0 +1,92 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>新增服务模块</title>
+    <link href="/Resource/Style/ivory.css?v=3" rel="stylesheet" type="text/css" />
+    <link href="/Resource/Style/main.css?v=3" rel="stylesheet" type="text/css" />
+    <link href="/Resource/Style/FortAwesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <script src="/Resource/Script/jquery.min.js" type="text/javascript"></script>
+    <script src="/Resource/Script/common.js?v=5" type="text/javascript"></script>
+    <script type="text/javascript" src="/Resource/Script/jquery.validate.js"></script>
+
+
+
+</head>
+<body>
+    <form id="submitForm">
+        <div id="contentheader">
+            <div id="contentheader_title">新增服务模块</div>
+            <div id="contentheader_button">
+                <button type="submit" class="orange" onclick="submitForm();"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
+                <button onclick="parent.gotoPage('/System/ServiceTypeIndex.html');" type="button"><i class="fa fa-times"></i>&nbsp;取消</button>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+
+        <div id="content">
+            <div class="area_title">模块信息</div>
+            <div class="area">
+                <table border="1" cellpadding="0" cellspacing="0" style="width: 80%;">
+                    <tr>
+                        <th width="100">名称</th>
+                        <td>
+                            <input id="Name" maxlength="20" name="Name" placeholder="输入用户名称" value="" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="100">是否置顶</th>
+                        <td>
+                            <input id="IsTop" maxlength="13" name="IsTop" placeholder="输入是否置顶 1置顶 0不置顶" value="" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="100">排序</th>
+                        <td>
+                            <input id="Sort" maxlength="3" name="Sort" placeholder="输入排序" value="" type="text">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+<script type="text/javascript">
+    var submitForm = function () {
+        $("#submitForm").validate({
+            rules: {
+                Name: {
+                    required: true
+                }, IsTop: {
+                    number: true
+                }, Sort: {
+                    number: true
+                }
+            }, messages: {
+                Name: {
+                    required: "请输入名称"
+                }, IsTop: {
+                    number: "是否置顶必须为数字"
+                }, Sort: {
+                    number: "排序必须为数字"
+                }
+            }, submitHandler: function () {
+                $.ajaxForm("/system/insert_service_type", "submitForm",
+                function (result) {
+                    if (result.status=="200") {
+                        $.alert("服务模块新增成功", function () {
+                            parent.gotoPage("/System/ServiceTypeIndex.html");
+                        });
+                    } else {
+                        $.alert("服务模块新增失败,失败原因："+result.message);
+                    }
+                },
+                function () {
+                    $.alert("网络故障，请稍候重试!");
+                });
+            }
+        });
+
+    };
+</script>

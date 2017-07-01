@@ -1,7 +1,7 @@
 from flask import request,session,abort
 from planner_project.common import api_response,custom_error
 from planner_project.data_access import mysql
-from planner_project.sql.backweb import user_sql
+from planner_project.sql.backweb import user_sql,home_sql
 
 
 def get_token():
@@ -11,7 +11,7 @@ def get_token():
     raise custom_error.CustomFlaskErr(status_code=600,message="请先登录")
 #获取当前登录用户 未登录返回None
 def current_user():
-    user = session.get("user", False)
+    user = session.get("user", None)
     return user
 
 #获取当前登录用户 如果未登录将终止请求并返回 600
@@ -25,4 +25,4 @@ def current_user_mush_login():
 #更新当前用户缓存
 def set_session_login():
     token= get_token()
-    session["user"] = mysql.get_object(user_sql.select_sysuser_login_info, (token))
+    session["user"] = mysql.get_object(home_sql.select_sysuser_login_info, (token))
