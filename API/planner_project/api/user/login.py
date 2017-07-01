@@ -26,7 +26,7 @@ def login():
     #写token
     # date = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     user = mysql.get_object(user_sql.select_user_login_info, (guid))
-    #session[guid]=user
+    session["user"]=user
     data = {"token":guid,"datetime":time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),"user":user}
     ApiResponse.message = "登录成功"
     ApiResponse.status = 200
