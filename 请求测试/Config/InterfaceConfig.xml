@@ -18,7 +18,7 @@
   <Interface>
     <Name>注册</Name>
     <Url>http://localhost:5000/user/register</Url>
-    <PostParam>Account=pyj#;#Password=e10adc3949ba59abbe56e057f20f883e</PostParam>
+    <PostParam>Account=pyj#;#Password=e10adc3949ba59abbe56e057f20f883e#;#VCode=0852</PostParam>
     <FileParam></FileParam>
     <BodyParam></BodyParam>
   </Interface>
