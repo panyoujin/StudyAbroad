@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>新增服务区域</title>
+    <title>编辑标签</title>
     <link href="/Resource/Style/ivory.css?v=3" rel="stylesheet" type="text/css" />
     <link href="/Resource/Style/main.css?v=3" rel="stylesheet" type="text/css" />
     <link href="/Resource/Style/FortAwesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -16,22 +16,23 @@
 <body>
     <form id="submitForm">
         <div id="contentheader">
-            <div id="contentheader_title">新增服务区域</div>
+            <div id="contentheader_title">编辑标签</div>
             <div id="contentheader_button">
                 <button type="submit" class="orange" onclick="submitForm();"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
-                <button onclick="parent.gotoPage('/System/ServiceAreaIndex.html');" type="button"><i class="fa fa-times"></i>&nbsp;取消</button>
+                <button onclick="parent.gotoPage('/System/LableIndex.html');" type="button"><i class="fa fa-times"></i>&nbsp;取消</button>
             </div>
             <div style="clear:both;"></div>
         </div>
 
         <div id="content">
-            <div class="area_title">区域信息</div>
+            <div class="area_title">标签信息</div>
             <div class="area">
                 <table border="1" cellpadding="0" cellspacing="0" style="width: 80%;">
                     <tr>
                         <th width="100">名称</th>
                         <td>
                             <input id="Name" maxlength="20" name="Name" placeholder="输入用户名称" value="" type="text">
+                            <input id="lableId" maxlength="20" name="lableId" value="" type="hidden">
                         </td>
                     </tr>
                     <tr>
@@ -75,14 +76,14 @@
                     number: "排序必须为数字"
                 }
             }, submitHandler: function () {
-                $.ajaxForm("/system/insert_service_area", "submitForm",
+                $.ajaxForm("/system/update_lable_info", "submitForm",
                 function (result) {
                     if (result.status=="200") {
-                        $.alert("服务区域新增成功", function () {
-                            parent.gotoPage("/System/ServiceAreaIndex.html");
+                        $.alert("标签修改成功", function () {
+                            parent.gotoPage("/System/LableIndex.html");
                         });
                     } else {
-                        $.alert("服务区域新增失败,失败原因："+result.message);
+                        $.alert("标签修改失败,失败原因："+result.message);
                     }
                 },
                 function () {
@@ -92,5 +93,24 @@
         });
 
     };
+$(function(){
+    var lableId = getUrlParam("id");
+    $.ajaxJson("/system/select_lable_info", { lableId: lableId },
+            function (result) {
+                if (!!result.data) {
+                    $("#lableId").val(result.data.Id)
+                    $("#Name").val(result.data.Name)
+                    $("#Description").val(result.data.Description)
+                    $("#IsTop").val(result.data.IsTop)
+                    $("#Sort").val(result.data.Sort)
+                } else {
+                    $.alert(result.message);
+                }
+            },
+            function () {
+                    $.alert("网络故障，请稍候重试!");
+            }
+        );
+})
 
 </script>

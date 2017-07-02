@@ -11,6 +11,7 @@ from planner_project.sql.backweb import home_sql
 #登录
 @app.route("/backweb/home/login", methods=['POST'])
 def home_login():
+    print("home_login")
     ApiResponse = api_response.ApiResponse()
     UserName = request.form.get("UserName", type=str, default=None)
     Password = request.form.get("Password", type=str, default=None)

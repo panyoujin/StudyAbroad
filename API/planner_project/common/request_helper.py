@@ -17,13 +17,9 @@ def current_user():
     token= get_token()
     if token == None:
         return None
-        # if session[token] != None:
-        #     ApiResponse.message = "成功"
-        #     ApiResponse.status = 200
-        #     ApiResponse.data = session[token]
-        #     return api_response.response_return(ApiResponse)
-        #本地缓存中不存在去数据库拿
+    #本地缓存中不存在去数据库拿
     user = mysql.get_object(user_sql.select_user_login_info,(token))
+    session["user"]=user
     return user
 
 #获取当前登录用户 如果未登录将终止请求并返回 600
@@ -37,4 +33,4 @@ def current_user_mush_login():
 #更新当前用户缓存
 def set_session_login():
     token= get_token()
-    #session[token] = mysql.get_object(user_sql.select_user_login_info, (token))
+    session["user"] = mysql.get_object(user_sql.select_user_login_info, (token))

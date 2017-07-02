@@ -286,7 +286,7 @@ def update_resour():
     ApiResponse.data = data
     return api_response.response_return(ApiResponse)
 
-#删除社会背景
+#删除资源背景
 @app.route("/planner/delete_resour", methods=['POST'])
 def delete_resour():
     ApiResponse = api_response.ApiResponse()
