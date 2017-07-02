@@ -378,4 +378,11 @@
     <FileParam></FileParam>
     <BodyParam></BodyParam>
   </Interface>
+  <Interface>
+    <Name>申请加入团队</Name>
+    <Url>http://localhost:5000/team/join_team</Url>
+    <PostParam>Phone=13672760122#;#TeamId=1</PostParam>
+    <FileParam></FileParam>
+    <BodyParam></BodyParam>
+  </Interface>
 </InterfaceList>

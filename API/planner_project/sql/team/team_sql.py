@@ -24,7 +24,11 @@ select_team_member_list="SELECT ui.`Name`,ui.`HeadImage`,ps.`NewEvaluate`,ps.`Cu
                         "WHERE tm.`TeamId`='%s' AND tm.`IsDelete`= FALSE " \
                         "ORDER BY tm.`Sort` DESC,tm.`CreateTime` DESC " \
                         "LIMIT %s, %s "
+#查询是否已经是团队成员
+exists_team_peoper="SELECT `Id`,`UserId`,`TeamId`,`Message`,`Status` FROM `T_TeamNotice` WHERE `UserId`='%s' AND `TeamId`='%s' AND `IsDelete`=FALSE"
 
+#获取团队信息
+select_team_adminid="SELECT `Id`,`AdminUserId`,`Name` FROM `T_Team` WHERE `Id`='%s'"
 #获取用户的团队通知列表
 select_team_notice_list="SELECT tn.`Id`,tn.`UserId`,tn.`TeamId`,tn.`Message`,tn.`Status`,tn.`IsAdmin`,tn.`CreateTime`,t.`Name`,tn.`UnionId`  FROM T_TeamNotice tn JOIN `T_Team` t ON tn.`TeamId`=t.`Id`  WHERE UserId='%s' ORDER BY tn.`CreateTime` DESC"
 
