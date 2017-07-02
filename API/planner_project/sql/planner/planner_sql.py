@@ -43,7 +43,7 @@ select_follw_planner = "SELECT u.`Id`,ui.`Name`,ui.`HeadImage`,ps.`NewEvaluate`,
 
 #查询规划师详情
 select_planner_info = "SELECT ui.`UserId`,ui.`Name`,ui.`HeadImage`,ui.`Autograph`,ps.`NewEvaluate`,ps.`CustomerCount` " \
-                      ",ps.`PraiseCount`,ps.`BadReviewCount`,sa.`Name`,st.`Name` " \
+                      ",ps.`PraiseCount`,ps.`BadReviewCount`,sa.`Name` AreaName,st.`Name` TypeName " \
                       "FROM `U_PlannerStatistics` ps " \
                       "JOIN `U_UserInfo` ui ON ui.`UserId`=ps.`UserId` " \
                       "LEFT JOIN `Base_ServiceArea` sa ON sa.`Id`=ui.`ServiceAreaId`  " \

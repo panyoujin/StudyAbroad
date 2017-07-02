@@ -21,6 +21,10 @@ def search():
         size=10
     sear="%"+ name +"%"
     data = mysql.get_list(planner_sql.select_search_planner,(name,name,sear,sear,sear,sear,(page-1)*size,size))
+    if data and len(data):
+        for i in range(len(data)):
+            lablesArray=data[i]["Lables"].split(",")
+            data[i]["Lables"]=lablesArray
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data
@@ -57,12 +61,16 @@ def follow_list():
     ApiResponse = api_response.ApiResponse()
     size = request.form.get("size", type=int, default=10)
     page = request.form.get("page", type=int, default=1)
-    user = request_helper.current_user()
+    user = request_helper.current_user_mush_login()
     if page<=0:
         page=1
     if size<=0:
         size=10
     data = mysql.get_list(planner_sql.select_follw_planner,(user["Id"],(page-1)*size,size))
+    if data and len(data):
+        for i in range(len(data)):
+            lablesArray=data[i]["Lables"].split(",")
+            data[i]["Lables"]=lablesArray
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data
