@@ -25,12 +25,27 @@ select_team_member_list="SELECT ui.`Name`,ui.`HeadImage`,ps.`NewEvaluate`,ps.`Cu
                         "ORDER BY tm.`Sort` DESC,tm.`CreateTime` DESC " \
                         "LIMIT %s, %s "
 #查询是否已经是团队成员
-exists_team_peoper="SELECT `Id`,`UserId`,`TeamId`,`Message`,`Status` FROM `T_TeamNotice` WHERE `UserId`='%s' AND `TeamId`='%s' AND `IsDelete`=FALSE"
+exists_team_peoper="SELECT `Id`,`UserId`,`TeamId`,`Message`,`Status`,`IsAdmin`,UnionId FROM `T_TeamNotice` WHERE `UserId`='%s' AND `TeamId`='%s' AND `IsDelete`=FALSE"
+#查询是否已经是团队成员根据noticeid
+exists_team_peoper_bynoticeid="SELECT `Id`,`UserId`,`TeamId`,`Message`,`Status`,`IsAdmin`,UnionId FROM `T_TeamNotice` WHERE `Id`='%s'"
 
 #获取团队信息
 select_team_adminid="SELECT `Id`,`AdminUserId`,`Name` FROM `T_Team` WHERE `Id`='%s'"
+
 #获取用户的团队通知列表
 select_team_notice_list="SELECT tn.`Id`,tn.`UserId`,tn.`TeamId`,tn.`Message`,tn.`Status`,tn.`IsAdmin`,tn.`CreateTime`,t.`Name`,tn.`UnionId`  FROM T_TeamNotice tn JOIN `T_Team` t ON tn.`TeamId`=t.`Id`  WHERE UserId='%s'  ORDER BY IFNULL(tn.`ModifTime`,tn.`CreateTime`)  DESC LIMIT %s , %s "
 
 #新增团队通知
 insert_team_notice="INSERT INTO `StudyAbroad`.`T_TeamNotice` (`Id`,`UserId`,`TeamId`,`Message`,`Status`,`IsAdmin`,`CreateUserID`,`CreateTime`,`UnionId` ) VALUES(UUID(),'%s','%s','%s',%s,%s,'%s',NOW(),'%s')"
+#新增团队成员
+insert_team_member="INSERT INTO `T_TeamMember` (`TeamId`,`UserId`,`CreateUserID`,`CreateTime`) VALUES (%s,'%s','%s',NOW())"
+#修改管理员的团队通知
+update_team_admin_notice="UPDATE T_TeamNotice SET `Status`=2,`ModifTime`=NOW(),`ModifUserID`='%s' WHERE `Id`='%s' AND `Status`=1"
+#修改出管理员外的团队通知
+update_team_notice="UPDATE `T_TeamNotice` SET `Status`=2,`ModifTime`=NOW(),`ModifUserID`='%s' WHERE `UnionId`='%s' AND `IsAdmin`=2"
+
+#管理员不同意的团队通知
+disagree_team_admin_notice="UPDATE T_TeamNotice SET `Status`=3,`ModifTime`=NOW(),`ModifUserID`='%s' WHERE `Id`='%s' AND `Status`=1"
+
+#修改出管理员外不同意的团队通知
+disagree_team_notice="UPDATE `T_TeamNotice` SET `Status`=3,`ModifTime`=NOW(),`ModifUserID`='%s' WHERE `UnionId`='%s' AND `IsAdmin`=2"

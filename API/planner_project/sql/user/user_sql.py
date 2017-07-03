@@ -9,6 +9,9 @@ select_user_info = "SELECT u.`Id`,u.`Account`,u.`Phone`,u.`UserType`,ui.`Name`, 
                          "FROM `U_User` u " \
                    "LEFT JOIN `U_UserInfo` ui ON ui.`UserId`=u.`Id` " \
                          "WHERE Account ='%s'"
+#根据用户id查询用户是否
+select_user_by_id="SELECT `Id`,`Account`,`Password`,`Phone`,`UserType`,`LoginTime`,`LoginToken` FROM `U_User` WHERE Id='%s' AND `IsDelete`=FALSE"
+
 #通过token查询用户信息
 select_user_login_info = "SELECT u.`Id`,u.`Account`,u.`Phone`,u.`UserType`,ui.`Name`, ui.`HeadImage` " \
                          "FROM `U_User` u " \

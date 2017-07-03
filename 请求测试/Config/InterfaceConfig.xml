@@ -379,9 +379,30 @@
     <BodyParam></BodyParam>
   </Interface>
   <Interface>
+    <Name>规划师申请加入团队</Name>
+    <Url>http://localhost:5000/team/join_team</Url>
+    <PostParam>TeamId=1</PostParam>
+    <FileParam></FileParam>
+    <BodyParam></BodyParam>
+  </Interface>
+  <Interface>
     <Name>根据用户获取团队消息</Name>
     <Url>http://localhost:5000/team/get_team_notice</Url>
     <PostParam>page=1#;#size=10</PostParam>
+    <FileParam></FileParam>
+    <BodyParam></BodyParam>
+  </Interface>
+  <Interface>
+    <Name>管理员审批团队申请</Name>
+    <Url>http://localhost:5000/team/agree_join_team</Url>
+    <PostParam>NoticeId=0417ce38-5f3c-11e7-b226-00163e08b8b6</PostParam>
+    <FileParam></FileParam>
+    <BodyParam></BodyParam>
+  </Interface>
+    <Interface>
+    <Name>管理员拒绝团队申请</Name>
+    <Url>http://localhost:5000/team/disagree_join_team</Url>
+    <PostParam>NoticeId=0417ce38-5f3c-11e7-b226-00163e08b8b6</PostParam>
     <FileParam></FileParam>
     <BodyParam></BodyParam>
   </Interface>
