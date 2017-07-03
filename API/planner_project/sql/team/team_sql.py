@@ -30,7 +30,7 @@ exists_team_peoper="SELECT `Id`,`UserId`,`TeamId`,`Message`,`Status` FROM `T_Tea
 #获取团队信息
 select_team_adminid="SELECT `Id`,`AdminUserId`,`Name` FROM `T_Team` WHERE `Id`='%s'"
 #获取用户的团队通知列表
-select_team_notice_list="SELECT tn.`Id`,tn.`UserId`,tn.`TeamId`,tn.`Message`,tn.`Status`,tn.`IsAdmin`,tn.`CreateTime`,t.`Name`,tn.`UnionId`  FROM T_TeamNotice tn JOIN `T_Team` t ON tn.`TeamId`=t.`Id`  WHERE UserId='%s' ORDER BY tn.`CreateTime` DESC"
+select_team_notice_list="SELECT tn.`Id`,tn.`UserId`,tn.`TeamId`,tn.`Message`,tn.`Status`,tn.`IsAdmin`,tn.`CreateTime`,t.`Name`,tn.`UnionId`  FROM T_TeamNotice tn JOIN `T_Team` t ON tn.`TeamId`=t.`Id`  WHERE UserId='%s'  ORDER BY IFNULL(tn.`ModifTime`,tn.`CreateTime`)  DESC LIMIT %s , %s "
 
 #新增团队通知
 insert_team_notice="INSERT INTO `StudyAbroad`.`T_TeamNotice` (`Id`,`UserId`,`TeamId`,`Message`,`Status`,`IsAdmin`,`CreateUserID`,`CreateTime`,`UnionId` ) VALUES(UUID(),'%s','%s','%s',%s,%s,'%s',NOW(),'%s')"

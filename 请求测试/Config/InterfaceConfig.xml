@@ -379,9 +379,9 @@
     <BodyParam></BodyParam>
   </Interface>
   <Interface>
-    <Name>申请加入团队</Name>
-    <Url>http://localhost:5000/team/join_team</Url>
-    <PostParam>Phone=13672760122#;#TeamId=1</PostParam>
+    <Name>根据用户获取团队消息</Name>
+    <Url>http://localhost:5000/team/get_team_notice</Url>
+    <PostParam>page=1#;#size=10</PostParam>
     <FileParam></FileParam>
     <BodyParam></BodyParam>
   </Interface>

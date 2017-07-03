@@ -38,3 +38,21 @@ def join_team():
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     return api_response.response_return(ApiResponse)
+
+#申请加入团队
+@app.route("/team/get_team_notice", methods=['POST'])
+def get_team_notice():
+    ApiResponse = api_response.ApiResponse()
+    size = request.form.get("size", type=int, default=10)
+    page = request.form.get("page", type=int, default=1)
+    if page<=0:
+        page=1
+    if size<=0:
+        size=10
+    userId = request_helper.current_user_mush_login()["Id"]
+    print(userId)
+    data = mysql.get_list(team_sql.select_team_notice_list,(userId,(page-1)*size,size))
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = data
+    return api_response.response_return(ApiResponse)
