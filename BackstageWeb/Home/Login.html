@@ -1,47 +1,63 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<title>留学管理平台</title>
-<link href="/Resource/Style/ivory.css?v=3" rel="stylesheet" type="text/css" />
-<link href="/Resource/Style/main.css?v=3" rel="stylesheet" type="text/css" />
-<link href="/Resource/Style/FortAwesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-<script src="/Resource/Script/jquery.min.js" type="text/javascript"></script>
-<script src="/Resource/Script/common.js?v=5" type="text/javascript"></script>
-<script src="/Resource/Script/simplersa/simplersa.js" type="text/javascript"></script>
-<script src="/Resource/Script/simplersa/md5.js" type="text/javascript"></script>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>留学管理平台</title>
+    <link href="/Resource/Style/ivory.css?v=3" rel="stylesheet" type="text/css"/>
+    <link href="/Resource/Style/main.css?v=3" rel="stylesheet" type="text/css"/>
+    <link href="/Resource/Style/FortAwesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <script src="/Resource/Script/jquery.min.js" type="text/javascript"></script>
+    <script src="/Resource/Script/common.js?v=5" type="text/javascript"></script>
+    <script src="/Resource/Script/simplersa/simplersa.js" type="text/javascript"></script>
+    <script src="/Resource/Script/simplersa/md5.js" type="text/javascript"></script>
 </head>
 <body style="text-align:center;background-color:#314057;font-family:微软雅黑,Georgia,Serif;overflow:hidden;">
 <div id="loginbox" style="display:none;">
-<div class="loginItem" style="text-align:center;color:#96805b; margin-bottom:25px;">
-<div style="font-size:20px; margin-bottom:15px; font-weight:bold; "><span style="color:#f06127;font-size:28px;font-style:italic;text-shadow: 1px 1px 1px #492516;margin-right:15px;"></span>留学管理平台<span style="font-size:14px;color:#ff5500;"></span></div>
-<div style="color:#96805b;font-size:14px;">用户登录</div>
-</div>
-<div class="loginItem" >
-<input id="account" type="text" placeholder="登录账号"  maxlength="36" autocomplete="off" value="admin" />
-</div>
-<div class="loginItem" >
-<input id="password" type="text" placeholder="登录密码"  maxlength="24" autocomplete="off" onfocus="chagePasswordType(this);" value="123456" />
-</div>  
-<div class="loginItem" >
-<input id="code" type="text" placeholder="验证码" maxlength="4" style="float:left;width:180px; " />
-<img id="validateCode" style="float:right;cursor:pointer;display:none; border-radius:5px;-moz-border-radius: 5px;-webkit-border-radius: 5px; " onclick="refreshValidateCode();" />
-<div class="clear"></div>
-</div>    
-<div class="loginItem">
-<button type="button" onclick="login();" class="orange" style="width:100%; font-size:15px; border:none;padding:10px; font-weight:bold; background:none;background-color:#ef572e;color:#fff;" id="loginButton"><i class="fa fa-shield"></i>&nbsp;登录</button>
-</div>
-<div class="alert error" style="font-size:12px;letter-spacing:2px;display:none;" id="loginInfo"></div>
+    <div class="loginItem" style="text-align:center;color:#96805b; margin-bottom:25px;">
+        <div style="font-size:20px; margin-bottom:15px; font-weight:bold; "><span
+                style="color:#f06127;font-size:28px;font-style:italic;text-shadow: 1px 1px 1px #492516;margin-right:15px;"></span>留学管理平台<span
+                style="font-size:14px;color:#ff5500;"></span></div>
+        <div style="color:#96805b;font-size:14px;">用户登录</div>
+    </div>
+    <div class="loginItem">
+        <input id="account" type="text" placeholder="登录账号" maxlength="36" autocomplete="off" value="admin"/>
+    </div>
+    <div class="loginItem">
+        <input id="password" type="text" placeholder="登录密码" maxlength="24" autocomplete="off"
+               onfocus="chagePasswordType(this);" value="123456"/>
+    </div>
+    <div class="loginItem">
+        <input id="code" type="text" placeholder="验证码" maxlength="4" style="float:left;width:180px; "/>
+        <img id="validateCode"
+             style="float:right;cursor:pointer;display:none; border-radius:5px;-moz-border-radius: 5px;-webkit-border-radius: 5px; "
+             onclick="refreshValidateCode();"/>
+        <div class="clear"></div>
+    </div>
+    <div class="loginItem">
+        <button type="button" onclick="login();" class="orange"
+                style="width:100%; font-size:15px; border:none;padding:10px; font-weight:bold; background:none;background-color:#ef572e;color:#fff;"
+                id="loginButton"><i class="fa fa-shield"></i>&nbsp;登录
+        </button>
+    </div>
+    <div class="alert error" style="font-size:12px;letter-spacing:2px;display:none;" id="loginInfo"></div>
 </div>
 </body>
 </html>
 <script type="text/javascript">
-    var ie = (function () { var undef, v = 3, div = document.createElement('div'), all = div.getElementsByTagName('i'); while (div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->', all[0]); return v > 4 ? v : undef; } ());  
+    var ie = (function () {
+        var undef, v = 3, div = document.createElement('div'), all = div.getElementsByTagName('i');
+        while (div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->', all[0]);
+        return v > 4 ? v : undef;
+    }());
     if ((self.frameElement && self.frameElement.tagName == "IFRAME") || (window.frames.length != parent.frames.length) || (self != top)) {
         window.top.gotoLogin();
     } else {
-        if (ie != 6 && ie != 7 && window.sessionStorage) {$("#loginbox").show();}
-        else { alert("您使用的浏览器版本过低!低版本浏览器已无法提供更好的用户体验,请使用最新版本浏览器访问!"); }
+        if (ie != 6 && ie != 7 && window.sessionStorage) {
+            $("#loginbox").show();
+        }
+        else {
+            alert("您使用的浏览器版本过低!低版本浏览器已无法提供更好的用户体验,请使用最新版本浏览器访问!");
+        }
     }
     $(function () {
         //$("#account,#password").val("");
@@ -59,7 +75,7 @@
         var account = $.trim($("#account").val());
         var password = $.trim($("#password").val());
         // var code = $.trim($("#code").val());
-        if (account.length==0 || password.length == 0) {
+        if (account.length == 0 || password.length == 0) {
             $("#loginInfo").show().html("请输入账号和密码!");
             return;
         }
@@ -70,9 +86,9 @@
         setMaxDigits(131);
         password = hex_md5(password);
 
-        $.ajaxJson("/home/login", { UserName: account, Password: password },
+        $.ajaxJson("/home/login", {UserName: account, Password: password},
             function (result) {
-                if (result && result.status==200) {
+                if (result && result.status == 200) {
                     sessionStorage.removeItem("UToken");
                     sessionStorage["UToken"] = result.data.token;
                     sessionStorage.removeItem("user");
@@ -93,13 +109,20 @@
     }
     var chagePasswordType = function (obj) {
         if (obj.type == 'password') return;
-        if (ie < 9) { var p = obj.cloneNode(); p.setAttribute('type', 'password'); obj.parentNode.replaceChild(p, obj); p.focus(); }
-        else { obj.type = 'password'; }
+        if (ie < 9) {
+            var p = obj.cloneNode();
+            p.setAttribute('type', 'password');
+            obj.parentNode.replaceChild(p, obj);
+            p.focus();
+        }
+        else {
+            obj.type = 'password';
+        }
     }
     var showloginButton = function (loading) {
         if (loading)
             $("#loginButton").html("<i style='font-size:15px;color:#fff;' class='fa fa-spinner fa-spin'></i>").removeClass("orange").attr("disabled", "disabled");
-        else 
+        else
             $("#loginButton").html("<i class='fa fa-user'></i>&nbsp;登录").addClass("orange").removeAttr("disabled");
     }
     var refreshValidateCode = function () {
