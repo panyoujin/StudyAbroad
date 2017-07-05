@@ -9,7 +9,7 @@ class ApiResponse(object):
     message = "成功"
 
 
-    def __init__(self,data="",listCount=0,status=200,message="成功"):
+    def __init__(self,data="",status=200,message="成功",listCount=0):
         self.data=data
         self.listCount = listCount
         self.status = status
