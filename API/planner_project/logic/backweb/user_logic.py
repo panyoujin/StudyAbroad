@@ -10,7 +10,10 @@ def select_user_list(name,page=1,size=10):
     if size<=0:
         size=10
     sear="%"+ name +"%"
-    return mysql.get_list(user_sql.select_user_list,(name,name,sear,sear,(page-1)*size,size))
+
+    listCount = mysql.get_object(user_sql.select_user_list_count,(name,name,sear,sear))
+    data= mysql.get_list(user_sql.select_user_list,(name,name,sear,sear,(page-1)*size,size))
+    return data,listCount
 
 #获取用户详情
 def select_user_info(userId):

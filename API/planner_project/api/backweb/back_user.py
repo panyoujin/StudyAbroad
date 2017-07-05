@@ -13,10 +13,12 @@ def select_user_list():
     size = request.form.get("size", type=int, default=10)
     name = request.form.get("name", type=str, default="")
     page = request.form.get("page", type=int, default=1)
-    data = user_logic.select_user_list(name, page, size)
+    data,listCount = user_logic.select_user_list(name, page, size)
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data
+    if listCount is not None:
+        ApiResponse.listCount = listCount["listCount"]
     return api_response.response_return(ApiResponse)
 
 
