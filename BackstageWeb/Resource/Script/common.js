@@ -273,7 +273,8 @@ jQuery(document).ready(function () {
     if(test.toLowerCase() != "/Home/Login.html".toLowerCase()){
         $.ajaxJson("/home/get_current_login_user", { },
             function (result) {
-                if (jsonData.status=="600") {
+                console.log(result)
+                if (result.status=="600") {
                     window.top.gotoLogin();
                 }
                 if (result && result.status==200) {

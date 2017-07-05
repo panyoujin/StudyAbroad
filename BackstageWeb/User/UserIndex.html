@@ -58,7 +58,8 @@
         };
     });
     function Edit(id) {
-        parent.gotoPage('/User/UserEdit.html?id=' + id);
+        $.Dialog('/User/UserEdit.html?id=' + id,'',650,380);
+        //parent.gotoPage('/User/UserEdit.html?id=' + id);
     }
 
     function Delete(id) {
