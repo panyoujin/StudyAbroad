@@ -82,9 +82,12 @@
                         html += "<td>" + (list[i].CreateTime ? list[i].CreateTime : "") + "</td>";
                         html += "<td>" + (list[i].StatusStr ? list[i].StatusStr : "") + "</td>";
                         html += "<td>";
-                        html += "<a href='javascript:void(0);' onclick='Edit(\"" + list[i].Id + "\")' title='查看'><i class='fa fa-pencil'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;";
-                        html += "<a href='javascript:void(0);' onclick='Delete(\"" + list[i].Id + "\")' title='删除'><i class='fa fa-trash-o'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;";
 
+                        html += "<a href='/User/UpgradeUserDetail.html?Id="+list[i].Id+"'  title='查看'>查看</a>&nbsp;&nbsp;";
+                        if(list[i].Status==0){
+                            html += "<a href='javascript:void(0);' onclick='Edit(\"" + list[i].Id + "\")' title='审核通过'>通过</a>&nbsp;&nbsp;";
+                            html += "<a href='javascript:void(0);' onclick='Edit(\"" + list[i].Id + "\")' title='审核拒绝'>拒绝</a>&nbsp;&nbsp;";
+                        }
                         html += "</td>";
                         html += "</tr>";
                     }

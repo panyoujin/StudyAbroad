@@ -29,3 +29,16 @@ def get_upgrade_apply_list():
         ApiResponse.data = data
         ApiResponse.listCount = listCount["count"]
     return api_response.response_return(ApiResponse)
+
+# 获取规划师升级数据详情
+@app.route("/backweb/user/get_upgrade_apply_detail", methods=['POST'])
+def get_upgrade_apply_detail():
+    request_back_helper.current_user_mush_login()
+    ApiResponse = api_response.ApiResponse()
+    Id = request.form.get("Id", type=str, default=None)
+
+    ApiResponse.data = mysql.get_object(upgrade_user_sql.get_upgrade_apply_detail, (Id))
+
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    return api_response.response_return(ApiResponse)
