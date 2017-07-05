@@ -63,6 +63,29 @@
     var indexPage = function (index) {
         queryList(index);
     };
+
+    function update_status(id, status,name) {
+
+        var messageStr="";
+        if(status==1){
+            messageStr="审核通过 "+name+" 成为规划师的申请?";
+        }else if(status==2){
+            messageStr="审核拒绝 "+name+" 成为规划师的申请?";
+        }
+        $.confirm(messageStr, function () {
+            $.ajaxJson("/user/update_upgrade_user", { Id: id,Status:status },
+            function (result) {
+                $.alert("审核成功!");
+                queryList(1);
+            },
+            function (result) {
+                $.alert(result.message);
+            });
+        });
+
+//        parent.gotoPage('/User/TeamMemberIndex.html?id=' + id);
+    }
+
     var queryList = function (index) {
         $("#dataList tbody").html("<tr style='height:" + $("#dataList tbody").height() + "px'><td colspan='" + $("#dataList thead tr th").length + "'><i class='fa fa-spinner fa-pulse'></i></td></tr>");
         var name = $.trim($("#Name").val());
@@ -83,10 +106,10 @@
                         html += "<td>" + (list[i].StatusStr ? list[i].StatusStr : "") + "</td>";
                         html += "<td>";
 
-                        html += "<a href='/User/UpgradeUserDetail.html?Id="+list[i].Id+"'  title='查看'>查看</a>&nbsp;&nbsp;";
-                        if(list[i].Status==0){
-                            html += "<a href='javascript:void(0);' onclick='Edit(\"" + list[i].Id + "\")' title='审核通过'>通过</a>&nbsp;&nbsp;";
-                            html += "<a href='javascript:void(0);' onclick='Edit(\"" + list[i].Id + "\")' title='审核拒绝'>拒绝</a>&nbsp;&nbsp;";
+                        html += "<a href='/User/UpgradeUserDetail.html?Id=" + list[i].Id + "'  title='查看'>查看</a>&nbsp;&nbsp;";
+                        if (list[i].Status == 0) {
+                            html += "<a href='javascript:void(0);' onclick='update_status(\"" + list[i].Id + "\",\"" + 1 + "\",\"" + list[i].Name + "\")' title='审核通过'>通过</a>&nbsp;&nbsp;";
+                            html += "<a href='javascript:void(0);' onclick='update_status(\"" + list[i].Id + "\",\"" + 2 + "\",\"" + list[i].Name + "\")' title='审核拒绝'>拒绝</a>&nbsp;&nbsp;";
                         }
                         html += "</td>";
                         html += "</tr>";

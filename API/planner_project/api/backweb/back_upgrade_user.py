@@ -30,15 +30,62 @@ def get_upgrade_apply_list():
         ApiResponse.listCount = listCount["count"]
     return api_response.response_return(ApiResponse)
 
+
 # 获取规划师升级数据详情
 @app.route("/backweb/user/get_upgrade_apply_detail", methods=['POST'])
 def get_upgrade_apply_detail():
     request_back_helper.current_user_mush_login()
     ApiResponse = api_response.ApiResponse()
     Id = request.form.get("Id", type=str, default=None)
-
+    if Id is None or Id == "":
+        raise custom_error.CustomFlaskErr(status_code=500, message="参数id不能为空")
     ApiResponse.data = mysql.get_object(upgrade_user_sql.get_upgrade_apply_detail, (Id))
 
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    return api_response.response_return(ApiResponse)
+
+
+# 获取规划师升级数据详情
+@app.route("/backweb/user/update_upgrade_user", methods=['POST'])
+def update_upgrade_user():
+    UserId = request_back_helper.current_user_mush_login()["UserId"]
+    Id = request.form.get("Id", type=str, default=None)
+    Status = request.form.get("Status", type=int, default=-1)
+
+    if Id is None or Id == "":
+        raise custom_error.CustomFlaskErr(status_code=500, message="参数id不能为空")
+    if Status == -1:
+        raise custom_error.CustomFlaskErr(status_code=500, message="参数状态不能为空")
+    #查询规划师升级数据
+    upgradeInfo = mysql.get_object(upgrade_user_sql.get_upgrade_info_by_id, (Id))
+    if upgradeInfo is None:
+        raise custom_error.CustomFlaskErr(status_code=500, message="该审核数据不存在")
+    if upgradeInfo["Status"] != 0:
+        raise custom_error.CustomFlaskErr(status_code=500, message="该审核数据已处理，请勿重复操作")
+    # 审核不通过
+    if Status == 2:
+        success = mysql.operate_object(upgrade_user_sql.update_upgrade_status, (Status, UserId, Id))
+        if success <= 0:
+            raise custom_error.CustomFlaskErr(status_code=500, message="审核失败")
+    # 审核通过
+    if Status == 1:
+        idCard=""#判断IDCard是否不存在
+        if 'IDCard' in upgradeInfo:
+            idCard = upgradeInfo["IDCard"]
+        sql_list = [upgrade_user_sql.update_upgrade_status,
+                    upgrade_user_sql.update_user_type,
+                    upgrade_user_sql.update_user_info]
+        args_list = [(Status, UserId, Id),
+                     (UserId,upgradeInfo["UserId"]),
+                     (upgradeInfo["Name"],upgradeInfo["Sex"],upgradeInfo["Address"],upgradeInfo["Experience"],
+                      upgradeInfo["Email"],idCard,upgradeInfo["IDCardPic"],upgradeInfo["ServiceAreaId"],
+                      upgradeInfo["ServiceId"],UserId,upgradeInfo["UserId"])]
+        success = mysql.operate__many(sql_list, args_list)
+        if success <= 0:
+            raise custom_error.CustomFlaskErr(status_code=500, message="审核失败")
+
+    ApiResponse = api_response.ApiResponse()
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     return api_response.response_return(ApiResponse)
