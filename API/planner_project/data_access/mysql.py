@@ -19,12 +19,10 @@ def mysql():
   cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
   try:
     yield cursor
+    conn.commit()
   except Exception as err:
     conn.rollback()
-    cursor.close()
-    conn.close()
   finally:
-    conn.commit()
     cursor.close()
     conn.close()
 
