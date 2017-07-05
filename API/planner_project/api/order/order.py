@@ -8,7 +8,7 @@ from planner_project.data_access import mysql
 from planner_project.sql.demand_service import order_sql
 
 
-#承接需求
+#创建订单
 @app.route("/order/insert_order", methods=['POST'])
 def insert_order():
     ApiResponse = api_response.ApiResponse()
