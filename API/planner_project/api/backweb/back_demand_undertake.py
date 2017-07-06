@@ -9,6 +9,7 @@ from planner_project.sql.backweb import demand_service_sql
 #用户列表
 @app.route("/backweb/demand/select_demand_undertake_list", methods=['POST'])
 def select_demand_undertake_list():
+
     ApiResponse = api_response.ApiResponse()
     size = request.form.get("size", type=int, default=10)
     name = request.form.get("name", type=str, default="")
