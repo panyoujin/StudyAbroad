@@ -2,7 +2,7 @@
 import uuid
 from flask import request
 from planner_project import app
-from planner_project.common import api_response,request_helper,custom_error
+from planner_project.common import api_response,request_helper,custom_error,enum
 from planner_project.data_access import mysql
 from planner_project.sql.demand_service import demand_undertake
 from planner_project.sql.user import user_info_sql
@@ -31,7 +31,7 @@ def insert_undertake():
     if data_exists["total"] > 0:
         raise custom_error.CustomFlaskErr(status_code=500, message="你已经存在承接该需求的记录")
 
-    insertResult = mysql.operate_object(demand_undertake.insert_demand_undertake, (DemandId, userId,userId))
+    insertResult = mysql.operate_object(demand_undertake.insert_demand_undertake, (DemandId, userId,userId,enum.IsUser.no))
     if insertResult > 0:
         ApiResponse.message = "申请成功"
         ApiResponse.status = 200
