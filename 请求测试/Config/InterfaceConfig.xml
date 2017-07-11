@@ -23,6 +23,14 @@
         <BodyParam></BodyParam>
     </Interface>
     <Interface>
+        <Name>获取最新合同</Name>
+        <Url>http://localhost:5000/userinfo/new_contract</Url>
+        <PostParam></PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+        <CookieParam>token=a27815a6-530f-11e7-8b18-20689dd1eb55</CookieParam>
+    </Interface>
+    <Interface>
         <Name>修改用户</Name>
         <Url>http://localhost:5000/userinfo/updateuserinfo</Url>
         <PostParam>name=jimmy.pan#;#sex=1#;#age=27#;#education=博士#;#address=北京#;#email=jimmy.pan@hotmail.com</PostParam>
@@ -42,6 +50,14 @@
         <Name>获取用户信息</Name>
         <Url>http://localhost:5000/userinfo/get_user_info</Url>
         <PostParam>userid=1</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+        <CookieParam>token=a27815a6-530f-11e7-8b18-20689dd1eb55</CookieParam>
+    </Interface>
+    <Interface>
+        <Name>获取用户相册</Name>
+        <Url>http://localhost:5000/userinfo/user_album</Url>
+        <PostParam>page=1#;#size=10</PostParam>
         <FileParam></FileParam>
         <BodyParam></BodyParam>
         <CookieParam>token=a27815a6-530f-11e7-8b18-20689dd1eb55</CookieParam>

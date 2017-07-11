@@ -89,3 +89,33 @@ def update_user_password():
         return api_response.response_return(ApiResponse)
 
     raise custom_error.CustomFlaskErr(status_code=500, message="修改失败")
+
+
+
+#用户相册列表
+@app.route("/userinfo/user_album", methods=['POST'])
+def user_album():
+    ApiResponse = api_response.ApiResponse()
+    size = request.form.get("size", type=int, default=10)
+    page = request.form.get("page", type=int, default=1)
+    user = request_helper.current_user_mush_login()
+    if page<=0:
+        page=1
+    if size<=0:
+        size=10
+    data = mysql.get_list(user_info_sql.select_user_album,(user["Id"],(page-1)*size,size))
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = data
+    return api_response.response_return(ApiResponse)
+
+
+#获取最新合同
+@app.route("/userinfo/new_contract", methods=['POST'])
+def new_contract():
+    ApiResponse = api_response.ApiResponse()
+    data = mysql.get_object(user_info_sql.select_new_contract,())
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = data
+    return api_response.response_return(ApiResponse)
