@@ -9,6 +9,17 @@ select_search_demand_service = "SELECT ds.`Id`,ds.UserId,ds.`Name`,ds.`Type`,ds.
                        "WHERE ds.`IsDelete` = FALSE " \
                        "ORDER BY ds.`Sort` DESC ,ds.`CreateTime` DESC " \
                        "LIMIT %s , %s "
+#需求服务详情
+select_demand_service_info = "SELECT ds.`Id`,ds.UserId,ds.`Name`,ds.`Type`,ds.`ServiceAreaId`,ds.`ServiceTypeId` " \
+                        ",ds.`PriceStart`,ds.`PriceEnd`,ds.`TimeStart`,ds.`TimeEnd`,ds.`CreateTime`,ds.`CollectionCount` " \
+                        ",ds.`Sort`,ds.`IsTop`,ui.`Name` AS UserName,ui.`HeadImage`,sa.`Name` AS AreaName,st.`Name` AS TypeName "\
+                       "FROM `DS_DemandService` ds " \
+                       "JOIN `U_UserInfo` AS ui ON ds.`UserId`=ui.`UserId` " \
+                       "LEFT JOIN `Base_ServiceArea` sa ON sa.`Id`=ds.`ServiceAreaId`  " \
+                       "LEFT JOIN `Base_ServiceType` st ON st.`Id`=ds.`ServiceTypeId` " \
+                       "WHERE ds.`Id`='%s' AND ds.`IsDelete` = FALSE " \
+                       "ORDER BY ds.`Sort` DESC ,ds.`CreateTime` DESC " \
+                       "LIMIT 0 , 1 "
 
 #收藏
 demand_service_collection="INSERT INTO `U_Collection` (`UserId`,`DemandServiceId`,`CollectionTime`) VALUES('%s','%s',NOW())" \

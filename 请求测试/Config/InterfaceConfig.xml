@@ -77,6 +77,13 @@
         <BodyParam></BodyParam>
     </Interface>
     <Interface>
+        <Name>需求服务详情</Name>
+        <Url>http://localhost:5000/demand_service/demand_service_info</Url>
+        <PostParam>demandServiceId=1</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
+    <Interface>
         <Name>收藏</Name>
         <Url>http://localhost:5000/demand_service/collection</Url>
         <PostParam>demandServiceId=</PostParam>

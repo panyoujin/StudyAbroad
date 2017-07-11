@@ -24,6 +24,21 @@ def searchds():
     return api_response.response_return(ApiResponse)
 
 
+#需求服务详情
+@app.route("/demand_service/demand_service_info", methods=['POST'])
+def demand_service_info():
+    ApiResponse = api_response.ApiResponse()
+    demandServiceId = request.form.get("demandServiceId", type=str, default=None)
+    if demandServiceId ==None and demandServiceId =="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="需求或者服务不存在")
+    data = mysql.get_object(demand_service_sql.select_demand_service_info,(demandServiceId))
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = data
+    return api_response.response_return(ApiResponse)
+
+
+
 #收藏
 @app.route("/demand_service/collection", methods=['POST'])
 def collection():
@@ -79,7 +94,7 @@ def browse():
     ApiResponse = api_response.ApiResponse()
     user = request_helper.current_user_mush_login()
     demandServiceId = request.form.get("demandServiceId", type=str, default=None)
-    if any(user) and demandServiceId !=None:
+    if any(user) and demandServiceId !=None and demandServiceId !="":
         count = mysql.operate_object(demand_service_sql.demand_service_browse, (user["Id"],demandServiceId))
     ApiResponse.message = "成功"
     ApiResponse.status = 200
@@ -127,7 +142,13 @@ def insert_browse_service():
     if user["UserType"]==1:
         Type=1
     guid = str(uuid.uuid1())
-    data = mysql.operate_object(demand_service_sql.insert_demand_service,(guid,user["Id"],Name,Type,ServiceAreaId,ServiceTypeId,PriceStart,PriceEnd,TimeStart,TimeEnd,Description,user["Id"],user["Id"]))
+    data = mysql.operate_object(demand_service_sql.insert_demand_service,
+                                (guid,user["Id"],Name,Type,ServiceAreaId,ServiceTypeId,PriceStart
+                                 ,PriceEnd,TimeStart,TimeEnd,Description,user["Id"],user["Id"]))
+    plannerId = request.form.get("plannerId", type=str, default=None)
+    #if plannerId != None and plannerId != "":
+        #新增承接
+
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data
