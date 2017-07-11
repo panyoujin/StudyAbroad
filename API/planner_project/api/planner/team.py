@@ -37,6 +37,11 @@ def team_member_list():
     if size<=0:
         size=10
     data = team_logic.get_team_member_list(temaId,(page-1)*size,size)
+    if data and len(data):
+        for i in range(len(data)):
+            if data[i]!=None and data[i]["Lables"]!=None and len(data[i]["Lables"]):
+                lablesArray=data[i]["Lables"].split(",")
+                data[i]["Lables"]=lablesArray
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data

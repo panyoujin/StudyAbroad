@@ -23,8 +23,9 @@ def search():
     data = mysql.get_list(planner_sql.select_search_planner,(name,name,sear,sear,sear,sear,(page-1)*size,size))
     if data and len(data):
         for i in range(len(data)):
-            lablesArray=data[i]["Lables"].split(",")
-            data[i]["Lables"]=lablesArray
+            if data[i]!=None and data[i]["Lables"]!=None and len(data[i]["Lables"]):
+                lablesArray=data[i]["Lables"].split(",")
+                data[i]["Lables"]=lablesArray
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data
