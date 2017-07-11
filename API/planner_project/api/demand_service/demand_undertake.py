@@ -15,6 +15,9 @@ def insert_undertake():
     DemandId = request.form.get("DemandId", type=str, default=None)
     if DemandId == None or DemandId=="" :
         raise custom_error.CustomFlaskErr(status_code=500, message="需求id不能为空")
+    ContractId = request.form.ContractId("DemandId", type=int, default=0)
+    if ContractId == None or ContractId == 0:
+        raise custom_error.CustomFlaskErr(status_code=500, message="合同id不能为空")
 
     userId = request_helper.current_user_mush_login()["Id"]
 
@@ -31,7 +34,7 @@ def insert_undertake():
     if data_exists["total"] > 0:
         raise custom_error.CustomFlaskErr(status_code=500, message="你已经存在承接该需求的记录")
 
-    insertResult = mysql.operate_object(demand_undertake.insert_demand_undertake, (DemandId, userId,userId,enum.IsUser.no))
+    insertResult = mysql.operate_object(demand_undertake.insert_demand_undertake, (DemandId, userId,userId,enum.IsUser.no,ContractId))
     if insertResult > 0:
         ApiResponse.message = "申请成功"
         ApiResponse.status = 200

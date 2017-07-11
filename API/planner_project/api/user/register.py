@@ -39,7 +39,7 @@ def register():
 
     guid = str(uuid.uuid1())
     sql_list = [user_sql.insert_user,user_sql.insert_userinfo]
-    args_list = [(guid,Account,Password),(guid)]
+    args_list = [(guid,Account,Password,Account),(guid)]
 
     data_register = mysql.operate__many(sql_list,args_list)
     if data_register > 0:
