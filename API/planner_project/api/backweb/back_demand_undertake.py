@@ -6,10 +6,9 @@ from planner_project.common import api_response
 from planner_project.data_access import mysql
 from planner_project.sql.backweb import demand_service_sql
 
-#用户列表
+#查询承接服务列表
 @app.route("/backweb/demand/select_demand_undertake_list", methods=['POST'])
 def select_demand_undertake_list():
-
     ApiResponse = api_response.ApiResponse()
     size = request.form.get("size", type=int, default=10)
     name = request.form.get("name", type=str, default="")
@@ -25,6 +24,14 @@ def select_demand_undertake_list():
         ApiResponse.data = data
         ApiResponse.listCount = listCount["count"]
 
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    return api_response.response_return(ApiResponse)
+
+#生成订单
+@app.route("/backweb/demand/generate_order", methods=['POST'])
+def generate_order():
+    ApiResponse = api_response.ApiResponse()
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     return api_response.response_return(ApiResponse)

@@ -50,7 +50,21 @@ select_demand_count = "SELECT count(1) AS count " \
                       "JOIN Base_ServiceType st on st.Id=ds.ServiceTypeId " \
                       "JOIN U_UserInfo ui on ds.UserId=ui.UserId where ds.Type=1"
 
-#修改需求的置顶状态或者失效状态
-update_demand_status="UPDATE DS_DemandService SET IsTop=%s,IsUndertake=%s,ModifUserID='%s',ModifTime=now() WHERE Id='%s' "
-#如果设置需求失效，把对应的承接需求也设置拒绝
-update_demand_undertake_status="UPDATE DS_DemandUndertake SET Status=3 ,ModifUserID='%s',ModifTime=now() WHERE DemandId='%s'"
+# 修改需求的置顶状态或者失效状态
+update_demand_status = "UPDATE DS_DemandService SET IsTop=%s,IsUndertake=%s,ModifUserID='%s',ModifTime=now() WHERE Id='%s' "
+# 如果设置需求失效，把对应的承接需求也设置拒绝
+update_demand_undertake_status = "UPDATE DS_DemandUndertake SET Status=3 ,ModifUserID='%s',ModifTime=now() WHERE DemandId='%s'"
+
+# ===生成订单逻辑
+# 查询承接数据
+select_my_demand_undertake = "SELECT du.Id, du.`DemandId`,du.`UserId` AS PlannerUserId,du.`Status`,ds.`UserId`,ds.`ServiceAreaId`,ds.`ServiceTypeId`, " \
+                             "ds.`PriceStart`,ds.`PriceEnd`,ds.`TimeStart`,ds.`TimeEnd`,ds.`Description`,ds.`IsUndertake`,du.ContractId " \
+                             "FROM `DS_DemandUndertake` du " \
+                             "JOIN `DS_DemandService` ds ON du.`DemandId`=ds.`Id` " \
+                             "WHERE du.IsDelete=FALSE AND ds.IsUndertake=0 " \
+                             "AND du.Id='%s'"
+# 新增订单数据
+insert_order = "INSERT INTO `DS_Order` (`Id`,`PlannerUserId`,`UserId`,`ContractId`,`Type`,`DemandServiceId`,`DemandServiceDescription`,`Description`,`ServiceAreaId`,`ServiceTypeId`, " \
+               "`PriceStart`,`PriceEnd`,`TimeStart`,`TimeEnd`,`OrderStatus`,`CreateUserID`,`CreateTime`)  " \
+               "VALUES ('%s','%s','%s',%s,1,'%s','%s','%s',%s,%s,%s,%s,'%s','%s',2,'%s','%s') "
+
