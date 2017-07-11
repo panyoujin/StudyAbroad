@@ -1,5 +1,5 @@
 import json
-import time
+import time,decimal
 from datetime import date, datetime
 
 class ApiResponse(object):
@@ -23,5 +23,8 @@ class ComplexEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, datetime):
             return obj.strftime('%Y-%m-%d %H:%M:%S')
+        elif isinstance(obj, decimal.Decimal):
+            return "%.2f" % obj
         elif isinstance(obj, date):
             return obj.strftime('%Y-%m-%d')
+        return json.JSONEncoder.default(self, obj)

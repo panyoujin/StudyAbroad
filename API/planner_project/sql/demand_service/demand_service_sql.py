@@ -27,7 +27,7 @@ select_collection_demand_service =  "SELECT ds.`Id`,ds.UserId,ds.`Name`,ds.`Type
                        "ORDER BY c.CollectionTime DESC " \
                        "LIMIT %s , %s "
 
-#需求服务列表
+#我的发布记录
 select_my_demand_service = "SELECT ds.`Id`,ds.UserId,ds.`Name`,ds.`Type`,ds.`ServiceAreaId`,ds.`ServiceTypeId` " \
                         ",ds.`PriceStart`,ds.`PriceEnd`,ds.`TimeStart`,ds.`TimeEnd`,ds.`CreateTime`,ds.`CollectionCount` " \
                         ",ds.`Sort`,ds.`IsTop`,ui.`Name` AS UserName,ui.`HeadImage`,sa.`Name` AS AreaName,st.`Name` AS TypeName "\
