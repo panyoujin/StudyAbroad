@@ -14,58 +14,106 @@
 
 </head>
 <body>
-    <form id="submitForm">
+    
         <div id="contentheader">
-            <div id="contentheader_title">编辑用户</div>
+            <div id="contentheader_title">用户信息</div>
             <div id="contentheader_button">
-                <button type="submit" class="orange" onclick="submitForm();"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
                 <button onclick="parent.gotoPage('/User/PlannerIndex.html');" type="button"><i class="fa fa-times"></i>&nbsp;取消</button>
             </div>
             <div style="clear:both;"></div>
         </div>
 
         <div id="content">
-            <div class="area_title">用户信息</div>
-            <div class="area">
-                <table border="1" cellpadding="0" cellspacing="0" style="width: 80%;">
+            <div class="area" style="margin-bottom:35px;">
+            <div class="area_title">编辑用户</div>
+                <form id="submitForm">
+                    <table border="1" cellpadding="0" cellspacing="0" style="width: 80%;">
+                        <tr>
+                            <th width="100">姓名</th>
+                            <td>
+                                <input id="Name" maxlength="20" name="Name" placeholder="输入用户名称" value="" type="text">
+                                <input id="UserId" maxlength="20" name="UserId" placeholder="输入用户名称" value="" type="hidden">
+                            </td>
+                            <th width="100">性别</th>
+                            <td>
+                                <select id="Sex" name="Sex">
+                                    <option value="1">男</option>
+                                    <option value="2">女</option>
+                                </select>
+                            </td>
+                            <th width="100">年龄</th>
+                            <td>
+                                <input id="Age" maxlength="3" name="Age" placeholder="输入年龄" value="" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="100">学历</th>
+                            <td>
+                                <input id="Education" maxlength="36" name="Education" placeholder="输入学历" value="" type="text">
+                            </td>
+                            <th width="100">地址</th>
+                            <td>
+                                <input id="Address" maxlength="13" name="Address" placeholder="输入地址" value="" type="text">
+                            </td>
+                            <th width="100">邮箱</th>
+                            <td>
+                                <input id="Email" maxlength="36" name="Email" placeholder="输入邮箱" value="" type="text">
+                            </td>
+                        </tr>
+                    </table>
+
+                </form>
+                <div style="text-align:right;margin:15px 0 5px 0;">
+                    <button type="submit" class="orange" onclick="submitForm();"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
+                </div>
+            </div>
+            <div class="area" style="margin-bottom:35px;">
+            <div class="area_title">学历背景<a href="javascript:;" style="font-size:12px;float:right;margin:auto 5px;" id="AddEducation"><i class="fa fa-plus-square"></i> 新增</a></div>
+
+            <table border="1" cellpadding="0" cellspacing="0" class="table" id="EducationList">
+                <thead>
                     <tr>
-                        <th width="100">姓名</th>
-                        <td>
-                            <input id="Name" maxlength="20" name="Name" placeholder="输入用户名称" value="" type="text">
-                            <input id="UserId" maxlength="20" name="UserId" placeholder="输入用户名称" value="" type="hidden">
-                        </td>
-                        <th width="100">学历</th>
-                        <td>
-                            <input id="Education" maxlength="36" name="Education" placeholder="输入学历" value="" type="text">
-                        </td>
+                        <th width="15%">时间起</th>    
+                        <th width="15%">时间止</th>
+                        <th width="10%">学位</th>
+                        <th width="20%">毕业大学</th>
+                        <th width="10%">操作</th>
                     </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            </div>
+            <div class="area" style="margin-bottom:35px;">
+            <div class="area_title">社会背景<a href="javascript:;" style="font-size:12px;float:right;margin:auto 5px;" id="AddSociety"><i class="fa fa-plus-square"></i> 新增</a></div>
+
+            <table border="1" cellpadding="0" cellspacing="0" class="table" id="SocietyList">
+                <thead>
                     <tr>
-                        <th width="100">性别</th>
-                        <td>
-                            <select id="Sex" name="Sex">
-                                <option value="1">男</option>
-                                <option value="2">女</option>
-                            </select>
-                        </td>
-                        <th width="100">年龄</th>
-                        <td>
-                            <input id="Age" maxlength="3" name="Age" placeholder="输入年龄" value="" type="text">
-                        </td>
+                        <th width="15%">时间起</th>    
+                        <th width="15%">时间止</th>
+                        <th width="30%">社会背景</th>
+                        <th width="10%">操作</th>
                     </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            </div>
+            <div class="area" style="margin-bottom:35px;">
+            <div class="area_title">资源背景<a href="javascript:;" style="font-size:12px;float:right;margin:auto 5px;" id="AddResour"><i class="fa fa-plus-square"></i> 新增</a></div>
+            
+            <table border="1" cellpadding="0" cellspacing="0" class="table" id="ResourList">
+                <thead>
                     <tr>
-                        <th width="100">地址</th>
-                        <td>
-                            <input id="Address" maxlength="13" name="Address" placeholder="输入地址" value="" type="text">
-                        </td>
-                        <th width="100">邮箱</th>
-                        <td>
-                            <input id="Email" maxlength="36" name="Email" placeholder="输入邮箱" value="" type="text">
-                        </td>
+                        <th width="15%">时间起</th>    
+                        <th width="15%">时间止</th>
+                        <th width="30%">资源背景</th>
+                        <th width="10%">操作</th>
                     </tr>
-                </table>
+                </thead>
+                <tbody></tbody>
+            </table>
             </div>
         </div>
-    </form>
 </body>
 </html>
 <script type="text/javascript">
@@ -127,6 +175,144 @@ $(function(){
                     $.alert("网络故障，请稍候重试!");
             }
         );
+    loadEducationList(userid);
+    loadSocietyList(userid);
+    loadResourList(userid);
 })
+function loadEducationList(userid){
+    $.ajaxJson("/planner/select_education_list", { userid: userid},
+        function (result) {
+            if (result && result.data.length > 0) {
+                var list = result.data;
+                var html = "";
+                for (var i = 0; i < result.data.length; i++) {
+                    html += "<tr " + (i % 2 == 1 ? "class='even'" : "") + ">";
+                    html += "<td>" + (list[i].TimeStart ? list[i].TimeStart : "") + "</td>";
+                    html += "<td>" + (list[i].TimeEnd ? list[i].TimeEnd : "") + "</td>";
+                    html += "<td>" + (list[i].Degree ? list[i].Degree : "") + "</td>";
+                    html += "<td>" + (list[i].University ? list[i].University : "") + "</td>";
+                    html += "<td>";
+                        html += "<a href='javascript:void(0);' onclick='EditEducation(\"" + list[i].Id + "\")' title='编辑'>编辑</a>&nbsp;";
+                        html += "<a href='javascript:void(0);' onclick='DeleteEducation(\"" + list[i].Id + "\")' title='删除'>删除</a>&nbsp;";
+                    html += "</td>";
+                    html += "</tr>";
+                }
+                $("#EducationList tbody").html(html);
+            } else {
+                $("#EducationList tbody").html("<tr><td colspan='" + $("#EducationList thead tr th").length + "'>没有任何数据</td></tr>");
+            }
+        },
+        function () {
+            $("#EducationList tbody").html("<tr><td colspan='" + $("#EducationList thead tr th").length + "'>网络故障，请稍候重试！</td></tr>");
+        }
+    );
+}
+function loadSocietyList(userid){
+    $.ajaxJson("/planner/select_society_list", { userid: userid},
+        function (result) {
+            if (result && result.data.length > 0) {
+                var list = result.data;
+                var html = "";
+                for (var i = 0; i < result.data.length; i++) {
+                    html += "<tr " + (i % 2 == 1 ? "class='even'" : "") + ">";
+                    html += "<td>" + (list[i].TimeStart ? list[i].TimeStart : "") + "</td>";
+                    html += "<td>" + (list[i].TimeEnd ? list[i].TimeEnd : "") + "</td>";
+                    html += "<td>" + (list[i].Description ? list[i].Description : "") + "</td>";
+                    html += "<td>";
+                        html += "<a href='javascript:void(0);' onclick='EditSociety(\"" + list[i].Id + "\")' title='编辑'>编辑</a>&nbsp;";
+                        html += "<a href='javascript:void(0);' onclick='DeleteSociety(\"" + list[i].Id + "\")' title='删除'>删除</a>&nbsp;";
+                    html += "</td>";
+                    html += "</tr>";
+                }
+                $("#SocietyList tbody").html(html);
+            } else {
+                $("#SocietyList tbody").html("<tr><td colspan='" + $("#SocietyList thead tr th").length + "'>没有任何数据</td></tr>");
+            }
+        },
+        function () {
+            $("#SocietyList tbody").html("<tr><td colspan='" + $("#SocietyList thead tr th").length + "'>网络故障，请稍候重试！</td></tr>");
+        }
+    );
+}
+function loadResourList(userid){
+    $.ajaxJson("/planner/select_resour_list",{ userid: userid },
+        function (result) {
+            if (result && result.data.length > 0) {
+                var list = result.data;
+                var html = "";
+                for (var i = 0; i < result.data.length; i++) {
+                    html += "<tr " + (i % 2 == 1 ? "class='even'" : "") + ">";
+                    html += "<td>" + (list[i].TimeStart ? list[i].TimeStart : "") + "</td>";
+                    html += "<td>" + (list[i].TimeEnd ? list[i].TimeEnd : "") + "</td>";
+                    html += "<td>" + (list[i].Description ? list[i].Description : "") + "</td>";
+                    html += "<td>";
+                        html += "<a href='javascript:void(0);' onclick='EditResour(\"" + list[i].Id + "\")' title='编辑'>编辑</a>&nbsp;";
+                        html += "<a href='javascript:void(0);' onclick='DeleteResour(\"" + list[i].Id + "\")' title='删除'>删除</a>&nbsp;";
+                    html += "</td>";
+                    html += "</tr>";
+                }
+                $("#ResourList tbody").html(html);
+            } else {
+                $("#ResourList tbody").html("<tr><td colspan='" + $("#ResourList thead tr th").length + "'>没有任何数据</td></tr>");
+            }
+        },
+        function () {
+            $("#ResourList tbody").html("<tr><td colspan='" + $("#ResourList thead tr th").length + "'>网络故障，请稍候重试！</td></tr>");
+        }
+    );
+}
 
+
+function EditEducation(id) {
+    $.Dialog('/User/UserEdit.html?id=' + id,'',650,380);
+    //parent.gotoPage('/User/UserEdit.html?id=' + id);
+}
+
+function DeleteEducation(id) {
+    $.confirm("是否确认删除?", function () {
+        $.ajaxJson("/user/delete_user", { UserId: id },
+        function (result) {
+            queryList(1);
+        },
+        function (result) {
+            $.alert("删除失败!");
+        });
+    });
+}
+
+
+function EditSociety(id) {
+    $.Dialog('/User/UserEdit.html?id=' + id,'',650,380);
+    //parent.gotoPage('/User/UserEdit.html?id=' + id);
+}
+
+function DeleteSociety(id) {
+    $.confirm("是否确认删除?", function () {
+        $.ajaxJson("/user/delete_user", { UserId: id },
+        function (result) {
+            queryList(1);
+        },
+        function (result) {
+            $.alert("删除失败!");
+        });
+    });
+}
+
+
+function EditResour(id) {
+    $.Dialog('/User/UserEdit.html?id=' + id,'',650,380);
+    //parent.gotoPage('/User/UserEdit.html?id=' + id);
+}
+
+function DeleteResour(id) {
+    $.confirm("是否确认删除?", function () {
+        $.ajaxJson("/user/delete_user", { UserId: id },
+        function (result) {
+            queryList(1);
+        },
+        function (result) {
+            $.alert("删除失败!");
+        });
+    });
+}
 </script>

@@ -15,3 +15,17 @@ def select_planner_list(name,page=1,size=10):
 #获取规划师详情
 def select_planner_info(userId):
     return mysql.get_object(planner_sql.select_planner_info, (userId))
+
+#学历背景
+def select_planner_education(userid):
+    return mysql.get_list(planner_sql.select_planner_education,(userid))
+
+
+#社会背景
+def select_planner_society(userid):
+    return mysql.get_list(planner_sql.select_planner_society,(userid))
+
+
+#资源背景
+def select_planner_resour(userid):
+    return mysql.get_list(planner_sql.select_planner_resour,(userid))

@@ -35,3 +35,46 @@ def select_planner_info():
         return api_response.response_return(ApiResponse)
     raise custom_error.CustomFlaskErr(status_code=500, message="用户不存在")
 
+
+#获取学历背景
+@app.route("/backweb/planner/select_education_list", methods=['POST'])
+def select_education_list():
+    ApiResponse = api_response.ApiResponse()
+    userid= request.form.get("userid", type=str, default=None)
+
+    if userid == None or userid=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="参数userid不能为空")
+    education = back_planner_logic.select_planner_education(userid)
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = education
+    return api_response.response_return(ApiResponse)
+
+#获取资源背景
+@app.route("/backweb/planner/select_society_list", methods=['POST'])
+def select_society_list():
+    ApiResponse = api_response.ApiResponse()
+    userid= request.form.get("userid", type=str, default=None)
+
+    if userid == None or userid=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="参数userid不能为空")
+    society = back_planner_logic.select_planner_society(userid)
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = society
+    return api_response.response_return(ApiResponse)
+
+#获取社会背景
+@app.route("/backweb/planner/select_resour_list", methods=['POST'])
+def select_resour_list():
+    ApiResponse = api_response.ApiResponse()
+    userid= request.form.get("userid", type=str, default=None)
+
+    if userid == None or userid=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="参数userid不能为空")
+    resour = back_planner_logic.select_planner_resour(userid)
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = resour
+    return api_response.response_return(ApiResponse)
+
