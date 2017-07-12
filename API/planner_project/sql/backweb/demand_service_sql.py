@@ -66,5 +66,15 @@ select_my_demand_undertake = "SELECT du.Id, du.`DemandId`,du.`UserId` AS Planner
 # 新增订单数据
 insert_order = "INSERT INTO `DS_Order` (`Id`,`PlannerUserId`,`UserId`,`ContractId`,`Type`,`DemandServiceId`,`DemandServiceDescription`,`Description`,`ServiceAreaId`,`ServiceTypeId`, " \
                "`PriceStart`,`PriceEnd`,`TimeStart`,`TimeEnd`,`OrderStatus`,`CreateUserID`,`CreateTime`)  " \
-               "VALUES ('%s','%s','%s',%s,1,'%s','%s','%s',%s,%s,%s,%s,'%s','%s',2,'%s','%s') "
+               "VALUES ('%s','%s','%s',%s,1,'%s','%s','%s',%s,%s,%s,%s,'%s','%s',2,'%s',now()) "
 
+# 新增订单流水表数据
+insert_order_flowing = "insert into `DS_OrderFlowingWater` (`OrderId`,`UserId`,`StartStatus`,`EndStatus`,`Remarks`,`ChangeTime`,`CreateUserID`,`CreateTime`) " \
+                       "values('%s','%s',1,2,'',now(),'%s',now())"
+#修改该条承接数据的状态为 申请通过
+update_demand_undertake_success="UPDATE `DS_DemandUndertake` SET `Status`=2,ModifUserID='%s',ModifTime=NOW() WHERE Status=1 and Id='%s' "
+#修改该条承接数据的状态为 申请不通过
+update_demand_undertake_fail="update `DS_DemandUndertake` set `Status`=3,ModifUserID='%s',ModifTime=now() where Status=1 and DemandId='%s' and Id!='%s' "
+
+#获取需要发通知的列表
+select_demand_undertake_notice_list="select `Id`,`DemandId`,`UserId`,`Status`,`CreateUserID`,`CreateTime` from `DS_DemandUndertake` where DemandId='%s'"

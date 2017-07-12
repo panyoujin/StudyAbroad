@@ -64,18 +64,12 @@
         queryList(index);
     };
 
-    function update_status(id, status, name) {
+    function generate_order(id) {
 
-        var messageStr = "";
-        if (status == 1) {
-            messageStr = "审核通过 " + name + " 成为规划师的申请?";
-        } else if (status == 2) {
-            messageStr = "审核拒绝 " + name + " 成为规划师的申请?";
-        }
-        $.confirm(messageStr, function () {
-            $.ajaxJson("/user/update_upgrade_user", {Id: id, Status: status},
+        $.confirm("你确认要生成订单吗?", function () {
+            $.ajaxJson("/demand/generate_order", {Id: id},
                 function (result) {
-                    $.alert("审核成功!");
+                    $.alert("生成订单成功!");
                     queryList(1);
                 },
                 function (result) {
@@ -107,7 +101,7 @@
                         html += "<td>" + (list[i].CreateTime ? list[i].CreateTime : "") + "</td>";
                         html += "<td>";
 
-                        html += "<a href='javascript:void(0);' onclick='update_status(\"" + list[i].Id +"\")' title='生成订单'>生成订单</a>";
+                        html += "<a href='javascript:void(0);' onclick='generate_order(\"" + list[i].Id +"\")' title='生成订单'>生成订单</a>";
 
                         html += "</td>";
                         html += "</tr>";

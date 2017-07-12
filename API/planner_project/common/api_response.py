@@ -27,4 +27,4 @@ class ComplexEncoder(json.JSONEncoder):
             return "%.2f" % obj
         elif isinstance(obj, date):
             return obj.strftime('%Y-%m-%d')
-        return json.JSONEncoder.default(self, obj)
+        # return json.JSONEncoder.default(self, obj)
