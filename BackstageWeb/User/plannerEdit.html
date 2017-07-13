@@ -32,7 +32,7 @@
                             <th width="100">姓名</th>
                             <td>
                                 <input id="Name" maxlength="20" name="Name" placeholder="输入用户名称" value="" type="text">
-                                <input id="UserId" maxlength="20" name="UserId" placeholder="输入用户名称" value="" type="hidden">
+                                <input id="UserId" maxlength="20" name="UserId" value="" type="hidden">
                             </td>
                             <th width="100">性别</th>
                             <td>
@@ -155,8 +155,9 @@
         });
 
     };
+    var userid ="";
 $(function(){
-    var userid = getUrlParam("id");
+    userid = getUrlParam("id");
     $.ajaxJson("/planner/select_planner_info", { userid: userid },
             function (result) {
                 if (!!result.data) {
@@ -263,16 +264,20 @@ function loadResourList(userid){
 }
 
 
+function AddEducation() {
+    $.Dialog('/User/EducationAdd.html?userid='+userid,'',650,380);
+    //parent.gotoPage('/User/UserEdit.html?id=' + id);
+}
 function EditEducation(id) {
-    $.Dialog('/User/UserEdit.html?id=' + id,'',650,380);
+    $.Dialog('/User/EducationEdit.html?id=' + id+'&userid='+userid,'',650,380);
     //parent.gotoPage('/User/UserEdit.html?id=' + id);
 }
 
 function DeleteEducation(id) {
     $.confirm("是否确认删除?", function () {
-        $.ajaxJson("/user/delete_user", { UserId: id },
+        $.ajaxJson("/planner/delete_education", { id: id },
         function (result) {
-            queryList(1);
+            loadEducationList(userid);
         },
         function (result) {
             $.alert("删除失败!");
@@ -280,17 +285,20 @@ function DeleteEducation(id) {
     });
 }
 
-
+function AddSociety() {
+    $.Dialog('/User/SocietyAdd.html?userid='+userid,'',650,380);
+    //parent.gotoPage('/User/UserEdit.html?id=' + id);
+}
 function EditSociety(id) {
-    $.Dialog('/User/UserEdit.html?id=' + id,'',650,380);
+    $.Dialog('/User/SocietyEdit.html?id=' + id+'&userid='+userid,'',650,380);
     //parent.gotoPage('/User/UserEdit.html?id=' + id);
 }
 
 function DeleteSociety(id) {
     $.confirm("是否确认删除?", function () {
-        $.ajaxJson("/user/delete_user", { UserId: id },
+        $.ajaxJson("/planner/delete_society", { id: id },
         function (result) {
-            queryList(1);
+            loadSocietyList(userid);
         },
         function (result) {
             $.alert("删除失败!");
@@ -298,21 +306,25 @@ function DeleteSociety(id) {
     });
 }
 
-
+function AddResour() {
+    $.Dialog('/User/ResourAdd.html?userid='+userid,'',650,380);
+    //parent.gotoPage('/User/UserEdit.html?id=' + id);
+}
 function EditResour(id) {
-    $.Dialog('/User/UserEdit.html?id=' + id,'',650,380);
+    $.Dialog('/User/ResourEdit.html?id=' + id+'&userid='+userid,'',650,380);
     //parent.gotoPage('/User/UserEdit.html?id=' + id);
 }
 
 function DeleteResour(id) {
     $.confirm("是否确认删除?", function () {
-        $.ajaxJson("/user/delete_user", { UserId: id },
+        $.ajaxJson("/planner/delete_Resour", { id: id },
         function (result) {
-            queryList(1);
+            loadResourList(userid);
         },
         function (result) {
             $.alert("删除失败!");
         });
     });
 }
+
 </script>
