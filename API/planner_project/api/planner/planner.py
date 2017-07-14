@@ -274,7 +274,7 @@ def insert_resour():
 
 
 #修改资源背景
-@app.route("/planner/update_society", methods=['POST'])
+@app.route("/planner/update_resour", methods=['POST'])
 def update_resour():
     ApiResponse = api_response.ApiResponse()
     Id = request.form.get("Id", type=str, default=None)

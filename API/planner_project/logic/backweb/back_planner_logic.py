@@ -29,3 +29,47 @@ def select_planner_society(userid):
 #资源背景
 def select_planner_resour(userid):
     return mysql.get_list(planner_sql.select_planner_resour,(userid))
+
+#新增学历背景
+def insert_education(id,userid,TimeStart,TimeEnd,University,Degree,Sort,insertuserid):
+    return mysql.get_list(planner_sql.insert_education,(id,userid,TimeStart,TimeEnd,University,Degree,Sort,insertuserid,insertuserid))
+
+
+#修改学历背景
+def update_education(TimeStart,TimeEnd,University,Degree,Sort,Id,updateuserid):
+    return mysql.get_list(planner_sql.update_education,(TimeStart,TimeEnd,University,Degree,Sort,updateuserid,Id))
+
+
+#删除学历背景
+def delete_education(id,updateuserid):
+    return mysql.get_list(planner_sql.delete_education,(updateuserid,id))
+
+
+#新增资源背景
+def insert_resour(id,userid,TimeStart,TimeEnd,Description,Sort,insertuserid):
+    return mysql.get_list(planner_sql.insert_resour,(id,userid,TimeStart,TimeEnd,Description,Sort,insertuserid,insertuserid))
+
+
+#修改资源背景
+def update_resour(TimeStart,TimeEnd,Description,Sort,Id,updateuserid):
+    return mysql.get_list(planner_sql.update_resour,(TimeStart,TimeEnd,Description,Sort,updateuserid,Id))
+
+
+#删除资源背景
+def delete_resour(id,updateuserid):
+    return mysql.get_list(planner_sql.delete_resour,(updateuserid,id))
+
+
+#新增社会背景
+def insert_society(id,userid,TimeStart,TimeEnd,Description,Sort,insertuserid):
+    return mysql.get_list(planner_sql.insert_society,(id,userid,TimeStart,TimeEnd,Description,Sort,insertuserid,insertuserid))
+
+
+#修改社会背景
+def update_society(TimeStart,TimeEnd,Description,Sort,Id,updateuserid):
+    return mysql.get_list(planner_sql.update_society,(TimeStart,TimeEnd,Description,Sort,updateuserid,Id))
+
+
+#删除社会背景
+def delete_society(id,updateuserid):
+    return mysql.get_list(planner_sql.delete_society,(updateuserid,id))

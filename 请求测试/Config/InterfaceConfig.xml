@@ -304,7 +304,7 @@
     </Interface>
     <Interface>
         <Name>修改资源背景</Name>
-        <Url>http://localhost:5000/planner/update_society</Url>
+        <Url>http://localhost:5000/planner/update_resour</Url>
         <PostParam>Id=1#;#TimeStart=2009-10-01#;#TimeEnd=2013-07-01#;#Description=读书#;#Sort=1</PostParam>
         <FileParam></FileParam>
         <BodyParam></BodyParam>

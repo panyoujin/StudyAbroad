@@ -275,7 +275,7 @@ function EditEducation(id) {
 
 function DeleteEducation(id) {
     $.confirm("是否确认删除?", function () {
-        $.ajaxJson("/planner/delete_education", { id: id },
+        $.ajaxJson("/planner/back_delete_education", { id: id },
         function (result) {
             loadEducationList(userid);
         },
@@ -296,7 +296,7 @@ function EditSociety(id) {
 
 function DeleteSociety(id) {
     $.confirm("是否确认删除?", function () {
-        $.ajaxJson("/planner/delete_society", { id: id },
+        $.ajaxJson("/planner/back_delete_society", { id: id },
         function (result) {
             loadSocietyList(userid);
         },
@@ -317,7 +317,7 @@ function EditResour(id) {
 
 function DeleteResour(id) {
     $.confirm("是否确认删除?", function () {
-        $.ajaxJson("/planner/delete_Resour", { id: id },
+        $.ajaxJson("/planner/back_delete_Resour", { id: id },
         function (result) {
             loadResourList(userid);
         },
