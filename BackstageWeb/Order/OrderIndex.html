@@ -28,7 +28,7 @@
             <th width="15%">订单id</th>
             <th width="8%">用户名</th>
             <th width="10%">用户手机</th>
-            <th width="15%">服务描述</th>
+            <th>服务描述</th>
             <th width="5%">服务区域</th>
             <th width="5%">服务类型</th>
             <th width="8%">规划师名称</th>
@@ -65,12 +65,11 @@
         queryList(index);
     };
 
-    function generate_order(id) {
-
-        $.confirm("你确认要生成订单吗?", function () {
-            $.ajaxJson("/demand/generate_order", {Id: id},
+    function update_order(id, startStatus, endStatus) {
+        $.confirm("你确认要让该订单完成当前流程吗?", function () {
+            $.ajaxJson("/order/update_order_status", {OrderId: id, StartStatus: startStatus, EndStatus: endStatus},
                 function (result) {
-                    $.alert("生成订单成功!");
+                    $.alert("更新进度成功!");
                     queryList(1);
                 },
                 function (result) {
@@ -78,7 +77,6 @@
                 });
         });
 
-//        parent.gotoPage('/User/TeamMemberIndex.html?id=' + id);
     }
 
     var queryList = function (index) {
@@ -100,11 +98,27 @@
                         html += "<td>" + (list[i].PlannerName ? list[i].PlannerName : "") + "</td>";
                         html += "<td>" + (list[i].plannerPhone ? list[i].plannerPhone : "") + "</td>";
                         html += "<td>" + (list[i].CreateTime ? list[i].CreateTime : "") + "</td>";
-                        html += "<td>" + (list[i].OrderStatus ? list[i].OrderStatus : "") + "</td>";
+                        if (list[i].OrderStatus == 2) {
+                            html += "<td>客服回访</td>";
+                        } else if (list[i].OrderStatus == 3) {
+                            html += "<td>拟定合同</td>";
+                        } else if (list[i].OrderStatus == 4) {
+                            html += "<td>线下签约</td>";
+                        } else if (list[i].OrderStatus == 5) {
+                            html += "<td>平台审查</td>";
+                        } else if (list[i].OrderStatus == 6) {
+                            html += "<td>付款确认</td>";
+                        } else if (list[i].OrderStatus == 7) {
+                            html += "<td>服务完成</td>";
+                        } else{
+                            html += "<td>订单有错</td>";
+                        }
                         html += "<td>";
-
-//                        html += "<a href='javascript:void(0);' onclick='generate_order(\"" + list[i].Id +"\")' title='生成订单'>生成订单</a>";
-
+                        if(list[i].OrderStatus >= 7){
+                            html += "完成"
+                        }else if (list[i].OrderStatus < 7 && list[i].OrderStatus>=2) {
+                            html += "<a href='javascript:void(0);' onclick='update_order(\"" + list[i].Id + "\",\"" + list[i].OrderStatus + "\",\"" + (parseInt(list[i].OrderStatus) + 1) + "\")' title='更新进度'>更新进度</a>";
+                        }
                         html += "</td>";
                         html += "</tr>";
                     }

@@ -24,3 +24,9 @@ select_order_count = "SELECT COUNT(1) AS count " \
                      "JOIN U_User u ON u.Id=ds.UserId  " \
                      "JOIN U_User plannerUser ON plannerUser.Id=du.UserId " \
                      "WHERE du.IsDelete= FALSE "
+
+# 新增订单流水表数据
+insert_order_flowing = "insert into `DS_OrderFlowingWater` (`OrderId`,`UserId`,`StartStatus`,`EndStatus`,`Remarks`,`ChangeTime`,`CreateUserID`,`CreateTime`) " \
+                       "values('%s','%s',%s,%s,'',now(),'%s',now())"
+#更新订单状态
+update_order_status="UPDATE `DS_Order` SET OrderStatus=%s,ModifUserID='%s',ModifTime=NOW() WHERE Id='%s' AND OrderStatus=%s"
