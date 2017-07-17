@@ -201,14 +201,14 @@
     <Interface>
         <Name>规划师案例列表</Name>
         <Url>http://localhost:5000/planner/complete_order_list</Url>
-        <PostParam>page=1#;#size=10#;#plannerId=3C3C46F6-9D2B-4918-92D4-6BC1B669C85F</PostParam>
+        <PostParam>page=1#;#size=10</PostParam>
         <FileParam></FileParam>
         <BodyParam></BodyParam>
     </Interface>
     <Interface>
         <Name>我的客户</Name>
         <Url>http://localhost:5000/planner/order_list</Url>
-        <PostParam>page=1#;#size=10#;#plannerId=3C3C46F6-9D2B-4918-92D4-6BC1B669C85F</PostParam>
+        <PostParam>page=1#;#size=10</PostParam>
         <FileParam></FileParam>
         <BodyParam></BodyParam>
     </Interface>
@@ -450,6 +450,13 @@
         <Name>修改系统消息已读状态</Name>
         <Url>http://localhost:5000/notice/update_system_notice_status</Url>
         <PostParam>Id=ccb0e837-62b8-11e7-b226-00163e08b8b6</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
+    <Interface>
+        <Name>查看订单详细</Name>
+        <Url>http://localhost:5000/planner/get_order_detail</Url>
+        <PostParam>OrderId=34c6f07a-66db-11e7-952e-1c1b0d79990b</PostParam>
         <FileParam></FileParam>
         <BodyParam></BodyParam>
     </Interface>

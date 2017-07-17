@@ -73,3 +73,9 @@ def insert_order():
         return api_response.response_return(ApiResponse)
 
     raise custom_error.CustomFlaskErr(status_code=500, message="申请失败")
+
+#规划师获取服务单
+@app.route("/order/get_order_list", methods=['POST'])
+def get_order_list():
+    ApiResponse = api_response.ApiResponse()
+    userId = request_helper.current_user_mush_login()["Id"]

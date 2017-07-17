@@ -6,6 +6,7 @@ from planner_project.common import api_response,request_helper,custom_error
 from planner_project.data_access import mysql
 from planner_project.sql.planner import planner_sql
 from planner_project.logic import  team_logic,order_logic,planner_logic
+from planner_project.logic.order_logic import  order_sql
 
 
 #规划师搜索
@@ -160,7 +161,7 @@ def complete_order_list():
         page = 1
     if size <= 0:
         size = 10
-    complete_order_list = order_logic.select_planner_complete_order_list(plannerId,page,size)
+    complete_order_list = order_logic.select_planner_complete_order_list(request_helper.current_user_mush_login()["Id"],page,size)
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = complete_order_list
@@ -174,19 +175,30 @@ def order_list():
     ApiResponse = api_response.ApiResponse()
     size = request.form.get("size", type=int, default=10)
     page = request.form.get("page", type=int, default=1)
-    plannerId = request.form.get("plannerId", type=str, default=None)
-    if plannerId == None:
-        raise custom_error.CustomFlaskErr(status_code=500, message="请选择规划师")
+
     if page <= 0:
         page = 1
     if size <= 0:
         size = 10
-    complete_order_list = order_logic.select_planner_order_list(plannerId,page,size)
+    complete_order_list = order_logic.select_planner_order_list(request_helper.current_user_mush_login()["Id"],page,size)
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = complete_order_list
     return api_response.response_return(ApiResponse)
 
+#我的订单详细
+@app.route("/planner/get_order_detail", methods=['POST'])
+def get_order_detail():
+    ApiResponse = api_response.ApiResponse()
+    OrderId = request.form.get("OrderId", type=str, default=None)
+    if OrderId == None or OrderId == "":
+        raise custom_error.CustomFlaskErr(status_code=500, message="订单id不能为空")
+
+    ApiResponse.data = mysql.get_object(order_sql.select_planner_order_detail,(OrderId))
+
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    return api_response.response_return(ApiResponse)
 
 
 #新增学历
