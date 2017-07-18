@@ -56,30 +56,33 @@ select_planner_order_list = "SELECT du.`Id`,du.`DemandServiceId`,du.`UserId`,du.
 
 # 查询指定规划师的订单详情
 select_planner_order_detail = "SELECT du.`Id`,du.`DemandServiceId`,du.`UserId`,du.`OrderStatus`,du.`CreateUserID`,du.`CreateTime`,du.`ModifTime`,  " \
-                            "ds.PriceStart,ds.PriceEnd, " \
-                            "ds.TimeStart,ds.TimeEnd,sa.Name AS ServiceAreaName,st.Name AS ServiceTypeName,  " \
-                            "ds.Description,ui.Name,u.Phone,plannerU.Name AS PlannerName,plannerUser.Phone AS plannerPhone , " \
-                            "du.`OrderStatus`,ui.`HeadImage`, " \
-                            "CASE du.`OrderStatus` " \
-                            "   WHEN 2 THEN '客服回访' " \
-                            "  WHEN 3 THEN '拟定合同' " \
-                            "  WHEN 4 THEN '线下签约' " \
-                            "  WHEN 5 THEN '平台审查' " \
-                            " WHEN 6 THEN '付款确认' " \
-                            " WHEN 7 THEN '服务完成' " \
-                            " ELSE '订单有误' " \
-                            "END AS OrderStatusStr " \
-                            "FROM `DS_Order` du  " \
-                            "JOIN DS_DemandService ds ON ds.Id=du.DemandServiceId  " \
-                            "JOIN Base_ServiceArea sa ON sa.Id=ds.ServiceAreaId  " \
-                            "JOIN Base_ServiceType st ON st.Id=ds.ServiceTypeId  " \
-                            "JOIN U_UserInfo plannerU ON du.`PlannerUserId`=plannerU.UserId " \
-                            "JOIN U_UserInfo ui ON ui.UserId=du.`UserId`   " \
-                            "JOIN U_User u ON u.Id=du.`UserId`   " \
-                            "JOIN U_User plannerUser ON plannerUser.Id=du.`PlannerUserId`   " \
-                            "WHERE du.IsDelete= FALSE " \
-                            "AND du.`Id`='%s' "
-
+                              "ds.PriceStart,ds.PriceEnd, " \
+                              "ds.TimeStart,ds.TimeEnd,sa.Name AS ServiceAreaName,st.Name AS ServiceTypeName,  " \
+                              "ds.Description,ui.Name,u.Phone,plannerU.Name AS PlannerName,plannerUser.Phone AS plannerPhone , " \
+                              "du.`OrderStatus`,ui.`HeadImage`, " \
+                              "CASE du.`OrderStatus` " \
+                              "   WHEN 2 THEN '客服回访' " \
+                              "  WHEN 3 THEN '拟定合同' " \
+                              "  WHEN 4 THEN '线下签约' " \
+                              "  WHEN 5 THEN '平台审查' " \
+                              " WHEN 6 THEN '付款确认' " \
+                              " WHEN 7 THEN '服务完成' " \
+                              " ELSE '订单有误' " \
+                              "END AS OrderStatusStr " \
+                              "FROM `DS_Order` du  " \
+                              "JOIN DS_DemandService ds ON ds.Id=du.DemandServiceId  " \
+                              "JOIN Base_ServiceArea sa ON sa.Id=ds.ServiceAreaId  " \
+                              "JOIN Base_ServiceType st ON st.Id=ds.ServiceTypeId  " \
+                              "JOIN U_UserInfo plannerU ON du.`PlannerUserId`=plannerU.UserId " \
+                              "JOIN U_UserInfo ui ON ui.UserId=du.`UserId`   " \
+                              "JOIN U_User u ON u.Id=du.`UserId`   " \
+                              "JOIN U_User plannerUser ON plannerUser.Id=du.`PlannerUserId`   " \
+                              "WHERE du.IsDelete= FALSE " \
+                              "AND du.`Id`='%s' "
+# 获取订单的状态 以及时间
+get_order_status = "SELECT `Id`,`OrderId`,`StartStatus`,`EndStatus`,`ChangeTime` FROM `DS_OrderFlowingWater` " \
+                      "WHERE `OrderId`='%s' AND `IsDelete`=FALSE " \
+                      "ORDER BY `CreateTime` DESC"
 # 获取指定订单的评论
 select_order_evaluate = "SELECT e.`OrderId`,e.`Content`,e.`CreateTime` ,ui.`Name` " \
                         "FROM `U_Evaluate` e " \

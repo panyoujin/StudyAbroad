@@ -1,14 +1,14 @@
-#coding:utf-8
+# coding:utf-8
 
 import datetime
 from flask import request
 from planner_project import app
-from planner_project.common import api_response,request_helper,custom_error
+from planner_project.common import api_response, request_helper, custom_error
 from planner_project.data_access import mysql
 from planner_project.sql.demand_service import order_sql
 
 
-#创建订单
+# 创建订单
 @app.route("/order/insert_order", methods=['POST'])
 def insert_order():
     ApiResponse = api_response.ApiResponse()
@@ -21,35 +21,35 @@ def insert_order():
             raise custom_error.CustomFlaskErr(status_code=500, message="30秒内不能多次提交订单")
 
     PlannerUserId = request.form.get("PlannerUserId", type=str, default=None)
-    if PlannerUserId == None or PlannerUserId=="" :
+    if PlannerUserId == None or PlannerUserId == "":
         raise custom_error.CustomFlaskErr(status_code=500, message="规划师id不能为空")
 
         # raise custom_error.CustomFlaskErr(status_code=500, message="用户id不能为空")
 
     ContractId = request.form.get("ContractId", type=str, default=None)
-    if ContractId == None or ContractId=="" :
+    if ContractId == None or ContractId == "":
         raise custom_error.CustomFlaskErr(status_code=500, message="合同id不能为空")
 
     Type = request.form.get("Type", type=str, default=None)
-    if Type == None or Type=="" :
+    if Type == None or Type == "":
         raise custom_error.CustomFlaskErr(status_code=500, message="类型不能为空")
 
     DemandServiceId = request.form.get("DemandServiceId", type=str, default=None)
-    if DemandServiceId == None or DemandServiceId=="" :
+    if DemandServiceId == None or DemandServiceId == "":
         raise custom_error.CustomFlaskErr(status_code=500, message="需求或者服务id不能为空")
 
     DemandServiceDescription = request.form.get("DemandServiceDescription", type=str, default=None)
-    if DemandServiceDescription == None or DemandServiceDescription=="" :
+    if DemandServiceDescription == None or DemandServiceDescription == "":
         raise custom_error.CustomFlaskErr(status_code=500, message="需求或者服务描述不能为空")
 
     Description = request.form.get("Description", type=str, default='')
 
     ServiceAreaId = request.form.get("ServiceAreaId", type=str, default=None)
-    if ServiceAreaId == None or ServiceAreaId=="" :
+    if ServiceAreaId == None or ServiceAreaId == "":
         raise custom_error.CustomFlaskErr(status_code=500, message="区域id不能为空")
 
     ServiceTypeId = request.form.get("ServiceTypeId", type=str, default=None)
-    if ServiceTypeId == None or ServiceTypeId=="" :
+    if ServiceTypeId == None or ServiceTypeId == "":
         raise custom_error.CustomFlaskErr(status_code=500, message="服务id不能为空")
 
     PriceStart = request.form.get("PriceStart", type=float, default=0)
@@ -64,9 +64,10 @@ def insert_order():
     if TimeEnd == '' or TimeEnd == None:
         raise custom_error.CustomFlaskErr(status_code=500, message="结束时间不能为空")
 
-    insertResult = mysql.operate_object(order_sql.insert_order, (PlannerUserId,userId,ContractId,Type,DemandServiceId,
-                                                                 DemandServiceDescription,Description,ServiceAreaId,ServiceTypeId,
-                                                                 PriceStart,PriceEnd,TimeStart,TimeEnd,userId))
+    insertResult = mysql.operate_object(order_sql.insert_order,
+                                        (PlannerUserId, userId, ContractId, Type, DemandServiceId,
+                                         DemandServiceDescription, Description, ServiceAreaId, ServiceTypeId,
+                                         PriceStart, PriceEnd, TimeStart, TimeEnd, userId))
     if insertResult > 0:
         ApiResponse.message = "申请成功"
         ApiResponse.status = 200
@@ -74,8 +75,45 @@ def insert_order():
 
     raise custom_error.CustomFlaskErr(status_code=500, message="申请失败")
 
-#规划师获取服务单
-@app.route("/order/get_order_list", methods=['POST'])
-def get_order_list():
+
+# 获取订单进度
+@app.route("/order/get_order_status", methods=['POST'])
+def get_order_status():
     ApiResponse = api_response.ApiResponse()
     userId = request_helper.current_user_mush_login()["Id"]
+
+    OrderId = request.form.get("OrderId", type=str, default=None)
+    if OrderId == None or OrderId == "":
+        raise custom_error.CustomFlaskErr(status_code=500, message="订单id不能为空")
+    order_flow_list = mysql.get_list(order_sql.get_order_status, (OrderId))
+    data = []
+    if len(order_flow_list) > 0:
+        for item in order_flow_list:
+            if item["StartStatus"] == 6:
+                data.append({"StatusStr": "服务完成", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
+                data.append({"StatusStr": "付款确认", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
+
+            if item["StartStatus"] == 5 and len(data)<=0:
+                data.append({"StatusStr": "付款确认", "IsDo": "0", "ChangeTime": ""})
+            if item["StartStatus"] == 5:
+                data.append({"StatusStr": "平台审查", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
+            if item["StartStatus"] == 4 and len(data)<=0:
+                data.append({"StatusStr": "平台审查", "IsDo": "0", "ChangeTime": ""})
+            if item["StartStatus"] == 4:
+                data.append({"StatusStr": "线下签约", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
+            if item["StartStatus"] == 3 and len(data)<=0:
+                data.append({"StatusStr": "线下签约", "IsDo": "0", "ChangeTime": ""})
+            if item["StartStatus"] == 3:
+                data.append({"StatusStr": "拟定合同", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
+            if item["StartStatus"] == 2 and len(data)<=0:
+                data.append({"StatusStr": "拟定合同", "IsDo": "0", "ChangeTime": ""})
+            if item["StartStatus"] == 2:
+                data.append({"StatusStr": "客服回访", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
+    else:
+        data.append({"StatusStr": "客服回访", "IsDo": "0", "ChangeTime": ""})
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = data
+    return api_response.response_return(ApiResponse)
+
+

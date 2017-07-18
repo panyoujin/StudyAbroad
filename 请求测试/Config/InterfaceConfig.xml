@@ -460,4 +460,11 @@
         <FileParam></FileParam>
         <BodyParam></BodyParam>
     </Interface>
+    <Interface>
+        <Name>查看订单进度详细</Name>
+        <Url>http://localhost:5000/order/get_order_status</Url>
+        <PostParam>OrderId=34c6f07a-66db-11e7-952e-1c1b0d79990b</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
 </InterfaceList>
