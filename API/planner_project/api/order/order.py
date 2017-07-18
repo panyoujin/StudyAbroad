@@ -117,8 +117,8 @@ def get_order_status():
     return api_response.response_return(ApiResponse)
 
 # 修改订单状态
-@app.route("/order/update_order_status", methods=['POST'])
-def update_order_status():
+@app.route("/order/planer_update_order_status", methods=['POST'])
+def planer_update_order_status():
     ApiResponse = api_response.ApiResponse()
     userId = request_helper.current_user_mush_login()["Id"]
 

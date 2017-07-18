@@ -469,7 +469,7 @@
     </Interface>
     <Interface>
         <Name>规划师修改订单进度</Name>
-        <Url>http://localhost:5000/order/update_order_status</Url>
+        <Url>http://localhost:5000/order/planer_update_order_status</Url>
         <PostParam>OrderId=34c6f07a-66db-11e7-952e-1c1b0d79990b#;#StartStatus=1#;#EndStatus=2</PostParam>
         <FileParam></FileParam>
         <BodyParam></BodyParam>
