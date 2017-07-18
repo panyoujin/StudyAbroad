@@ -116,4 +116,28 @@ def get_order_status():
     ApiResponse.data = data
     return api_response.response_return(ApiResponse)
 
+# 修改订单状态
+@app.route("/order/update_order_status", methods=['POST'])
+def update_order_status():
+    ApiResponse = api_response.ApiResponse()
+    userId = request_helper.current_user_mush_login()["Id"]
+
+    OrderId = request.form.get("OrderId", type=str, default=None)
+    if OrderId is None:
+        raise custom_error.CustomFlaskErr(status_code=500, message="订单id不不能为空")
+    StartStatus = request.form.get("StartStatus", type=int, default=0)
+    if StartStatus == 0:
+        raise custom_error.CustomFlaskErr(status_code=500, message="开始状态不能为空")
+    EndStatus = request.form.get("EndStatus", type=int, default=0)
+    if EndStatus == 0:
+        raise custom_error.CustomFlaskErr(status_code=500, message="结束状态不能为空")
+    print(EndStatus)
+    sql_list = [order_sql.update_order_status,
+                order_sql.insert_order_flowing]
+    args_list = [(EndStatus, userId, OrderId, StartStatus),
+                 (OrderId, userId, StartStatus, EndStatus, userId)]
+    mysql.operate__many(sql_list, args_list)
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    return api_response.response_return(ApiResponse)
 
