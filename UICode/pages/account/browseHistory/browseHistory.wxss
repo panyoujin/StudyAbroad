@@ -1,0 +1,44 @@
+/* pages/account/browseHistory/browseHistory.wxss */
+.searchResult{
+  margin: 20rpx;
+  border-radius: 3px;
+}
+.searchResult .serviceInfo{
+  display: flex;
+  flex-direction:row;
+  background-color: #FFF;
+  margin-bottom: 20rpx;
+  padding : 20rpx 20rpx 5rpx;
+  position: relative;
+  border-radius: 8rpx;
+}
+.img{
+  vertical-align: middle;
+  padding:20rpx;
+}
+.img image{
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 130px;
+  border: 1px solid #eee;
+}
+.serviceTxtInfo{
+  padding-top: 12rpx;
+  margin-bottom: 50rpx;
+}
+.serviceTxtInfo>view{
+  margin-top:10rpx;
+  line-height: 1.3;
+}
+.clsName{
+  font-size:35rpx;
+  font-family: "黑体";
+}
+.clsService{
+  color: #434340;
+  font-size:30rpx;
+}
+.clsPrice{
+  color: #099aff;
+  font-size:28rpx;
+}

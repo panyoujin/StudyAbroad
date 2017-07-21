@@ -1,0 +1,81 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/sysInfo/ContactUs/ContactUs",
+    "pages/sysInfo/softwareInfo/softwareInfo",
+    "pages/account/login/login",
+    "pages/account/forgetPwd/forgetPwd",
+    "pages/account/browseHistory/browseHistory",
+    "pages/account/register/register",
+    "pages/account/userInfo/userInfo",
+    "pages/account/editUser/editUser",
+    "pages/account/myImgs/myImgs",
+    "pages/account/collection/collection",
+    "pages/account/applyPlanner/applyPlanner",
+    "pages/account/applyDemand/applyDemand",
+    "pages/search/search",
+    "pages/planner/plannerSearch/plannerSearch",
+    "pages/planner/plannerMy/plannerMy",
+    "pages/planner/plannerList/plannerList",
+    "pages/planner/plannerDetails/plannerDetails",
+    "pages/planner/qualification/qualification",
+    "pages/planner/example/example",
+    "pages/planner/evaluate/evaluate",
+    "pages/planner/plannerRegister/plannerRegister",
+    "pages/planner/plannerRegisterSucceed/plannerRegisterSucceed",
+    
+    "pages/demand/demandPublic/demandPublic",
+    "pages/service/serviceModule/serviceModule",
+    "pages/service/serviceMarket/serviceMarket",
+    "pages/service/serviceDetails/serviceDetails",
+    "pages/service/ServiceAdd/ServiceAdd",
+    "pages/service/ContractDataAdd/ContractDataAdd"
+  ],
+  "window": {
+    "backgroundColor": "#5CACEE",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#4facfe",
+    "navigationBarTitleText": "规划师",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "heigth":"200rpx",
+    "color": "#8d8f8f",
+    "selectedColor": "#000",
+    "backgroundColor": "#FFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "img/tabbar/home.png",
+        "selectedIconPath": "img/tabbar/home.png"
+      },
+      {
+        "pagePath": "pages/service/serviceMarket/serviceMarket",
+        "text": "服务市场",
+        "iconPath": "img/tabbar/publish.png",
+        "selectedIconPath": "img/tabbar/publish.png"
+      },
+      {
+        "pagePath": "pages/service/ContractDataAdd/ContractDataAdd",
+        "text": "发布",
+        "iconPath": "img/tabbar/add.png",
+        "selectedIconPath": "img/tabbar/add.png"
+      },
+      {
+        "pagePath": "pages/service/serviceMarket/serviceMarket",
+        "text": "动态",
+        "iconPath": "img/tabbar/dynamic.png",
+        "selectedIconPath": "img/tabbar/dynamic.png"
+      },
+      {
+        "pagePath": "pages/account/userInfo/userInfo",
+        "text": "我的",
+        "iconPath": "img/tabbar/account.png",
+        "selectedIconPath": "img/tabbar/account.png"
+      }
+    ]
+  }
+}

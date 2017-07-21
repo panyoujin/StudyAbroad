@@ -1,0 +1,90 @@
+<view class="container" wx:if="{{isOK}}">
+  <!--pliannerInfo-->
+  <view class="plannerInfo">
+    <view class="plannerImg">
+      <image class="clsHead" src="{{planner.HeadImage}}"></image>
+      <!--<view class="clsBtnImg">
+        <button open-type="share" size="mini">分享</button>
+      </view>-->
+      <image class="clsBtnImg" bindtap="btnShare" src="/img/planner/pShare.png" mode="aspectFit"></image>
+      <image class="clsBtnImg" bindtap="btnFollow" src="/img/planner/pFollow.png" mode="aspectFit"></image>
+    </view>
+    <view class="plannerHeadTxt">
+      <view class="plannerBtnMsg">
+        <image src="/img/planner/pMsg.png">发送消息</image>
+      </view>
+      <view class="clsPlannerTxt">
+        <label>认证区域：</label>
+        <label>{{planner.AreaName}}</label>
+      </view>
+      <view class="clsPlannerTxt">
+        <label>认证服务：</label>
+        <label>{{planner.TypeName}}</label>
+      </view>
+      <view class="clsPlannerTxt clcComment">
+        <label>好评率：</label>
+        <label>{{planner.PraiseCount/planner.CustomerCount*100}}%</label>
+      </view>
+      <view class="clsPlannerTxt clsTeamTxt">
+        <label>团队成员：</label>
+      </view>
+      <view class="clsPlannerTxt clsTeamMember">
+        <block wx:for="{{teamlist}}" wx:key="item">
+          <block wx:if="index < 4">
+            <image src="{{apiUrl}}{{item.HeadImage}}"></image>
+          </block>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <!--资历-->
+  <navigator class="clsQualifications"  url="/pages/planner/qualification/qualification">
+    <view class="clsQualificationTitle">资历介绍</view>
+    <block wx:for="{{qualifications}}" wx:key="item">
+      <view class="clsQualification">学位：{{item.Content}}</view>
+    </block>
+  </navigator>
+
+  <!--成功案例-->
+  <navigator class="clsExamples" url="/pages/planner/example/example?id={{plannerId}}">
+    <view class="clsExampleTitle">成功案例</view>
+    <block wx:for="{{order}}" wx:key="item">
+      <view class="clsExample">{{index+1}}:{{item.Description}}</view>
+    </block>
+  </navigator>
+
+  <!--客户评价-->
+  <navigator class="clsEvaluateInfo" url="/pages/planner/evaluate/evaluate?id={{plannerId}}">
+    <view class="clsEvaluateTitle">
+      <label>评价</label>
+      <image src="/img/planner/pValuation.png"></image>
+      <image src="/img/planner/pValuation.png"></image>
+      <image src="/img/planner/pValuation.png"></image>
+      <image src="/img/planner/pValuation.png"></image>
+      <image src="/img/planner/pValuation.png"></image>
+    </view>
+    <view class="clsLables">
+      <block wx:for="{{lables}}" wx:key="item">
+        <view class="clsLable">{{item.LableName}}</view>
+      </block>
+    </view>
+    
+    <!--<view class="clsEvaluates">
+      <view class="clsEvaluate" wx:for="{{evaluate}}" wx:key="item">
+        <view class="clsEvaluateCon">评论：{{item.Content}}</view>
+        <view class="clsEvaluateTime">评论人：{{item.Name}}  评论时间：{{item.CreateTime}}</view>
+      </view>
+      <view class="clsEvaluate"></view>
+    </view>-->
+  </navigator>
+
+  <view class="clsSelect">
+    <button bindtap="btnSelect">选择该规划师</button>
+  </view>
+
+</view>
+
+<view class="container" wx:else> 
+  <view class="pageMsg">该规划师不存在!</view>
+</view>

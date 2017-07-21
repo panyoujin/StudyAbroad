@@ -1,0 +1,50 @@
+/* pages/account/editUser/editUser.wxss */
+page{
+  background-color: #FFF;
+}
+.container{
+  margin: 20rpx;
+  font-size: 36rpx;
+}
+
+.clsView{
+  display: flex;
+  flex-direction: row;
+  padding: 10rpx;
+  margin: 20rpx;
+  height: 80rpx;
+}
+.clsImg{
+  text-align: center;
+  width: 450rpx;
+}
+.clsImg image{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 80rpx;
+  
+}
+
+.clsTxt{
+  height: 82rpx;
+  line-height: 82rpx;
+  vertical-align: middle;
+  color: #aeaeae;
+  margin: 0;
+  padding-left: 20rpx;
+}
+.clsInput,.clsRadio{
+  height: 80rpx;
+  
+  line-height: 80rpx;
+  padding-left: 130rpx;
+  color: #000;
+  margin: 0;
+  vertical-align: middle;
+  
+}
+
+
+.clsBtn{
+  margin: 50rpx 0;
+}

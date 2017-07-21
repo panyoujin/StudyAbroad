@@ -1,0 +1,15 @@
+<view class="container">
+  <view class="searchResult">
+    <view class="plannerInfo" wx:for="{{planners}}" wx:key="item">
+      <image src="{{item.HeadImage}}"></image>
+      <label>{{item.Name}}|</label>
+      <label>{{item.TeamName==null?"":item.TeamName}}|</label>
+      <label>{{item.Lables==null?"":item.Lables}}|</label>
+      <view bindtap="plannerDetails" data-id="{{item.id}}">详情</view>
+      <label>{{item.NewEvaluate==null?"":item.NewEvaluate}}|</label> 
+      <label>服务人数：{{item.CustomerCount}}</label>
+      <label>好评率：{{item.BadReviewCount}}</label>
+    </view>
+  </view>
+  <view>{{tip}}</view>
+</view>

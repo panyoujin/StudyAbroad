@@ -1,0 +1,45 @@
+<!--pages/service/ServiceAdd/ServiceAdd.wxml-->
+<view class="container">
+  <form  class="formContent" bindsubmit="{{formSubmit}}" >
+    <view class="clsTxt">需求时间</view>
+    <view class="clsDate">
+      <picker mode="date" value="{{timeStart}}" start="{{dateNow}}" end="2999-12-12" bindchange="bindTimeStartChange">
+        <view class="picker">
+          {{timeStart}}
+        </view>
+      </picker>
+      <view class="pickerTxt">-</view>
+      <picker mode="date" value="{{timeEnd}}" start="{{timeStart}}" end="2999-12-12" bindchange="bindTimeEndChange">
+        <view class="picker">
+          {{timeEnd}}
+        </view>
+      </picker>
+    </view>
+  
+    <view class="clsTxt">需求地点</view>
+    <picker bindchange="bindChangeArea" value="{{pArea}}" range="{{areas}}" range-key="Name">
+      <view class="picker">
+        {{areas[pArea].Name}}
+      </view>
+    </picker>
+    <view class="clsTxt">服务模块</view>
+    <picker bindchange="bindChangeService" value="{{pService}}" range="{{services}}" range-key="Name">
+      <view class="picker">
+        {{services[pService].Name}}
+      </view>
+    </picker>
+    <view class="clsTxt">价格范围</view>
+    <view class="clsDate">
+      <input type="digit" maxlength="11" class="picker" name="PriceStart" />
+      <view class="pickerTxt">-</view>
+      <input type="digit" maxlength="11" class="picker" name="PriceEnd" />
+      <view class="pickerTxt">￥</view>
+    </view>
+    <view class="clsTxt">需求/服务描述</view>
+    <textarea  class="clsName" name="Name" placeholder="请输入需求/服务描述" maxlength="1000"/>
+
+    <view class="errorMsg">{{tip}}</view>
+
+    <button class="formBtn" formType="submit">{{formSubmitTxt}}</button>
+  </form>
+</view>

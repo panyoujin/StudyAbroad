@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="searchResult">
+      <block wx:for="{{planners}}" wx:key="item">
+        <navigator class="plannerInfo" url="/pages/planner/plannerDetails/plannerDetails?id={{item.Id}}">
+          <view class="img">
+            <image src="{{apiUrl}}{{item.HeadImage}}"></image>
+          </view>
+          <view class="plannerTxtInfo">
+            <view class="clsName">{{item.Name}}</view>
+            <view class="clsService">服务人数：{{item.CustomerCount}}  好评率：{{item.BadReviewCount}}</view>
+            <view class="clsNewEvaluate">{{item.NewEvaluate==null?"":item.NewEvaluate}}</view>
+            <view class="clsLables">
+              <block wx:for='{{item.Lables}}' wx:key="lableStr" wx:for-item="str" wx:for-index="idx">
+                <block wx:if="{{idx<3}}">
+                  <view class="clsLable {{colorStr[idx]}}">{{str}}</view>
+                </block>
+              </block>
+            </view>
+          </view>
+          <view class="clsTeamName">
+            {{item.TeamName==null?"":item.TeamName}}
+          </view>
+        </navigator>
+      </block>
+      <view wx:if="{{searchCount==0}}">
+        <view class="pageMsg">没有关注的规划师</view>
+      </view>
+      <view wx:if="{{searchCount==-1}}">
+        <view class="pageMsg">没有更多的数据</view>
+      </view>
+    </view>
+</view>

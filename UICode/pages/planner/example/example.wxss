@@ -1,0 +1,22 @@
+/* pages/planner/example/example.wxss */
+
+.container{
+  margin: 20rpx;
+  font-size: 30rpx;
+  margin-bottom: 45rpx;
+}
+
+.clsExamples{
+  background-color: #fff;
+  border-radius: 8rpx;
+  padding:30rpx;
+  margin-top: 20rpx;
+}
+.clsTxt{
+  color: #aeaeae;
+  margin-top: 10rpx;
+}
+.clsCon{
+  margin-top: 10rpx;
+  margin-bottom: 20rpx;
+}

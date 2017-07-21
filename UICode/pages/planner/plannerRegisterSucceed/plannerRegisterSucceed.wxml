@@ -1,0 +1,5 @@
+<view class="container">
+  <view>资料已提交成功</view>
+  <view>请留意电话，10个工作日内将有客服与您联系</view>
+  <button bindtap="btnKnow">知道了</button>
+</view>

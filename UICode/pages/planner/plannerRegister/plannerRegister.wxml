@@ -1,0 +1,66 @@
+<view class="container">
+  <form bindsubmit="btnPlannerregister">
+    <view>
+      <label>姓名：</label>
+      <input placeholder="请输入姓名" name="pName" />
+    </view>
+
+    <view class="classname">
+      <label>性别</label>
+      <radio-group class="radio-group" bindchange="radioSexChange">
+        <label class="radio">
+          <radio value="1" checked="true" />男
+          <radio value="2" checked="" />女
+        </label>
+      </radio-group>
+    </view>
+
+    <view class="classname">
+      <label>身份证</label>
+      <button bindtap="btnChooseImage">选择图片</button>
+      <image src="{{tempFilePaths}}"></image>
+      <button data-imgurl="{{tempFilePaths}}" bindtap="btnUploadImg">点击上传</button>
+      <image src="{{filePath}}"></image>
+      <input name="idCardImgUrl" value="{{filePath}}" class="hideTag" />
+    </view>
+
+    <view>
+      <label>所在地：</label>
+      <input placeholder="请输入所在地" name="address" />
+    </view>
+
+    <view>
+      <label>资历：</label>
+      <input placeholder="请输入资历" name="record" />
+    </view>
+
+    <view>
+      <label>认证服务区域：</label>
+      <radio-group class="radio-group" bindchange="radioAreaChange">
+        <label class="radio" wx:for="{{areas}}" wx:key="item">
+          <radio value="{{item.Id}}" checked="{{item.checked}}"/>{{item.Name}}
+        </label>
+      </radio-group>
+    </view>
+
+    <view>
+      <label>邮箱：</label>
+      <input placeholder="请输入邮箱" name="email" />
+    </view>
+
+    <view>
+      <label>认证服务：</label>
+      <radio-group class="radio-group" bindchange="radioServiceChange">
+        <label class="radio" wx:for="{{services}}" wx:key="item">
+          <radio value="{{item.Id}}" checked="{{item.checked}}"/>{{item.Name}}
+        </label>
+      </radio-group>
+    </view>
+
+    <view class="btn-area">
+      <button type="primary" formType="submit">提交</button>
+      <view>{{tip}}</view>
+    </view>
+
+  </form>
+</view>

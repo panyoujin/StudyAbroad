@@ -1,0 +1,165 @@
+.container{
+  background-color: #f0f0f0;
+}
+
+/**banner**/
+.swiperView {
+  height: 350rpx;
+}
+.swiperView swiper {
+  height: 100%;
+}
+swiper-item image{
+  width: 100%;
+  height: 100%;
+}
+
+/**search**/
+.searchContainer{
+  z-index: 999;
+  position: absolute;
+  display:flex;
+  background-color: #fff;
+  margin: -80rpx 20rpx 5rpx;
+  box-shadow: 1rpx 1rpx 5rpx #D1D1D1;
+  border-radius: 8rpx;
+  height: 110rpx;
+  right: 0;
+  left:0;
+}
+.search{
+  width: 100%;
+  position: relative;
+}
+.search icon{
+  position: absolute;
+  top: 35rpx;
+  left: 60rpx;
+}
+.search .searchBtn{
+  line-height: 110rpx;
+  /*border: 1px solid #CAE1FF;*/
+  border-radius: 3px;
+  padding-right: 65rpx;
+  padding-left: 120rpx;
+  font-size: 35rpx;
+  background-color: #FFF;
+  text-align: left;
+  vertical-align: middle;
+  color: #8d8f8f;
+  /*font-weight: bold;*/
+}
+.txtSearchPlace{
+  font-size: 14px;
+  color: #EDEDED;
+}
+.cancelSearch{
+  /*width: 100rpx;*/
+  margin-right: 15rpx;
+  color: #01B488;
+}
+.cancelSearch image{
+  width: 60rpx;
+  height: 60rpx;
+}
+
+/**contactPhone*/
+.contactPhone{
+  z-index: 999;
+  position: fixed;
+  right: 0;
+  top:58%;
+}
+.contactPhone navigator image{
+  width: 110rpx;
+  height: 110rpx;
+}
+
+/**planningPerson**/
+.planningPerson{
+  background-color: #FFF;
+  box-shadow: 1rpx 1rpx 5rpx #D1D1D1;
+  display: flex;
+  flex-wrap:wrap;
+  margin: 35rpx 20rpx 0;
+  padding: 10rpx 0;
+  border-radius: 5rpx;
+}
+.planningPersonInfo{
+  display:flex;
+  flex-direction:row;
+  margin:20rpx 25rpx 5rpx;
+  padding: 10rpx 0 10rpx;
+}
+.planningPersonInfo label{
+  font-size: 25rpx;
+  padding-left: 15rpx;
+  line-height: 100rpx;
+  vertical-align: middle;
+}
+.planningPersonImg{
+  width: 90rpx; 
+  height: 90rpx; 
+  border-radius: 100rpx;
+  border: 0 solid #000;
+  position: relative;
+}
+.planningImgIcon{
+    bottom: 8rpx;
+    right: 10rpx;
+    float: right;
+    position:absolute;
+}
+.planningImgTxt{
+    bottom: 0rpx;
+    right: 20rpx;
+    float: right;
+    position:absolute;
+}
+.viewHr{
+  width: 100%;
+  margin: 0 15rpx;
+  border-bottom: 1px solid #DBDBDB;
+}
+
+
+/**moduleView**/
+.moduleView{
+  display: flex;
+  flex-wrap:wrap;
+  background-color: #FFF;
+  box-shadow: 1rpx 1rpx 5rpx #D1D1D1;
+  margin: 7rpx 20rpx 0;
+  padding: 20rpx 3rpx;
+  border-radius: 8rpx;
+  height: 310rpx;
+  
+}
+.moduleInfo{
+  width: 19%;
+  height: 140rpx;
+  padding: 5rpx 10rpx;
+  margin: 5rpx 10rpx;
+  display: flex;
+  flex-direction:column;
+}
+.moduleInfo image{
+  width: 80rpx;
+  height: 80rpx;
+  margin: 0 auto;
+}
+.moduleInfo label{
+  font-size: 25rpx;
+  text-align: center;
+  line-height: 13px;
+  margin-top: 15rpx;
+}
+
+/**service**/
+.serviceMap{
+  margin: 20rpx;
+}
+.serviceMap image{
+  width: 100%;
+  height: 350rpx;
+}

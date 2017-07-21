@@ -1,0 +1,66 @@
+<view class="container" wx:if="{{isOK}}">
+  <!--pliannerInfo-->
+  <view class="plannerInfo">
+    <view class="plannerImg">
+      <image class="clsHead" src="{{planner.HeadImage}}"></image>
+    </view>
+    <view class="plannerHeadTxt">
+      <view class="plannerBtnMsg">
+        <image bindtap="btnFollow" src="/img/planner/pFollow02.png" mode="aspectFit"></image>
+      </view>
+      <view class="clsPlannerTxt">
+        <label>认证区域：</label>
+        <label>{{planner.AreaName}}</label>
+      </view>
+      <view class="clsPlannerTxt">
+        <label>认证服务：</label>
+        <label>{{planner.TypeName}}</label>
+      </view>
+      <view class="clsPlannerTxt clcComment">
+        <label>好评率：</label>
+        <label>{{planner.PraiseCount/planner.CustomerCount*100}}%</label>
+      </view>
+    </view>
+  </view>
+
+  <view class="clsQualifications">
+    <!--学历介绍-->
+    <view class="clsQualification" >
+      <view class="clsEducationTitle">学历介绍</view>
+      <block wx:for="{{educations}}" wx:key="item">
+        <view class="clsEducation">{{item.Content}}</view>
+      </block>
+    </view>
+
+    <!--社会背景-->
+    <view class="clsQualification">
+      <view class="clsSocietyTitle">社会背景</view>
+      <block wx:for="{{societys}}" wx:key="item">
+        <view class="clsSociety">{{item.Content}}</view>
+      </block>
+    </view>
+
+    <!--资源背景-->
+    <view class="clsQualification">
+      <view class="clsResourTitle">资源背景</view>
+      <block wx:for="{{resours}}" wx:key="item">
+        <view class="clsResour">{{item.Content}}</view>
+      </block>
+    </view>
+
+    <view class="clsQualification">
+      <view class="clsPersonTitle">个人背景</view>
+      <view class="clsPerson">个人背景XXXXXXXXXXXXXX</view>
+    </view>
+
+    <view class="clsQualification clsAutographHead">
+      <view class="clsAutographTitle">个人签名</view>
+      <view class="clsAutograph">{{planner.autograph==null?"":planner.autograph}}</view>
+    </view>
+  </view>
+
+</view>
+
+<view class="container" wx:else> 
+  <view class="pageMsg">规划师资历加载失败!</view>
+</view>

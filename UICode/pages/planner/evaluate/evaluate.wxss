@@ -1,0 +1,55 @@
+/* pages/planner/evaluate/evaluate.wxss */
+.container{
+  margin: 20rpx;
+  font-size: 30rpx;
+  margin-bottom: 45rpx;
+}
+
+.clsEvaluate{
+  position: relative;
+  background-color: #fff;
+  border-radius: 8rpx;
+  padding:30rpx;
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+.clsHead{
+  display: flex;
+  flex-direction: row;
+}
+.clsHeadImg{
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 150rpx;
+  margin: 10rpx;
+}
+.clsHeadTxt{
+  margin: 10rpx;
+  margin-top: 30rpx;
+}
+.clsHeadTxt>view{
+  padding-bottom: 15rpx;
+}
+.clsName{
+  margin-left: 8rpx;
+}
+.clsXin image{
+  width: 30rpx;
+  height: 30rpx;
+  margin: 0 6rpx;
+}
+
+.clsCreateTime{
+  position:absolute;
+  right:10rpx;
+  top:30%;
+  color:#aeaeae;
+  width:150rpx;
+}
+
+.clsCon{
+  color: #aeaeae;
+  margin-left: 158rpx;
+  line-height: 1.3;
+}

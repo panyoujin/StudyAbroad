@@ -1,0 +1,55 @@
+<view class="container" wx:if="{{isOK}}">
+  <!--pliannerInfo-->
+  <view class="plannerInfo">
+    <view class="plannerImg">
+      <image class="clsHead" src="{{service.HeadImage}}"></image>
+    </view>
+    <view class="plannerHeadTxt">
+      <view class="plannerBtnMsg">
+        <image class="clsBtnImg" bindtap="btnShare" src="/img/planner/pShare.png" mode="aspectFit"></image>
+        <image class="clsBtnImg" bindtap="btnFollow" src="/img/planner/pFollow.png" mode="aspectFit"></image>
+      </view>
+      <view class="clsPlannerTxt">
+        <label></label>
+        <label class="clsName">姓名：{{service.UserName}}</label>
+      </view>
+      <view class="clsPlannerTxt">
+        <label>服务地区：</label>
+        <label>{{service.AreaName}}</label>
+      </view>
+      <view class="clsPlannerTxt clcComment">
+        <label>关注数:</label>
+        <label>{{service.CollectionCount}}</label>
+      </view>
+    </view>
+  </view>
+
+  <view class="clsQualifications">
+    <!--需求描述-->
+    <view class="clsQualification" >
+      <view class="clsEducationTitle">需求描述</view>
+      <view class="clsEducation">{{service.Name}}</view>
+    </view>
+
+    <!--期望价格-->
+    <view class="clsQualification">
+      <view class="clsResourTitle">期望价格</view>
+      <view class="clsResour">{{service.PriceStart==null?0:service.PriceStart}}-
+                {{service.PriceEnd==null?0:service.PriceEnd}}￥
+      </view>
+    </view>
+
+    <view class="clsQualification clsAutographHead">
+      <view class="clsAutographTitle">时间范围</view>
+      <view class="clsAutograph">{{service.TimeStart}} <label>至</label> {{service.TimeEnd}}</view>
+    </view>
+  </view>
+
+  <view class="clsSelect">
+    <button bindtap="btnSelect">选择需求</button>
+  </view>
+</view>
+
+<view class="container" wx:else> 
+  <view class="pageMsg">需求/服务详情加载失败!</view>
+</view>

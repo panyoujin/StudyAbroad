@@ -1,0 +1,18 @@
+<!--pages/demand/demandPublic/demandPublic.wxml-->
+<view class="container">
+  <view class="clsCon" wx:for="{{demands}}" wx:key="coll" >
+    <view class="clsName">需求描述：{{item.Name}}</view>
+    <view class="clsTime">创建时间：{{item.CreateTime}}</view>
+    <view class="clsTxt">当前进度</view>
+    
+    <view class="clsOther">
+      <button bindtap="lookDemand" size="mini" >查看进度</button>
+    </view>
+  </view>
+  <view wx:if="{{searchCount==0}}">
+    <view class="pageMsg">没有符合查询的数据</view>
+  </view>
+  <view wx:if="{{searchCount==-1}}">
+    <view class="pageMsg">没有更多的数据</view>
+  </view>
+</view>

@@ -1,0 +1,31 @@
+page{
+  background-color: #fff;
+}
+.container{
+  margin-bottom: 130rpx;
+}
+.clsImgs{
+  display:flex;
+  flex-wrap:wrap;
+  margin: 15rpx;
+}
+.clsImg{
+  margin: 10rpx;
+  width:340rpx;
+  height:340rpx;
+}
+image{
+  width: 100%;
+  height: 100%;
+  border-radius: 8rpx;
+}
+.clsAdd{
+  position: fixed;
+  bottom: 10rpx;
+  width: 100%;
+}
+.addBtn{
+  background-color: #57b1fd;
+  color: #fff;
+  margin: 25rpx;
+}

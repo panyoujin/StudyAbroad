@@ -1,0 +1,34 @@
+<view class="container">
+  <view class="banner">
+    <image src="/img/account/banner.png" mode="aspectFill"></image>
+  </view>
+
+  <view class="backgroundImg">
+    <image src="/img/account/background.png" mode="aspectFill"></image>
+  </view>
+
+  <form class="formContent" bindsubmit="formSubmit">
+    <view class="formView">
+      <image src="/img/account/user.png"></image>
+      <label>用户名：</label>
+      <input type="text" name="userAccount" placeholder="请输入用户名" maxlength="11" />
+    </view>
+    <view class="formView">
+      <image src="/img/account/forgetPwd.png"></image>
+      <label>密码：</label>
+      <input password="true" class="txtName" name="userPwd" placeholder="请输入密码" />
+      <navigator url="/pages/account/forgetPwd/forgetPwd" open-type="navigate" >忘记密码</navigator>
+    </view>
+    <view class="errorMsg">{{tip}}</view>
+
+    <button class="formBtn" formType="submit">登 录</button>
+
+    <view class="register">
+      <label>还没有账号？</label>
+      <navigator url="/pages/account/register/register" open-type="navigate" >注册</navigator>
+    </view>
+  </form>
+
+  
+
+</view>

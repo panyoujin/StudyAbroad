@@ -1,0 +1,78 @@
+.container{
+  margin: 20rpx;
+  font-size: 30rpx;
+  margin-bottom: 35rpx;
+}
+
+/**plannerInfo*/
+.plannerInfo{
+  display: flex;
+  flex-direction:row;
+  background-color: #fff;
+  padding:25rpx;
+  border-radius: 8rpx;
+}
+.plannerImg{
+  width: 150rpx;
+  height: 100%;
+}
+.plannerImg .clsHead{
+  width:130rpx;
+  height: 130rpx;
+  border-radius: 160rpx;
+  margin:10rpx;
+}
+.plannerHeadTxt{
+  width: 100%;
+  position: relative;
+}
+.plannerBtnMsg{
+  position: absolute;
+  right: 0;
+  top: 42rpx;
+  margin: 10rpx;
+}
+.plannerBtnMsg image{
+  width: 120rpx;
+  height: 60rpx;
+}
+.clsPlannerTxt{
+  display: flex;
+  flex-direction:row;
+  
+  margin: 12rpx;
+  color: #3e3e3e;
+}
+.clsTeamTxt{
+  color: #929292;
+}
+.clcComment{
+  color: #099aff;
+}
+
+/*clsQualification*/
+.clsQualifications{
+  background-color: #fff;
+  border-radius: 8rpx;
+  padding:30rpx;
+  margin-top: 20rpx;
+}
+.clsQualification{
+  border-bottom:2rpx solid #eee;
+  margin-top: 15rpx;
+  padding: 15rpx 0;
+}
+.clsEducationTitle, .clsSocietyTitle, .clsResourTitle, .clsPersonTitle,.clsAutographTitle{
+  color: #3e3e3e;
+  margin: 15rpx 0;
+  font-size: 38rpx;
+  font-weight: bold;
+  font-family: "黑体";
+}
+.clsEducation, .clsSociety, .clsResour,.clsPerson, .clsAutograph{
+  color: #434340;
+  margin-top: 10rpx;
+}
+.clsAutographHead{
+  border-bottom:none;
+}

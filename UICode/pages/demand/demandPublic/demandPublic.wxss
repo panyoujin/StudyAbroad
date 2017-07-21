@@ -1,0 +1,42 @@
+/* pages/demand/demandPublic/demandPublic.wxss */
+.container{
+  margin: 20rpx;
+  font-size: 36rpx;
+}
+.clsCon{
+  position: relative;
+  background-color: #fff;
+  border-radius: 8rpx;
+  padding:40rpx 30rpx;
+  margin-top: 20rpx;
+}
+.clsName{
+  font-family: "黑体";
+  margin-bottom: 20rpx;
+  color: #424242;
+}
+.clsTxt{
+  font-family: "黑体";
+  color: #099aff;
+}
+.clsTime{
+  color: #787878;
+  margin-bottom: 30rpx;
+}
+.clsOther{
+  position: absolute;
+  right: 0;
+  bottom: 20rpx;
+  width: 180rpx;
+}
+.clsOther button{
+  background-color: #fff;
+  color: #099aff;
+  line-height:2.3;
+  font-size:30rpx;
+  padding:0rpx 15rpx;
+  font-family: "黑体";
+}
+button::after{
+  border:3px solid #099aff
+}

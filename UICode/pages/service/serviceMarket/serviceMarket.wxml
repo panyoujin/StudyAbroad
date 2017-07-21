@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="searchResult">
+      <block wx:for="{{services}}" wx:key="item">
+        <navigator class="serviceInfo" url="/pages/service/serviceDetails/serviceDetails?id={{item.Id}}">
+          <view class="img">
+            <image src="{{apiUrl}}{{item.HeadImage}}"></image>
+          </view>
+          <view class="serviceTxtInfo">
+            <view class="clsName">姓名：{{item.UserName}}</view>
+            <view class="clsService">需求/服务：{{item.Type=="1"?"需求":"服务"}}</view>
+            <view class="clsService">服务模块：{{item.TypeName}}</view>
+            <view class="clsService">服务区域：{{item.AreaName}}</view>
+            <view class="clsService">价格范围： 
+              <label class="clsPrice">{{item.PriceStart==null?0:item.PriceStart}}-
+                {{item.PriceEnd==null?0:item.PriceEnd}}￥
+              </label>
+            </view>
+          </view>
+          <view class="clsOther">
+            <image src="/img/server/sFollowCount.png"></image><label>{{item.CollectionCount}}</label>
+            <image src="/img/server/sTime.png"></image><label>{{item.CreateTime}}</label>
+          </view>
+        </navigator>
+      </block>
+      <view wx:if="{{searchCount==0}}">
+        <view class="pageMsg">没有关注的规划师</view>
+      </view>
+      <view wx:if="{{searchCount==-1}}">
+        <view class="pageMsg">没有更多的数据</view>
+      </view>
+    </view>
+</view>

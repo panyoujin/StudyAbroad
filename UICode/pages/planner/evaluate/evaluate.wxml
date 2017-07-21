@@ -1,0 +1,30 @@
+<!--pages/planner/evaluate/evaluate.wxml-->
+<view class="container" >
+
+ <!--成功案例-->
+ <block wx:for="{{evaluates}}" wx:key="item">
+    <view class="clsEvaluate">
+      <view class="clsHead">
+        <image class="clsHeadImg" src="{{apiUrl}}{{item.HeadImage}}"></image>
+        <view class="clsHeadTxt">
+          <view class="clsName">{{item.Name}}</view>
+          <view class="clsXin">
+            <image src="/img/planner/pValuation.png"></image>
+            <image src="/img/planner/pValuation.png"></image>
+            <image src="/img/planner/pValuation.png"></image>
+            <image src="/img/planner/pValuation.png"></image>
+            <image src="/img/planner/pValuation.png"></image>
+          </view>
+        </view>
+      </view>
+      <view class="clsCreateTime">{{item.CreateTime}}</view>
+      <view class="clsCon">{{item.Content}}</view>
+    </view>
+  </block>
+  <view wx:if="{{searchCount==0}}">
+      <view class="pageMsg">没有评论数据</view>
+  </view>
+  <view wx:if="{{searchCount==-1}}">
+    <view class="pageMsg">没有更多的数据</view>
+  </view>
+</view>

@@ -1,0 +1,54 @@
+/* pages/account/applyPlanner/applyPlanner.wxss */
+page{
+  background-color: #FFF;
+}
+.container{
+  margin: 20rpx;
+  font-size: 36rpx;
+}
+
+.clsView{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  padding: 10rpx;
+  margin: 20rpx;
+  height: 100rpx;
+  border-bottom:2rpx solid #eee; 
+}
+
+.clsTxt{
+  height: 82rpx;
+  line-height: 82rpx;
+  vertical-align: middle;
+  color: #000;
+  font-style: "黑体";
+  margin: 0;
+  font-size: 36rpx;
+}
+.clsImg{
+  position: absolute;
+  right: 10rpx;
+}
+.clsYy{
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 70rpx;
+  border: 2rpx solid #eee;
+}
+.clsImg button{
+  line-height: 2;
+  padding: 0 40rpx;
+  color:#099aff;
+  background-color:#fff;
+  font-style: "黑体";
+}
+.clsImg button::after {
+  border: 5rpx solid #099aff;
+}
+
+.clsBtn{
+  margin: 50rpx 0;
+  background-color: #57b1fd;
+  color: #FFF;
+}

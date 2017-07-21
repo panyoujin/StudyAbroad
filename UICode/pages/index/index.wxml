@@ -1,0 +1,105 @@
+<!--index.wxml-->
+<view class="container">
+
+  <view class="swiperView">
+    <swiper class="" indicator-dots="{{true}}"
+      autoplay="{{true}}" interval="{{5000}}" duration="{{500}}">
+      <block wx:key="banerImg" wx:for="{{imgUrls}}">
+        <swiper-item>
+          <image src="{{item.src}}" data-url="{{item.url}}" bindtap="swipclick" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <view class="searchContainer">
+    <view class="search">
+      <icon type="search" size="20" color="#8d8f8f" />
+      <view class="searchBtn" bindtap="searchBtnClick">输入地区或服务</view>
+    </view>
+    <view class="cancelSearch">
+      <!--<text bindtap="cancelSearch">取消</text>-->
+      <image src="/img/home/msg.png" mode="aspectFill" ></image>
+    </view>
+  </view>
+
+  <view class="contactPhone">
+    <navigator url="/pages/account/register/register" open-type="navigate" >
+      <image src="/img/home/phone.png" mode="aspectFill"> </image>
+    </navigator>
+  </view>
+
+  <view class="planningPerson">
+    <navigator url="/pages/planner/plannerDetails/plannerDetails?id=3C3C46F6-9D2B-4918-92D4-6BC1B669C85F"  class="planningPersonInfo" open-type="navigate" >
+      <image class="planningPersonImg" src="/img/person.jpg" mode="aspectFill">
+        <icon type="info" size="10" class="planningImgIcon" />
+      </image>
+      <label>规划师</label>
+    </navigator>
+    <view class="planningPersonInfo">
+      <image class="planningPersonImg" src="/img/person.jpg" mode="aspectFill"></image>
+      <label>规划师</label>
+    </view>
+    <view class="planningPersonInfo">
+      <image class="planningPersonImg" src="/img/person.jpg" mode="aspectFill"></image>
+      <label>规划师</label>
+    </view>
+    <view class="viewHr"></view>
+    <view class="planningPersonInfo">
+      <image class="planningPersonImg" src="/img/person.jpg" mode="aspectFill"></image>
+      <label>规划师</label>
+    </view>
+    <view class="planningPersonInfo">
+      <image class="planningPersonImg" src="/img/person.jpg" mode="aspectFill"></image>
+      <label>规划师</label>
+    </view>
+    <view class="planningPersonInfo">
+      <image class="planningPersonImg" src="/img/person.jpg" mode="aspectFill"></image>
+      <label>规划师</label>
+    </view>
+  </view>
+
+  <view class="moduleView">
+    <navigator url="/pages/logs/logs" class="moduleInfo" open-type="switchTab" >
+      <image class="moduleImg" src="/img/home/studyAbroad.png" mode="aspectFill"></image>
+      <label>留学</label>
+    </navigator>
+    <navigator url="/pages/logs/logs" class="moduleInfo" open-type="switchTab" >
+      <image class="moduleImg" src="/img/home/train.png" mode="aspectFill"></image>
+      <label>语言培训</label>
+    </navigator>
+    <navigator url="/pages/logs/logs" class="moduleInfo" open-type="switchTab" >
+      <image class="moduleImg" src="/img/home/work.png" mode="aspectFill"></image>
+      <label>实习工作</label>
+    </navigator>
+    <navigator url="/pages/logs/logs" class="moduleInfo" open-type="switchTab" >
+      <image class="moduleImg" src="/img/home/tourism.png" mode="aspectFill"></image>
+      <label>定制旅游</label>
+    </navigator>
+    <navigator url="/pages/logs/logs" class="moduleInfo" open-type="switchTab" >
+      <image class="moduleImg" src="/img/home/emigrant.png" mode="aspectFill"></image>
+      <label>签证移民</label>
+    </navigator>
+    <navigator url="/pages/logs/logs" class="moduleInfo" open-type="switchTab" >
+      <image class="moduleImg" src="/img/home/life.png" mode="aspectFill"></image>
+      <label>生活辅助</label>
+    </navigator>
+    <navigator url="/pages/logs/logs" class="moduleInfo" open-type="switchTab" >
+      <image class="moduleImg" src="/img/home/point.png" mode="aspectFill"></image>
+      <label>游学指引</label>
+    </navigator>
+    <navigator url="/pages/logs/logs" class="moduleInfo" open-type="switchTab" >
+      <image class="moduleImg" src="/img/home/other.png" mode="aspectFill"></image>
+      <label>其他</label>
+    </navigator>
+  </view>
+
+  <view class="serviceMap">
+    <image src="/img/home/banner.png"></image>
+  </view>
+
+  <view class="serviceMap">
+    <image src="/img/home/banner.png"></image>
+  </view>
+
+</view>

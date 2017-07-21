@@ -1,0 +1,89 @@
+page{
+  background-color: #f7f7f7;
+}
+/*banner*/
+.banner{
+  width: 100%;
+  height: 600rpx;
+}
+.banner image{
+  width:100%;
+  height: 100%;
+}
+
+/*qqwe*/
+.backgroundImg{
+  z-index: 100;
+  position: absolute;
+  margin-top: -115rpx;
+  width: 100%;
+  height: 700rpx;
+}
+.backgroundImg image{
+  width:100%;
+  height: 100%;
+}
+
+/*formContent*/
+.formContent{
+  z-index: 999;
+  width:700rpx;
+  position: absolute; 
+  margin: 20rpx 20rpx 0;
+}
+.formView{
+  display:flex;
+  flex-direction:row;
+  padding: 25rpx 0rpx;
+  height: 50rpx;
+  border-bottom: 2rpx solid #eee;
+  font-size:36rpx;
+}
+.formView image,.formView image{
+  width: 50rpx;
+  height: 50rpx;
+  margin: -2rpx 25rpx 0;
+}
+.formView label{
+  width: 150rpx;
+  line-height: 50rpx;
+  vertical-align: middle;
+  color: #54617a;
+}
+.formView input{
+  line-height: 50rpx;
+  vertical-align: middle;
+}
+.formView .txtName{
+  width: 300rpx;
+}
+.formView navigator{
+  line-height: 50rpx;
+  vertical-align: middle;
+  color: #54617a;
+  width: 160rpx;
+  right: 0;
+  position: absolute;
+  text-align: right;
+}
+
+.formBtn{
+  margin-top: 50rpx;
+  background-color: #57b1fd;
+  color: #fff;
+}
+.register{
+  display:flex;
+  flex-direction:row;
+  margin: 0 auto;
+  text-align: center;
+  padding: 30rpx 0;
+  padding-left: 180rpx;
+}
+.register label{
+  color: #546e7a;
+}
+.register navigator{
+  color: #099aff;
+  font-size: 40rpx;
+}

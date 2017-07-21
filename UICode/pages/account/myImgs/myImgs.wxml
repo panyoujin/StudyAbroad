@@ -1,0 +1,28 @@
+<view class="container">
+  <view class="clsImgs">
+    <view class="clsImg">
+    <image src="{{filePath}}"></image>
+    </view>
+    <view class="clsImg">
+      <image src="/img/account/bannerReg.png"></image>
+    </view>
+    <view class="clsImg">
+      <image src="/img/account/bannerReg.png"></image>
+    </view>
+    <view class="clsImg">
+      <image src="/img/account/bannerReg.png"></image>
+    </view>
+    <view class="clsImg">
+      <image src="/img/account/bannerReg.png"></image>
+    </view>
+    <view class="clsImg">
+      <image src="/img/account/bannerReg.png"></image>
+    </view>
+    <view class="clsImg">
+      <image src="/img/account/bannerReg.png"></image>
+    </view>
+  </view>
+  <view class="clsAdd">
+    <button bindtap="addBtnImg" class="addBtn">添加图片</button>
+  </view>
+</view>
