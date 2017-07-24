@@ -30,7 +30,9 @@
     "pages/service/serviceMarket/serviceMarket",
     "pages/service/serviceDetails/serviceDetails",
     "pages/service/ServiceAdd/ServiceAdd",
-    "pages/service/ContractDataAdd/ContractDataAdd"
+    "pages/service/ContractDataAdd/ContractDataAdd",
+
+    "pages/service/serviceTab/serviceTab"
   ],
   "window": {
     "backgroundColor": "#5CACEE",
@@ -59,7 +61,7 @@
         "selectedIconPath": "img/tabbar/publish.png"
       },
       {
-        "pagePath": "pages/service/ContractDataAdd/ContractDataAdd",
+        "pagePath": "pages/index/index",
         "text": "发布",
         "iconPath": "img/tabbar/add.png",
         "selectedIconPath": "img/tabbar/add.png"

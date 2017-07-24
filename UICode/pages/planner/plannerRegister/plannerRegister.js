@@ -7,6 +7,15 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl01: "",
+    imgUrl02: "",
+    imgSaveUrl01: "",
+    imgSaveUrl02: "",
+    clsImgUrl01: "hideTag",
+    clsImgUrl02: "hideTag",
+    clsChooseImg01: "clsIdCardImg",
+    clsChooseImg02: "clsIdCardImg",
+
     apiUrl: common.apiUrl + "/",
     pSex: 1,
     pServeice: -1,
@@ -15,42 +24,7 @@ Page({
     areas:{}
   },
 
-  /**
-   * 选择图片
-   */
-  btnChooseImage : function(){
-    var that = this;
-    wx.chooseImage({
-      count: 1, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        //返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        that.setData({
-          tempFilePaths : res.tempFilePaths[0]
-        })
-      }
-    })
-  },
-/**
- * 上传图片
- */
-  btnUploadImg:function(e){
-    var that = this;
-    common.PostUpload({
-      url: '/upload',
-      filePath: e.currentTarget.dataset.imgurl,
-      params: {},
-      success: function (res, s, m) {
-        if (s) {
-          that.setData({
-            filePath: common.apiUrl +"/" +　res.file_path
-          })
-        }
-      },
-      fail: function () { }
-    })
-  },
+  
 
   /**
    * 注册
@@ -58,7 +32,7 @@ Page({
   btnPlannerregister : function(e){
     var that = this;
     var pName = e.detail.value.pName;
-    var idCardImgUrl = e.detail.value.idCardImgUrl;
+    var imgSaveUrl01 = that.data.imgSaveUrl01;
     var address = e.detail.value.address;
     var record = e.detail.value.record;
     var email = e.detail.value.email;
@@ -66,7 +40,7 @@ Page({
     var pServeice = that.data.pServeice;
     var pArea = that.data.pArea;
 
-    if (pName.length == 0 || idCardImgUrl.length == 0 || address.length == 0 || record.length == 0 || email.length == 0 || pServeice == -1 || pArea==-1){
+    if (pName.length == 0 || imgSaveUrl01.length == 0 || address.length == 0 || record.length == 0 || email.length == 0 || pServeice == -1 || pArea==-1){
       that.setData({
         tip: '提示：姓名、身份证、所在地、资历、服务区域、邮箱、服务不能为空！'
       })
@@ -85,7 +59,7 @@ Page({
           ServiceAreaId: pArea,
           Email: email,
           Experience: record,
-          IDCardPic: idCardImgUrl
+          IDCardPic: imgSaveUrl01
         },
         success: function (res, s, m) {
           if (s) {
@@ -103,6 +77,20 @@ Page({
     }
   },
 
+
+  /**
+     * 选择图片
+     */
+  btnChooseImage01: function () {
+    chooseImage(this, 1);
+  },
+  /**
+   * 选择图片
+   */
+  btnChooseImage02: function () {
+    chooseImage(this, 2);
+  },
+
   /**
    * 性别选择
    */
@@ -116,7 +104,7 @@ Page({
   */
   radioAreaChange: function (e) {
     this.setData({
-      pArea: e.detail.value
+      pArea: e.detail.value,
     });
   },
   /**
@@ -216,3 +204,49 @@ Page({
   
   }
 })
+
+function chooseImage(that, num) {
+  wx.chooseImage({
+    count: 1, // 默认9
+    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+    success: function (res) {
+      //返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+      uploadFileImg(that, res.tempFilePaths[0], num);
+    }
+  })
+}
+
+function uploadFileImg(that, url, num) {
+  common.PostUpload({
+    url: '/upload',
+    filePath: url,
+    params: {},
+    success: function (res, s, m) {
+      if (s) {
+        if (num == 1) {
+          that.setData({
+            imgUrl01: common.apiUrl + "/" + res.file_path,
+            imgSaveUrl01: res.file_path,
+            clsImgUrl01: "clsIdCardImg",
+            clsChooseImg01: "hideTag",
+          })
+        } else {
+          that.setData({
+            imgUrl02: common.apiUrl + "/" + res.file_path,
+            imgSaveUrl02: res.file_path,
+            clsImgUrl02: "clsIdCardImg",
+            clsChooseImg02: "hideTag",
+          })
+        }
+      } else {
+        wx.showToast({
+          title: '上传图片失败！',
+          image: '/img/error.png',
+          duration: 1500
+        })
+      }
+    },
+    fail: function () { }
+  })
+}

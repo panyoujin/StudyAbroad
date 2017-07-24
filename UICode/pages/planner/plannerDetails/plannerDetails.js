@@ -105,7 +105,7 @@ Page({
   },
 
   btnSelect: function(){
-    wx.switchTab({
+    wx.navigateTo({
       url: "/pages/service/ContractDataAdd/ContractDataAdd",
     })
   },
