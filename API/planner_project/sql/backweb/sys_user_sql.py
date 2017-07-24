@@ -7,7 +7,7 @@ select_sys_user_list="SELECT  u.`UserId`,u.`UserName`,u.`NickName`,u.`Phone`,u.`
                     "LIMIT %s , %s "
 
 
-#用户列表
+#用户信息
 select_sys_user_info="SELECT  u.`UserId`,u.`UserName`,u.`NickName`,u.`Phone`,u.`Email`,u.`Descript`,u.`Status` " \
                      "FROM `Sys_User` u " \
                      "WHERE u.`UserId`='%s' "
@@ -22,6 +22,10 @@ insert_sys_user="INSERT INTO `Sys_User` (`UserId`,`UserName`,`Password`,`NickNam
 update_sys_user="UPDATE `Sys_User` SET `UserName` = '%s',`NickName` = '%s',`Phone` = '%s',`Email` = '%s',`Descript` = '%s'" \
                 ",`Status` = %s,`IsAdmin` = %s WHERE `UserId` = '%s' ; " \
                 "UPDATE `U_User` SET`Account` = '%s',`Phone` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW() WHERE `Id` = '%s' ;"
+#删除角色
+delete_sys_user="DELETE FROM `Sys_P_UserRole`  WHERE `UserId`='%s';" \
+                 "DELETE FROM `Sys_User` WHERE `UserId` = '%s' ; "
+
 #赋权限
-insert_user_role="DELETE FROM `Sys_P_UserRole` ur WHERE ur.`UserId`='%s'; " \
+insert_user_role="DELETE FROM `Sys_P_UserRole` WHERE `UserId`='%s'; " \
                  "INSERT INTO `Sys_P_UserRole`(`UserId`,`RoleId`) SELECT '%s',`RoleId` FROM `Sys_P_Role` WHERE `RoleId` IN ('%s');"
