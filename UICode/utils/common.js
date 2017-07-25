@@ -76,10 +76,6 @@ function request(method, requestHandler) {
     }
   })
 }
-module.exports = {
-  GET: GET,
-  POST: POST
-}
 
 //上传
 function uploadFile(requestHandler) {
@@ -163,7 +159,7 @@ function getUserHttpRequestInfo(status) {
       break;
     case 600:
       isok = false;
-      wx.navigateTo({
+      wx.redirectTo({
         url: "/pages/account/login/login"
       });
       break;
@@ -180,8 +176,25 @@ function getToken(){
     token = wx.getStorageSync('userLoginToken')
   } catch (e) {
   }
-  //return token;
   return token;
+}
+/**
+ * 检查登录
+ */
+function CheckLogin(url){
+  wx.setStorageSync('backPage', url);
+  POST({
+    url: "/user/get_login_user",
+    params: {},
+    success: function (res, s, m) {
+      if (s) {
+        wx.setStorageSync('userLoginToken', res.token)
+        res.user.HeadImage = common.apiUrl + "/" + res.user.HeadImage;
+        wx.setStorageSync('userLoginInfo', res.user)
+      }
+    },
+    fail: function () { }
+  })
 }
 /**
  * 去除空格
@@ -199,4 +212,5 @@ module.exports = {
   POST: POST,
   PostUpload: PostUpload,
   Trim: Trim,
+  CheckLogin: CheckLogin
 }
