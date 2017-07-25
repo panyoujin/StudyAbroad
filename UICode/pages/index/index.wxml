@@ -23,11 +23,7 @@
     </view>
   </view>
 
-  <view class="contactPhone">
-    <navigator url="/pages/account/register/register" open-type="navigate" >
-      <image src="/img/home/phone.png" mode="aspectFill"> </image>
-    </navigator>
-  </view>
+<include src="../../template/floatContent.wxml"/>
 
   <view class="planningPerson">
     <navigator url="/pages/planner/plannerDetails/plannerDetails?id=3C3C46F6-9D2B-4918-92D4-6BC1B669C85F"  class="planningPersonInfo" open-type="navigate" >

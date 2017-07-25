@@ -29,5 +29,20 @@ page{
     padding:35rpx;
     text-align: center;
 }
+.clsSelect button{
+  background-color: #57b1fd;
+  color: #fff;
+}
 
+/**contactPhone*/
+.contactPhone{
+  z-index: 999;
+  position: fixed;
+  right: 0;
+  top:58%;
+}
+.contactPhone navigator image{
+  width: 110rpx;
+  height: 110rpx;
+}
 
