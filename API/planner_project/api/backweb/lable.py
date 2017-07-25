@@ -29,11 +29,11 @@ def select_lable_info():
 
     if lableId == None or lableId=="":
         raise custom_error.CustomFlaskErr(status_code=500, message="参数lableId不能为空")
-    userinfo = lable_logic.select_lable_info(lableId)
-    if userinfo !=None and any(userinfo):
-        ApiResponse.data=userinfo
+    lableinfo = lable_logic.select_lable_info(lableId)
+    if lableinfo !=None and any(lableinfo):
+        ApiResponse.data=lableinfo
         return api_response.response_return(ApiResponse)
-    raise custom_error.CustomFlaskErr(status_code=500, message="模块不存在")
+    raise custom_error.CustomFlaskErr(status_code=500, message="标签不存在")
 
 
 #修改标签信息

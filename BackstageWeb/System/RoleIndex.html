@@ -15,7 +15,6 @@
     <div id="contentheader">
         <div id="contentheader_title">角色列表</div>
         <div id="contentheader_button">
-            <button type="button" class="orange" onclick="addRole()" filterPermission="SystemRoleAdd"><i class="fa fa-plus"></i>&nbsp;新增</button>
             <button type="button" class="orange" onclick="addRole()"><i class="fa fa-plus"></i>&nbsp;新增</button>
         
         </div>
@@ -33,7 +32,6 @@
             <thead>
                 <tr>
                     <th width="20%">角色名称</th>
-                    <th>角色用户</th>
                     <th width="25%">角色说明</th>
                     <th width="10%">操作</th>
                 </tr>
@@ -61,16 +59,12 @@
     }
 
     function roleConfig(id) {
-        $.Dialog('/System/RoleConfig.html?roleid=' + id, '权限配置', 430, 630);
-    }
-
-    function roleSystemConfig(id,roleName) {
-        $.Dialog('/System/RoleSystemConfig?roleId=' + id, '【'+roleName+'】数据权限配置', 800, 550);
+        $.Dialog('/System/RoleConfig.html?id=' + id, '权限配置', 430, 630);
     }
 
     function Delete(id) {
         $.confirm("是否确认删除?", function () {
-            $.ajaxJson("/System/RoleDelete", { roleid: id },
+            $.ajaxJson("/system/delete_sys_role", { role_id: id },
             function (result) {
                 queryList();
             },
@@ -86,33 +80,22 @@
     var queryList = function () {
         $("#dataList tbody").html("<tr style='height:" + $("#dataList tbody").height() + "px'><td colspan='" + $("#dataList thead tr th").length + "'><i class='fa fa-spinner fa-pulse'></i></td></tr>");
         var roleName = $.trim($("#RoleName").val());
-        $.ajaxJson("/System/RoleList", { roleName: roleName },
+        $.ajaxJson("/system/select_sys_role_list", { roleName: roleName },
             function (result) {
-                if (result && result.ReturnData.length > 0) {
-                    var list = result.ReturnData;
+                if (result && result.data.length > 0) {
+                    var list = result.data;
                     var html = "";
-                    for (var i = 0; i < result.ReturnData.length; i++) {
+                    for (var i = 0; i < result.data.length; i++) {
                         html += "<tr " + (i % 2 == 1 ? "class='even'" : "") + ">";
                         html += "<td>" + (list[i].RoleName ? list[i].RoleName : "") + "</td>";
-                        html += "<td style='text-align:left;' id='role_" + list[i].RoleId + "'>&nbsp;</td>";
                         html += "<td>" + (list[i].Remark ? list[i].Remark : "") + "</td>";
                         html += "<td>";
-                        html += "<a href='javascript:void(0);' ondragstart='return false' onclick='roleConfig(\"" + list[i].RoleId + "\")' title='权限配置' filterPermission='SystemRoleConfig'><i class='fa fa-pencil'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;";
-                        html += "<a href='javascript:void(0);' ondragstart='return false' onclick='Delete(\"" + list[i].RoleId + "\")' title='删除' filterPermission='SystemRoleDelete'><i class='fa fa-trash-o'></i></a>"
+                        html += "<a href='javascript:void(0);' ondragstart='return false' onclick='roleConfig(\"" + list[i].RoleId + "\")' title='权限配置'><i class='fa fa-pencil'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;";
+                        html += "<a href='javascript:void(0);' ondragstart='return false' onclick='Delete(\"" + list[i].RoleId + "\")' title='删除'><i class='fa fa-trash-o'></i></a>"
                         html += "</td>";
                         html += "</tr>";
                     }
                     $("#dataList tbody").html(html);
-                    $.ajaxJson("/System/RoleUserNameList", null,
-                        function (result) {
-                            if (result && result.ReturnData.length > 0) {
-                                for (var i = 0; i < result.ReturnData.length; i++) {
-                                    var arr = result.ReturnData[i].split("|");
-                                    $("#role_" + arr[0]).html(arr[1] + " , " + $("#role_" + arr[0]).html());
-                                }
-                            }
-                        }
-                    );
                 } else {
                     $("#dataList tbody").html("<tr><td colspan='" + $("#dataList thead tr th").length + "'>没有任何数据</td></tr>");
                 }

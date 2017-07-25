@@ -16,8 +16,8 @@ update_sys_role="UPDATE `Sys_P_Role` SET `RoleName` = '%s',`Remark` = '%s' WHERE
 
 
 #删除角色
-delete_sys_role="DELETE FROM `Sys_P_UserRole`  WHERE `RoleId`='%s';" \
-                 "DELETE FROM `Sys_P_Role` WHERE `RoleId` = '%s' ; "
+delete_sys_role="DELETE FROM `Sys_P_UserRole`  WHERE `RoleId`=%s;" \
+                 "DELETE FROM `Sys_P_Role` WHERE `RoleId` = %s ; "
 
 #菜单列表
 select_permission_list="SELECT `PermissionId`,`ParentId`,`Name`,`MenuName`,`Url`,`Orderby`,`Visible`,`Remark`,`Icon` "\
@@ -31,4 +31,7 @@ select_role_permission_list="SELECT rp.`PermissionId`  FROM `Sys_P_RolePermissio
 #赋权限
 insert_role_permission="DELETE FROM `Sys_P_RolePermission` WHERE `RoleId`='%s'; " \
                         "INSERT INTO `Sys_P_RolePermission`(`RoleId`,`PermissionId`) " \
-                       "SELECT '%s',`PermissionId` FROM `Sys_P_Permission` WHERE `PermissionId` IN ('%s');"
+                       "SELECT '%s',`PermissionId` FROM `Sys_P_Permission` WHERE `PermissionId` IN (%s);"
+
+#用户角色列表
+select_user_role_list="SELECT CONCAT(',',GROUP_CONCAT(`RoleId`),',') AS RoleIds FROM `Sys_P_UserRole` WHERE `UserId` = '%s'"

@@ -11,7 +11,7 @@ jQuery.ajaxJson = function (url, param, successCallBack, failCallBack) {
             } else if (jsonData.NoPermission) {
                 $.alert("您没有权限执行该操作，请与管理员联系！");
             } else if (jsonData.status!="200") {
-                $.alert("该操作出现异常，请与管理员联系！");
+                $.alert("该操作出现异常，请与管理员联系！错误信息："+jsonData.message);
             } else {
                 if (successCallBack) successCallBack(jsonData);
                 $.filterPermission(); //过滤权限
@@ -41,7 +41,7 @@ jQuery.ajaxForm = function (url, formId, successCallBack, failCallBack) {
                 } else if (jsonData.NoPermission) {
                     $.alert("您没有权限执行该操作，请与管理员联系！");
                 } else if (jsonData.status!="200") {
-                    $.alert("该操作出现异常，请与管理员联系！");
+                $.alert("该操作出现异常，请与管理员联系！错误信息："+jsonData.message);
                 } else {
                     if (successCallBack) successCallBack(jsonData);
                 }

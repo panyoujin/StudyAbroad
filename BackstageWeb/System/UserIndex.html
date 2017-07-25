@@ -17,7 +17,7 @@
     <div id="contentheader">
         <div id="contentheader_title">用户列表</div>
         <div id="contentheader_button">
-            <button type="button" class="orange" onclick="parent.gotoPage('/System/UserAdd.html');"><i class="fa fa-plus"></i>&nbsp;新增</button>
+            <button type="button" class="orange" onclick="Add();"><i class="fa fa-plus"></i>&nbsp;新增</button>
         </div>
         <div style="clear:both;"></div>
     </div>
@@ -25,7 +25,6 @@
     <div id="contentsearch">
         <label>姓名</label><input type="text" placeholder="输入姓名" id="NickName" maxlength="20" />
         <label>手机</label><input type="text" placeholder="输入手机号码" id="Phone" maxlength="11" />
-        <label>邮箱</label><input type="text" placeholder="输入邮箱" id="Email" maxlength="36" />
         <button type="button" class="blue" style="float:right;" onclick="search();"><i class="fa fa-search"></i>&nbsp;查询</button>
         <div class="clear"></div>
     </div>
@@ -39,7 +38,6 @@
                     <th width="13%">手机</th>
                     <th width="15%">邮箱</th>
                     <th>描述</th>
-                    <th width="8%">状态</th>
                     <th width="10%">操作</th>
                 </tr>
             </thead>
@@ -62,13 +60,18 @@
             }
         };
     });
-    function Edit(id) {
-        parent.gotoPage('/System/UserEdit?id=' + id);
-    }
 
+    function Add() {
+        $.Dialog('/System/UserAdd.html','',650,480);
+        //parent.gotoPage('/User/UserEdit.html?id=' + id);
+    }
+    function Edit(id) {
+        $.Dialog('/System/UserEdit.html?id=' + id,'',650,480);
+        //parent.gotoPage('/User/UserEdit.html?id=' + id);
+    }
     function Delete(id) {
         $.confirm("是否确认删除?", function () {
-            $.ajaxJson("/System/UserDelete", { userId: id },
+            $.ajaxJson("/system/delete_sys_user", { user_id: id },
             function (result) {
                 queryList(1);
             },
@@ -79,28 +82,9 @@
     }
 
     function Config(id) {
-        $.Dialog("/System/UserRoleEdit?id=" + id + "", "角色分配", 480, 500);
+        $.Dialog("/System/UserRoleEdit.html?id=" + id + "", "角色分配", 480, 500);
     }
 
-    function UpdateStatus(userId, status) {
-        $.ajaxJson("/System/UpdateUserStatus", { userId: userId, status: status },
-          function (result) {
-              if (result.IsOk) {
-                  var thisA = $("#" + userId + "");
-                  var s = $("#" + userId + "").parent().parent().find(".statusRemark");
-                  var showStatus = status == 1 ? "正常" : "停用";
-                  $(s).text(showStatus);
-                  var tdStatus = status == 1 ? 2 : 1;
-                  var aStatus = status == 1 ? "<i class='fa fa-ban'></i>" : "<i class='fa fa-check'></i>";
-                  var title = status == 1 ? "禁用" : "启用";
-                  var h = "<a href='javascript:void(0);' onclick='UpdateStatus(\"" + userId + "\",\"" + tdStatus + "\")' id='" + userId + "' title='" + title + "' filterPermission='SystemUserUpdateStatus'>" + aStatus + "</a>";
-                  $(thisA).replaceWith(h);
-              }
-          },
-          function (result) {
-              $.alert("处理失败!");
-          });
-    }
     var search = function () {
         pageIndex = 1;
         queryList(1);
@@ -110,28 +94,24 @@
         $("#dataList tbody").html("<tr style='height:" + $("#dataList tbody").height() + "px'><td colspan='" + $("#dataList thead tr th").length + "'><i class='fa fa-spinner fa-pulse'></i></td></tr>");
         var nickName = $.trim($("#NickName").val());
         var phone = $.trim($("#Phone").val());
-        var email = $.trim($("#Email").val());
         var status = $("#Status").val();
-        $.ajaxJson("/System/UserList", { pageIndex: index, nickName: nickName, phone: phone, email: email, status: status },
+        $.ajaxJson("/system/select_sys_user_list", { pageIndex: index, nname: nickName, phone: phone, status: status },
             function (result) {
-                if (result && result.ReturnData.length > 0) {
-                    var list = result.ReturnData;
+                if (result && result.data.length > 0) {
+                    var list = result.data;
                     var html = "";
-                    for (var i = 0; i < result.ReturnData.length; i++) {
+                    for (var i = 0; i < result.data.length; i++) {
                         html += "<tr " + (i % 2 == 1 ? "class='even'" : "") + ">";
                         html += "<td>" + (list[i].NickName ? list[i].NickName : "") + "</td>";
                         html += "<td>" + (list[i].UserName ? list[i].UserName : "") + "</td>";
                         html += "<td>" + (list[i].Phone ? list[i].Phone : "") + "</td>";
                         html += "<td>" + (list[i].Email ? list[i].Email : "") + "</td>";
                         html += "<td style='text-align:left;'>" + (list[i].Descript ? list[i].Descript : "") + "</td>";
-                        html += "<td class='statusRemark'>" + (list[i].Status ? list[i].Status : "正常") + "</td>";
                         html += "<td>";
-                        if (!list[i].IsAdmin) {
-                            html += "<a href='javascript:void(0);' onclick='UpdateStatus(\"" + list[i].UserId + "\",\"" + list[i].StatusVal + "\")' id='" + list[i].UserId + "' title='" + (list[i].StatusVal == 2 ? "禁用" : "启用") + "' filterPermission='SystemUserUpdateStatus'>" + (list[i].StatusVal == 2 ? "<i class='fa fa-ban'></i>" : "<i class='fa fa-check'></i>") + "</a>&nbsp;&nbsp;&nbsp;&nbsp;";
-                            html += "<a href='javascript:void(0);' onclick='Edit(\"" + list[i].UserId + "\")' title='编辑' filterPermission='SystemUserEdit'><i class='fa fa-pencil'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;";
-                            html += "<a href='javascript:void(0);' onclick='Delete(\"" + list[i].UserId + "\")' title='删除' filterPermission='SystemUserDelete'><i class='fa fa-trash-o'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;";
-                            html += "<a href='javascript:void(0);' onclick='Config(\"" + list[i].UserId + "\")' title='角色配置' filterPermission='SystemUserRoleEdit'><i class='fa fa-users'></i></a>";
-                        }
+                        html += "<a href='javascript:void(0);' onclick='Edit(\"" + list[i].UserId + "\")' title='编辑'><i class='fa fa-pencil'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;";
+                        html += "<a href='javascript:void(0);' onclick='Delete(\"" + list[i].UserId + "\")' title='删除'><i class='fa fa-trash-o'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;";
+                        html += "<a href='javascript:void(0);' onclick='Config(\"" + list[i].UserId + "\")' title='角色配置'><i class='fa fa-users'></i></a>";
+                        
                         html += "</td>";
                         html += "</tr>";
                     }

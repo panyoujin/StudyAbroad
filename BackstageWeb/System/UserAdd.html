@@ -16,7 +16,6 @@
                 <div id="contentheader_title">创建用户</div>
                 <div id="contentheader_button">
                     <button type="submit" class="orange" onclick="submitForm();"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
-                    <button onclick="parent.gotoPage('/System/UserIndex.html');" type="button"><i class="fa fa-times"></i>&nbsp;取消</button>
                 </div>
                 <div style="clear:both;"></div>
             </div>
@@ -25,33 +24,33 @@
                 <div class="area_title">用户信息</div>
                 <div class="area">
                     <table border="1" cellpadding="0" cellspacing="0" style="width: 80%;">
-                        <tr>
-                            <th width="100">用户名称</th>
-                            <td>
-                                <input id="NickName" maxlength="20" name="NickName" placeholder="输入用户名称" value="" type="text">
-                            </td>
-                            <th width="100">登录名</th>
-                            <td>
-                                <input id="UserName" maxlength="36" name="UserName" placeholder="输入登录名" value="" type="text">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th width="100">手机</th>
-                            <td>
-                               <input id="Phone" maxlength="13" name="Phone" placeholder="输入手机" value="" type="text">
-                            </td>
-                            <th width="100">邮箱</th>
-                            <td>
-                               <input id="Email" maxlength="36" name="Email" placeholder="输入邮箱" value="" type="text">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th width="100">描述</th>
-                            <td colspan="3">
-                                <textarea cols="80" id="Descript" maxlength="300" name="Descript" placeholder="输入描述" rows="3" style="width: 400px;"></textarea>
-                            </td>
-                        </tr>
-                    </table>
+                    <tr>
+                        <th width="100">用户名称</th>
+                        <td>
+                            <input id="nname" maxlength="20" name="nname" placeholder="输入用户名称" value="" type="text">
+                        </td>
+                        <th width="100">登录名</th>
+                        <td>
+                            <input id="uname" maxlength="36" name="uname" placeholder="输入登录名" value="" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="100">手机</th>
+                        <td>
+                            <input id="phone" maxlength="13" name="phone" placeholder="输入手机" value="" type="text">
+                        </td>
+                        <th width="100">邮箱</th>
+                        <td>
+                            <input id="email" maxlength="36" name="email" placeholder="输入邮箱" value="" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="100">描述</th>
+                        <td colspan="3">
+                            <textarea cols="80" id="descript" maxlength="300" name="descript" placeholder="输入描述" rows="3" style="width: 400px;"></textarea>
+                        </td>
+                    </tr>
+                </table>
                 </div>
             </div>
         </form>
@@ -60,53 +59,49 @@
 <script type="text/javascript">
     var submitForm = function () {
         $("#submitForm").validate({
-            rules: {
-                NickName: {
+           rules: {
+                nname: {
                     required: true
-                }, UserName: {
+                }, uname: {
                     required: true
-                   
-                }, Phone: {
+                }, password: {
+                    required: true
+                }, phone: {
                     required: true,
                     telAndPhone: true
-                }, Email: {
-                    required: true,
+                }, email: {
                     email: true
-                },Descript:{
+                },descript: {
                     maxlength:300
-            }
+                }
             }, messages: {
-                NickName: {
+                nname: {
                     required: "请输入用户名"
-                }, UserName: {
+                }, uname: {
                     required: "请输入登录名"
-                }, Phone: {
+                }, password: {
+                    required: "请输入密码"
+                }, phone: {
                     required: "联系方式不能为空",
                     telAndPhone: "联系方式格式不正确"
-                }, Email: {
-                    required: "邮箱不能为空",
+                }, email: {
                     email: "邮箱格式不正确"
-                }, Descript: {
-                    maxlength: "最多填写300个字"
+                },descript: {
+                    maxlength:"最多填写300个字"
                 }
             }, submitHandler: function () {
                 var message = "";
-                $.ajaxForm("/System/UserAdd", "submitForm",
+                $.ajaxForm("/system/insert_sys_user", "submitForm",
                  function (result) {
-                     if (result.IsOk) {
-                         $.alert("用户添加成功", function () {
-                             parent.gotoPage("/System/UserIndex");
-                         });
-                     } else {
-                         if (result.ReturnData == "0") {
-                             this.valueCache = {};
-                             message = "对不起,用户名已存在";
-                             $.alert(message);
-                             return null;
-                         } else {
-                             $.alert("联系人添加失败");
-                         }
-                     }
+                     if (result.status=="200") {
+                        $.alert("用户新增成功", function () {
+                            //parent.gotoPage("/User/UserIndex.html");
+                            $(window.top.document).contents().find("#pageContent")[0].contentWindow.queryList(1);
+                            $.layerClose();
+                        });
+                    } else {
+                        $.alert(result.message);
+                    }
                  },
                 function () {
                     $.alert("网络故障，请稍候重试!");

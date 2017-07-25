@@ -14,11 +14,11 @@
     <form id="SubmitForm" class="vform" style="padding:20px;">
         <fieldset>
             <label>角色名称</label>
-            <input id="RoleName" maxlength="30" name="RoleName" placeholder="输入角色名称" value="" type="text">
+            <input id="name" maxlength="30" name="name" placeholder="输入角色名称" value="" type="text">
         </fieldset>
         <fieldset>
             <label>角色说明</label>
-            <textarea cols="80" id="Remark" maxlength="150" name="Remark" placeholder="输入角色说明" rows="3" style="width: 400px;"></textarea>
+            <textarea cols="80" id="remark" maxlength="150" name="remark" placeholder="输入角色说明" rows="3" style="width: 400px;"></textarea>
         </fieldset>
         <div style="float:right;">
             <button type="submit" class="orange" onclick="doSubmit()"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
@@ -32,19 +32,17 @@
 
         $("#SubmitForm").validate({
             rules: {
-                RoleName: { required: true }
+                name: { required: true }
             },
             messages: {
-                NickName: { required: "请输入角色名称" }
+                name: { required: "请输入角色名称" }
             }, submitHandler: function () {
-                $.ajaxForm("/System/RoleAdd", "SubmitForm",
+                $.ajaxForm("/system/insert_sys_role", "SubmitForm",
                 function (result) {
-                    if (result && result.IsOk) {
-                        $.alert("保存成功！", function () {
-                            $(window.top.document).contents().find("#pageContent")[0].contentWindow.location.reload();
-                            $.layerClose();
-                        });
-                    }
+                    $.alert("保存成功！", function () {
+                        $(window.top.document).contents().find("#pageContent")[0].contentWindow.location.reload();
+                        $.layerClose();
+                    });
                 },
                 function () { $.alert("网络故障，请稍候重试!"); });
             }

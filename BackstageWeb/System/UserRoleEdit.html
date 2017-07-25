@@ -29,18 +29,19 @@
     </form>
 </body>
 <script type="text/javascript">
+    var userid = getUrlParam("id");
     $(document).ready(function () {
         var roles = "";
-        $.ajaxJson("/System/GetRoleByUserId", { "userId": '@ViewBag.UserId' }, function (result) {
-            if (result.IsOk) {
-                roles = result.ReturnData;
-                $.ajaxJson("/System/GetRoleList", null, function (result2) {
-                    if (result2.IsOk && result2.ListCount > 0) {
+        $.ajaxJson("/system/select_user_role_list", { "user_id": userid }, function (result) {
+            if (result) {
+                roles = result.data.RoleIds;
+                $.ajaxJson("/system/select_sys_role_list", null, function (result2) {
+                    if (result2 && result2.data.length > 0) {
                         var html = "";
-                        for (var i = 0; i < result2.ReturnData.length; i++) {
-                            var entity = result2.ReturnData[i];
+                        for (var i = 0; i < result2.data.length; i++) {
+                            var entity = result2.data[i];
                             html += "<tr>";
-                            if (roles.indexOf(","+entity.RoleId+",") >-1) {
+                            if (roles && roles.indexOf(","+entity.RoleId+",") >-1) {
                                 html += "<td><input type='checkbox' value='" + entity.RoleId + "' checked /></td>";
                             } else {
                                 html += "<td><input type='checkbox' value='" + entity.RoleId + "' /></td>";
@@ -65,17 +66,15 @@
     });
 
     $("#submitButton").click(function () {
-        var roleId = "";
+        var roleId = "0";
         $(":checkbox").each(function () {
             if (this.checked == true) {
-                roleId += $(this).val() + ",";
+                roleId = roleId+"," + $(this).val() ;
             }
         });
         if (roleId.length > 0) {
-            $.ajaxJson("/System/UserRoleConfig", { roleId: roleId, userId: '@ViewBag.UserId' }, function (result) {
-                if (result.IsOk) {
+            $.ajaxJson("/system/update_sys_userrole", { role_id: roleId, user_id: userid }, function (result) {
                     $.alert("保存成功!",null,"close");
-                }
 
             }, function () {
                 $.alert("保存失败");

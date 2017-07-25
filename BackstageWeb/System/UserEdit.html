@@ -19,7 +19,6 @@
             <div id="contentheader_title">编辑用户</div>
             <div id="contentheader_button">
                 <button type="submit" class="orange" onclick="submitForm();"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
-                <button onclick="parent.gotoPage('/System/UserIndex');" type="button"><i class="fa fa-times"></i>&nbsp;取消</button>
             </div>
             <div style="clear:both;"></div>
         </div>
@@ -31,27 +30,28 @@
                     <tr>
                         <th width="100">用户名称</th>
                         <td>
-                            <input id="NickName" maxlength="20" name="NickName" placeholder="输入用户名称" value="" type="text">
+                            <input id="nname" maxlength="20" name="nname" placeholder="输入用户名称" value="" type="text">
+                            <input id="user_id" maxlength="20" name="user_id" value="" type="hidden">
                         </td>
                         <th width="100">登录名</th>
                         <td>
-                            <input id="UserName" maxlength="36" name="UserName" placeholder="输入登录名" value="" type="text">
+                            <input id="uname" maxlength="36" name="uname" placeholder="输入登录名" value="" type="text">
                         </td>
                     </tr>
                     <tr>
                         <th width="100">手机</th>
                         <td>
-                            <input id="Phone" maxlength="13" name="Phone" placeholder="输入手机" value="" type="text">
+                            <input id="phone" maxlength="13" name="phone" placeholder="输入手机" value="" type="text">
                         </td>
                         <th width="100">邮箱</th>
                         <td>
-                            <input id="Email" maxlength="36" name="Email" placeholder="输入邮箱" value="" type="text">
+                            <input id="email" maxlength="36" name="email" placeholder="输入邮箱" value="" type="text">
                         </td>
                     </tr>
                     <tr>
                         <th width="100">描述</th>
                         <td colspan="3">
-                            <textarea cols="80" id="Descript" maxlength="300" name="Descript" placeholder="输入描述" rows="3" style="width: 400px;"></textarea>
+                            <textarea cols="80" id="descript" maxlength="300" name="descript" placeholder="输入描述" rows="3" style="width: 400px;"></textarea>
                         </td>
                     </tr>
                 </table>
@@ -64,52 +64,48 @@
     var submitForm = function () {
         $("#submitForm").validate({
             rules: {
-                NickName: {
+                nname: {
                     required: true
-                }, UserName: {
+                }, uname: {
                     required: true
                 }, Password: {
                     required: true
-                }, PassAgain: {
-                    required: true,
-                    equalTo: "#Password"
-                }, Phone: {
+                }, phone: {
                     required: true,
                     telAndPhone: true
-                }, Email: {
+                }, email: {
                     required: true,
                     email: true
-                },Descript: {
+                },descript: {
                     maxlength:300
                 }
             }, messages: {
-                NickName: {
+                nname: {
                     required: "请输入用户名"
-                }, UserName: {
+                }, uname: {
                     required: "请输入登录名"
                 }, Password: {
                     required: "请输入密码"
-                }, PassAgain: {
-                    required: "请再次输入密码",
-                    equalTo: "两次输入的密码不一样"
-                }, Phone: {
+                }, phone: {
                     required: "联系方式不能为空",
                     telAndPhone: "联系方式格式不正确"
-                }, Email: {
+                }, email: {
                     required: "邮箱不能为空",
                     email: "邮箱格式不正确"
-                },Descript: {
+                },descript: {
                     maxlength:"最多填写300个字"
                 }
             }, submitHandler: function () {
-                $.ajaxForm("/System/UserEdit", "submitForm",
+                $.ajaxForm("/system/update_sys_user", "submitForm",
                 function (result) {
-                    if (result.IsOk) {
+                    if (result.status=="200") {
                         $.alert("用户修改成功", function () {
-                            parent.gotoPage("/System/UserIndex");
+                            //parent.gotoPage("/User/UserIndex.html");
+                            $(window.top.document).contents().find("#pageContent")[0].contentWindow.queryList(1);
+                            $.layerClose();
                         });
                     } else {
-                        $.alert("联系人修改失败");
+                        $.alert(result.message);
                     }
                 },
                 function () {
@@ -119,6 +115,25 @@
         });
 
     };
-
+$(function(){
+    var userid = getUrlParam("id");
+    $.ajaxJson("/system/select_sys_user_info", { user_id: userid },
+            function (result) {
+                if (!!result.data) {
+                    $("#user_id").val(result.data.UserId)
+                    $("#uname").val(result.data.UserName)
+                    $("#nname").val(result.data.NickName)
+                    $("#phone").val(result.data.Phone)
+                    $("#email").val(result.data.Email)
+                    $("#descript").val(result.data.Descript)
+                } else {
+                    $.alert(result.message);
+                }
+            },
+            function () {
+                    $.alert("网络故障，请稍候重试!");
+            }
+        );
+})
 
 </script>
