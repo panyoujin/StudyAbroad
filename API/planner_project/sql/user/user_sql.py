@@ -3,7 +3,7 @@ select_exists_user = "SELECT 1 FROM `U_User` WHERE Account ='%s'"
 #新增用户表
 insert_user = "INSERT INTO `U_User` (`Id`,`Account`,`Password`,`CreateTime`,`Phone`) VALUES('%s','%s','%s',NOW(),'%s')"
 #新增用户信息表
-insert_userinfo = "INSERT INTO `U_UserInfo`(`UserId`,`CreateTime`)  VALUES('%s',NOW())"
+insert_userinfo = "INSERT INTO `U_UserInfo`(`UserId`,`CreateTime`,HeadImage)  VALUES('%s',NOW(),'files/person.jpg')"
 #通过帐号查询用户信息
 select_user_info = "SELECT u.`Id`,u.`Account`,u.`Phone`,u.`UserType`,ui.`Name`, ui.`HeadImage` " \
                          "FROM `U_User` u " \
