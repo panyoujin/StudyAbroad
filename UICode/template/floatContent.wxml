@@ -1,18 +1,21 @@
-  <view class="contactPhone">
-    <navigator open-type="navigate" bindtap="alertContent">
-      <!--url="/pages/account/register/register"-->
-      <image src="/img/home/phone.png" mode="aspectFill"> </image>
-    </navigator>
-  </view>
+<view class="contactPhone">
+  <navigator open-type="navigate" bindtap="alertContent">
+    <!--url="/pages/account/register/register"-->
+    <image src="/img/home/phone.png" mode="aspectFill"> </image>
+  </navigator>
+</view>
 
-  <modal hidden="{{hidden}}"  confirm-text="确定" bindconfirm="confirm" no-cancel="{{true}}">
-    <view class="clsSelect">
-      <button bindtap="btnSelect">发布服务</button>
-    </view>
-    <view class="clsSelect" style="margin-top:10rpx">
-      <button bindtap="btnSelect">发布动态</button>
-    </view>
-    <view class="classname" style="margin-top:20rpx;  38rpx;font-weight: bold;font-family: '黑体';">
-欢迎致电客户了解更多，联系电话:<span bindtap="payPhoneNum" style="text-decoration: underline;color:#57b1fd">0752-12345678</span>
-    </view>
-  </modal>
+<modal hidden="{{hidden}}" confirm-text="确定" bindconfirm="confirm" no-cancel="{{true}}">
+  <view class="clsSelect" hidden="{{xuqiu}}">
+    <button bindtap="btnSelect" >发布需求</button>
+  </view>
+  <view class="clsSelect" style="margin-top:10rpx" hidden="{{fuwu}}">
+    <button bindtap="btnSelect" >发布服务</button>
+  </view>
+  <view class="clsSelect" style="margin-top:10rpx" hidden="{{dongtai}}">
+    <button bindtap="btnSelect" >发布动态</button>
+  </view>
+  <view class="classname" style="margin-top:20rpx;  38rpx;font-weight: bold;font-family: '黑体';">
+    欢迎致电客户了解更多，联系电话:<span bindtap="payPhoneNum" style="text-decoration: underline;color:#57b1fd">0752-12345678</span>
+  </view>
+</modal>
