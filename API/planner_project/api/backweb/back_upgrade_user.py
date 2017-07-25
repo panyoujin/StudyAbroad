@@ -80,7 +80,7 @@ def update_upgrade_user():
                      (UserId,upgradeInfo["UserId"]),
                      (upgradeInfo["Name"],upgradeInfo["Sex"],upgradeInfo["Address"],upgradeInfo["Experience"],
                       upgradeInfo["Email"],idCard,upgradeInfo["IDCardPic"],upgradeInfo["ServiceAreaId"],
-                      upgradeInfo["ServiceId"],UserId,upgradeInfo["UserId"])]
+                      upgradeInfo["ServiceId"],UserId,upgradeInfo["UserId"],UserId,upgradeInfo["IDCardBackPic"])]
         success = mysql.operate__many(sql_list, args_list)
         if success <= 0:
             raise custom_error.CustomFlaskErr(status_code=500, message="审核失败")

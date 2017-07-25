@@ -30,12 +30,12 @@ get_upgrade_apply_detail = "SELECT ut.`Id`,ut.`UserId`,IF(ut.`Sex`=1,'男','女'
 update_upgrade_status = "UPDATE U_UpgradeUserTemp SET Status=%s,ModifTime=now(),ModifUserID='%s' WHERE Id='%s' AND Status=0"
 
 # 查询规划师升级数据
-get_upgrade_info_by_id = "SELECT `Id`,`UserId`,`Sex`,`Name`,`Address`,`ServiceId`,`ServiceAreaId`,`Email`,`Experience`, IDCard, `IDCardPic`,`Status` FROM `U_UpgradeUserTemp`" \
+get_upgrade_info_by_id = "SELECT `Id`,`UserId`,`Sex`,`Name`,`Address`,`ServiceId`,`ServiceAreaId`,`Email`,`Experience`, IDCard, `IDCardPic`,`Status`, `IDCardBackPic` FROM `U_UpgradeUserTemp`" \
                          " where Id='%s'"
 
 # 根据用户id 修改用户账号类型
 update_user_type = "UPDATE U_User SET UserType=2,ModifUserID='%s',ModifTime=now() WHERE Id='%s'"
 
 # 修改用户信息表数据
-update_user_info = "UPDATE U_UserInfo SET Name='%s',Sex=%s,Address='%s',Education='%s',Email='%s',IDCard='%s',IDCardJust='%s',ServiceAreaId=%s,ServiceTypeId=%s,ModifUserID='%s',ModifTime=Now() " \
+update_user_info = "UPDATE U_UserInfo SET Name='%s',Sex=%s,Address='%s',Education='%s',Email='%s',IDCard='%s',IDCardJust='%s',ServiceAreaId=%s,ServiceTypeId=%s,ModifUserID='%s',ModifTime=Now(),IDCardBack='%s' " \
                    "where UserId='%s'"
