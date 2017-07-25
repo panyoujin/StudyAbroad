@@ -18,7 +18,7 @@ get_upgrade_apply_count = "SELECT count(1) as count " \
 # 获取规划师升级数据详情
 get_upgrade_apply_detail = "SELECT ut.`Id`,ut.`UserId`,IF(ut.`Sex`=1,'男','女') AS Sex,ut.`Name`,ut.`Address`,st.`Name` AS ServiceTypeName, " \
                            "sa.`Name` AS ServiceAreaName,ut.`Email`, " \
-                           "ut.`Experience`,ut.`IDCard`,ut.`IDCardPic`,ut.`Status`, " \
+                           "ut.`Experience`,ut.`IDCard`,ut.`IDCardPic`,ut.`IDCardBackPic`,ut.`Status`, " \
                            "IF(ut.`Status`=0,'审核中',IF(ut.`Status`=1,'审核通过','审核不通过')) AS StatusStr ,ut.`CreateTime`, " \
                            "uu.Phone " \
                            "FROM `U_UpgradeUserTemp` ut " \

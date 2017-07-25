@@ -73,9 +73,13 @@
                     </td>
                 </tr>
                 <tr>
-                    <th width="100" align="top">证件照</th>
+                    <th width="100" align="top">证件照正面</th>
                     <td>
                         <img src="" id="IDCardPic" name="IDCardPic" width="200px" height="300px">
+                    </td>
+                         <th width="100" align="top">证件照反面</th>
+                    <td>
+                        <img src="" id="IDCardBackPic" name="IDCardBackPic" width="200px" height="300px">
                     </td>
                 </tr>
             </table>
@@ -101,8 +105,8 @@
                     $("#CreateTime").val(result.data.CreateTime)
                     $("#StatusStr").val(result.data.StatusStr)
                     $("#Phone").val(result.data.Phone)
-
-                    $("#IDCardPic").attr("src","/"+result.data.IDCardPic)
+                    $("#IDCardBackPic").attr("src", "/" + result.data.IDCardBackPic)
+                    $("#IDCardPic").attr("src", "/" + result.data.IDCardPic)
                 } else {
                     $.alert(result.message);
                 }
