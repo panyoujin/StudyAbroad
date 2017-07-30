@@ -1,0 +1,69 @@
+<!--pages/planner/plannerEvaluate/plannerEvaluate.wxml-->
+<view class="container" >
+  <form bindsubmit="btnSubmit">
+    <view class="clsGroupr clsEvaluateImg">
+      <label class="clsTxt">服务综合评价</label>
+      <view class="clsGroupr">
+        <block wx:for="{{[1,2,3,4,5]}}"  wx:key="item" >
+          <block wx:if="{{synthesisNum>=item}}">
+            <image data-key="synthesis" data-value="{{item}}" bindtap="btnEvaluateNum" src="/img/planner/evaluate02.png"></image>
+          </block>
+          <block wx:else>
+          <image data-key="synthesis" data-value="{{item}}" bindtap="btnEvaluateNum" src="/img/planner/evaluate01.png"></image>
+          </block>
+        </block>
+      </view>
+      <label class="clsTxt clsTxtEval">{{synthesisTxt}}</label>
+    </view>
+    <view class="clsGroupr clsEvaluateImg">
+      <label class="clsTxt">服务质量评价</label>
+      <view class="clsGroupr">
+        <block wx:for="{{[1,2,3,4,5]}}"  wx:key="item" >
+          <block wx:if="{{qualityNum>=item}}">
+            <image data-key="quality" data-value="{{item}}" bindtap="btnEvaluateNum" src="/img/planner/evaluate02.png"></image>
+          </block>
+          <block wx:else>
+          <image data-key="quality" data-value="{{item}}" bindtap="btnEvaluateNum" src="/img/planner/evaluate01.png"></image>
+          </block>
+        </block>
+      </view>
+      <label class="clsTxt clsTxtEval">{{qualityTxt}}</label>
+    </view>
+    <view class="clsGroupr clsEvaluateImg">
+      <label class="clsTxt">服务效率评价</label>
+      <view class="clsGroupr">
+        <block wx:for="{{[1,2,3,4,5]}}"  wx:key="item" >
+          <block wx:if="{{efficiencyNum>=item}}">
+            <image data-key="efficiency" data-value="{{item}}" bindtap="btnEvaluateNum" src="/img/planner/evaluate02.png"></image>
+          </block>
+          <block wx:else>
+          <image data-key="efficiency" data-value="{{item}}" bindtap="btnEvaluateNum" src="/img/planner/evaluate01.png"></image>
+          </block>
+        </block>
+      </view>
+      <label class="clsTxt clsTxtEval">{{efficiencyTxt}}</label>
+    </view>
+
+    <view class="clsEvaluateImg">
+      <textarea class="clsInput clsArea" name="content" placeholder="请评价内容" maxlength="1000" />
+    </view>
+
+    <view class="clsGroupc clsEvaluateImg">
+      <label class="clsTxt clsLableTxt">规划师印象标签：</label>
+      <view class="clsGroupr clsLables">
+        <block wx:for="{{lables}}" wx:key="item">
+          <block wx:if="{{lableNum[index]}}">
+            <view class="clsLable clsChecked" data-key="{{index}}" data-value="{{item}}" bindtap="btnLable" >{{item}}</view>
+          </block>
+          <block wx:else>
+            <view class="clsLable" data-key="{{index}}" data-value="{{item}}" bindtap="btnLable" >{{item}}</view>
+          </block>
+          
+        </block>
+      </view>
+    </view>
+
+    <view class="errorMsg">{{tip}}</view>
+    <button class="clsBtn" formType="submit">点击评价</button>
+  </form>
+</view>

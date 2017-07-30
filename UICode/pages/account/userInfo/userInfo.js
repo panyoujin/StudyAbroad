@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    UserType:1,
     myInfo:null,
     headImage: ""
   },
@@ -16,16 +17,19 @@ Page({
    */
   onLoad: function (options) {
     var that =this;
+    //判断用户是否已经登陆
+    common.CheckLogin("/pages/account/userInfo/userInfo");
+
     var loginInfo = wx.getStorageSync('userLoginInfo');
     if (loginInfo == ""){
-      wx.setStorageSync('backPage', "/pages/account/userInfo/userInfo")
       wx.redirectTo({
         url: "/pages/account/login/login"
       });
     }else{
       that.setData({
         myInfo: loginInfo,
-        headImage: loginInfo.HeadImage
+        headImage: loginInfo.HeadImage,
+        UserType: loginInfo.UserType
       })
     }
       

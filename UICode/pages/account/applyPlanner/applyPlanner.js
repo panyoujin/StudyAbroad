@@ -6,20 +6,34 @@ Page({
    * 页面的初始数据
    */
   data: {
+    orderId:"",
     btnTxt: "点击评价",
-    btnSubmit: "btnEditUser",
+    btnSubmit: "btnSubmit",
     schedule:[]
   },
 
+  btnSubmit:function(){
+    wx.navigateTo({
+      url: '/pages/planner/plannerEvaluate/plannerEvaluate?id=' + this.data.orderId,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
+    var id = options.id;
+    if (id == undefined) {
+      id = "34c6f07a-66db-11e7-952e-1c1b0d79990b"
+    }
+    that.setData({
+      orderId: id
+    })
+
     common.POST({
       url: "/order/get_order_status",
       params: {
-        OrderId:'34c6f07a-66db-11e7-952e-1c1b0d79990b'
+        OrderId: id
       },
       success: function (res, s, m) {
         if (s) {

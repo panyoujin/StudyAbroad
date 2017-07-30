@@ -22,7 +22,9 @@
     "pages/planner/qualification/qualification",
     "pages/planner/example/example",
     "pages/planner/evaluate/evaluate",
+    "pages/planner/evaluateDetails/evaluateDetails",
     "pages/planner/plannerRegister/plannerRegister",
+    "pages/planner/plannerEvaluate/plannerEvaluate",
     "pages/planner/plannerRegisterSucceed/plannerRegisterSucceed",
     
     "pages/demand/demandPublic/demandPublic",

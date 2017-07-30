@@ -1,0 +1,72 @@
+/* pages/planner/plannerEvaluate/plannerEvaluate.wxss */
+page{
+  background-color: #FFF;
+}
+.container{
+  margin: 20rpx;
+  font-size: 30rpx;
+}
+.clsEvaluateImg{
+  padding:20rpx;
+  margin: 20rpx;
+  line-height: 40rpx;
+  margin-left: 5rpx;
+}
+.clsEvaluateImg .clsTxt{
+  font-size: 35rpx;
+  font-family: "黑体";
+  color: #252525;
+  width: 230rpx;
+}
+.clsEvaluateImg image{
+  width:45rpx;
+  height: 45rpx;
+  margin-top:-3rpx;
+  padding: 0 10rpx;
+}
+.clsEvaluateImg .clsTxtEval{
+  color: #aaa;
+  padding-left: 15rpx;
+  width: 80rpx;
+}
+
+
+.clsArea{
+  padding: 15rpx 5rpx 15rpx 20rpx;
+  height: 300rpx;
+  line-height: 30rpx;
+  width: 630rpx;
+  background-color: #fff;
+  border: 2rpx solid #aaa;
+  border-radius: 5rpx;
+}
+
+.clsEvaluateImg .clsLableTxt{
+  width: 500rpx;
+  color: #aaa;
+}
+
+.clsLables{
+  flex-wrap:wrap;
+}
+.clsLable{
+  font-size: 30rpx;
+  color: #000;
+  background-color: #eee;
+  border:none;
+  border-radius: 30rpx;
+  padding: 15rpx 25rpx;
+  margin: 10rpx 20rpx 10rpx 0;
+}
+.clsChecked{
+  background-color: #83ccf6;
+}
+
+
+
+
+.clsBtn{
+  margin: 50rpx 0;
+  background-color: #57b1fd;
+  color: #FFF;
+}

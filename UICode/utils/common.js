@@ -188,9 +188,8 @@ function CheckLogin(url){
     params: {},
     success: function (res, s, m) {
       if (s) {
-        wx.setStorageSync('userLoginToken', res.token)
-        res.user.HeadImage = common.apiUrl + "/" + res.user.HeadImage;
-        wx.setStorageSync('userLoginInfo', res.user)
+        res.HeadImage = apiUrl + "/" + res.HeadImage;
+        wx.setStorageSync('userLoginInfo', res)
       }
     },
     fail: function () { }

@@ -16,7 +16,7 @@
   </view>
 
   <view class="clsUserInfo">
-   <navigator class="clsView" url="/pages/demand/demandPublic/demandPublic">
+   <navigator class="clsView" url="/pages/demand/demandPublic/demandPublic" wx:if="{{UserType==1}}">
       <image class="clsIcon" src="/img/account/uPublishServer.png"></image>
       <label>已发布需求</label>
       <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>

@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 //JSON.stringify() JSON.parse()
+var common = require('../../utils/common.js')
 var app = getApp()
 Page({
   data: {
@@ -17,12 +18,7 @@ Page({
   alertContent: function (e) {
     var loginInfo = wx.getStorageSync('userLoginInfo');
     //判断用户是否已经登陆
-    if (loginInfo == "") {
-      wx.navigateTo({
-        url: "/pages/account/login/login"
-      })
-    }
-    console.log(loginInfo)
+    common.CheckLogin("");
 
     var that = this
     that.setData({
@@ -79,7 +75,6 @@ Page({
     })
   },
   onLoad: function () {
-    console.log('onLoad')
     var that = this
     that.setData({
       userInfo: app.globalData.userInfo

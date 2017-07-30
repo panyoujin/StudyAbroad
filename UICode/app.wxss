@@ -12,17 +12,26 @@ page{
 .container {
   font-family: arial;
   position: relative;
-  /*background-color: #FFF;*/
   box-sizing: border-box;
   height: 100%;
-  /*padding-bottom: 500px;*/
 } 
+.clsGroupr{
+  display: flex;
+  flex-direction: row;
+}
+.clsGroupc{
+  display: flex;
+  flex-direction: column;
+}
 
 .errorMsg{
   color: red;
   font-size:28rpx;
   padding: 20rpx 0 0 35rpx;
 }
+
+
+
 .pageMsg{
     color: #727272;
     font-size:32rpx;
