@@ -17,7 +17,9 @@
     </navigator>
   </view>
   <view class="clsSelect" style="margin-top:10rpx" hidden="{{dongtai}}">
-    <button bindtap="btnSelect">发布动态</button>
+    <navigator url="/pages/dynamic/dynamicAdd/dynamicAdd" open-type="navigate">
+      <button>发布动态</button>
+    </navigator>
   </view>
   <view class="classname" style="margin-top:20rpx;  38rpx;font-weight: bold;font-family: '黑体';">
     欢迎致电客户了解更多，联系电话:<span bindtap="payPhoneNum" style="text-decoration: underline;color:#57b1fd">0752-12345678</span>

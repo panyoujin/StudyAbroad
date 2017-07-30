@@ -1,2 +1,14 @@
 <!--pages/sysInfo/softwareInfo/softwareInfo.wxml-->
-<text>软件介绍：留学帮助。。。。。。</text>
+<view class="container">
+  <view class="clsImgView">
+    <image src="/img/account/bannerReg.png"></image>
+  </view>
+  <view class="clsView" >
+      <label class="clsHeadTxt">版本号</label>
+      <label class="clsLastTxt">1.0.0</label>
+  </view>
+  <view class="clsView">
+      <label class="clsHeadTxt">网站</label>
+      <label class="clsLastTxt">https://www.baidu.com</label>
+  </view>
+</view>

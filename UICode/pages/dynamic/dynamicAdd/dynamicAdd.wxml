@@ -1,0 +1,23 @@
+<!--pages/dynamic/dynamicAdd/dynamicAdd.wxml-->
+<view class="container">
+  <form class="clsGroupc" bindsubmit="btnSubmit">
+
+    <view class="clsView">
+      <textarea class="clsArea" bindblur="bindTextAreaBlur" name="content" placeholder="" maxlength="5000" />
+    </view>
+    <view class="clsView clsImgs">
+      <view class="clsImg" wx:for="{{imgUrlShow}}" wx:key="item">
+        <image src="{{item}}"></image>
+      </view>
+    </view>
+    <view class="clsView clsBtnView">
+      <button class="clsAddImg" bindtap="btnAddImg">添加图片</button>
+      <button class="clsAddImg clsCleanImg" bindtap="btnCleanImg">清空图片</button>
+    </view>
+
+    <view class="clsView"></view>
+    <view class="errorMsg">{{tip}}</view>
+    <button class="clsBtn" formType="submit">发布</button>
+  </form>
+
+</view>

@@ -28,7 +28,7 @@
       <label>我的服务单</label>
       <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>
-    <navigator class="clsView" url="/pages/demand/demandPublic/demandPublic" wx:if="{{UserType!=1}}">
+    <navigator class="clsView" url="/pages/dynamic/dynamicMy/dynamicMy" wx:if="{{UserType!=1}}">
       <label>个人动态</label>
       <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>

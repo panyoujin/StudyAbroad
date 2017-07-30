@@ -35,7 +35,12 @@
     "pages/service/serviceMarket/serviceMarket",
     "pages/service/serviceDetails/serviceDetails",
     "pages/service/ServiceAdd/ServiceAdd",
-    "pages/service/ContractDataAdd/ContractDataAdd"
+    "pages/service/ContractDataAdd/ContractDataAdd",
+
+    "pages/dynamic/dynamicList/dynamicList",
+    "pages/dynamic/dynamicDetails/dynamicDetails",
+    "pages/dynamic/dynamicAdd/dynamicAdd",
+    "pages/dynamic/dynamicMy/dynamicMy"
   ],
   "window": {
     "backgroundColor": "#5CACEE",
@@ -64,7 +69,7 @@
         "selectedIconPath": "img/tabbar/publish.png"
       },
       {
-        "pagePath": "pages/service/serviceMarket/serviceMarket",
+        "pagePath": "pages/dynamic/dynamicList/dynamicList",
         "text": "动态",
         "iconPath": "img/tabbar/dynamic.png",
         "selectedIconPath": "img/tabbar/dynamic.png"

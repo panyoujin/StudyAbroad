@@ -1,0 +1,31 @@
+<!--pages/dynamic/dynamicMy/dynamicMy.wxml-->
+<view class="container">
+  <view class="searchResult">
+      <block wx:for="{{dynamics}}" wx:key="item">
+        <navigator class="clsGroupc clsMoudel" url="/pages/dynamic/dynamicDetails/dynamicDetails?id={{item.Id}}" >
+          <view class="serviceInfo">
+              <view class="img">
+              <image src="{{apiUrl}}{{item.HeadImage}}"></image>
+            </view>
+            <view class="serviceTxtInfo">
+              <view class="clsName">姓名：{{item.Name}}</view>
+              <view class="clsService">{{item.Name}}我的大师的健康哈萨克接电话啊卡是看得见黑暗神殿哈看动画阿卡电话卡好的啊肯定哈克</view>
+            </view>
+            <view class="clsOther">
+              <label>{{item.CreateTime}}</label>
+            </view>
+          </view>
+          <view class="clsGroupc clsDynamicImg">
+            <image src="/img/account/bannerReg.png"></image>
+            <label>阅读：10000</label>
+          </view>
+        </navigator>
+      </block>
+      <view wx:if="{{searchCount==0}}">
+        <view class="pageMsg">没有服务单</view>
+      </view>
+      <view wx:if="{{searchCount==-1}}">
+        <view class="pageMsg">没有更多的数据</view>
+      </view>
+    </view>
+</view>

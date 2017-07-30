@@ -56,35 +56,35 @@
   </view>
 
   <view class="moduleView">
-    <navigator url="/pages/logs/logs" class="moduleInfo" open-type="switchTab" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=留学" class="moduleInfo" open-type="navigate" >
       <image class="moduleImg" src="/img/home/studyAbroad.png" mode="aspectFill"></image>
       <label>留学</label>
     </navigator>
-    <navigator url="/pages/logs/logs" class="moduleInfo" open-type="switchTab" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=语言培训" class="moduleInfo" open-type="navigate" >
       <image class="moduleImg" src="/img/home/train.png" mode="aspectFill"></image>
       <label>语言培训</label>
     </navigator>
-    <navigator url="/pages/logs/logs" class="moduleInfo" open-type="switchTab" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=实习工作" class="moduleInfo" open-type="navigate" >
       <image class="moduleImg" src="/img/home/work.png" mode="aspectFill"></image>
       <label>实习工作</label>
     </navigator>
-    <navigator url="/pages/logs/logs" class="moduleInfo" open-type="switchTab" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=定制旅游" class="moduleInfo" open-type="navigate" >
       <image class="moduleImg" src="/img/home/tourism.png" mode="aspectFill"></image>
       <label>定制旅游</label>
     </navigator>
-    <navigator url="/pages/logs/logs" class="moduleInfo" open-type="switchTab" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=签证移民" class="moduleInfo" open-type="navigate" >
       <image class="moduleImg" src="/img/home/emigrant.png" mode="aspectFill"></image>
       <label>签证移民</label>
     </navigator>
-    <navigator url="/pages/logs/logs" class="moduleInfo" open-type="switchTab" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=生活辅助" class="moduleInfo" open-type="navigate" >
       <image class="moduleImg" src="/img/home/life.png" mode="aspectFill"></image>
       <label>生活辅助</label>
     </navigator>
-    <navigator url="/pages/logs/logs" class="moduleInfo" open-type="switchTab" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=游学指引" class="moduleInfo" open-type="navigate" >
       <image class="moduleImg" src="/img/home/point.png" mode="aspectFill"></image>
       <label>游学指引</label>
     </navigator>
-    <navigator url="/pages/logs/logs" class="moduleInfo" open-type="switchTab" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=其他" class="moduleInfo" open-type="navigate" >
       <image class="moduleImg" src="/img/home/other.png" mode="aspectFill"></image>
       <label>其他</label>
     </navigator>

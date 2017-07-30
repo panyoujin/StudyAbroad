@@ -1,0 +1,24 @@
+<!--pages/dynamic/dynamicDetails/dynamicDetails.wxml-->
+<view class="container">
+  <view class="searchResult">
+    <view class="serviceInfo">
+        <view class="img">
+        <image src="{{dynamic.HeadImage}}"></image>
+      </view>
+      <view class="serviceTxtInfo">
+        <view class="clsName">姓名：{{dynamic.Name}}</view>
+        <view class="clsService">{{dynamic.Name}}我的大师的健康哈萨克接电话啊卡是看得见黑暗神殿哈看动画阿卡电话卡好的啊肯定哈克</view>
+      </view>
+      <view class="clsOther">
+        <label>{{dynamic.CreateTime}}</label>
+      </view>
+    </view>
+    <view class="clsGroupc clsDynamicImg">
+      <image src="/img/account/bannerReg.png"></image>
+      <label>阅读：10000</label>
+      <view class="clsBtnView">
+        <button class="clsShare" open-type="share">分享给好友</button>
+      </view>
+    </view>
+  </view>
+</view>
