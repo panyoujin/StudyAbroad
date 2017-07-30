@@ -1,0 +1,17 @@
+<!--pages/planner/information/information.wxml-->
+<view class="container">
+  <view class="clsUserInfo">
+   <navigator class="clsView" url="/pages/planner/informationDetails/informationDetails">
+        <label>资料1</label>
+        <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
+     </navigator>
+    <navigator class="clsView" url="/pages/planner/informationDetails/informationDetails">
+        <label>资料2</label>
+        <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
+    </navigator>
+    <navigator class="clsView" url="/pages/planner/informationDetails/informationDetails">
+        <label>资料3</label>
+        <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
+    </navigator>
+  </view>
+</view>

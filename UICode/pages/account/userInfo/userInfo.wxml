@@ -1,8 +1,8 @@
-<view class="container">
-  <view class="backgroundImg">
+<view class="container {{UserType!=1?'containePlanner':''}}">
+  <view class="backgroundImg" wx:if="{{UserType==1}}">
     <image src="/img/account/uBackground.png" mode="scaleToFill"></image>
   </view>
-  <view class="clsUserHead">
+  <view class="clsUserHead" wx:if="{{UserType==1}}">
     <navigator url="/pages/account/editUser/editUser" hover-class="none">
       <image src="/img/account/uEdit.png"  bindtap="" mode="aspectFill"></image>
     </navigator>
@@ -15,44 +15,73 @@
     </navigator>
   </view>
 
-  <view class="clsUserInfo">
+  <view class="clsGroupr clsPlannerHead" wx:if="{{UserType!=1}}">
+    <view class="clsGroupr clsNamePlanner" bindtap="editHeadImg">
+      <image src="{{myInfo.HeadImage}}" mode="aspectFill"></image>
+      <label>{{myInfo.Name==null?myInfo.Account:myInfo.Name}}</label>
+    </view>
+    <navigator url="/pages/account/editUser/editUser" hover-class="none">编辑个人资料</navigator>
+  </view>
+
+  <view class="clsUserInfo {{UserType!=1?'clsUserInfoPlanner':''}}">
+    <navigator class="clsView" url="/pages/account/customer/customer" wx:if="{{UserType!=1}}">
+      <label>我的服务单</label>
+      <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
+    </navigator>
+    <navigator class="clsView" url="/pages/demand/demandPublic/demandPublic" wx:if="{{UserType!=1}}">
+      <label>个人动态</label>
+      <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
+    </navigator>
+    <navigator class="clsView" url="/pages/planner/plannerMy/plannerMy?url=team&temaId=1" wx:if="{{UserType!=1}}">
+      <label>团队管理</label>
+      <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
+    </navigator>
+    <navigator class="clsView" url="/pages/demand/demandPublic/demandPublic" wx:if="{{UserType!=1}}">
+      <label>我发布的服务</label>
+      <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
+    </navigator>
+
    <navigator class="clsView" url="/pages/demand/demandPublic/demandPublic" wx:if="{{UserType==1}}">
       <image class="clsIcon" src="/img/account/uPublishServer.png"></image>
       <label>已发布需求</label>
       <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>
-    <navigator class="clsView" url="/pages/planner/plannerMy/plannerMy">
+    <navigator class="clsView" url="/pages/planner/plannerMy/plannerMy" wx:if="{{UserType==1}}">
         <image class="clsIcon" src="/img/account/uMyFollowPlanner.png"></image>
         <label>我关注的规划师</label>
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>
-    <navigator class="clsView" url="/pages/account/collection/collection">
+    <navigator class="clsView" url="/pages/account/collection/collection" wx:if="{{UserType==1}}">
         <image class="clsIcon" src="/img/account/uMyCollect.png"></image>
         <label>我的收藏</label>
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>
     <navigator class="clsView" url="/pages/sysInfo/ContactUs/ContactUs">
-        <image class="clsIcon" src="/img/account/uPhone.png"></image>
+        <image class="clsIcon" src="/img/account/uPhone.png" wx:if="{{UserType==1}}"></image>
         <label>联系我们</label>
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
      </navigator>
     <navigator class="clsView" url="/pages/sysInfo/softwareInfo/softwareInfo">
-        <image class="clsIcon" src="/img/account/uSoftware.png"></image>
+        <image class="clsIcon" src="/img/account/uSoftware.png" wx:if="{{UserType==1}}"></image>
         <label>关于软件</label>
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>
     <navigator class="clsView" url="/pages/account/myImgs/myImgs">
-        <image class="clsIcon" src="/img/account/uCooperate.png"></image>
+        <image class="clsIcon" src="/img/account/uCooperate.png" wx:if="{{UserType==1}}"></image>
         <label>平台合作资源</label>
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>
-    <navigator class="clsView clsViewLast" url="/pages/account/browseHistory/browseHistory">
+    <navigator class="clsView clsViewLast" url="/pages/planner/information/information" wx:if="{{UserType!=1}}">
+        <label>规划师相关资料</label>
+        <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
+    </navigator>
+    <navigator class="clsView clsViewLast" url="/pages/account/browseHistory/browseHistory" wx:if="{{UserType==1}}">
         <image class="clsIcon" src="/img/account/uBrowseHistory.png"></image>
         <label>浏览历史</label>
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>
   </view>
-  <view class="clsBarBackgroundImg">
+  <view class="clsBarBackgroundImg" wx:if="{{UserType==1}}">
     <image src="/img/account/uBackground.png" mode="scaleToFill"></image>
   </view>
 

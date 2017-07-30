@@ -8,7 +8,7 @@
           <view class="plannerTxtInfo">
             <view class="clsName">{{item.Name}}</view>
             <view class="clsService">服务人数：{{item.CustomerCount}}  好评率：{{item.BadReviewCount}}</view>
-            <view class="clsNewEvaluate">{{item.NewEvaluate==null?"":item.NewEvaluate}}</view>
+            <view class="clsNewEvaluate">评价：{{item.NewEvaluate==null?"":item.NewEvaluate}}</view>
             <view class="clsLables">
               <block wx:for='{{item.Lables}}' wx:key="lableStr" wx:for-item="str" wx:for-index="idx">
                 <block wx:if="{{idx<3}}">

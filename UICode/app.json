@@ -14,6 +14,7 @@
     "pages/account/collection/collection",
     "pages/account/applyPlanner/applyPlanner",
     "pages/account/applyDemand/applyDemand",
+    "pages/account/customer/customer",
     "pages/search/search",
     "pages/planner/plannerSearch/plannerSearch",
     "pages/planner/plannerMy/plannerMy",
@@ -26,7 +27,9 @@
     "pages/planner/plannerRegister/plannerRegister",
     "pages/planner/plannerEvaluate/plannerEvaluate",
     "pages/planner/plannerRegisterSucceed/plannerRegisterSucceed",
-    
+    "pages/planner/information/information",
+    "pages/planner/informationDetails/informationDetails",
+
     "pages/demand/demandPublic/demandPublic",
     "pages/service/serviceModule/serviceModule",
     "pages/service/serviceMarket/serviceMarket",

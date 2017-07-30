@@ -1,6 +1,10 @@
 page{
   background-color: #fff;
 }
+.containePlanner{
+  background-color: #f0f0f0;
+  padding: 20rpx 0;
+}
 /*backgroundImg*/
 .backgroundImg{
   width: 100%;
@@ -41,12 +45,44 @@ page{
   color: #fff;
 }
 
+.clsPlannerHead{
+  margin: 20rpx;
+  margin-top:0;
+  padding: 30rpx;
+  background-color: #FFF;
+}
+.clsPlannerHead image{
+  width:150rpx;
+  height: 150rpx;
+  border-radius: 150rpx;
+  margin:10rpx;
+}
+.clsPlannerHead label{
+  padding-left: 18rpx;
+  line-height: 170rpx;
+  vertical-align: middle;
+}
+.clsPlannerHead navigator{
+  margin-left: 120rpx;
+  margin-top:54rpx;
+  color: #099aff;
+  border:4rpx solid #099aff;
+  border-radius: 8rpx;
+  padding: 10rpx 30rpx;
+  height: 36rpx;
+  font-family: "黑体";
+  font-size: 33rpx;
+}
 
 /**clsUserInfo*/
 .clsUserInfo{
   z-index: 999;
   width:100%;
   background-color: #fff;
+}
+.clsUserInfoPlanner{
+  margin: 20rpx;
+  width:auto;
 }
 .clsView{
   position:  relative;

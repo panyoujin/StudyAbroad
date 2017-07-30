@@ -1,0 +1,36 @@
+/* pages/planner/information/information.wxss */
+page{
+  background-color: #fff;
+}
+.containePlanner{
+  margin: 20rpx;
+}
+.clsUserInfo{
+  z-index: 999;
+  width:100%;
+  background-color: #fff;
+}
+.clsView{
+  position:  relative;
+  display:flex;
+  flex-direction:row;
+  padding: 30rpx 50rpx 20rpx;
+  height: 80rpx;
+  border-bottom: 2rpx solid #dedede;
+  /*margin-bottom:10rpx;*/
+}
+.clsView label{
+  line-height: 80rpx;
+  vertical-align: middle;
+  margin-left: 30rpx;
+  color: #1d1d26;
+  font-size:30rpx;
+}
+.clsView .clsEnterIcon{
+  position: absolute;
+  width:30rpx;
+  height: 30rpx;
+  display: block;
+  right: 60rpx;
+  top:37%;
+}

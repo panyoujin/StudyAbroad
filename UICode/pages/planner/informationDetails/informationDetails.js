@@ -1,50 +1,18 @@
-// pages/account/applyDemand/applyDemand.js
-var common = require('../../../utils/common.js')
+// pages/planner/informationDetails/informationDetails.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    orderId: "",
-    btnTxt: "点击评价",
-    btnSubmit: "btnEditUser",
-    schedule: []
+  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    var id = options.id;
-    if (id == undefined) {
-      id = ""
-    }
-    that.setData({
-      orderId: id
-    })
-    
-    common.POST({
-      url: "/order/get_order_status",
-      params: {
-        OrderId: '34c6f07a-66db-11e7-952e-1c1b0d79990b'
-      },
-      success: function (res, s, m) {
-        if (s) {
-          that.setData({
-            schedule: res
-          })
-        } else {
-          wx.showToast({
-            title: '获取信息失败',
-            image: '/img/error.png',
-            duration: 1500
-          })
-        }
-      },
-      fail: function () { }
-    })
+  
   },
 
   /**
