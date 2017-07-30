@@ -1,0 +1,28 @@
+<!--pages/team/teamAdd/teamAdd.wxml-->
+<view class="container">
+  <form bindsubmit="btnSubmit">
+    <view class="clsView">
+      <label class="clsTxt">团队名字：</label>
+      <input class="clsInput"  placeholder="请输入姓名" name="name" />
+    </view>
+
+    <view class="clsView">
+      <label class="clsTxt">认证服务区域：</label>
+      <radio-group class="radio-group clsRadio" bindchange="radioAreaChange">
+        <label class="radio clsNotChecked {{item.Id==pArea?'clsChecked':''}}" wx:for="{{areas}}" wx:key="item">
+          <radio class="hideTag" value="{{item.Id}}" checked="{{item.checked}}"/>{{item.Name}}
+        </label>
+      </radio-group>
+    </view>
+
+    <view class="clsView">
+      <label class="clsTxt">团队服务重点：</label>
+      <textarea class="clsInput clsArea" name="teamContent" placeholder="" maxlength="1000" />
+    </view>
+
+    <view class="errorMsg">{{tip}}</view>
+    <button class="clsBtn" formType="submit">提交审核</button>
+
+  </form>
+</view>
+

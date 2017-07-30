@@ -1,0 +1,9 @@
+<!--pages/message/msgService/msgService.wxml-->
+<view class="clsGroupr clsMsgHeads">
+  <view class="clsMsgTxt clsMsgChecked">服务消息</view>
+  <view class="clsMsgTxt clsMsgMid">系统消息</view>
+  <view class="clsMsgTxt">团队消息</view>
+</view>
+<view class="container">
+
+</view>

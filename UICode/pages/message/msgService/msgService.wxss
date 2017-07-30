@@ -1,0 +1,28 @@
+/* pages/message/msgService/msgService.wxss */
+/* 头部 */
+.clsMsgHeads{
+  background-color: #fff;
+}
+.clsMsgTxt{
+  padding: 35rpx 20rpx;
+  text-align: center;
+  width: 100%;
+  color: #404043;
+  font-size: 30rpx;
+  font-family: "黑体"
+}
+.clsMsgMid{
+  border-left: 2rpx solid #eee;
+  border-right: 2rpx solid #eee;
+}
+.clsMsgChecked{
+  color: #099aff;
+  border-bottom: 4rpx solid #099aff;
+}
+
+
+
+.container{
+  margin: 20rpx;
+  font-size: 30rpx;
+}

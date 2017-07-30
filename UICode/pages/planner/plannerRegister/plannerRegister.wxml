@@ -31,7 +31,7 @@
 
     <view class="clsView">
       <label class="clsTxt">资历：</label>
-      <textarea class="clsInput clsArea" bindblur="bindTextAreaBlur" name="record" placeholder="请输入资历" maxlength="1000" />
+      <textarea class="clsInput clsArea" name="record" placeholder="请输入资历" maxlength="1000" />
     </view>
 
     <view class="clsView">

@@ -1,9 +1,8 @@
 <!--pages/planner/evaluate/evaluate.wxml-->
 <view class="container" >
 
- <!--成功案例-->
  <block wx:for="{{evaluates}}" wx:key="item">
-    <view class="clsEvaluate">
+    <navigator class="clsEvaluate" url="/pages/planner/evaluateDetails/evaluateDetails?id={{item.OrderId}}">
       <view class="clsHead">
         <image class="clsHeadImg" src="{{apiUrl}}{{item.HeadImage}}"></image>
         <view class="clsHeadTxt">
@@ -19,7 +18,7 @@
       </view>
       <view class="clsCreateTime">{{item.CreateTime}}</view>
       <view class="clsCon">{{item.Content}}</view>
-    </view>
+    </navigator>
   </block>
   <view wx:if="{{searchCount==0}}">
       <view class="pageMsg">没有评论数据</view>

@@ -1,18 +1,33 @@
 // pages/planner/evaluateDetails/evaluateDetails.js
+var common = require('../../../utils/common.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    orderId:"",
+
+    apiUrl: common.apiUrl + "/",
+    isSearch: true,
+    searchCount: 1,
+    pageIndex: 1,
+    evaluates: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this;
+    var id = options.id;
+    if (id == undefined) {
+      id = "08c1ffea-57fe-11e7-a958-0242c0a80005"
+    }
+    that.setData({
+      orderId: id
+    })
+    searchList(this, 1)
   },
 
   /**
@@ -54,7 +69,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    searchList(this, 2)
   },
 
   /**
@@ -64,3 +79,33 @@ Page({
   
   }
 })
+
+
+function searchList(that, sType) {
+  if (!that.data.isSearch)
+    return;
+  common.POST({
+    url: "/order/select_evaluate_info",
+    params: {
+      page: that.data.pageIndex,
+      size: common.pageSize,
+      orderId: that.data.orderId
+    },
+    success: function (res, s, m) {
+      if (s && res.length != 0) {
+        that.setData({
+          evaluates: that.data.evaluates.concat(res),
+          pageIndex: that.data.pageIndex + 1,
+          searchCount: res.length
+        })
+      } else {
+        var sc = sType == 1 ? 0 : -1;
+        that.setData({
+          isSearch: false,
+          searchCount: sc
+        })
+      }
+    },
+    fail: function () { }
+  })
+} 

@@ -1,1 +1,39 @@
 /* pages/planner/evaluateDetails/evaluateDetails.wxss */
+page{
+  background-color: #fff;
+}
+.container{
+  font-size: 30rpx;
+  margin-bottom: 45rpx;
+}
+.clsGroupc{
+  margin: 0 20rpx;
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid #eee;
+}
+
+.clsView{
+  padding: 8rpx 20rpx;
+}
+
+.clsTxt{
+  line-height: 1.4;
+}
+.clsLast{
+  color: #aeaeae;
+}
+
+.clsImgs{
+  position: relative;
+  display:flex;
+  flex-wrap:wrap;
+}
+.clsImg{
+  width:200rpx;
+  height:200rpx;
+}
+image{
+  width: 100%;
+  height: 100%;
+  border-radius: 8rpx;
+}

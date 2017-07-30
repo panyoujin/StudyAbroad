@@ -37,10 +37,17 @@
     "pages/service/ServiceAdd/ServiceAdd",
     "pages/service/ContractDataAdd/ContractDataAdd",
 
+    "pages/team/teamAdd/teamAdd",
+
+    "pages/message/msgTeam/msgTeam",
+    "pages/message/msgService/msgService",
+    "pages/message/msgSystem/msgSystem",
+
     "pages/dynamic/dynamicList/dynamicList",
     "pages/dynamic/dynamicDetails/dynamicDetails",
     "pages/dynamic/dynamicAdd/dynamicAdd",
     "pages/dynamic/dynamicMy/dynamicMy"
+
   ],
   "window": {
     "backgroundColor": "#5CACEE",
