@@ -7,7 +7,7 @@ select_planner_team_member_list="SELECT tm.UserId,ui.`Name`,ui.`HeadImage`,tm.`S
                                 "ORDER BY tm.`Sort` DESC,tm.`CreateTime` DESC " \
                                 "LIMIT %s, %s "
 
-#获取团队列表
+#新增团队
 insert_team="INSERT INTO `T_Team` (`Id`,`AdminUserId`,`Name`,`ServiceAreaId`,`ServiceDescription`,`CreateUserID`,`CreateTime`,`ModifUserID`,`ModifTime`) " \
             "VALUES( '%s', '%s', '%s', %s, '%s', '%s', NOW(), '%s', NOW()) ;" \
             "INSERT INTO `T_TeamMember` (`TeamId`,`UserId`,`Sort`,`CreateUserID`,`CreateTime`,`ModifUserID`,`ModifTime`) " \
