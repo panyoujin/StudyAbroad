@@ -481,4 +481,12 @@
         <FileParam></FileParam>
         <BodyParam></BodyParam>
     </Interface>
+	
+    <Interface>
+        <Name>获取规划师标签列表</Name>
+        <Url>http://localhost:5000/planner/get_planner_lables</Url>
+        <PostParam>page=1#;#size=10#;#plannerId=3C3C46F6-9D2B-4918-92D4-6BC1B669C85F</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
 </InterfaceList>
