@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    demandId:"",
     isOK: true,
     service:[]
   },
@@ -20,6 +21,10 @@ Page({
       that.setData({ isOK: false })
       return;
     }
+    that.setData({
+      demandId:id
+    })
+
     var services = wx.getStorageSync("queryServices");
     var service = null;
     var i = 0
@@ -87,8 +92,13 @@ Page({
   },
 
   btnSelect: function () {
+    var url = "/pages/account/applyDemand/applyDemand?demandId=" + this.data.demandId;
+    //服务
+    if (this.data.service.Type=="2"){
+      url = "/pages/service/ContractDataAdd/ContractDataAdd?serviceId=" + this.data.demandId;
+    }
     wx.navigateTo({
-      url: "/pages/account/applyDemand/applyDemand",
+      url: url
     })
   },
 

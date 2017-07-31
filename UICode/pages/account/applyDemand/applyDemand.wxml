@@ -4,8 +4,8 @@
     <view class="clsView">
       <label class="clsTxt">申请后台</label>
       <view class="clsImg">
-        <icon class="hideTag" type="success" size="38" color="#099AFF"/>
-        <button>申请</button>
+        <icon class="{{demandId==''?'':'hideTag'}}" type="success" size="38" color="#099AFF"/>
+        <button class="{{demandId==''?'hideTag':''}}" bindtap="btnApply">申请</button>
       </view>
     </view>
 
@@ -51,7 +51,7 @@
     </view> -->
 
     <view>{{tip}}</view>
-    <button class="clsBtn" formType="submit">{{btnTxt}}</button>
+    <!-- <button class="clsBtn" formType="submit">{{btnTxt}}</button> -->
   </form>
 </view>
 

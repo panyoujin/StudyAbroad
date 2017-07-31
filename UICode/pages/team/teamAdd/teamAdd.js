@@ -37,16 +37,16 @@ Page({
       tip: ''
     })
     common.POST({
-      url: "",
+      url: "/planner/insert_team",
       params: {
-        Name: name,
-        Address: teamContent,
-        ServiceAreaId: pArea,
+        name: name,
+        serviceDescription: teamContent,
+        serviceAreaId: pArea,
       },
       success: function (res, s, m) {
         if (s) {
           wx.showToast({
-            title: '审核成功',
+            title: '提交成功',
             duration: 1500
           })
         } else {
