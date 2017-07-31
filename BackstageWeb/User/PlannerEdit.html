@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>用户信息</title>
+    <title>规划师信息</title>
     <link href="/Resource/Style/ivory.css?v=3" rel="stylesheet" type="text/css" />
     <link href="/Resource/Style/main.css?v=3" rel="stylesheet" type="text/css" />
     <link href="/Resource/Style/FortAwesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -16,7 +16,7 @@
 <body>
     
         <div id="contentheader">
-            <div id="contentheader_title">用户信息</div>
+            <div id="contentheader_title">规划师信息</div>
             <div id="contentheader_button">
                 <button onclick="parent.gotoPage('/User/PlannerIndex.html');" type="button"><i class="fa fa-times"></i>&nbsp;取消</button>
             </div>
@@ -25,7 +25,7 @@
 
         <div id="content">
             <div class="area" style="margin-bottom:35px;">
-            <div class="area_title">编辑用户</div>
+            <div class="area_title">编辑规划师</div>
                 <form id="submitForm">
                     <table border="1" cellpadding="0" cellspacing="0" style="width: 80%;">
                         <tr>
@@ -68,7 +68,7 @@
                 </div>
             </div>
             <div class="area" style="margin-bottom:35px;">
-            <div class="area_title">学历背景<a href="javascript:;" style="font-size:12px;float:right;margin:auto 5px;" id="AddEducation"><i class="fa fa-plus-square"></i> 新增</a></div>
+            <div class="area_title">学历背景<a href="javascript:;" style="font-size:12px;float:right;margin:auto 5px;" id="AddEducation" onclick="AddEducation()"><i class="fa fa-plus-square"></i> 新增</a></div>
 
             <table border="1" cellpadding="0" cellspacing="0" class="table" id="EducationList">
                 <thead>
@@ -84,7 +84,7 @@
             </table>
             </div>
             <div class="area" style="margin-bottom:35px;">
-            <div class="area_title">社会背景<a href="javascript:;" style="font-size:12px;float:right;margin:auto 5px;" id="AddSociety"><i class="fa fa-plus-square"></i> 新增</a></div>
+            <div class="area_title">社会背景<a href="javascript:;" style="font-size:12px;float:right;margin:auto 5px;" id="AddSociety" onclick="AddSociety()"><i class="fa fa-plus-square"></i> 新增</a></div>
 
             <table border="1" cellpadding="0" cellspacing="0" class="table" id="SocietyList">
                 <thead>
@@ -99,7 +99,7 @@
             </table>
             </div>
             <div class="area" style="margin-bottom:35px;">
-            <div class="area_title">资源背景<a href="javascript:;" style="font-size:12px;float:right;margin:auto 5px;" id="AddResour"><i class="fa fa-plus-square"></i> 新增</a></div>
+            <div class="area_title">资源背景<a href="javascript:;" style="font-size:12px;float:right;margin:auto 5px;" id="AddResour" onclick="AddResour()"><i class="fa fa-plus-square"></i> 新增</a></div>
             
             <table border="1" cellpadding="0" cellspacing="0" class="table" id="ResourList">
                 <thead>

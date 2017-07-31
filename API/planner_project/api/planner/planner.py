@@ -431,3 +431,24 @@ def delete_album():
     ApiResponse.status = 200
     ApiResponse.data = data
     return api_response.response_return(ApiResponse)
+
+
+
+#获取规划师标签列表
+@app.route("/planner/get_planner_lables", methods=['POST'])
+def get_planner_lables():
+    ApiResponse = api_response.ApiResponse()
+    size = request.form.get("size", type=int, default=10)
+    page = request.form.get("page", type=int, default=1)
+    plannerId = request.form.get("plannerId", type=str, default=None)
+    if plannerId == None:
+        raise custom_error.CustomFlaskErr(status_code=500, message="请选择规划师")
+    if page <= 0:
+        page = 1
+    if size <= 0:
+        size = 10
+    lables=planner_logic.select_planner_lables(plannerId,page,size)
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = lables
+    return api_response.response_return(ApiResponse)
