@@ -474,4 +474,11 @@
         <FileParam></FileParam>
         <BodyParam></BodyParam>
     </Interface>
+    <Interface>
+        <Name>新增团队</Name>
+        <Url>http://localhost:5000/planner/insert_team</Url>
+        <PostParam>name=团队1#;#serviceAreaId=1#;#serviceDescription=团队注重于留学咨询</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
 </InterfaceList>
