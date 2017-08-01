@@ -5,9 +5,9 @@
       <view class="clsGroupc">
         <view class="clsView clsTxt">{{item.Content}}</view>
         <view class="clsView clsImgs">
-          <view class="clsImg" wx:for="{{[item.HeadImage]}}" wx:key="item">
+          <!-- <view class="clsImg" wx:for="{{[item.HeadImage]}}" wx:key="item">
             <image src="{{apiUrl}}{{item}}"></image>
-          </view>
+          </view> -->
         </view>
         <view class="clsView clsLast">
           <!-- <label>评论者：{{item.Name}}</label> -->

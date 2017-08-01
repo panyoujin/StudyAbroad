@@ -1,8 +1,7 @@
 <view class="contactPhone">
-  <navigator open-type="navigate" bindtap="alertContent">
-    <!--url="/pages/account/register/register"-->
-    <image src="/img/home/phone.png" mode="aspectFill"> </image>
-  </navigator>
+  <view class="clsAlert" bindtap="alertContent">
+    <image src="/img/tabbar/add.png" mode="aspectFill"> </image>
+  </view>
 </view>
 
 <modal hidden="{{hidden}}" confirm-text="确定" bindconfirm="confirm" no-cancel="{{true}}">

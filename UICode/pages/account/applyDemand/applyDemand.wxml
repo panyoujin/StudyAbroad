@@ -4,11 +4,13 @@
     <view class="clsView">
       <label class="clsTxt">申请后台</label>
       <view class="clsImg">
-        <icon class="{{demandId==''?'':'hideTag'}}" type="success" size="38" color="#099AFF"/>
-        <button class="{{demandId==''?'hideTag':''}}" bindtap="btnApply">申请</button>
+        <icon class=" {{orderId==''?'hideTag':''}}" type="success" size="38" color="#099AFF"/>
+        <view class="clsYy {{orderId==''?'':'hideTag'}}"></view>
+        <button class="hideTag">申请</button>
       </view>
     </view>
 
+    <view class="classname"></view>
     <block wx:for="{{schedule}}" wx:key="item">
       <block wx:if="{{item.StatusStr!='线下签约'}}">
         <view class="clsView">
@@ -21,35 +23,37 @@
       </block>
     </block>
 
-    <!-- <view class="clsView">
-      <label class="clsTxt">等待客服回访</label>
-      <view class="clsImg">
-        <icon type="success" size="38" color="#099AFF"/>
-        <view class="clsYy hideTag"></view>
+    <view class="{{orderId==''?'':'hideTag'}}">
+      <view class="clsView">
+        <label class="clsTxt">客服回访</label>
+        <view class="clsImg">
+          <icon type="success" class="hideTag" size="38" color="#099AFF"/>
+          <view class="clsYy"></view>
+        </view>
       </view>
+      <view class="clsView">
+        <label class="clsTxt">拟定合同</label>
+        <view class="clsImg">
+          <icon type="success" class="hideTag" size="38" color="#099AFF"/>
+          <view class="clsYy"></view>
+        </view>
+      </view>
+      <view class="clsView">
+        <label class="clsTxt">平台审查</label>
+        <view class="clsImg">
+          <icon type="success" class="hideTag" size="38" color="#099AFF"/>
+          <view class="clsYy"></view>
+        </view>
+      </view>
+      <view class="clsView">
+        <label class="clsTxt">付款确认</label>
+        <view class="clsImg">
+          <icon type="success" class="hideTag" size="38" color="#099AFF"/>
+          <view class="clsYy"></view>
+        </view>
+      </view> 
     </view>
-    <view class="clsView">
-      <label class="clsTxt">拟定合同</label>
-      <view class="clsImg">
-        <icon type="success" size="38" color="#099AFF"/>
-        <view class="clsYy hideTag"></view>
-      </view>
-    </view>
-    <view class="clsView">
-      <label class="clsTxt">平台审查</label>
-      <view class="clsImg">
-        <icon type="success" size="38" color="#099AFF"/>
-        <view class="clsYy hideTag"></view>
-      </view>
-    </view>
-    <view class="clsView">
-      <label class="clsTxt">付款确认</label>
-      <view class="clsImg">
-        <icon class="hideTag" type="success" size="38" color="#099AFF"/>
-        <view class="clsYy"></view>
-      </view>
-    </view> -->
-
+    
     <view>{{tip}}</view>
     <!-- <button class="clsBtn" formType="submit">{{btnTxt}}</button> -->
   </form>

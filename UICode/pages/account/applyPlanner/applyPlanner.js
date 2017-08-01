@@ -24,7 +24,7 @@ Page({
     var that = this;
     var id = options.id;
     if (id == undefined) {
-      id = ""
+      return;
     }
     that.setData({
       orderId: id

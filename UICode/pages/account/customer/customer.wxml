@@ -8,7 +8,7 @@
           </view>
           <view class="serviceTxtInfo">
             <view class="clsName">姓名：{{item.Name}}</view>
-            <view class="clsService">类型：{{item.Type=="1"?"需求":"服务"}}</view>
+            <view class="clsService">类型：需求</view>
           </view>
           <view class="clsOther">
             <label>当前进度:</label><label class="clsColor">{{item.OrderStatusStr}}</label>

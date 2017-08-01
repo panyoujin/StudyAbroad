@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    addType:2,  //1需求2服务
+    checkPlannerId:"",
     formSubmit: "formSubmit",
     formSubmitTxt:"确认发布",
     dateNow:"1990-01-01",
@@ -22,6 +24,23 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+
+    var addType = options.addType;
+    //需求才需要
+    if (addType==1){
+      var checkPlannerId = wx.getStorageSync('checkPlannerId');
+      if (checkPlannerId == undefined) {
+        //已经选择规划师
+        checkPlannerId ="";
+      }
+      that.setData({
+        checkPlannerId: checkPlannerId,
+        addType:1
+      })
+    }
+    console.log(that.data.checkPlannerId);
+     
+
     var date = new Date();
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
@@ -131,8 +150,13 @@ Page({
               formSubmit: 'formSubmit',
               formSubmitTxt: "确认发布"
             })
+
+            var url ="/pages/demand/demandPublic/demandPublic";
+            if (that.data.addType == 1){
+              url ="/pages/demand/demandPublic/demandPublic"
+            }
             wx.navigateTo({
-              url: "/pages/account/applyPlanner/applyPlanner",
+              url: url,
             })
             // wx.showToast({
             //   title: '发布成功！',

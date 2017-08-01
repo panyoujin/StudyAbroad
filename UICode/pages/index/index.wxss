@@ -70,7 +70,7 @@ swiper-item image{
   right: 0;
   top:58%;
 }
-.contactPhone navigator image{
+.contactPhone .clsAlert image{
   width: 110rpx;
   height: 110rpx;
 }

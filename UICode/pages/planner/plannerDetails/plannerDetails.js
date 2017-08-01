@@ -106,7 +106,7 @@ Page({
 
   btnSelect: function(){
     wx.navigateTo({
-      url: "/pages/service/ContractDataAdd/ContractDataAdd",
+      url: "/pages/service/ContractDataAdd/ContractDataAdd?plannerId=" + this.data.plannerId,
     })
   },
 

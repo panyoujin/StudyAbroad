@@ -92,14 +92,18 @@ Page({
   },
 
   btnSelect: function () {
-    var url = "/pages/account/applyDemand/applyDemand?demandId=" + this.data.demandId;
-    //服务
+    
     if (this.data.service.Type=="2"){
-      url = "/pages/service/ContractDataAdd/ContractDataAdd?serviceId=" + this.data.demandId;
+      //服务
+      var url = "/pages/service/ContractDataAdd/ContractDataAdd?plannerId=" + this.data.service.UserId;
+      wx.navigateTo({
+        url: url
+      })
+    }else{
+      //承接需求
+      addDertake(this);
     }
-    wx.navigateTo({
-      url: url
-    })
+    
   },
 
   /**
@@ -157,3 +161,35 @@ Page({
     }
   }
 })
+
+
+function addDertake (that){
+  if (that.data.demandId == "") {
+    that.setData({
+      tip: "申请的需求不存在！"
+    })
+    return;
+  }
+  common.POST({
+    url: "/demand_undertake/insert_undertake",
+    params: {
+      DemandId: that.data.demandId,
+      ContractId: "12345678"
+    },
+    success: function (res, s, m) {
+      if (s) {
+        wx.showToast({
+          title: '承接需求成功',
+          duration: 1500
+        })
+      } else {
+        wx.showToast({
+          title: '获取信息失败',
+          image: '/img/error.png',
+          duration: 1500
+        })
+      }
+    },
+    fail: function () { }
+  })
+}

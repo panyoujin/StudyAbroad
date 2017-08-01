@@ -46,7 +46,7 @@
   </view>
 
   <view class="clsSelect">
-    <button bindtap="btnSelect">{{service.Type=="1"?'选择需求':'选择服务'}}</button>
+    <button bindtap="btnSelect">{{service.Type=="1"?'承接需求':'选择服务'}}</button>
   </view>
 </view>
 

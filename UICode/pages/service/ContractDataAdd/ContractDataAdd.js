@@ -30,49 +30,60 @@ Page({
       wx.redirectTo({
         url: "/pages/account/login/login"
       });
-    } else {
-      common.POST({
-        url: "/userinfo/get_user_info",
-        params: {
-          userid: loginInfo.Id,
-        },
-        success: function (res, s, m) {
-          if (s) {
-            that.setData({
-              user: res,
-              pSex: res.Sex
-            })
+      return;
+    } 
 
-            if (res.IDCardJust != null && res.IDCardJust !=""){
-              that.setData({
-                imgUrl01: common.apiUrl + "/" + res.IDCardJust,
-                clsImgUrl01: "clsIdCardImg",
-                clsChooseImg01: "hideTag",
-              })
-            }
-            if (res.IDCardBack != null && res.IDCardBack != "") {
-              that.setData({
-                imgUrl02: common.apiUrl + "/" +res.IDCardBack,
-                clsImgUrl02: "clsIdCardImg",
-                clsChooseImg02: "hideTag",
-              })
-            }
-          } else {
-            wx.showToast({
-              title: '获取个人基本信息失败！',
-              image: '/img/error.png',
-              duration: 1500
+    var plannerId = options.plannerId;
+    if (plannerId != undefined) {
+      //已选择规划师的情况
+      wx.setStorageSync('checkPlannerId', plannerId)
+    }else{
+      //没有选择择规划师的情况
+      wx.setStorageSync('checkPlannerId', '')
+    }
+
+
+    common.POST({
+      url: "/userinfo/get_user_info",
+      params: {
+        userid: loginInfo.Id,
+      },
+      success: function (res, s, m) {
+        if (s) {
+          that.setData({
+            user: res,
+            pSex: res.Sex
+          })
+
+          if (res.IDCardJust != null && res.IDCardJust !=""){
+            that.setData({
+              imgUrl01: common.apiUrl + "/" + res.IDCardJust,
+              clsImgUrl01: "clsIdCardImg",
+              clsChooseImg01: "hideTag",
             })
           }
-        },
-        fail: function () { }
-      })
-    }
+          if (res.IDCardBack != null && res.IDCardBack != "") {
+            that.setData({
+              imgUrl02: common.apiUrl + "/" +res.IDCardBack,
+              clsImgUrl02: "clsIdCardImg",
+              clsChooseImg02: "hideTag",
+            })
+          }
+        } else {
+          wx.showToast({
+            title: '获取个人基本信息失败！',
+            image: '/img/error.png',
+            duration: 1500
+          })
+        }
+      },
+      fail: function () { }
+    })
   },
 
   btnSubmit:function(){
     wx.navigateTo({
-      url: '/pages/service/ServiceAdd/ServiceAdd',
+      url: '/pages/service/ServiceAdd/ServiceAdd?addType=1',
     })
   },
   /**

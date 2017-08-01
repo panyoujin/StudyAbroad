@@ -10,9 +10,9 @@ Page({
     ],
     userInfo: {},
     hidden: true,
-    xuqiu: false,
-    fuwu: false,
-    dongtai: false
+    xuqiu: true,
+    fuwu: true,
+    dongtai: true
   },
   //点击浮动按钮事件
   alertContent: function (e) {
@@ -27,22 +27,14 @@ Page({
     //普通用户
     if (loginInfo.UserType == 1) {
       that.setData({
+        xuqiu: false
+      })
+    } else {
+      that.setData({
         fuwu: false,
         dongtai: false
       })
-    } else if (loginInfo.UserType == 2 || loginInfo.UserType == 3) {
-      that.setData({
-        xuqiu: true
-
-      })
-    } else {//
-      wx.navigateTo({
-        url: "/pages/account/login/login"
-      })
     }
-
-
-
   },
   //点击弹窗的确定事件
   confirm: function (e) {

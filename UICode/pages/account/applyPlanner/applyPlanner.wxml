@@ -2,10 +2,11 @@
 <view class="container">
   <form bindsubmit="{{btnSubmit}}">
     <view class="clsView">
-      <label class="clsTxt">通知规划师</label>
+      <label class="clsTxt">等待规划师承接</label>
       <view class="clsImg">
-        <icon class="hideTag" type="success" size="38" color="#099AFF"/>
-        <button>申请</button>
+        <icon class=" {{orderId==''?'hideTag':''}}" type="success" size="38" color="#099AFF"/>
+        <view class="clsYy {{orderId==''?'':'hideTag'}}"></view>
+        <button class="hideTag">申请</button>
       </view>
     </view>
 
@@ -19,41 +20,43 @@
       </view>
     </block>
 
-    <!-- <view class="clsView">
-      <label class="clsTxt">等待客服回访</label>
-      <view class="clsImg">
-        <icon type="success" size="38" color="#099AFF"/>
-        <view class="clsYy hideTag"></view>
+    <view class="{{orderId==''?'':'hideTag'}}">
+      <view class="clsView">
+        <label class="clsTxt">等待客服回访</label>
+        <view class="clsImg">
+          <icon type="success" class="hideTag" size="38" color="#099AFF"/>
+          <view class="clsYy"></view>
+        </view>
       </view>
+      <view class="clsView">
+        <label class="clsTxt">拟定合同</label>
+        <view class="clsImg">
+          <icon type="success" class="hideTag" size="38" color="#099AFF"/>
+          <view class="clsYy"></view>
+        </view>
+      </view>
+      <view class="clsView">
+        <label class="clsTxt">签约方式</label>
+        <view class="clsImg">
+          <icon type="success" class="hideTag" size="38" color="#099AFF"/>
+          <view class="clsYy"></view>
+        </view>
+      </view>
+      <view class="clsView">
+        <label class="clsTxt">平台审查</label>
+        <view class="clsImg">
+          <icon type="success" class="hideTag" size="38" color="#099AFF"/>
+          <view class="clsYy"></view>
+        </view>
+      </view>
+      <view class="clsView">
+        <label class="clsTxt">付款确认</label>
+        <view class="clsImg">
+          <icon type="success" class="hideTag" size="38" color="#099AFF"/>
+          <view class="clsYy"></view>
+        </view>
+      </view> 
     </view>
-    <view class="clsView">
-      <label class="clsTxt">拟定合同</label>
-      <view class="clsImg">
-        <icon type="success" size="38" color="#099AFF"/>
-        <view class="clsYy hideTag"></view>
-      </view>
-    </view>
-    <view class="clsView">
-      <label class="clsTxt">签约方式</label>
-      <view class="clsImg">
-        <icon type="success" size="38" color="#099AFF"/>
-        <view class="clsYy hideTag"></view>
-      </view>
-    </view>
-    <view class="clsView">
-      <label class="clsTxt">平台审查</label>
-      <view class="clsImg">
-        <icon type="success" size="38" color="#099AFF"/>
-        <view class="clsYy hideTag"></view>
-      </view>
-    </view>
-    <view class="clsView">
-      <label class="clsTxt">付款确认</label>
-      <view class="clsImg">
-        <icon class="hideTag" type="success" size="38" color="#099AFF"/>
-        <view class="clsYy"></view>
-      </view>
-    </view> -->
 
     <view>{{tip}}</view>
     <button class="clsBtn" formType="submit">{{btnTxt}}</button>
