@@ -28,6 +28,9 @@ planner_follw="INSERT INTO `U_Follow` (`UserId`,`FollwUserId`,`FollwTime`) VALUE
 #取消关注
 planner_unfollw="DELETE  FROM `StudyAbroad`.`U_Follow`  WHERE `UserId`='%s' AND `FollwUserId` = '%s' "
 
+#是否已关注
+get_whether_follw="SELECT COUNT(0) as fllow_count FROM U_Follow WHERE FollwUserId='%s' AND UserId='%s';"
+
 #查询关注的 规划师
 select_follw_planner = "SELECT u.`Id`,ui.`Name`,ui.`HeadImage`,ps.`NewEvaluate`,ps.`CustomerCount`" \
                      ",ps.`PraiseCount`,ps.`BadReviewCount`,t.`Name` AS TeamName,Lables,ps.Sort,f.FollwTime " \
