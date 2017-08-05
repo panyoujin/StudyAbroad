@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 //JSON.stringify() JSON.parse()
+var common = require('../../utils/common.js')
 var app = getApp()
 Page({
   data: {
@@ -8,10 +9,12 @@ Page({
       { url: '', src: '/img/home/banner.png' }
     ],
     userInfo: {},
+    plannerList:{},
     hidden: true,
     xuqiu: false,
     fuwu: false,
-    dongtai: false
+    dongtai: false,
+    apiUrl: common.apiUrl+'/'
   },
   //点击浮动按钮事件
   alertContent: function (e) {
@@ -22,7 +25,7 @@ Page({
         url: "/pages/account/login/login"
       })
     }
-    console.log(loginInfo)
+    // console.log(loginInfo)
 
     var that = this
     that.setData({
@@ -84,6 +87,29 @@ Page({
     that.setData({
       userInfo: app.globalData.userInfo
     })
+    //获取首页规划师
+    common.POST({
+      url: "/home/planner",
+      params: {
+        count: 6
+      },
+      success: function (res, s, m) {
+        console.log(res)
+        if (s && res.length != 0) {
+          that.setData({
+            plannerList: res
+          })
+        } else {
+          // var sc = sType == 1 ? 0 : -1;
+          // that.setData({
+          //   isSearch: false,
+          //   searchCount: sc
+          // })
+        }
+      },
+      fail: function () { }
+    })
+
     //调用应用实例的方法获取全局数据
     // app.getUserInfo(function(userInfo){
     //   //更新数据
