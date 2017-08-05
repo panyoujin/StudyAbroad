@@ -253,7 +253,7 @@
         <Name>新增需求/服务</Name>
         <Url>http://localhost:5000/demand_service/insert_browse_service</Url>
         <PostParam>
-            Name=#;#TimeStart=#;#TimeEnd=#;#PriceStart=#;#PriceEnd=#;#Description=#;#ServiceId=#;#ServiceAreaId=
+            Name=#;#TimeStart=#;#TimeEnd=#;#PriceStart=#;#PriceEnd=#;#Description=#;#ServiceId=#;#ServiceAreaId=#;#plannerId=3C3C46F6-9D2B-4918-92D4-6BC1B669C85F#;#ContractId=1
         </PostParam>
         <FileParam></FileParam>
         <BodyParam></BodyParam>

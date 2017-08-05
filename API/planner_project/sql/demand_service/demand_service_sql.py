@@ -24,6 +24,8 @@ select_demand_service_info = "SELECT ds.`Id`,ds.UserId,ds.`Name`,ds.`Type`,ds.`S
 #收藏
 demand_service_collection="INSERT INTO `U_Collection` (`UserId`,`DemandServiceId`,`CollectionTime`) VALUES('%s','%s',NOW())" \
                           " ON DUPLICATE KEY UPDATE CollectionTime=NOW() "
+#是否已收藏
+get_whether_collection="SELECT COUNT(0) as collection_count FROM U_Collection WHERE DemandServiceId='%s' AND UserId='%s';"
 
 #查询收藏列表
 select_collection_demand_service =  "SELECT ds.`Id`,ds.UserId,ds.`Name`,ds.`Type`,ds.`ServiceAreaId`,ds.`ServiceTypeId` " \

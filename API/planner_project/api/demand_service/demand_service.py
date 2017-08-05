@@ -2,9 +2,10 @@
 import uuid
 from flask import request
 from planner_project import app
-from planner_project.common import api_response,request_helper,custom_error
+from planner_project.common import api_response,request_helper,custom_error,enum
 from planner_project.data_access import mysql
-from planner_project.sql.demand_service import demand_service_sql
+from planner_project.sql.demand_service import demand_service_sql,demand_undertake
+from planner_project.logic import  demand_service_logic
 
 
 #需求服务搜索
@@ -32,6 +33,16 @@ def demand_service_info():
     if demandServiceId ==None and demandServiceId =="":
         raise custom_error.CustomFlaskErr(status_code=500, message="需求或者服务不存在")
     data = mysql.get_object(demand_service_sql.select_demand_service_info,(demandServiceId))
+    collection_count=0
+    undertake_count=0
+    user = request_helper.current_user()
+    if user != None and any(user) and data!=None and user["Id"]!=data["UserId"]:
+        obj= demand_service_logic.get_whether_collection(user["Id"],demandServiceId)
+        collection_count=obj["collection_count"]
+        data_exists = mysql.get_object(demand_undertake.select_exists_demand_service, (demandServiceId, user["Id"]))
+        undertake_count=data_exists["total"]
+    data["collection_count"]=collection_count
+    data["undertake_count"]=undertake_count
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data
@@ -146,9 +157,10 @@ def insert_browse_service():
                                 (guid,user["Id"],Name,Type,ServiceAreaId,ServiceTypeId,PriceStart
                                  ,PriceEnd,TimeStart,TimeEnd,Description,user["Id"],user["Id"]))
     plannerId = request.form.get("plannerId", type=str, default=None)
-    #if plannerId != None and plannerId != "":
+    ContractId = request.form.get("ContractId", type=str, default=None)
+    if plannerId != None and plannerId != "" and Type==2:
         #新增承接
-
+        mysql.operate_object(demand_undertake.insert_demand_undertake, (guid, plannerId,user["Id"],enum.IsUser.yes,ContractId))
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data
