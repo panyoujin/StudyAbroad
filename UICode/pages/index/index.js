@@ -16,10 +16,10 @@ Page({
   },
   //点击浮动按钮事件
   alertContent: function (e) {
-    var loginInfo = wx.getStorageSync('userLoginInfo');
     //判断用户是否已经登陆
     common.CheckLogin("");
 
+    var loginInfo = wx.getStorageSync('userLoginInfo');
     var that = this
     that.setData({
       hidden: false

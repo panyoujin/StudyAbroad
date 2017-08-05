@@ -1,0 +1,7 @@
+<!--pages/message/msgDetails/msgDetails.wxml-->
+<view class="container">
+  <view class="clsHead">消息内容</view>
+  <view class="clsContent">
+    {{content}}
+  </view>
+</view>

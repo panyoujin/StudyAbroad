@@ -1,4 +1,4 @@
-// pages/message/msgTeam/msgTeam.js
+// pages/team/teamManage/teamManage.js
 var common = require('../../../utils/common.js')
 Page({
 
@@ -6,48 +6,69 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userType:1,
-
     isSearch: true,
     searchCount: 1,
     pageIndex: 1,
     searchValue: "",
-    msgs: [],
+    teams:[]
+  },
+  /**
+   * 查询
+   */
+  searchBindconfirm: function (e) {
+    var that = this;
+    if (e.detail.value == "") {
+      that.setData({
+        searchCount: -2
+      })
+      return;
+    }
+    that.setData({
+      pageIndex: 1,
+      isSearch: true,
+      searchValue: e.detail.value,
+      teams: []
+    })
+    searchList(this);
   },
 
-  btnOk: function (e) {
-    common.POST({
-      url: "/team/agree_join_team",
-      params: {
-        NoticeId: e.currentTarget.dataset.id
-      },
-      success: function (res, s, m) {
-        if (s) {
-          wx.showToast({
-            title: '申请已通过',
-            duration: 1500
-          })
-        } else {
-          wx.showToast({
-            title: m,
-            image: '/img/error.png',
-            duration: 1500
-          })
-        }
-      },
-      fail: function () { }
+  /**
+   * 团队详情
+   */
+  btnLookTeam:function(){
+    wx.navigateTo({
+      url: '/pages/planner/plannerMy/plannerMy?url=team&temaId=1&temaName=团队001',
     })
   },
-  btnCancel:function(e){
+  /**
+  * 团队创建
+  */
+  btnTeamAdd: function () {
+    wx.navigateTo({
+      url: '/pages/team/teamAdd/teamAdd',
+    })
+  },
+  /**
+   * 团队申请加入
+   */
+  btnJoin:function(e){
+    var that = this;
+    if (e.currentTarget.dataset.Isjoin == 1){
+      wx.showToast({
+        title: '您已经是该团队成员',
+        duration: 1500
+      })
+      return;
+    }
     common.POST({
-      url: "/team/disagree_join_team",
+      url: "/team/join_team",
       params: {
-        NoticeId: e.currentTarget.dataset.id
+        TeamId: e.currentTarget.dataset.id
       },
       success: function (res, s, m) {
         if (s) {
           wx.showToast({
-            title: '申请已拒接',
+            title: '已申请加入改团队',
             duration: 1500
           })
         } else {
@@ -65,15 +86,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-    var loginInfo = wx.getStorageSync('userLoginInfo');
-    if (loginInfo != null&& loginInfo != "")[
-      this.setData({
-        userType: loginInfo.UserType
-      })
-    ]
-    
-    searchList(this, 1)
+    var that = this;
+    var value = options.value;
+    if (value == undefined) {
+      value = ""
+    }
+    that.setData({
+      searchValue: value
+    })
+    searchList(this);
   },
 
   /**
@@ -131,15 +152,16 @@ function searchList(that, sType = 1) {
   if (!that.data.isSearch)
     return;
   common.POST({
-    url: "/team/get_team_notice",
+    url: "/team/team_list",
     params: {
       page: that.data.pageIndex,
-      size: common.pageSize
+      size: common.pageSize,
+      name: that.data.searchValue
     },
     success: function (res, s, m) {
       if (s && res.length != 0) {
         that.setData({
-          msgs: that.data.msgs.concat(res),
+          teams: that.data.teams.concat(res),
           pageIndex: that.data.pageIndex + 1,
           searchCount: res.length
         })

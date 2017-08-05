@@ -1,0 +1,32 @@
+/* pages/demand/updateOrder/updateOrder.wxss */
+page{
+  background-color: #fff;
+}
+.container{
+  margin: 20rpx;
+  font-size: 30rpx;
+}
+
+.clsTxt label{
+  font-family: '黑体';
+}
+
+.picker{
+  background-color: #fff;
+  line-height: 1.5;
+  border-radius: 8rpx;
+}
+.clsName{
+  width: 100%;
+  border:2rpx solid #eee;
+  padding: 20rpx;
+  border-radius: 8rpx;
+  background-color: #fff;
+}
+
+.formBtn{
+  margin-top: 20rpx;
+  margin-bottom: 50rpx;
+  background-color: #57b1fd;
+  color: #fff;
+}

@@ -1,1 +1,62 @@
 /* pages/message/msgTeam/msgTeam.wxss */
+.clsMsgHeads{
+  background-color: #fff;
+}
+.clsMsgTxt{
+  padding: 35rpx 20rpx;
+  text-align: center;
+  width: 100%;
+  color: #404043;
+  font-size: 30rpx;
+  font-family: "黑体"
+}
+.clsMsgMid{
+  border-left: 2rpx solid #eee;
+  border-right: 2rpx solid #eee;
+}
+.clsMsgChecked{
+  color: #099aff;
+  border-bottom: 4rpx solid #099aff;
+}
+
+
+/* 内容 */
+.container{
+  margin: 20rpx;
+  font-size: 30rpx;
+}
+
+.clsView{
+  margin: 15rpx 0;
+  background-color: #fff;
+  border-radius: 8rpx;
+  font-family: "黑体";
+}
+.clsContentTop{
+  padding: 25rpx;
+  padding-bottom: 0;
+}
+.clsTxtLeft{
+  width: 50%;
+  text-align: left;
+}
+.clsTxtRight{
+  text-align: right;
+  width: 50%;
+}
+.clsMid{
+  border-bottom: 2rpx solid #eee;
+  padding-top:30rpx; 
+}
+.clsContentBottom view{
+  text-align: center;
+  padding: 30rpx 0;
+  width: 50%;
+}
+.btnOk{
+  border-right: 2rpx solid #eee;
+  color: #099aff;
+}
+.btnCancel{
+  color: #aaa;
+}

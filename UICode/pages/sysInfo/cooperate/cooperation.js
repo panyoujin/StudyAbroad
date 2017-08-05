@@ -1,29 +1,40 @@
-// pages/message/msgService/msgService.js
+// pages/sysInfo/cooperate/cooperation.js
+var common = require('../../../utils/common.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userType: 1,
-
-    isSearch: true,
+    filePath: "/img/account/bannerReg.png",
     searchCount: 1,
-    pageIndex: 1,
-    searchValue: "",
-    msgs: [],
+    imgs:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var loginInfo = wx.getStorageSync('userLoginInfo');
-    if (loginInfo != null && loginInfo != "")[
-      this.setData({
-        userType: loginInfo.UserType
-      })
-    ]
+    var that = this;
+    common.POST({
+      url: "/platform/cooperation",
+      params: {
+        page: 1,
+        size: 100,
+      },
+      success: function (res, s, m) {
+        if (s && res.length != 0) {
+          that.setData({
+            imgs: res,
+          })
+        } else {
+          that.setData({
+            searchCount: 0
+          })
+        }
+      },
+      fail: function () { }
+    })
   },
 
   /**

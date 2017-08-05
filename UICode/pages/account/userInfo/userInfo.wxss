@@ -50,6 +50,7 @@ page{
   margin-top:0;
   padding: 30rpx;
   background-color: #FFF;
+  border-radius: 8rpx;
 }
 .clsPlannerHead image{
   width:150rpx;
@@ -83,6 +84,7 @@ page{
 .clsUserInfoPlanner{
   margin: 20rpx;
   width:auto;
+  border-radius: 8rpx;
 }
 .clsView{
   position:  relative;

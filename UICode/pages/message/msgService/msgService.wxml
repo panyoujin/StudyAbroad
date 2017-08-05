@@ -1,9 +1,29 @@
 <!--pages/message/msgService/msgService.wxml-->
 <view class="clsGroupr clsMsgHeads">
   <view class="clsMsgTxt clsMsgChecked">服务消息</view>
-  <view class="clsMsgTxt clsMsgMid">系统消息</view>
-  <view class="clsMsgTxt">团队消息</view>
+  <navigator url="/pages/message/msgSystem/msgSystem" open-type="redirect" class="clsMsgTxt clsMsgMid">系统消息</navigator>
+  <navigator url="/pages/message/msgTeam/msgTeam" open-type="redirect" class="clsMsgTxt" hidden="{{userType==1?ture:false}}">团队消息</navigator>
 </view>
 <view class="container">
+  <view class="clsGroupr clsView">
+    <view class="clsGroupc clsContent clsLeft">
+      <view>服务：A</view>
+      <view>状态更新：<label class="clstxt">等待签约</label></view>
+    </view>
+    <view class="clsGroupc clsContent clsRight">
+      <!-- <view class="clsStatus">状态：已读</view> -->
+      <button class="btnLook">查看详情</button>
+    </view>
+  </view>
 
+  <view class="clsGroupr clsView">
+    <view class="clsGroupc clsContent clsLeft">
+      <view>服务：A</view>
+      <view>状态更新：<label class="clstxt">等待签约</label></view>
+    </view>
+    <view class="clsGroupc clsContent clsRight">
+      <!-- <view class="clsStatus">状态：已读</view> -->
+      <button class="btnLook">查看详情</button>
+    </view>
+  </view>
 </view>

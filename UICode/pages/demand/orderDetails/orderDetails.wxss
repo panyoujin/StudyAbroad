@@ -1,0 +1,72 @@
+/* pages/demand/orderDetails/orderDetails.wxss */
+.container{
+  margin: 20rpx;
+  font-size: 30rpx;
+}
+
+.clsHead{
+  background-color: #fff;
+  padding: 30rpx 20rpx;
+  font-size: 30rpx;
+}
+
+.clsHeadImg{
+  margin: 10rpx 30rpx;
+  
+}
+.clsHeadImg image{
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 100rpx;
+}
+.clsTxtConent{
+  padding-top:15rpx;
+}
+.clsTxtConent view{
+  padding: 8rpx 10rpx;
+  font-family: '黑体';
+}
+.clsTxt02{
+  color: #aaa;
+}
+
+
+.clsView{
+  margin: 20rpx;
+  padding:40rpx;
+  border-radius: 8rpx;
+  background-color: #fff;
+  font-size: 32rpx;
+  font-family: '黑体';
+}
+.clsViewConent01{
+  width: 50%;
+}
+.clsViewConent01 view{
+  padding: 5rpx 0;
+}
+
+.clsViewConent01 .clsTxt03{
+  font-size: 35rpx;
+  color: #099aff;
+}
+
+.clsViewConent02{
+  width: 50%;
+  text-align: right;
+  margin: auto 0;
+  vertical-align: middle;
+  color: #aaa;
+   font-size: 28rpx;
+}
+
+
+.btnUpdata{
+  background-color: #fff;
+  color: #099aff;
+  line-height:2.0;
+  font-size:30rpx;
+  margin-right:0;
+  font-family: "黑体";
+  border: 2rpx solid #099aff;
+}

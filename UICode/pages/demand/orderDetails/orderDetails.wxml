@@ -1,0 +1,25 @@
+<!--pages/demand/orderDetails/orderDetails.wxml-->
+<view class="clsGroupr clsHead">
+    <view class="clsHeadImg">
+      <image src="{{headImage}}"></image>
+    </view>
+    <view class="clsGroupc clsTxtConent">
+      <view class="clsTxt01">{{name}}</view>
+      <view class="clsTxt02">电话：{{phone}}</view>
+      <view class="clsTxt01">需求描述：{{description}}</view>
+    </view>
+</view>
+
+
+<view class="clsGroupr clsView" wx:for="{{statuss}}" wx:key="item">
+    <view class="clsGroupc clsViewConent01">
+      <view class="clsTxt02" hidden="{{item.IsDo=='1'?false:true}}">历史进度</view>
+      <view class="clsTxt01">当前服务进度：</view>
+      <view class="clsTxt03">{{item.StatusStr}}</view>
+    </view>
+    <view class="clsGroupc clsViewConent02">
+      <button class="btnUpdata" bindtap="btnUpdata"  hidden="{{item.IsDo=='1'?true:false}}">更新进度</button>
+      {{item.ChangeTime}}
+    </view>
+</view>
+

@@ -4,6 +4,7 @@
     "pages/logs/logs",
     "pages/sysInfo/ContactUs/ContactUs",
     "pages/sysInfo/softwareInfo/softwareInfo",
+    "pages/sysInfo/cooperate/cooperation",
     "pages/account/login/login",
     "pages/account/forgetPwd/forgetPwd",
     "pages/account/browseHistory/browseHistory",
@@ -31,6 +32,8 @@
     "pages/planner/informationDetails/informationDetails",
 
     "pages/demand/demandPublic/demandPublic",
+    "pages/demand/orderDetails/orderDetails",
+    "pages/demand/updateOrder/updateOrder",
     "pages/service/serviceModule/serviceModule",
     "pages/service/serviceMarket/serviceMarket",
     "pages/service/serviceDetails/serviceDetails",
@@ -38,10 +41,12 @@
     "pages/service/ContractDataAdd/ContractDataAdd",
 
     "pages/team/teamAdd/teamAdd",
+    "pages/team/teamManage/teamManage",
 
     "pages/message/msgTeam/msgTeam",
     "pages/message/msgService/msgService",
     "pages/message/msgSystem/msgSystem",
+    "pages/message/msgDetails/msgDetails",
 
     "pages/dynamic/dynamicList/dynamicList",
     "pages/dynamic/dynamicDetails/dynamicDetails",

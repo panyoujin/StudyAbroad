@@ -45,6 +45,7 @@ Page({
     var value = options.value;
     if (value == undefined) {
       value = ""
+      return;
     }
     that.setData({
       searchValue: value

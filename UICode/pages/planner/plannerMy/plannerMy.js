@@ -9,6 +9,7 @@ Page({
   data: {
     url:"/planner/follow_list",
     temaId:"",
+    temaName:"",
     
     apiUrl: common.apiUrl + "/",
     colorStr: ["clsLablesColor01", "clsLablesColor02", "clsLablesColor03"],
@@ -27,7 +28,8 @@ Page({
     if (options.url == "team") {
       that.setData({
         url: "/planner/team_member_list",
-        temaId: options.temaId == undefined ? "" : options.temaId
+        temaId: options.temaId == undefined ? "" : options.temaId,
+        temaName: options.temaName
       })
       wx.setNavigationBarTitle({ title: '团队详情' })
     }

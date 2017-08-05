@@ -1,0 +1,56 @@
+<!--pages/team/teamManage/teamManage.wxml-->
+<view class="clsGroupr clsHeads">
+    <view class="clsGroupc clsHead01">
+      <view class="clsTxt01">所在团队</view>
+      <view class="clsTxt02">队名:xxx</view>
+      <view class="clsTxt03">队长:xxx</view>
+    </view>
+    <view class="clsGroupc clsHead02">
+      <view class="clsTxt01">成立时间：xxx</view>
+      <button class="btnLook" bindtap="btnLookTeam">团队详情</button>
+    </view>
+</view>
+<view class="clsGroupr clsHeads"  hidden="true">
+    <view class="clsGroupc clsHead01 clsHead03">
+      所在团队：无
+    </view>
+    <view class="clsGroupc clsHead02 clsHead04">
+      <button class="btnLook" bindtap="btnTeamAdd">创建团队</button>
+    </view>
+</view>
+
+
+<view class="searchContainer">
+  <view class="search">
+    <icon type="search" size="20" color="#8d8f8f" />
+    <input type="text" confirm-type="search" bindconfirm="searchBindconfirm" focus="true" placeholder="请输入团队名称" placeholder-class="txtSearchPlace" value="{{searchValue}}" />
+  </view>
+</view>
+
+<view class="container">
+  <view class="searchResult">
+      <block wx:for="{{teams}}" wx:key="item">
+        <!-- <view class="clsTeamInfos" url="/pages/planner/plannerMy/plannerMy?url=team&temaId={{item.Id}}"> -->
+            <view class="clsGroupr clsTeamInfo">
+              <view class="clsGroupc clsHead01">
+                <view class="clsTxt clsTxtColor01">队名:{{item.UserName}}</view>
+                <view class="clsTxt clsTxtColor02">队长:{{item.TeamName}}</view>
+                <view class="clsTxt clsTxtColor03">成立时间：{{item.CreateTime}}</view>
+              </view>
+              <view class="clsGroupc clsHead02">
+                <button class="clsbtnJoin" data-id="{{item.Id}}" data-isjoin="{{item.Isjoin}}"  bindtap="btnJoin">申请加入</button>
+              </view>
+          </view>
+        <!-- </view> -->
+      </block>
+      <view wx:if="{{searchCount==0}}">
+        <view class="pageMsg">没有符合查询的数据</view>
+      </view>
+      <view wx:if="{{searchCount==-1}}">
+        <view class="pageMsg">没有更多的数据</view>
+      </view>
+      <view wx:if="{{searchCount==-2}}">
+        <view class="pageMsg">查询条件不能为空</view>
+      </view>
+    </view>
+</view>

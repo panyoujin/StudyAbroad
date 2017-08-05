@@ -1,0 +1,115 @@
+/* pages/team/teamManage/teamManage.wxss */
+page{
+  font-family: "黑体"
+}
+.clsHeads{
+  background-color: #fff;
+  padding: 30rpx 20rpx;
+  font-size: 30rpx;
+}
+.clsHead01{
+  width: 50%;
+  padding-left: 40rpx;
+}
+.clsTxt01{
+  font-size: 28rpx;
+  color: #aaa;
+}
+.clsTxt02{
+  font-size: 32rpx;
+  color: #099aff;
+  padding: 10rpx 0;
+}
+.clsHead03{
+  vertical-align: middle;
+  margin: auto 0;
+}
+.clsHead04{
+  padding: 0;
+}
+.clsTxt03{
+  font-size: 32rpx;
+  color: #000;
+}
+
+.clsHead02{
+  width: 50%;
+  text-align: right;
+  padding-right: 20rpx;
+}
+.btnLook{
+  background-color: #fff;
+  color: #099aff;
+  line-height:2.0;
+  font-size:30rpx;
+  margin-right:0;
+  margin-top: 20rpx;
+  font-family: "黑体";
+  border: 2rpx solid #099aff;
+}
+
+/**search**/
+.searchContainer{
+  margin-top: 20rpx;
+  z-index: 999;
+  display:flex;
+  background-color: #fff;
+  height: 110rpx;
+  right: 0;
+  left:0;
+}
+.search{
+  width: 100%;
+  position: relative;
+}
+.search icon{
+  position: absolute;
+  top: 35rpx;
+  left: 60rpx;
+}
+.search input{
+  height: 110rpx;
+  line-height: 110rpx;
+  /*border: 1px solid #CAE1FF;*/
+  border-radius: 3px;
+  padding-right: 65rpx;
+  padding-left: 120rpx;
+  font-size: 40rpx;
+  background-color: #FFF;
+  text-align: left;
+  vertical-align: middle;
+  color: #909291;
+}
+
+/* 内容 */
+.container{
+  margin: 20rpx;
+  font-size: 30rpx;
+}
+.clsTeamInfo{
+  margin: 10rpx 0;
+  border-radius: 8rpx;
+  background-color: #fff;
+  padding: 30rpx 20rpx;
+  font-size: 30rpx;
+}
+.clsTxt{
+  font-size: 28rpx;
+  font-family: "黑体"
+}
+.clsTxtColor01{
+  color: #099aff;
+}
+.clsTxtColor02{
+  padding: 10rpx 0;
+}
+.clsbtnJoin{
+   background-color: #099aff;
+  color: #fff;
+  line-height:2.0;
+  font-size:30rpx;
+  margin-right:0;
+  margin-top: 20rpx;
+  font-family: "黑体";
+  border: none;
+}

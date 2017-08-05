@@ -36,7 +36,7 @@
       <view class="pickerTxt">￥</view>
     </view>
     <view class="clsTxt">需求/服务描述</view>
-    <textarea  class="clsName" name="Name" placeholder="请输入需求/服务描述" maxlength="1000"/>
+    <textarea  class="clsName" name="Name" placeholder="请输入需求/服务描述" maxlength="2000"/>
 
     <view class="errorMsg">{{tip}}</view>
 

@@ -1,0 +1,14 @@
+<!--pages/sysInfo/cooperate/cooperation.wxml-->
+<view class="container">
+  <view class="clsImgs">
+
+    <block wx:for="{{imgs}}" wx:key="item">
+      <view class="clsImg">
+        <image src="{{item.ImageUrl==null?filePath:item.ImageUrl}}"></image>
+      </view>
+    </block>
+    <view wx:if="{{searchCount==0}}">
+        <view class="pageMsg">没有合作的资源</view>
+      </view>
+  </view>
+</view>

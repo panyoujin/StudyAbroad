@@ -1,1 +1,67 @@
 /* pages/message/msgSystem/msgSystem.wxss */
+.clsMsgHeads{
+  background-color: #fff;
+}
+.clsMsgTxt{
+  padding: 35rpx 20rpx;
+  text-align: center;
+  width: 100%;
+  color: #404043;
+  font-size: 30rpx;
+  font-family: "黑体"
+}
+.clsMsgMid{
+  border-left: 2rpx solid #eee;
+  border-right: 2rpx solid #eee;
+}
+.clsMsgChecked{
+  color: #099aff;
+  border-bottom: 4rpx solid #099aff;
+}
+
+/* 内容 */
+.container{
+  margin: 20rpx;
+  font-size: 30rpx;
+}
+
+.clsView1{
+  margin: 15rpx 0;
+  
+  
+}
+
+.clsView{
+  background-color: #fff;
+  border-radius: 8rpx;
+  position:  relative;
+  display:flex;
+  flex-direction:row;
+  padding: 30rpx 50rpx 20rpx;
+  height: 80rpx;
+  border-bottom: 2rpx solid #dedede;
+  /*margin-bottom:10rpx;*/
+}
+.clsTxtHead{
+  font-family: "黑体";
+}
+.clsView label{
+  line-height: 1.5;
+  vertical-align: middle;
+  color: #1d1d26;
+  font-size:30rpx;
+}
+.clsView .clsIcon{
+  width:20rpx;
+  height: 20rpx;
+  margin: auto 0;
+  display: block;
+}
+.clsView .clsEnterIcon{
+  position: absolute;
+  width:30rpx;
+  height: 30rpx;
+  display: block;
+  right: 60rpx;
+  top:37%;
+}

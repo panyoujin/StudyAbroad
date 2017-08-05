@@ -32,7 +32,7 @@
       <label>个人动态</label>
       <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>
-    <navigator class="clsView" url="/pages/planner/plannerMy/plannerMy?url=team&temaId=1" wx:if="{{UserType!=1}}">
+    <navigator class="clsView" url="/pages/team/teamManage/teamManage" wx:if="{{UserType!=1}}">
       <label>团队管理</label>
       <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>
@@ -56,6 +56,11 @@
         <label>我的收藏</label>
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>
+    <navigator class="clsView" url="/pages/message/msgService/msgService">
+        <image class="clsIcon" src="/img/account/uMyCollect.png" wx:if="{{UserType==1}}"></image>
+        <label>消息通知</label>
+        <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
+    </navigator>
     <navigator class="clsView" url="/pages/sysInfo/ContactUs/ContactUs">
         <image class="clsIcon" src="/img/account/uPhone.png" wx:if="{{UserType==1}}"></image>
         <label>联系我们</label>
@@ -66,7 +71,7 @@
         <label>关于软件</label>
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>
-    <navigator class="clsView" url="/pages/account/myImgs/myImgs">
+    <navigator class="clsView" url="/pages/sysInfo/cooperate/cooperation">
         <image class="clsIcon" src="/img/account/uCooperate.png" wx:if="{{UserType==1}}"></image>
         <label>平台合作资源</label>
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>

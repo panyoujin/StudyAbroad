@@ -1,29 +1,38 @@
-// pages/message/msgService/msgService.js
+// pages/message/msgDetails/msgDetails.js
+var common = require('../../../utils/common.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userType: 1,
-
-    isSearch: true,
-    searchCount: 1,
-    pageIndex: 1,
-    searchValue: "",
-    msgs: [],
+    content:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var loginInfo = wx.getStorageSync('userLoginInfo');
-    if (loginInfo != null && loginInfo != "")[
-      this.setData({
-        userType: loginInfo.UserType
+    var that = this;
+    var id = options.id;
+    var content = options.content;
+    if (id == undefined) {
+      return;
+    }
+    if (content != undefined) {
+      that.setData({
+        content: content
       })
-    ]
+    }
+
+    common.POST({
+      url: "/notice/update_system_notice_status",
+      params: {
+        Id: id
+      },
+      success: function (res, s, m) {},
+      fail: function () { }
+    })
   },
 
   /**

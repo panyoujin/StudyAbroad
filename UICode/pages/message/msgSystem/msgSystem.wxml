@@ -1,2 +1,26 @@
 <!--pages/message/msgSystem/msgSystem.wxml-->
-<text>pages/message/msgSystem/msgSystem.wxml</text>
+<view class="clsGroupr clsMsgHeads">
+  <navigator url="pages/message/msgSystem/msgSystem"  open-type="redirect" class="clsMsgTxt" >服务消息</navigator>
+  <view class="clsMsgTxt clsMsgChecked clsMsgMid">系统消息</view>
+  <navigator url="/pages/message/msgTeam/msgTeam" open-type="redirect" class="clsMsgTxt" hidden="{{userType==1?ture:false}}">团队消息</navigator>
+</view>
+<view class="container">
+
+  <view class="classname" wx:for="{{msgs}}" wx:key="item">
+    <navigator class="clsView" url="/pages/message/msgDetails/msgDetails?id={{item.Id}}&content={{item.Content}}">
+        <view class="clsGroupc">
+          <label class="clsTxtHead">阅读状态：{{item.IsRead=='0'?'未读':'已读'}}</label>
+          <label>消息内容：{{item.Content}}</label>
+        </view>
+        <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
+    </navigator>
+  </view>
+
+  <view wx:if="{{searchCount==0}}">
+    <view class="pageMsg">没有消息</view>
+  </view>
+  <view wx:if="{{searchCount==-1}}">
+    <view class="pageMsg">没有更多的数据</view>
+  </view>
+
+</view>

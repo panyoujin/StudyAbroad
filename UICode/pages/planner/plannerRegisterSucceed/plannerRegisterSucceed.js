@@ -10,7 +10,7 @@ Page({
 
   btnKnow: function(){
     wx.switchTab({
-      url: "/pages/index/index"
+      url: "/pages/account/userInfo/userInfo"
     })  
   },
   /**

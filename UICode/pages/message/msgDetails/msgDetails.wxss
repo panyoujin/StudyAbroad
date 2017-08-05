@@ -1,0 +1,21 @@
+/* pages/message/msgDetails/msgDetails.wxss */
+.container{
+  margin: 20rpx;
+  font-size: 30rpx;
+  background-color: #fff;
+  border-radius: 8rpx;
+  padding-bottom: 500rpx;
+}
+
+.clsHead{
+  font-size: 35rpx;
+  width: 100%;
+  text-align: center;
+  padding: 20rpx 0;
+  font-family: "黑体";
+}
+
+.clsContent{
+  width: 100%;
+  padding: 20rpx;
+}

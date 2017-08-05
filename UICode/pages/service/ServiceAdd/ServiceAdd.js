@@ -120,65 +120,65 @@ Page({
       that.setData({
         tip: '提示：价格范围、描述不能为空！'
       })
+      return;
     }
-    else if(priceStart >= priceEnd){
+    if(priceStart >= priceEnd){
       that.setData({
         tip: '提示：价格范围不正确！'
       })
+      return;
     }
-    else {
-      that.setData({
-        tip: '',
-        formSubmit: '',
-        formSubmitTxt: "发布中..."
-      })
-      common.POST({
-        url: "/demand_service/insert_browse_service",
-        params: {
-          Name: name,
-          TimeStart: that.data.timeStart,
-          TimeEnd: that.data.timeEnd + " 23:59:59",
-          PriceStart: priceStart,
-          PriceEnd: priceEnd,
-          Description: name,
-          ServiceId: that.data.services[that.data.pService].Id,
-          ServiceAreaId: that.data.areas[that.data.pArea].Id
-        },
-        success: function (res, s, m) {
-          if (s) {
-            that.setData({
-              formSubmit: 'formSubmit',
-              formSubmitTxt: "确认发布"
-            })
+    that.setData({
+      tip: '',
+      formSubmit: '',
+      formSubmitTxt: "发布中..."
+    })
+    common.POST({
+      url: "/demand_service/insert_browse_service",
+      params: {
+        Name: name,
+        TimeStart: that.data.timeStart,
+        TimeEnd: that.data.timeEnd + " 23:59:59",
+        PriceStart: priceStart,
+        PriceEnd: priceEnd,
+        Description: name,
+        ServiceId: that.data.services[that.data.pService].Id,
+        ServiceAreaId: that.data.areas[that.data.pArea].Id
+      },
+      success: function (res, s, m) {
+        if (s) {
+          that.setData({
+            formSubmit: 'formSubmit',
+            formSubmitTxt: "确认发布"
+          })
 
-            var url ="/pages/demand/demandPublic/demandPublic";
-            if (that.data.addType == 1){
-              url ="/pages/demand/demandPublic/demandPublic"
-            }
-            wx.navigateTo({
-              url: url,
-            })
-            // wx.showToast({
-            //   title: '发布成功！',
-            //   duration: 1500
-            // })
-          } else {
-            that.setData({
-              tip: m,
-              formSubmit: 'formSubmit',
-              formSubmitTxt: "确认发布"
-            })
+          var url ="/pages/demand/demandPublic/demandPublic";
+          if (that.data.addType == 1){
+            url ="/pages/demand/demandPublic/demandPublic"
           }
-        },
-        fail: function () {
+          wx.navigateTo({
+            url: url,
+          })
+          // wx.showToast({
+          //   title: '发布成功！',
+          //   duration: 1500
+          // })
+        } else {
           that.setData({
             tip: m,
             formSubmit: 'formSubmit',
             formSubmitTxt: "确认发布"
           })
-         }
-      })
-    }
+        }
+      },
+      fail: function () {
+        that.setData({
+          tip: m,
+          formSubmit: 'formSubmit',
+          formSubmitTxt: "确认发布"
+        })
+        }
+    })
   },
 
   /**
