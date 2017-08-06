@@ -38,8 +38,8 @@ def insert_team(teamId,userid,name,serviceAreaId,serviceDescription):
     return mysql.operate_object(team_sql.insert_team,(teamId,userid,name,serviceAreaId,serviceDescription,userid,userid,
                                                 teamId, userid,userid,userid,
                                                 teamId, userid, userid))
-#获取用户的团队ID
-def select_user_teamid(userid):
+#获取用户的团队
+def select_user_team(userid):
     if userid == None or userid=="":
         raise custom_error.CustomFlaskErr(status_code=500, message="输入不正确，请刷新后重试")
-    return mysql.get_object(team_sql.select_user_teamid,(userid))
+    return mysql.get_object(team_sql.select_user_team,(userid))

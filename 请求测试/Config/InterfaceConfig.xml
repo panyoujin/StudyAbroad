@@ -213,7 +213,7 @@
         <BodyParam></BodyParam>
     </Interface>
     <Interface>
-        <Name>团队列表</Name>
+        <Name>团队列表 已经排除用户所在的团队</Name>
         <Url>http://localhost:5000/team/team_list</Url>
         <PostParam>page=1#;#size=10#;#name=</PostParam>
         <FileParam></FileParam>
@@ -481,11 +481,53 @@
         <FileParam></FileParam>
         <BodyParam></BodyParam>
     </Interface>
-	
+
     <Interface>
         <Name>获取规划师标签列表</Name>
         <Url>http://localhost:5000/planner/get_planner_lables</Url>
         <PostParam>page=1#;#size=10#;#plannerId=3C3C46F6-9D2B-4918-92D4-6BC1B669C85F</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
+    <Interface>
+        <Name>获取指定用户的团队 用户ID可空</Name>
+        <Url>http://localhost:5000/planner/select_user_team</Url>
+        <PostParam>userid=3C3C46F6-9D2B-4918-92D4-6BC1B669C85F</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
+    <Interface>
+        <Name>获取动态列表</Name>
+        <Url>http://localhost:5000/dynamic/select_dynamic_list</Url>
+        <PostParam>page=1#;#size=10</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
+    <Interface>
+        <Name>获取指定的用户动摇列表</Name>
+        <Url>http://localhost:5000/dynamic/select_user_dynamic_list</Url>
+        <PostParam>page=1#;#size=10#;#userid=3C3C46F6-9D2B-4918-92D4-6BC1B669C85F</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
+    <Interface>
+        <Name>新增动态</Name>
+        <Url>http://localhost:5000/dynamic/insert_dynanic</Url>
+        <PostParam>content=1#;#imageUrl=10</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
+    <Interface>
+        <Name>获取指定的动态</Name>
+        <Url>http://localhost:5000/dynamic/select_dynamic_info</Url>
+        <PostParam>dynamicId=1</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
+    <Interface>
+        <Name>获取服务消息列表</Name>
+        <Url>http://localhost:5000/notice/get_service_notice_list</Url>
+        <PostParam></PostParam>
         <FileParam></FileParam>
         <BodyParam></BodyParam>
     </Interface>

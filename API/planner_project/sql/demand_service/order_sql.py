@@ -59,7 +59,7 @@ select_planner_order_detail = "SELECT du.`Id`,du.`DemandServiceId`,du.`UserId`,d
                               "ds.PriceStart,ds.PriceEnd, " \
                               "ds.TimeStart,ds.TimeEnd,sa.Name AS ServiceAreaName,st.Name AS ServiceTypeName,  " \
                               "ds.Description,ui.Name,u.Phone,plannerU.Name AS PlannerName,plannerUser.Phone AS plannerPhone , " \
-                              "du.`OrderStatus`,ui.`HeadImage`, " \
+                              "du.`OrderStatus`,ui.`HeadImage`,'' as OrderFlowing, " \
                               "CASE du.`OrderStatus` " \
                               "   WHEN 2 THEN '客服回访' " \
                               "  WHEN 3 THEN '拟定合同' " \
