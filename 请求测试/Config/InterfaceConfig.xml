@@ -496,4 +496,32 @@
         <FileParam></FileParam>
         <BodyParam></BodyParam>
     </Interface>
+    <Interface>
+        <Name>获取动态列表</Name>
+        <Url>http://localhost:5000/dynamic/select_dynamic_list</Url>
+        <PostParam>page=1#;#size=10</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
+    <Interface>
+        <Name>获取指定的用户动摇列表</Name>
+        <Url>http://localhost:5000/dynamic/select_user_dynamic_list</Url>
+        <PostParam>page=1#;#size=10#;#userid=3C3C46F6-9D2B-4918-92D4-6BC1B669C85F</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
+    <Interface>
+        <Name>新增动态</Name>
+        <Url>http://localhost:5000/dynamic/insert_dynanic</Url>
+        <PostParam>content=1#;#imageUrl=10</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
+    <Interface>
+        <Name>获取指定的动态</Name>
+        <Url>http://localhost:5000/dynamic/select_dynamic_info</Url>
+        <PostParam>dynamicId=1</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
 </InterfaceList>
