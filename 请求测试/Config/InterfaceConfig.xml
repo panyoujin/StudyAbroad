@@ -481,7 +481,7 @@
         <FileParam></FileParam>
         <BodyParam></BodyParam>
     </Interface>
-	
+
     <Interface>
         <Name>获取规划师标签列表</Name>
         <Url>http://localhost:5000/planner/get_planner_lables</Url>
@@ -490,7 +490,7 @@
         <BodyParam></BodyParam>
     </Interface>
     <Interface>
-        <Name>获取指定用户的团队   用户ID可空</Name>
+        <Name>获取指定用户的团队 用户ID可空</Name>
         <Url>http://localhost:5000/planner/select_user_team</Url>
         <PostParam>userid=3C3C46F6-9D2B-4918-92D4-6BC1B669C85F</PostParam>
         <FileParam></FileParam>
@@ -521,6 +521,13 @@
         <Name>获取指定的动态</Name>
         <Url>http://localhost:5000/dynamic/select_dynamic_info</Url>
         <PostParam>dynamicId=1</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
+    <Interface>
+        <Name>获取服务消息列表</Name>
+        <Url>http://localhost:5000/notice/get_service_notice_list</Url>
+        <PostParam></PostParam>
         <FileParam></FileParam>
         <BodyParam></BodyParam>
     </Interface>
