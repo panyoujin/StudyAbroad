@@ -489,4 +489,11 @@
         <FileParam></FileParam>
         <BodyParam></BodyParam>
     </Interface>
+    <Interface>
+        <Name>获取指定用户的团队ID   用户ID可空</Name>
+        <Url>http://localhost:5000/planner/select_user_teamid</Url>
+        <PostParam>userid=3C3C46F6-9D2B-4918-92D4-6BC1B669C85F</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
 </InterfaceList>

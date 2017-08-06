@@ -18,7 +18,7 @@ def updateuserinfo():
     education = request.form.get("education", type=str, default=None)
     address = request.form.get("address", type=str, default=None)
     email = request.form.get("email", type=str, default=None)
-    user = request_helper.current_user()
+    user = request_helper.current_user_mush_login()
     data_register = mysql.operate_object(user_info_sql.update_user_info,(name,sex,age,education,address,email,user["Id"],user["Id"]))
     if data_register > 0:
         ApiResponse.message = "修改成功"
@@ -33,7 +33,7 @@ def updateuserinfo():
 def updateheadimage():
     ApiResponse = api_response.ApiResponse()
     headimage= request.form.get("headimage", type=str, default=None)
-    user = request_helper.current_user()
+    user = request_helper.current_user_mush_login()
     data_register = mysql.operate_object(user_info_sql.update_user_headimage,(headimage,user["Id"],user["Id"]))
     if data_register > 0:
         ApiResponse.message = "修改成功"

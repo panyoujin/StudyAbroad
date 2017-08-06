@@ -14,12 +14,15 @@ def team_list():
     size = request.form.get("size", type=int, default=10)
     name = request.form.get("name", type=str, default="")
     page = request.form.get("page", type=int, default=1)
-    user = request_helper.current_user_mush_login()
+    userId=""
+    user = request_helper.current_user()
+    if user != None and any(user):
+        userId=user["Id"]
     if page<=0:
         page=1
     if size<=0:
         size=10
-    data = team_logic.get_team_list(user["Id"],name,(page-1)*size,size)
+    data = team_logic.get_team_list(userId,name,(page-1)*size,size)
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data
@@ -67,3 +70,20 @@ def insert_team():
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     return api_response.response_return(ApiResponse)
+
+
+
+#新增团队
+@app.route("/planner/select_user_teamid", methods=['POST'])
+def select_user_teamid():
+    ApiResponse = api_response.ApiResponse()
+    userid= request.form.get("userid", type=str, default=None)
+    if userid == None or userid=="":
+        userid = request_helper.current_user_mush_login()["Id"]
+    teamId= team_logic.select_user_teamid(userid)
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data=teamId
+    return api_response.response_return(ApiResponse)
+
+
