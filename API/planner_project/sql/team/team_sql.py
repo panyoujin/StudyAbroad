@@ -15,13 +15,22 @@ insert_team="INSERT INTO `T_Team` (`Id`,`AdminUserId`,`Name`,`ServiceAreaId`,`Se
             "UPDATE `U_PlannerStatistics` SET `TeamId`='%s',`ModifUserID` = '%s',`ModifTime` = NOW() WHERE `UserId` = '%s' ;"
 
 #获取团队列表
-select_team_list=" SELECT t.`Id`,t.`Name` TeamName,ui.`Name` UserName,ui.`HeadImage`,IF(ps.`UserId` IS NULL,0,1) AS Isjoin,t.`CreateTime` " \
+select_team_list=" SELECT t.`Id`,t.`Name` TeamName,ui.`Name` UserName,ui.`HeadImage`,t.`CreateTime` " \
                  "FROM `T_Team` t " \
-                 "LEFT JOIN `U_PlannerStatistics` ps ON ps.`TeamId`=t.`Id` AND ps.`UserId`='%s'  " \
+                 "LEFT JOIN `U_PlannerStatistics` ps ON ps.`TeamId`=t.`Id` " \
                  "JOIN `U_UserInfo` ui ON ui.`UserId`=t.`AdminUserId`  "\
-                 "WHERE t.`IsDelete`=FALSE AND ('%s'  IS NULL OR '%s'='' OR t.`Name` LIKE '%s')" \
-                 "ORDER BY Isjoin DESC,t.`IsTop` DESC,t.`Sort` DESC,t.`CreateTime` DESC " \
+                 "WHERE t.`IsDelete`=FALSE AND (ps.`UserId` IS NULL OR ps.`UserId` != '%s' ) " \
+                 "AND ('%s'  IS NULL OR '%s'='' OR t.`Name` LIKE '%s') " \
+                 "ORDER BY t.`IsTop` DESC,t.`Sort` DESC,t.`CreateTime` DESC " \
                  "LIMIT %s, %s "
+
+#获取用户所在团队信息
+select_user_team=" SELECT t.`Id`,t.`Name` TeamName,ui.`Name` UserName,ui.`HeadImage`,t.`CreateTime` " \
+                 "FROM `U_PlannerStatistics` ps " \
+                 "JOIN `T_Team` t ON ps.`TeamId`=t.`Id`  " \
+                 "JOIN `U_UserInfo` ui ON ui.`UserId`=t.`AdminUserId`  "\
+                 "WHERE t.`IsDelete`=FALSE AND ps.`UserId`='%s'" \
+                 "LIMIT 0, 1 "
 
 #获取指定用户所在的团队成员列表
 select_team_member_list="SELECT tm.UserId,ui.`Name`,ui.`HeadImage`,ps.`NewEvaluate`,ps.`CustomerCount`,ps.`PraiseCount`,ps.`BadReviewCount`,ps.Lables,ps.Sort " \
@@ -32,8 +41,6 @@ select_team_member_list="SELECT tm.UserId,ui.`Name`,ui.`HeadImage`,ps.`NewEvalua
                         "ORDER BY tm.`Sort` DESC,tm.`CreateTime` DESC " \
                         "LIMIT %s, %s "
 
-#获取用户所在团队ID
-select_user_teamid="SELECT TeamId FROM `T_TeamMember` WHERE UserId = '%s' AND IsDelete = FALSE"
 
 #查询是否已经是团队成员
 exists_team_peoper="SELECT `Id`,`UserId`,`TeamId`,`Message`,`Status`,`IsAdmin`,UnionId FROM `T_TeamNotice` WHERE `UserId`='%s' AND `TeamId`='%s' AND `IsDelete`=FALSE"
