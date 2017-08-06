@@ -53,10 +53,10 @@
       <view class="clsGroupr clsLables">
         <block wx:for="{{lables}}" wx:key="item">
           <block wx:if="{{lableNum[index]}}">
-            <view class="clsLable clsChecked" data-key="{{index}}" data-value="{{item}}" bindtap="btnLable" >{{item}}</view>
+            <view class="clsLable clsChecked" data-key="{{index}}" data-value="{{item.LableName}}" bindtap="btnLable" >{{item.LableName}}</view>
           </block>
           <block wx:else>
-            <view class="clsLable" data-key="{{index}}" data-value="{{item}}" bindtap="btnLable" >{{item}}</view>
+            <view class="clsLable" data-key="{{index}}" data-value="{{item.LableName}}" bindtap="btnLable" >{{item.LableName}}</view>
           </block>
           
         </block>

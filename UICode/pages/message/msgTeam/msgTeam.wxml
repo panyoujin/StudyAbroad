@@ -10,8 +10,9 @@
   <view class="classname" wx:for="{{msgs}}" wx:key="item">
     <view class="clsGroupc clsView">
       <view class="clsGroupr clsContent clsContentTop">
-        <view class="clsTxtLeft">团队：{{item.Name}}</view>
-        <view class="clsTxtRight">{{item.Status=='1'?'申请加入':item.Status=='2'?'申请已通过':'申请已拒接'}}</view>
+        <view class="clsTxtLeft">团队：{{item.Message}}</view>
+        <!-- <view class="clsTxtLeft">团队：{{item.Name}}</view>
+        <view class="clsTxtRight">{{item.Status=='1'?'申请加入':item.Status=='2'?'申请已通过':'申请已拒接'}}</view> -->
       </view>
       <view class="clsMid"></view>
       <view class="clsGroupr clsContent clsContentBottom" hidden="{{item.IsAdmin=='1'&&item.Status=='1'?false:true}}">

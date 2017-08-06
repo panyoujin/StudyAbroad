@@ -17,7 +17,7 @@ Page({
     lables:["好美啊","悲催的","有效率","服务态度好","very good","非常的差"],
 
     lable:"",
-    lableNum: [false, false, false, false, false, false]
+    lableNum: [false, false, false, false, false, false, false, false, false, false, false, false]
   },
 
   /**
@@ -31,6 +31,22 @@ Page({
     }
     that.setData({ 
       orderId: id
+    })
+    common.POST({
+      url: "/planner/get_planner_lables",
+      params: {
+        page:1,
+        size:12,
+        plannerId:'3C3C46F6-9D2B-4918-92D4-6BC1B669C85F'
+      },
+      success: function (res, s, m) {
+        if (s) {
+          that.setData({
+            lables: res
+          })
+        } else {}
+      },
+      fail: function () { }
     })
   },
 

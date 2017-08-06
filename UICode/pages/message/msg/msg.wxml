@@ -1,0 +1,15 @@
+<!--pages/message/msg/msg.wxml-->
+<view class="container">
+  <view class="clsTxt">12312312312</view>
+  <view class="clsTxt">12312312312</view>
+  <view class="clsTxt">12312312312</view>
+
+</view>
+
+<view class="clsGroupr clsMsg">
+  <view class="clsImg">
+    <image src="/img/msg/msg.png" mode="scaleToFill"></image>
+  </view>
+  <input bindinput="bindKeyInputMsg" confirm-type="发送" bindconfirm="sendMsg" placeholder="消息内容"/>
+  <view class="clsBtn" bindtap="sendMsg">发送</view>
+</view>

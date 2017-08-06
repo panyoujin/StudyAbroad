@@ -43,6 +43,7 @@
     "pages/team/teamAdd/teamAdd",
     "pages/team/teamManage/teamManage",
 
+    "pages/message/msg/msg",
     "pages/message/msgTeam/msgTeam",
     "pages/message/msgService/msgService",
     "pages/message/msgSystem/msgSystem",

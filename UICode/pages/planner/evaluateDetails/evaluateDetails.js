@@ -12,7 +12,9 @@ Page({
     isSearch: true,
     searchCount: 1,
     pageIndex: 1,
-    evaluates: []
+    evaluates: [],
+
+    msg:""
   },
 
   /**
@@ -30,6 +32,40 @@ Page({
     searchList(this, 1)
   },
 
+  bindKeyInputMsg:function(e){
+    this.setData({
+      msg: e.detail.value
+    })
+  },
+  sendMsg:function(e){
+    var that=this;
+    if (that.data.msg =="")
+      return;
+    common.POST({
+      url: "/order/replay_evaluate",
+      params: {
+        orderId: that.data.orderId,
+        content: that.data.msg,
+        lable: "",
+        Sort: 1
+      },
+      success: function (res, s, m) {
+        if (s && res.length != 0) {
+          wx.showToast({
+            title: "发送成功",
+            duration: 1500
+          })
+        } else {
+          wx.showToast({
+            title: m,
+            image: '/img/error.png',
+            duration: 1500
+          })
+        }
+      },
+      fail: function () { }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
