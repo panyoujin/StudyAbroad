@@ -200,7 +200,23 @@ def get_order_detail():
         raise custom_error.CustomFlaskErr(status_code=500, message="订单id不能为空")
 
     ApiResponse.data = mysql.get_object(order_sql.select_planner_order_detail,(OrderId))
-
+    flowList=[]
+    if ApiResponse.data != None:
+        order_flow_list = mysql.get_list(order_sql.get_order_status, (OrderId))
+        if len(order_flow_list) > 0:
+            for item in order_flow_list:
+                if item["StartStatus"] == 6:
+                    flowList.append({"StatusStr": "服务完成", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
+                    flowList.append({"StatusStr": "付款确认", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
+                if item["StartStatus"] == 5:
+                    flowList.append({"StatusStr": "平台审查", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
+                if item["StartStatus"] == 4:
+                    flowList.append({"StatusStr": "线下签约", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
+                if item["StartStatus"] == 3:
+                    flowList.append({"StatusStr": "拟定合同", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
+                if item["StartStatus"] == 2:
+                    flowList.append({"StatusStr": "客服回访", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
+        ApiResponse.data["OrderFlowing"]=flowList
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     return api_response.response_return(ApiResponse)

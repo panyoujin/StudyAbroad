@@ -86,31 +86,47 @@ def get_order_status():
     if OrderId == None or OrderId == "":
         raise custom_error.CustomFlaskErr(status_code=500, message="订单id不能为空")
     order_flow_list = mysql.get_list(order_sql.get_order_status, (OrderId))
-    data = []
+    data = [{"StatusStr": "客服回访", "IsDo": "0", "ChangeTime": None},
+            {"StatusStr": "拟定合同", "IsDo": "0", "ChangeTime": None},
+            {"StatusStr": "线下签约", "IsDo": "0", "ChangeTime": None},
+            {"StatusStr": "平台审查", "IsDo": "0", "ChangeTime": None},
+            {"StatusStr": "付款确认", "IsDo": "0", "ChangeTime": None},
+            {"StatusStr": "服务完成", "IsDo": "0", "ChangeTime": None}]
     if len(order_flow_list) > 0:
         for item in order_flow_list:
             if item["StartStatus"] == 6:
-                data.append({"StatusStr": "服务完成", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
-                data.append({"StatusStr": "付款确认", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
-
-            if item["StartStatus"] == 5 and len(data)<=0:
-                data.append({"StatusStr": "付款确认", "IsDo": "0", "ChangeTime": ""})
+                data[5]["IsDo"] = "1"
+                data[5]["ChangeTime"] = item["ChangeTime"]
+                data[4]["IsDo"] = "1"
+                data[4]["ChangeTime"] = item["ChangeTime"]
+                # data.append({"StatusStr": "服务完成", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
+                # data.append({"StatusStr": "付款确认", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
+            # if item["StartStatus"] == 5 and len(data)<=0:
+            #     data.append({"StatusStr": "付款确认", "IsDo": "0", "ChangeTime": ""})
             if item["StartStatus"] == 5:
-                data.append({"StatusStr": "平台审查", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
-            if item["StartStatus"] == 4 and len(data)<=0:
-                data.append({"StatusStr": "平台审查", "IsDo": "0", "ChangeTime": ""})
+                data[3]["IsDo"] = "1"
+                data[3]["ChangeTime"] = item["ChangeTime"]
+                # data.append({"StatusStr": "平台审查", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
+            # if item["StartStatus"] == 4 and len(data)<=0:
+            #     data.append({"StatusStr": "平台审查", "IsDo": "0", "ChangeTime": ""})
             if item["StartStatus"] == 4:
-                data.append({"StatusStr": "线下签约", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
-            if item["StartStatus"] == 3 and len(data)<=0:
-                data.append({"StatusStr": "线下签约", "IsDo": "0", "ChangeTime": ""})
+                data[2]["IsDo"]="1"
+                data[2]["ChangeTime"] = item["ChangeTime"]
+                # data.append({"StatusStr": "线下签约", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
+            # if item["StartStatus"] == 3 and len(data)<=0:
+            #     data.append({"StatusStr": "线下签约", "IsDo": "0", "ChangeTime": ""})
             if item["StartStatus"] == 3:
-                data.append({"StatusStr": "拟定合同", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
-            if item["StartStatus"] == 2 and len(data)<=0:
-                data.append({"StatusStr": "拟定合同", "IsDo": "0", "ChangeTime": ""})
+                data[1]["IsDo"]="1"
+                data[1]["ChangeTime"] = item["ChangeTime"]
+                # data.append({"StatusStr": "拟定合同", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
+            # if item["StartStatus"] == 2 and len(data)<=0:
+            #     data.append({"StatusStr": "拟定合同", "IsDo": "0", "ChangeTime": ""})
             if item["StartStatus"] == 2:
-                data.append({"StatusStr": "客服回访", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
-    else:
-        data.append({"StatusStr": "客服回访", "IsDo": "0", "ChangeTime": ""})
+                data[0]["IsDo"]="1"
+                data[0]["ChangeTime"] = item["ChangeTime"]
+                # data.append({"StatusStr": "客服回访", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
+    # else:
+    #     data.append({"StatusStr": "客服回访", "IsDo": "0", "ChangeTime": ""})
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data
