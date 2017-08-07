@@ -176,7 +176,7 @@ function validatemobile(mobile) {
     })
     return false;
   }
-  var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+  var myreg = /^[1-9]+$/;
   if (!myreg.test(mobile)) {
     wx.showToast({
       title: '手机号有误！',

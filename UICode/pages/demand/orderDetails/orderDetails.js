@@ -6,13 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    name:'',
-    phone:"",
-    description:"",
-    headImage:"",
     orderId:"",
-
-    statuss:[]
+    headImage:"",
+    datas:[]
   },
 
   btnUpdata:function(){
@@ -31,22 +27,19 @@ Page({
       return;
     }
     that.setData({
-      name: options.name == 'null' ? '':options.name,
-      phone: options.phone == 'null' ? '' : options.phone,
-      description: options.description == 'null' ? '' : options.description,
-      headImage: options.headImage == 'null'?"/img/person.jpg":common.apiUrl + "/" + options.headImage,
-      orderId: id
+      orderId: id,
+      headImage: options.headImage == 'null' ? "/img/person.jpg" : common.apiUrl + "/" + options.headImage,
     })
 
     common.POST({
-      url: "/order/get_order_status",
+      url: "/planner/get_order_detail",
       params: {
         OrderId: id
       },
       success: function (res, s, m) {
         if (s) {
           that.setData({
-            statuss: res
+            datas: res,
           })
         } else {
           wx.showToast({

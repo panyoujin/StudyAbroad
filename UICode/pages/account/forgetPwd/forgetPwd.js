@@ -78,8 +78,13 @@ Page({
         },
         success: function (res, s, m) {
           if (s) {
-            that.setData({
-              tip: "修改成功"
+            // that.setData({
+            //   tip: "修改成功"
+            // })
+            wx.setStorageSync('userLoginToken', '')
+            wx.setStorageSync('userLoginInfo', '')
+            wx.redirectTo({
+              url: '/pages/account/login/login',
             })
           } else {
             that.setData({

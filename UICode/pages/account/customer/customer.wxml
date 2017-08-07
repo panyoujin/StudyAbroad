@@ -2,7 +2,7 @@
 <view class="container">
   <view class="searchResult">
       <block wx:for="{{collections}}" wx:key="item">
-        <navigator class="serviceInfo" url="/pages/demand/orderDetails/orderDetails?id={{item.Id}}&phone={{item.Phone}}&name={{item.Name}}&headImage={{item.HeadImage}}&description={{item.Description}}" >
+        <navigator class="serviceInfo" url="/pages/demand/orderDetails/orderDetails?id={{item.Id}}&headImage={{item.HeadImage}}" >
           <view class="img">
             <image src="{{apiUrl}}{{item.HeadImage}}"></image>
           </view>

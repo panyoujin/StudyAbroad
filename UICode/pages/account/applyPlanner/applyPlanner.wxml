@@ -18,6 +18,7 @@
           <view class="clsYy {{item.IsDo==0?'':'hideTag'}}"></view>
         </view>
       </view>
+      <button class="clsBtn" formType="submit" hidden="{{item.StatusStr=='服务完成'&&item.IsDo=='1'?false:true}}">{{btnTxt}}</button>
     </block>
 
     <view class="{{orderId==''?'':'hideTag'}}">
@@ -55,10 +56,15 @@
           <icon type="success" class="hideTag" size="38" color="#099AFF"/>
           <view class="clsYy"></view>
         </view>
+      </view>
+      <view class="clsView">
+        <label class="clsTxt">服务完成</label>
+        <view class="clsImg">
+          <icon type="success" class="hideTag" size="38" color="#099AFF"/>
+          <view class="clsYy"></view>
+        </view>
       </view> 
     </view>
 
-    <view>{{tip}}</view>
-    <button class="clsBtn" formType="submit">{{btnTxt}}</button>
   </form>
 </view>

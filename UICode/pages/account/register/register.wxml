@@ -10,7 +10,7 @@
 <form  class="formContent" bindsubmit="formSubmit" >
   <view class="formView">
     <label class="section__title">手机号：</label>
-    <input type="number" class="txtPhone" name="userAccount" placeholder="请输入手机号" bindinput="userAccountInput" maxlength="11" />
+    <input type="number" class="txtPhone" name="userAccount" placeholder="请输入手机号" bindinput="userAccountInput" maxlength="18" />
     <button bindtap="{{bindSendVerificationCode}}">{{phoneMsg}}</button>
   </view>
   <view class="formView">
