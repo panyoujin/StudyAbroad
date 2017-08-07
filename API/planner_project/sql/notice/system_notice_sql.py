@@ -1,5 +1,5 @@
 # 获取系统消息
-select_system_notice_list = "SELECT Id,UserId,Content,IsRead,CreateTime FROM MS_SystemNotice " \
+select_system_notice_list = "SELECT Id,UserId,Content,IsRead,CreateTime,Type,ChatId,ReceiveUserId FROM MS_SystemNotice " \
                             "WHERE IsDelete=FALSE AND UserId='%s' " \
                             "ORDER BY IsRead ASC ,CreateTime DESC " \
                             "LIMIT %s,%s"

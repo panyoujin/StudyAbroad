@@ -531,4 +531,18 @@
         <FileParam></FileParam>
         <BodyParam></BodyParam>
     </Interface>
+    <Interface>
+        <Name>新增聊天消息</Name>
+        <Url>http://localhost:5000/notice/insert_chat</Url>
+        <PostParam>ReceiveUserId=684f4a7a-6543-11e7-a863-1c1b0d79990b#;#Content=聊天内容</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
+    <Interface>
+        <Name>获取聊天内容列表</Name>
+        <Url>http://localhost:5000/notice/get_chat_list</Url>
+        <PostParam>ReceiveUserId=684f4a7a-6543-11e7-a863-1c1b0d79990b#;#page=1#;#size=10</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
 </InterfaceList>
