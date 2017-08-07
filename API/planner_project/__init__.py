@@ -58,6 +58,7 @@ import planner_project.api.order.order
 import planner_project.api.basic.basic_verification_code
 import planner_project.api.team.team_info
 import planner_project.api.notice.system_notice
+import planner_project.api.notice.chat_notice
 
 import planner_project.api.backweb.home
 import planner_project.api.backweb.back_user
