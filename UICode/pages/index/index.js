@@ -68,22 +68,25 @@ Page({
       url: '../logs/logs'
     })
   },
+
+  openFile:function(){
+    wx.downloadFile({
+     // url: 'http://39.108.125.58/files/pdf.pdf',
+      url:"http://39.108.125.58/files/abc.docx",
+      success: function (res) {
+        var filePath = res.tempFilePath
+        wx.openDocument({
+          filePath: filePath,
+          success: function (res) {
+            console.log('打开文档成功')
+            console.log(res);
+          }
+        })
+      }
+    })
+  },
+
   onLoad: function () {
-    
-    // wx.downloadFile({
-    //   url: 'http://www.sz.gov.cn/hjbhj/ghjh/zcqjh/200911/P020091106639455042832.pdf',
-    //   success: function (res) {
-    //     var filePath = res.tempFilePath
-    //     wx.openDocument({
-    //       filePath: filePath,
-    //       success: function (res) {
-    //         console.log('打开文档成功')
-    //       }
-    //     })
-    //   }
-    // })
-
-
     var that = this
     that.setData({
       userInfo: app.globalData.userInfo
@@ -95,7 +98,6 @@ Page({
         count: 6
       },
       success: function (res, s, m) {
-        console.log(res)
         if (s && res.length != 0) {
           that.setData({
             plannerList: res

@@ -42,6 +42,7 @@ image{
 /* 消息 */
 .clsMsg{
   position: fixed;
+  background-color: #fff;
   border-top: 2rpx solid #eee;
   height: 100rpx;
   bottom: 0;

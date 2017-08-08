@@ -11,7 +11,7 @@
     </view>
     <view class="plannerHeadTxt">
       <view class="plannerBtnMsg">
-        <image src="/img/planner/pMsg.png">发送消息</image>
+        <image src="/img/planner/pMsg.png" bindtap="showSendMsg" hidden="{{userType!=1&&userId!=plannerId?false:true}}">发送消息</image>
       </view>
       <view class="clsPlannerTxt">
         <label>认证区域：</label>
@@ -87,4 +87,13 @@
 
 <view class="container" wx:else> 
   <view class="pageMsg">该规划师不存在!</view>
+</view>
+
+
+<view class="clsGroupr clsMsg" hidden="{{hidMsgView}}">
+  <view class="clsImg">
+    <image src="/img/msg/msg.png" mode="scaleToFill"></image>
+  </view>
+  <input bindinput="bindKeyInputMsg" confirm-type="发送" bindblur="bindblurMsg" focus="{{msgFocus}}" bindconfirm="sendMsg" placeholder="消息内容"/>
+  <view class="clsBtn" bindtap="sendMsg">发送</view>
 </view>

@@ -1,9 +1,14 @@
 <!--pages/message/msg/msg.wxml-->
 <view class="container">
-  <view class="clsTxt">12312312312</view>
-  <view class="clsTxt">12312312312</view>
-  <view class="clsTxt">12312312312</view>
-
+  <block wx:for="{{msgs}}" wx:key="item">
+    <view class="clsTxt">{{item.Name}}：{{item.Content}}</view>
+  </block>
+  <view wx:if="{{searchCount==0}}">
+    <view class="pageMsg">没有消息</view>
+  </view>
+  <view wx:if="{{searchCount==-1}}">
+    <view class="pageMsg">没有更多的数据</view>
+  </view>
 </view>
 
 <view class="clsGroupr clsMsg">

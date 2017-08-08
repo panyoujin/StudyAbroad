@@ -98,7 +98,7 @@
   </view>
 
   <view class="serviceMap">
-    <image src="/img/home/banner.png"></image>
+    <image bindtap="openFile" src="/img/home/banner.png"></image>
   </view>
 
   <view class="serviceMap">

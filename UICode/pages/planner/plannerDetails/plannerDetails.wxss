@@ -1,6 +1,7 @@
 .container{
   margin: 20rpx;
   font-size: 30rpx;
+  padding-bottom: 50rpx;
 }
 
 /**plannerInfo*/
@@ -175,4 +176,44 @@
 .clsSelect button{
   background-color: #57b1fd;
   color: #fff;
+}
+
+
+
+/* 消息 */
+.clsMsg{
+  position: fixed;
+  background-color: #fff;
+  border-top: 2rpx solid #eee;
+  height: 100rpx;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.clsMsg .clsImg{
+  width: 20%;
+  margin: auto;
+  text-align: center;
+  padding:10rpx 0;
+}
+.clsMsg .clsImg image{
+  width: 60rpx;
+  height: 60rpx;
+}
+.clsMsg input{
+  width: 80%;
+  height: 80rpx;
+  line-height: 80rpx;
+  vertical-align: middle;
+  padding:10rpx 0;
+}
+.clsMsg .clsBtn{
+  padding:10rpx 0;
+  line-height: 80rpx;
+  width: 20%;
+  margin: auto;
+  text-align: center;
+  vertical-align: middle;
+  color: #fff;
+  background-color: #099aff;
 }

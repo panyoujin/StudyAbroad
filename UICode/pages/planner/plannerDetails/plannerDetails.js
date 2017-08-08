@@ -14,14 +14,78 @@ Page({
     lables: null,
     order: null,
     qualifications: null,
-    teamlist: null
+    teamlist: null,
+
+    userId:"",
+    userType:1,
+    hidMsgView:true,
+    msgFocus:false,
+    msg: ""
   },
 
+  showSendMsg:function(){
+    this.setData({
+      hidMsgView: false,
+      msgFocus:true
+    })
+  },
+  bindblurMsg: function(){
+    this.setData({
+      hidMsgView: true,
+      msgFocus: false
+    })
+  },
+  bindKeyInputMsg: function (e) {
+    this.setData({
+      msg: e.detail.value
+    })
+  },
+  sendMsg:function(){
+    var that=this;
+    if (that.data.msg == "")
+      return;
+    common.POST({
+      url: "/notice/insert_chat",
+      params: {
+        ReceiveUserId:that.data.plannerId,
+        Content: that.data.msg
+      },
+      success: function (res, s, m) {
+        if (s) {
+          that.setData({
+            hidMsgView: true,
+            msgFocus: false
+          })
+          wx.showToast({
+            title: "发送成功",
+            duration: 1500
+          })
+        } else {
+          wx.showToast({
+            title: '发送消息失败！' + m,
+            image: '/img/error.png',
+            duration: 1500
+          })
+        }
+      },
+      fail: function () { }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
+
+    var loginInfo = wx.getStorageSync('userLoginInfo');
+    console.log(loginInfo);
+    if (loginInfo!=""){
+      that.setData({ 
+        userType: loginInfo.UserType,
+        userId: loginInfo.Id
+      })
+    }
+
     var plannerId = options.id;
     if (plannerId == "" || plannerId== null){
       that.setData({isOK: false })

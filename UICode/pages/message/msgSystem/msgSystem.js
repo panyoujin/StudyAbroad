@@ -29,6 +29,15 @@ Page({
     searchList(this, 1)
   },
 
+  navigatorUrl:function(e){
+    var url = "/pages/message/msgDetails/msgDetails?id=" + e.currentTarget.dataset.id + "&content=" + e.currentTarget.dataset.content;
+    if (e.currentTarget.dataset.type == "2"){
+      url = "/pages/message/msg/msg?receiveUserId=" + e.currentTarget.dataset.ruserid + "&id=" + e.currentTarget.dataset.id;
+    }
+    wx.navigateTo({
+      url: url,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
