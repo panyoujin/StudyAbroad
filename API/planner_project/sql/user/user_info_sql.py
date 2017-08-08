@@ -26,7 +26,7 @@ select_new_contract="SELECT bc.`Id`,bc.`Name`,bc.`Content` " \
          "ORDER BY bc.`IsTop` DESC,bc.`Sort` DESC,bc.`CreateTime` DESC LIMIT 0,1"
 
 #查询资料列表
-select_user_file = "SELECT f.`Id`,f.`UserId`,f.`FileName`,f.`Url`,f.`Sort` " \
+select_user_file = "SELECT f.`Id`,f.`FileName`,f.`Url`,f.`Sort` " \
                       "FROM `U_File` f " \
                        "WHERE f.IsDelete=FALSE " \
                        "ORDER BY f.IsTop DESC,f.Sort DESC,`Id` DESC " \
