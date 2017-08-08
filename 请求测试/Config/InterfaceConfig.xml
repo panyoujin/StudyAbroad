@@ -545,4 +545,11 @@
         <FileParam></FileParam>
         <BodyParam></BodyParam>
     </Interface>
+    <Interface>
+        <Name>查询资料列表</Name>
+        <Url>http://localhost:5000/userinfo/select_user_file</Url>
+        <PostParam>page=1#;#size=10#;#userid=3C3C46F6-9D2B-4918-92D4-6BC1B669C85F</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
 </InterfaceList>

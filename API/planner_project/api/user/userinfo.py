@@ -98,12 +98,16 @@ def user_album():
     ApiResponse = api_response.ApiResponse()
     size = request.form.get("size", type=int, default=10)
     page = request.form.get("page", type=int, default=1)
-    user = request_helper.current_user_mush_login()
+    userid= request.form.get("userid", type=str, default=None)
+    if userid == None or userid=="":
+        userid = request_helper.current_user_mush_login()["Id"]
+    if userid == None or userid=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="参数userid不能为空")
     if page<=0:
         page=1
     if size<=0:
         size=10
-    data = mysql.get_list(user_info_sql.select_user_album,(user["Id"],(page-1)*size,size))
+    data = mysql.get_list(user_info_sql.select_user_album,(userid,(page-1)*size,size))
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data
@@ -115,6 +119,29 @@ def user_album():
 def new_contract():
     ApiResponse = api_response.ApiResponse()
     data = mysql.get_object(user_info_sql.select_new_contract,())
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = data
+    return api_response.response_return(ApiResponse)
+
+
+
+#查询资料列表
+@app.route("/userinfo/select_user_file", methods=['POST'])
+def select_user_file():
+    ApiResponse = api_response.ApiResponse()
+    size = request.form.get("size", type=int, default=10)
+    page = request.form.get("page", type=int, default=1)
+    userid= request.form.get("userid", type=str, default=None)
+    if userid == None or userid=="":
+        userid = request_helper.current_user_mush_login()["Id"]
+    if userid == None or userid=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="参数不正确，请刷新后重试")
+    if page<=0:
+        page=1
+    if size<=0:
+        size=10
+    data = mysql.get_list(user_info_sql.select_user_file,(userid,(page-1)*size,size))
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data
