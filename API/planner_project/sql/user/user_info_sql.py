@@ -28,6 +28,6 @@ select_new_contract="SELECT bc.`Id`,bc.`Name`,bc.`Content` " \
 #查询资料列表
 select_user_file = "SELECT f.`Id`,f.`UserId`,f.`FileName`,f.`Url`,f.`Sort` " \
                       "FROM `U_File` f " \
-                       "WHERE f.`UserId`='%s' AND f.IsDelete=FALSE " \
-                       "ORDER BY f.Sort DESC,`Id` DESC " \
+                       "WHERE f.IsDelete=FALSE " \
+                       "ORDER BY f.IsTop DESC,f.Sort DESC,`Id` DESC " \
                        "LIMIT %s, %s "
