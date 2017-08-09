@@ -201,6 +201,25 @@ function CheckLogin(url){
 function Trim(str) {
   return str.replace(/(^\s*)|(\s*$)/g, "");
 }
+/**
+ * 成功消息
+ */
+function Alert(msg){
+  wx.showToast({
+    title: msg,
+    duration: 1500
+  })
+}
+/**
+ * 失败消息
+ */
+function AlertError(msg) {
+  wx.showToast({
+    title: msg,
+    image: '/img/error.png',
+    duration: 1500
+  })
+}
 
 module.exports = {
   apiUrl: apiUrl,
@@ -211,5 +230,7 @@ module.exports = {
   POST: POST,
   PostUpload: PostUpload,
   Trim: Trim,
-  CheckLogin: CheckLogin
+  CheckLogin: CheckLogin,
+  Alert: Alert,
+  AlertError: AlertError,
 }

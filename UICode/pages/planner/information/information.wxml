@@ -1,17 +1,15 @@
 <!--pages/planner/information/information.wxml-->
 <view class="container">
   <view class="clsUserInfo">
-   <navigator class="clsView" url="/pages/planner/informationDetails/informationDetails">
-        <label>资料1</label>
+      <view class="clsView" wx:for="{{informations}}" bindtap="openFile" data-url="{{Url}}" wx:key="{{item}}">
+        <label>{{FileName}}</label>
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
-     </navigator>
-    <navigator class="clsView" url="/pages/planner/informationDetails/informationDetails">
-        <label>资料2</label>
-        <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
-    </navigator>
-    <navigator class="clsView" url="/pages/planner/informationDetails/informationDetails">
-        <label>资料3</label>
-        <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
-    </navigator>
+      </view>
+  </view>
+  <view wx:if="{{searchCount==0}}">
+    <view class="pageMsg">没有资料信息</view>
+  </view>
+  <view wx:if="{{searchCount==-1}}">
+    <view class="pageMsg">没有更多的数据</view>
   </view>
 </view>

@@ -37,9 +37,7 @@ Page({
         checkPlannerId: checkPlannerId,
         addType:1
       })
-    }
-    console.log(that.data.checkPlannerId);
-     
+    }   
 
     var date = new Date();
     var year = date.getFullYear();
@@ -142,6 +140,7 @@ Page({
         PriceStart: priceStart,
         PriceEnd: priceEnd,
         Description: name,
+        plannerId: checkPlannerId,
         ServiceId: that.data.services[that.data.pService].Id,
         ServiceAreaId: that.data.areas[that.data.pArea].Id
       },

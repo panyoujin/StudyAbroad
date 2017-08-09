@@ -146,7 +146,7 @@ function searchList(that, sType = 1) {
     params: {
       ReceiveUserId: that.data.receiveUserId,
       page: that.data.pageIndex,
-      size: common.pageSize
+      size: 20
     },
     success: function (res, s, m) {
       if (s && res.length != 0) {
