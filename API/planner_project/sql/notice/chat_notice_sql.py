@@ -19,5 +19,9 @@ select_chat_list = "SELECT cm.`UserId`,cm.`Content`,cm.`Type`,cm.`CreateTime`,se
                    "JOIN `N_ChatContent` cm ON cc.Id=cm.ChatId " \
                    "JOIN `U_UserInfo` sendUser ON cm.`UserId`=sendUser.UserId " \
                    " WHERE (cc.`SendUserId`='%s' AND cc.ReceiveUserId='%s')OR(cc.`SendUserId`='%s' AND cc.ReceiveUserId='%s') " \
-                   "ORDER BY cm.CreateTime DESC " \
+                   "ORDER BY  cm.CreateTime DESC " \
                    "LIMIT %s,%s"
+
+existx_chat_notice="SELECT COUNT(1) as total FROM  `MS_SystemNotice` WHERE `ChatId`='%s' AND `UserId`='%s'"
+
+update_chat_notice="UPDATE MS_SystemNotice SET `Content`='%s',`CreateUserID`='%s',`CreateTime`=NOW(),`IsRead`=0 WHERE `ChatId`='%s' AND `UserId`='%s'"
