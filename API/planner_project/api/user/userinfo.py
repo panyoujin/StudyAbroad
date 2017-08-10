@@ -137,7 +137,7 @@ def select_user_file():
         page=1
     if size<=0:
         size=10
-    data = mysql.get_list(user_info_sql.select_user_file,((page-1)*size,size))
+    data = mysql.get_list(user_info_sql.select_sys_file,((page-1)*size,size))
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data
