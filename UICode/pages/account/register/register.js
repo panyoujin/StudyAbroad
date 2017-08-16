@@ -168,15 +168,15 @@ function validatemobile(mobile) {
     })
     return false;
   }
-  if (mobile.length != 11) {
-    wx.showToast({
-      title: '手机号长度有误！',
-      image: '/img/error.png',
-      duration: 1500
-    })
-    return false;
-  }
-  var myreg = /^[1-9]+$/;
+  // if (mobile.length != 11) {
+  //   wx.showToast({
+  //     title: '手机号长度有误！',
+  //     image: '/img/error.png',
+  //     duration: 1500
+  //   })
+  //   return false;
+  // }
+  var myreg = /^[0-9]+$/;
   if (!myreg.test(mobile)) {
     wx.showToast({
       title: '手机号有误！',

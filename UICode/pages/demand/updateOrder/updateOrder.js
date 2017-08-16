@@ -9,7 +9,7 @@ Page({
     orderId:"",
     def:0,
     pService:1,
-    services: [{ Name: "后台等待01", Id: 1 }, { Name: "后台等待02", Id: 2 }, { Name: "后台等待03", Id: 3}]
+    services: [{ Name: "通知后台", Id: 1 }, { Name: "客服回访", Id: 2 }, { Name: "拟定合同", Id: 3 }, { Name: "线下签约", Id: 4 }, { Name: "平台审查", Id: 5 }, { Name: "付款确认", Id: 6 }, { Name: "服务完成", Id: 7 }]
   },
 
   bindChangeService: function (e) {
