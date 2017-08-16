@@ -27,7 +27,7 @@ def update_lable_info(name,description,isTop,sort,current_user_id,lableId):
 def delete_lable(lableId,current_user_id):
     if lableId == None or lableId=="" or current_user_id == None or current_user_id=="":
         raise custom_error.CustomFlaskErr(status_code=500, message="参数不正确，请刷新后重试")
-    data_register = mysql.operate_object(lable_sql.delete_lable,(current_user_id,lableId,current_user_id,lableId))
+    data_register = mysql.operate_object(lable_sql.delete_lable,(current_user_id,lableId))
     return data_register > 0
 
 
