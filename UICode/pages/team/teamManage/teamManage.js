@@ -10,7 +10,9 @@ Page({
     searchCount: 1,
     pageIndex: 1,
     searchValue: "",
-    teams:[]
+    teams:[],
+
+    myTeam:null,
   },
   /**
    * 查询
@@ -95,6 +97,27 @@ Page({
       searchValue: value
     })
     searchList(this);
+
+    var loginInfo = wx.getStorageSync('userLoginInfo');
+    if (loginInfo == "") {
+      wx.redirectTo({
+        url: "/pages/account/login/login"
+      });
+    } 
+    common.POST({
+      url: "/planner/select_user_team",
+      params: {
+        userid: loginInfo.Id
+      },
+      success: function (res, s, m) {
+        if (s) {
+          that.setData({
+            myTeam: res
+          })
+        }
+      },
+      fail: function () { }
+    })
   },
 
   /**

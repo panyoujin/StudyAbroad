@@ -30,6 +30,9 @@ function PostUpload(requestHandler) {
 
 //请求
 function request(method, requestHandler) {
+  wx.showLoading({
+    title: '加载中',
+  })
   //注意：可以对params加密等处理  
   var params = requestHandler.params;
   wx.request({
@@ -42,6 +45,7 @@ function request(method, requestHandler) {
     },
     dataType : "json",
     success: function (res) {
+      wx.hideLoading();
       var msg = getHttpRequestStatus(res.statusCode);
       var status = true;
       if (msg != '') {  //请求错误
@@ -58,6 +62,7 @@ function request(method, requestHandler) {
       }
     },
     fail: function () {
+      wx.hideLoading();
       wx.showModal({
         title: '提示',
         content: '页面发生未知的错误，请刷新重试',
@@ -72,6 +77,7 @@ function request(method, requestHandler) {
       requestHandler.fail()
     },
     complete: function () {
+      wx.hideLoading();
       // complete  
     }
   })
@@ -79,6 +85,9 @@ function request(method, requestHandler) {
 
 //上传
 function uploadFile(requestHandler) {
+  wx.showLoading({
+    title: '加载中',
+  })
   wx.uploadFile({
     url: apiUrl + requestHandler.url,
     filePath: requestHandler.filePath,
@@ -89,6 +98,7 @@ function uploadFile(requestHandler) {
     },
     formData: requestHandler.params,
     success: function (res) {
+      wx.hideLoading();
       var msg = getHttpRequestStatus(res.statusCode);
       var status = true;
       if (msg != '') {  //请求错误
@@ -102,6 +112,7 @@ function uploadFile(requestHandler) {
       }
     },
     fail: function () {
+      wx.hideLoading();
       wx.showModal({
         title: '提示',
         content: '页面发生未知的错误，请刷新重试',
@@ -116,6 +127,7 @@ function uploadFile(requestHandler) {
       requestHandler.fail()
     },
     complete: function () {
+      wx.hideLoading();
       // complete  
     }
   })

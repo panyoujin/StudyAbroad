@@ -6,14 +6,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    filePath:"/img/account/bannerReg.png"
+    filePath:"/img/account/bannerReg.png",
+    isSearch: true,
+    searchCount: 1,
+    pageIndex: 1,
+    imgs: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    searchList(this, 1)
   },
 
   //添加图片
@@ -111,7 +115,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    searchList(this, 2)
   },
 
   /**
@@ -121,3 +125,31 @@ Page({
   
   }
 })
+
+function searchList(that, sType = 1) {
+  if (!that.data.isSearch)
+    return;
+  common.POST({
+    url: "/planner/order_list",
+    params: {
+      page: that.data.pageIndex,
+      size: 10,
+    },
+    success: function (res, s, m) {
+      if (s && res.length != 0) {
+        that.setData({
+          imgs: that.data.imgs.concat(res),
+          pageIndex: that.data.pageIndex + 1,
+          searchCount: res.length
+        })
+      } else {
+        var sc = sType == 1 ? 0 : -1;
+        that.setData({
+          isSearch: false,
+          searchCount: sc
+        })
+      }
+    },
+    fail: function () { }
+  })
+}

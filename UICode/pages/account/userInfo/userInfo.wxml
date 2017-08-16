@@ -61,11 +61,11 @@
         <label>消息通知</label>
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>
-    <navigator class="clsView" url="/pages/sysInfo/ContactUs/ContactUs">
+    <!-- <navigator class="clsView" url="/pages/sysInfo/ContactUs/ContactUs">
         <image class="clsIcon" src="/img/account/uPhone.png" wx:if="{{UserType==1}}"></image>
         <label>联系我们</label>
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
-     </navigator>
+     </navigator> -->
     <navigator class="clsView" url="/pages/sysInfo/softwareInfo/softwareInfo">
         <image class="clsIcon" src="/img/account/uSoftware.png" wx:if="{{UserType==1}}"></image>
         <label>关于软件</label>

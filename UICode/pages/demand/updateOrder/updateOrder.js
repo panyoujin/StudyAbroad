@@ -7,13 +7,13 @@ Page({
    */
   data: {
     orderId:"",
-    def:0,
-    pService:1,
+    orderStatus: 0,
+    pService:0,
     services: [{ Name: "通知后台", Id: 1 }, { Name: "客服回访", Id: 2 }, { Name: "拟定合同", Id: 3 }, { Name: "线下签约", Id: 4 }, { Name: "平台审查", Id: 5 }, { Name: "付款确认", Id: 6 }, { Name: "服务完成", Id: 7 }]
   },
 
   bindChangeService: function (e) {
-    console.log(e.detail.value);
+    //console.log(this.data.services[e.detail.value].Id);
     this.setData({
       pService: e.detail.value
     })
@@ -22,10 +22,16 @@ Page({
   btnSubmit:function(){
     var that=this;
     var pService = that.data.pService;
-    var def = that.data.def;
-    if (pService <= def){
+    var def = that.data.orderStatus;
+    if (that.data.orderId == "") {
       that.setData({
-        tip: '进度不能往后更新',
+        tip: '订单不存在',
+      })
+      return;
+    }
+    if (pService+1 <= def){
+      that.setData({
+        tip: '进度只能往前更新',
       })
       return;
     }
@@ -33,8 +39,8 @@ Page({
       url: "/order/planer_update_order_status",
       params: {
         OrderId: that.data.orderId,
-        StartStatus: 1,
-        EndStatus:1
+        StartStatus: that.data.orderStatus,
+        EndStatus: that.data.services[that.data.pService].Id
       },
       success: function (res, s, m) {
         if (s) {
@@ -59,7 +65,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this;
+    var id = options.orderId;
+    var orderStatus = options.orderStatus;
+    var content = options.content;
+    if (id == undefined || id == "undefined" || id == "null") {
+      return;
+    }
+    if (orderStatus == undefined || orderStatus == "undefined" || orderStatus == "null") {
+      orderStatus = 0;
+    }
+    that.setData({
+      orderId: id,
+      orderStatus: parseInt(orderStatus),
+    })
   },
 
   /**

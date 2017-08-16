@@ -13,7 +13,7 @@ Page({
 
   btnUpdata:function(){
     wx.navigateTo({
-      url: '/pages/demand/updateOrder/updateOrder',
+      url: '/pages/demand/updateOrder/updateOrder?orderId=' + this.data.orderId + "&orderStatus=" + this.data.datas.OrderStatus,
     })
   },
   /**

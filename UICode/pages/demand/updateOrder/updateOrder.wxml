@@ -9,7 +9,7 @@
     </picker>
   </view>
 
-   <textarea  class="clsName" name="Name" placeholder="请输入描述" maxlength="2000"/>
+   <!-- <textarea  class="clsName" name="Name" placeholder="请输入描述" maxlength="2000"/> -->
 
   <view class="errorMsg">{{tip}}</view>
   <button class="formBtn" bindtap="btnSubmit">提交进度更新</button>

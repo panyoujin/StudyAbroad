@@ -36,6 +36,7 @@ Page({
       success: function (res, s, m) {
         if (s) {
           countdown(that);
+          wx.setStorageSync('sendMsgTime', Date.now());
         } else {
           that.setData({
             tip: m,
@@ -104,7 +105,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var dt =Date.now();
+    var sendMsg = wx.getStorageSync('sendMsgTime')
+
+    var second = parseInt((dt - sendMsg) / 1000).toFixed(0);
+    if (second<60){
+      this.setData({
+        second: 60-second
+      });
+      countdown(this);
+    }
   },
 
   /**
@@ -166,15 +176,15 @@ function validatemobile(mobile) {
     })
     return false;
   }
-  if (mobile.length != 11) {
-    wx.showToast({
-      title: '手机号长度有误！',
-      image: '/img/error.png',
-      duration: 1500
-    })
-    return false;
-  }
-  var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+  // if (mobile.length != 11) {
+  //   wx.showToast({
+  //     title: '手机号长度有误！',
+  //     image: '/img/error.png',
+  //     duration: 1500
+  //   })
+  //   return false;
+  // }
+  var myreg = /^1[0-9]{10}$/;
   if (!myreg.test(mobile)) {
     wx.showToast({
       title: '手机号有误！',

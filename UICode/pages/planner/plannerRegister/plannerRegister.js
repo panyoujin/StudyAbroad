@@ -33,6 +33,7 @@ Page({
     var that = this;
     var pName = e.detail.value.pName;
     var imgSaveUrl01 = that.data.imgSaveUrl01;
+    var imgSaveUrl02 = that.data.imgSaveUrl02;
     var address = e.detail.value.address;
     var record = e.detail.value.record;
     var email = e.detail.value.email;
@@ -59,7 +60,8 @@ Page({
           ServiceAreaId: pArea,
           Email: email,
           Experience: record,
-          IDCardPic: imgSaveUrl01
+          IDCardPic: imgSaveUrl01,
+          IDCardBackPic: imgSaveUrl02
         },
         success: function (res, s, m) {
           if (s) {
