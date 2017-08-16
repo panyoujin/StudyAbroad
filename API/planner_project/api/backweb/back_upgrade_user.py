@@ -75,12 +75,14 @@ def update_upgrade_user():
             idCard = upgradeInfo["IDCard"]
         sql_list = [upgrade_user_sql.update_upgrade_status,
                     upgrade_user_sql.update_user_type,
-                    upgrade_user_sql.update_user_info]
+                    upgrade_user_sql.update_user_info,
+                    upgrade_user_sql.insert_planner_statistics]
         args_list = [(Status, UserId, Id),
                      (UserId,upgradeInfo["UserId"]),
                      (upgradeInfo["Name"],upgradeInfo["Sex"],upgradeInfo["Address"],upgradeInfo["Experience"],
                       upgradeInfo["Email"],idCard,upgradeInfo["IDCardPic"],upgradeInfo["ServiceAreaId"],
-                      upgradeInfo["ServiceId"],UserId,upgradeInfo["UserId"],UserId,upgradeInfo["IDCardBackPic"])]
+                      upgradeInfo["ServiceId"],UserId,upgradeInfo["UserId"],UserId,upgradeInfo["IDCardBackPic"]),
+                     (upgradeInfo["UserId"])]
         success = mysql.operate__many(sql_list, args_list)
         if success <= 0:
             raise custom_error.CustomFlaskErr(status_code=500, message="审核失败")

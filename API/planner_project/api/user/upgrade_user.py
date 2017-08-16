@@ -5,7 +5,7 @@ from planner_project import app
 from planner_project.common import api_response,custom_error,request_helper
 from planner_project.data_access import mysql
 from planner_project.sql.user import user_upgrade
-
+#申请规划师
 @app.route("/userinfo/upgrade_user", methods=['POST'])
 def upgrade_user():
     ApiResponse = api_response.ApiResponse()
@@ -46,6 +46,7 @@ def upgrade_user():
 
     requestData = (userId,Sex,Name,Address,ServiceId,ServiceAreaId,Email,Experience,IDCardPic,userId,IDCardBackPic)
     data_register = mysql.operate_object(user_upgrade.insert_upgrade_user, requestData)
+
     if data_register > 0:
         ApiResponse.message = "申请成功"
         ApiResponse.status = 200
