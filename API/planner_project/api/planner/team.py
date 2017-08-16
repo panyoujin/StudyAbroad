@@ -63,8 +63,8 @@ def insert_team():
     if user["UserType"] < 2:
         raise custom_error.CustomFlaskErr(status_code=500, message="请先申请成为规划师再注册团队！")
     guid = str(uuid.uuid1())
-    teamId= team_logic.select_user_teamid(user["Id"])
-    if teamId != None:
+    teamInfo= team_logic.select_user_team(user["Id"])
+    if teamInfo != None:
         raise custom_error.CustomFlaskErr(status_code=500, message="你已经是其他团队的成员，如需注册团队请先退出其他团队！")
     data=team_logic.insert_team(guid,user["Id"],name,serviceAreaId,serviceDescription)
     ApiResponse.message = "成功"
