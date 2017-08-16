@@ -33,7 +33,7 @@ def upgrade_user():
     IDCardPic = request.form.get("IDCardPic", type=str, default=None)
     if IDCardPic == None:
         raise custom_error.CustomFlaskErr(status_code=500, message="身份证正面不能为空")
-        IDCardBackPic = request.form.get("IDCardBackPic", type=str, default=None)
+    IDCardBackPic = request.form.get("IDCardBackPic", type=str, default=None)
     if IDCardBackPic == None:
         raise custom_error.CustomFlaskErr(status_code=500, message="身份证反面不能为空")
 

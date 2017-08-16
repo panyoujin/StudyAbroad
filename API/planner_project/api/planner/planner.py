@@ -37,7 +37,7 @@ def search():
 @app.route("/planner/follow", methods=['POST'])
 def follow():
     ApiResponse = api_response.ApiResponse()
-    user = request_helper.current_user()
+    user = request_helper.current_user_mush_login()
     plannerId = request.form.get("plannerId", type=str, default=None)
     if any(user) and plannerId !=None:
         count = mysql.operate_object(planner_sql.planner_follw, (user["Id"],plannerId))
@@ -49,7 +49,7 @@ def follow():
 @app.route("/planner/unfollow", methods=['POST'])
 def unfollow():
     ApiResponse = api_response.ApiResponse()
-    user = request_helper.current_user()
+    user = request_helper.current_user_mush_login()
     plannerId = request.form.get("plannerId", type=str, default=None)
     if any(user) and plannerId !=None:
         count = mysql.operate_object(planner_sql.planner_unfollw, (user["Id"],plannerId))
