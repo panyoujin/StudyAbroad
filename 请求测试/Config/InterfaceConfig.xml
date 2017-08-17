@@ -552,4 +552,11 @@
         <FileParam></FileParam>
         <BodyParam></BodyParam>
     </Interface>
+    <Interface>
+        <Name>获取标签列表</Name>
+        <Url>http://localhost:5000/planner/get_lable_list</Url>
+        <PostParam>page=1#;#size=10</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
 </InterfaceList>

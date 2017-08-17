@@ -17,7 +17,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //searchList(this, 1)
+    searchList(this, 1)
   },
 
   /**
@@ -59,7 +59,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    //searchList(this, 2)
+    searchList(this, 2)
   },
 
   /**
@@ -74,7 +74,7 @@ function searchList(that, sType = 1) {
   if (!that.data.isSearch)
     return;
   common.POST({
-    url: "/planner/order_list",
+    url: "/dynamic/select_dynamic_list",
     params: {
       page: that.data.pageIndex,
       size: common.pageSize,
