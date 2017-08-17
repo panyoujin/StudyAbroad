@@ -62,6 +62,18 @@ def collection():
     ApiResponse.status = 200
     return api_response.response_return(ApiResponse)
 
+#取消收藏
+@app.route("/demand_service/uncollection", methods=['POST'])
+def uncollection():
+    ApiResponse = api_response.ApiResponse()
+    user = request_helper.current_user_mush_login()
+    demandServiceId = request.form.get("demandServiceId", type=str, default=None)
+    if any(user) and demandServiceId !=None and demandServiceId !="":
+        count = mysql.operate_object(demand_service_sql.demand_service_uncollection, (user["Id"],demandServiceId))
+    ApiResponse.message = "收藏成功"
+    ApiResponse.status = 200
+    return api_response.response_return(ApiResponse)
+
 #我的收藏列表
 @app.route("/demand_service/collection_list", methods=['POST'])
 def collection_list():
