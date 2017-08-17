@@ -24,10 +24,9 @@ Page({
     })
 
     common.POST({
-      url: "/planner/order_list",
+      url: "/dynamic/select_dynamic_info",
       params: {
-        page: that.data.pageIndex,
-        size: common.pageSize,
+        dynamicId:id,
       },
       success: function (res, s, m) {
         if (s && res.length != 0) {

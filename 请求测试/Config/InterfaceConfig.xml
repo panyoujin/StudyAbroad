@@ -107,6 +107,13 @@
         <BodyParam></BodyParam>
     </Interface>
     <Interface>
+        <Name>取消收藏</Name>
+        <Url>http://localhost:5000/demand_service/uncollection</Url>
+        <PostParam>demandServiceId=</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
+    <Interface>
         <Name>我的收藏列表</Name>
         <Url>http://localhost:5000/demand_service/collection_list</Url>
         <PostParam>page=1#;#size=10</PostParam>
@@ -548,6 +555,13 @@
     <Interface>
         <Name>查询资料列表</Name>
         <Url>http://localhost:5000/userinfo/select_user_file</Url>
+        <PostParam>page=1#;#size=10</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
+    <Interface>
+        <Name>获取标签列表</Name>
+        <Url>http://localhost:5000/planner/get_lable_list</Url>
         <PostParam>page=1#;#size=10</PostParam>
         <FileParam></FileParam>
         <BodyParam></BodyParam>

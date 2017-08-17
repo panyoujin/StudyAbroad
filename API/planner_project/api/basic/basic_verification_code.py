@@ -1,7 +1,7 @@
 #coding:utf-8
 from flask import request
 from planner_project import app
-from planner_project.common import api_response,request_helper,custom_error
+from planner_project.common import api_response,request_helper,custom_error,aliyun_sms
 from planner_project.data_access import mysql
 from planner_project.sql.basic import verification_code_sql
 from planner_project.sql.user import  user_sql
@@ -26,7 +26,9 @@ def get_vcode():
 
     ApiResponse = api_response.ApiResponse()
     data = mysql.operate_object(verification_code_sql.insert_verification_codel,(Phone,vcode,CodeType))
-
+    if data!=None and data>0:
+        params = {"vcode": vcode}
+        send_result = aliyun_sms.AliyunSMS().send_single(phone=Phone, sign="龟划海外", template='SMS_85970044', params=params)
     ApiResponse.message = "成功"
     ApiResponse.data = data
     return api_response.response_return(ApiResponse)

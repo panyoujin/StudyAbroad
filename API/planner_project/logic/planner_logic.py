@@ -61,3 +61,12 @@ def select_planner_lables(userid,page,size):
 #是否已关注
 def get_whether_follw(userid,plannerId):
     return mysql.get_object(planner_sql.get_whether_follw,(plannerId,userid))
+
+
+#获取标签列表
+def select_lable_list(page,size):
+    if page<=0:
+        page=1
+    if size<=0:
+        size=10
+    return mysql.get_list(planner_sql.select_lable_list,((page-1)*size,size))

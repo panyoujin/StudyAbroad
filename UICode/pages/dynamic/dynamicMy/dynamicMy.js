@@ -74,7 +74,7 @@ function searchList(that, sType = 1) {
   if (!that.data.isSearch)
     return;
   common.POST({
-    url: "/planner/order_list",
+    url: "/dynamic/select_user_dynamic_list",
     params: {
       page: that.data.pageIndex,
       size: common.pageSize,

@@ -151,3 +151,9 @@ update_album ="UPDATE `U_Album`  SET `PhotoName` = '%s',`Url` = '%s',`Sort` = '%
 #删除相片
 delete_album ="UPDATE `U_Album` SET `IsDelete`=TRUE, `ModifUserID`='%s', `ModifTime`=NOW() " \
                 "WHERE `Id` = '%s' AND `UserId` = '%s'"
+#系统标签列表
+select_lable_list="SELECT `Id`,`Name`,`Description`,`IsTop`,`Sort`,`CreateTime` " \
+                         "FROM `Base_Label` " \
+                         "WHERE `IsDelete`=FALSE " \
+                         "ORDER BY `IsTop` DESC ,`Sort` DESC,`CreateTime` DESC "\
+                         "LIMIT %s , %s "
