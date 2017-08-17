@@ -77,7 +77,7 @@ function request(method, requestHandler) {
       requestHandler.fail()
     },
     complete: function () {
-      wx.hideLoading();
+      //wx.hideLoading();
       // complete  
     }
   })
@@ -127,7 +127,7 @@ function uploadFile(requestHandler) {
       requestHandler.fail()
     },
     complete: function () {
-      wx.hideLoading();
+      //wx.hideLoading();
       // complete  
     }
   })

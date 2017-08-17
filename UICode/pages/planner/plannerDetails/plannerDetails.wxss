@@ -22,16 +22,6 @@
   border-radius: 160rpx;
   margin:10rpx;
 }
-.plannerImg button{
-  color:#099aff;
-  border-radius:35rpx;
-  background-color:#fff;
-  font-size:28rpx;
-  line-height:2.0;
-}
-.plannerImg button::after {
-  border: 5rpx solid #099aff;
-}
 .plannerImg .clsBtnImg{
   width:160rpx;
   height: 55rpx;
@@ -50,6 +40,28 @@
 .plannerBtnMsg image{
   width: 60rpx;
   height: 60rpx;
+}
+.clsBtn01{
+  width: 135rpx;
+  background-color: #fff;
+  color: #099aff;
+  line-height:1.6;
+  font-size:30rpx;
+  margin-top: 15rpx;
+  font-family: "黑体";
+  border: 2rpx solid #099aff;
+  border-radius:28rpx;
+}
+.clsBtn02{
+  width: 135rpx;
+  background-color: #099aff;
+  color: #fff;
+  line-height:1.8;
+  font-size:30rpx;
+  margin-top: 15rpx;
+  font-family: "黑体";
+  border: none;
+  border-radius:28rpx;
 }
 .clsPlannerTxt{
   display: flex;

@@ -86,7 +86,7 @@ function searchList(that, sType = 1) {
           pageIndex: that.data.pageIndex + 1,
           searchCount: res.length
         })
-        wx.setStorageSync("queryServices", that.data.services);
+        //wx.setStorageSync("queryServices", that.data.services);
       } else {
         var sc = sType == 1 ? 0 : -1;
         that.setData({

@@ -6,8 +6,10 @@
     </view>
     <view class="plannerHeadTxt">
       <view class="plannerBtnMsg">
-        <image class="clsBtnImg" bindtap="btnShare" src="/img/planner/pShare.png" mode="aspectFit"></image>
-        <image class="clsBtnImg" bindtap="btnFollow" src="/img/planner/pFollow.png" mode="aspectFit"></image>
+        <!-- <image class="clsBtnImg" bindtap="btnShare" src="/img/planner/pShare.png" mode="aspectFit"></image> -->
+        <!-- <image class="clsBtnImg" bindtap="btnFollow" src="/img/planner/pFollow.png" mode="aspectFit"></image> -->
+        <button class="clsBtn01" open-type="share">分享</button>
+        <button class="clsBtn02" bindtap="btnFollow">{{isfllow==0?'+收藏':'-收藏'}}</button>
       </view>
       <view class="clsPlannerTxt">
         <label></label>
@@ -18,7 +20,7 @@
         <label>{{service.AreaName}}</label>
       </view>
       <view class="clsPlannerTxt clcComment">
-        <label>关注数:</label>
+        <label>收藏数:</label>
         <label>{{service.CollectionCount}}</label>
       </view>
     </view>
@@ -46,9 +48,10 @@
   </view>
 
   <view class="clsSelect">
-    <button bindtap="btnSelect">{{service.Type=="1"?'承接需求':'选择服务'}}</button>
+    <button bindtap="btnSelect" wx:if="{{userType==1}}" hidden="{{service.Type=='1'?true:false}}">选择服务</button>
+    <button bindtap="btnSelect" wx:if="{{userType!=1&&service.collection_count=='0'}}" hidden="{{service.Type=='2'?true:false}}">承接需求</button>
   </view>
-</view>
+</view> 
 
 <view class="container" wx:else> 
   <view class="pageMsg">需求/服务详情加载失败!</view>

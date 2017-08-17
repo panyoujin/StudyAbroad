@@ -6,9 +6,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userType:1,
     demandId:"",
     isOK: true,
-    service:[]
+    service:[],
+    isfllow:0
   },
 
   /**
@@ -25,23 +27,53 @@ Page({
       demandId:id
     })
 
-    var services = wx.getStorageSync("queryServices");
+    var loginInfo = wx.getStorageSync('userLoginInfo');
+    if (loginInfo == "") {
+      wx.redirectTo({
+        url: "/pages/account/login/login"
+      });
+    } else {
+      that.setData({
+        userType: loginInfo.UserType
+      })
+    }
+
     var service = null;
-    var i = 0
-    while (i< services.length){
-      if (services[i].Id == id){
-        service = services[i];
-        break;
+
+    // var services = wx.getStorageSync("queryServices");
+    // var i = 0
+    // while (i< services.length){
+    //   if (services[i].Id == id){
+    //     service = services[i];
+    //     break;
+    //   }
+    //   i++;
+    // }
+    // if (service == "" || service == null) {
+    //   that.setData({ isOK: false })
+    //   return;
+    // }
+    // service.HeadImage = common.apiUrl + "/" + service.HeadImage;
+    // that.setData({
+    //   service: service
+    // })
+    
+    common.POST({
+      url: "/demand_service/demand_service_info",
+      params: {
+        demandServiceId: id
+      },
+      success: function (res, s, m) {
+        service = res;
+        service.HeadImage = common.apiUrl + "/" + service.HeadImage;
+        that.setData({
+          service: service
+        })
+       },
+      fail: function () { 
+        that.setData({ isOK: false })
+        return;
       }
-      i++;
-    }
-    if (service == "" || service == null) {
-      that.setData({ isOK: false })
-      return;
-    }
-    service.HeadImage = common.apiUrl+"/" + service.HeadImage;
-    that.setData({
-      service: service
     })
 
     //添加浏览历史
@@ -60,31 +92,39 @@ Page({
    */
   btnFollow: function () {
     var that = this;
+    var title = '收藏';
+    var content = '确定收藏该需求/服务';
+    var msg = "收藏";
+    var url = '/demand_service/collection';
+    var isfllow = 1;
+    if (that.data.isfllow == 1) {
+      title = '取消收藏';
+      content = '确定取消收藏该需求/服务？';
+      url = '/demand_service/uncollection';
+      msg = "取消收藏";
+      isfllow = 0;
+    }
     wx.showModal({
-      title: '关注',
-      content: '确定关注该需求/服务？',
+      title: title,
+      content: content,
       success: function (res) {
         if (res.confirm) {
           common.POST({
-            url: "/demand_service/collection",
+            url: url,
             params: {
               demandServiceId: that.data.service.Id
             },
             success: function (res, s, m) {
               if (s) {
-                wx.showToast({
-                  title: '成功关注！',
-                  duration: 1500
+                common.Alert("成功"+msg);
+                that.setData({
+                  isfllow: isfllow
                 })
               } else {
-                wx.showToast({
-                  title: '关注失败！',
-                  image: '/img/error.png',
-                  duration: 1500
-                })
+                common.AlertError(msg+"失败");
               }
             },
-            fail: function () { }
+            fail: function () {  }
           })
         }
       }

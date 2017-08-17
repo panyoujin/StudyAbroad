@@ -70,6 +70,8 @@ Page({
   },
 
   openFile:function(){
+    common.AlertError("失败");
+    return;
     wx.downloadFile({
      // url: 'http://39.108.125.58/files/pdf.pdf',
       url:"http://39.108.125.58/files/abc.docx",

@@ -48,14 +48,14 @@
       </block>
     </view>
 
-    <view class="clsQualification">
+    <!-- <view class="clsQualification">
       <view class="clsPersonTitle">个人背景</view>
       <view class="clsPerson">个人背景XXXXXXXXXXXXXX</view>
-    </view>
+    </view> -->
 
     <view class="clsQualification clsAutographHead">
       <view class="clsAutographTitle">个人签名</view>
-      <view class="clsAutograph">{{planner.autograph==null?"":planner.autograph}}</view>
+      <view class="clsAutograph">{{planner.Autograph==null?"":planner.Autograph}}</view>
     </view>
   </view>
 

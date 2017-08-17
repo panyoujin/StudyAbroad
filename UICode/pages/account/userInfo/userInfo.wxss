@@ -64,7 +64,7 @@ page{
   vertical-align: middle;
 }
 .clsPlannerHead navigator{
-  margin-left: 120rpx;
+  margin-left: 80rpx; 
   margin-top:54rpx;
   color: #099aff;
   border:4rpx solid #099aff;
