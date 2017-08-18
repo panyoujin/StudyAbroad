@@ -1,4 +1,5 @@
 // pages/message/msgService/msgService.js
+var common = require('../../../utils/common.js')
 Page({
 
   /**
@@ -11,9 +12,18 @@ Page({
     searchCount: 1,
     pageIndex: 1,
     searchValue: "",
-    msgs: [],
+    msgs: []
   },
 
+  btnLook:function(e){
+    var url ="/pages/account/applyPlanner/applyPlanner?id=";
+    if (this.data.userType!=1){
+      url ="/pages/demand/orderDetails/orderDetails?id=";
+    }
+    wx.navigateTo({
+      url: url + e.currentTarget.dataset.id,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -24,6 +34,7 @@ Page({
         userType: loginInfo.UserType
       })
     ]
+    searchList(this, 1);
   },
 
   /**
@@ -65,7 +76,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    searchList(this, 2)
   },
 
   /**
@@ -75,3 +86,31 @@ Page({
   
   }
 })
+
+function searchList(that, sType = 1) {
+  if (!that.data.isSearch)
+    return;
+  common.POST({
+    url: "/notice/get_service_notice_list",
+    params: {
+      page: that.data.pageIndex,
+      size: common.pageSize
+    },
+    success: function (res, s, m) {
+      if (s && res.length != 0) {
+        that.setData({
+          msgs: that.data.msgs.concat(res),
+          pageIndex: that.data.pageIndex + 1,
+          searchCount: res.length
+        })
+      } else {
+        var sc = sType == 1 ? 0 : -1;
+        that.setData({
+          isSearch: false,
+          searchCount: sc
+        })
+      }
+    },
+    fail: function () { }
+  })
+}

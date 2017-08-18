@@ -64,15 +64,16 @@ page{
   vertical-align: middle;
 }
 .clsPlannerHead navigator{
-  margin-left: 80rpx; 
-  margin-top:54rpx;
+  /* margin-left: 80rpx;  */
   color: #099aff;
   border:4rpx solid #099aff;
   border-radius: 8rpx;
   padding: 10rpx 30rpx;
   height: 36rpx;
   font-family: "黑体";
-  font-size: 33rpx;
+  font-size: 28rpx;
+  margin:auto 0;
+  margin-left: auto;
 }
 
 /**clsUserInfo*/

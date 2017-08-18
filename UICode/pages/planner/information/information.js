@@ -15,7 +15,7 @@ Page({
 
   openFile: function (e) {
     wx.downloadFile({
-      url: e.currentTarget.dataset.url,
+      url: common.apiUrl+"/"+e.currentTarget.dataset.url,
       success: function (res) {
         var filePath = res.tempFilePath
         wx.openDocument({

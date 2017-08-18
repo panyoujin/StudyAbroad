@@ -8,16 +8,16 @@
               <image src="{{apiUrl}}{{item.HeadImage}}"></image>
             </view>
             <view class="serviceTxtInfo">
-              <view class="clsName">姓名：{{item.Name}}</view>
-              <view class="clsService">{{item.Name}}我的大师的健康哈萨克接电话啊卡是看得见黑暗神殿哈看动画阿卡电话卡好的啊肯定哈克</view>
+              <view class="clsName">姓名：{{item.UserName}}</view>
+              <view class="clsService">{{item.Content}}</view>
             </view>
             <view class="clsOther">
               <label>{{item.CreateTime}}</label>
             </view>
           </view>
           <view class="clsGroupc clsDynamicImg">
-            <image src="/img/account/bannerReg.png"></image>
-            <label>阅读：10000</label>
+            <image hidden="{{item.ImageUrl=='null'}}" src="{{apiUrl}}{{item.ImageUrl}}"></image>
+            <label>阅读：{{item.ReadCount}}</label>
           </view>
         </navigator>
       </block>

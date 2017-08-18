@@ -54,6 +54,9 @@
   display:table-cell;
   margin-top:35rpx;
 }
+.clsSystemTxtInfo{
+  margin-top:15rpx;
+}
 .serviceTxtInfo>view{
   margin-bottom:16rpx;
 }

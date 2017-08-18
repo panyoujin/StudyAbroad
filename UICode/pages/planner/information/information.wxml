@@ -1,8 +1,8 @@
 <!--pages/planner/information/information.wxml-->
 <view class="container">
   <view class="clsUserInfo">
-      <view class="clsView" wx:for="{{informations}}" bindtap="openFile" data-url="{{Url}}" wx:key="{{item}}">
-        <label>{{FileName}}</label>
+      <view class="clsView" wx:for="{{informations}}" bindtap="openFile" data-url="{{item.Url}}" wx:key="{{item}}">
+        <label>{{item.FileName}}</label>
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
       </view>
   </view>

@@ -11,12 +11,23 @@ Page({
     searchCount: 1,
     pageIndex: 1,
     dynamics: [],
+    id:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var loginInfo = wx.getStorageSync('userLoginInfo');
+    if (loginInfo == "") {
+      wx.redirectTo({
+        url: "/pages/account/login/login"
+      });
+    } else {
+      this.setData({
+        id: loginInfo.Id,
+      })
+    }
     searchList(this, 1)
   },
 
@@ -78,6 +89,7 @@ function searchList(that, sType = 1) {
     params: {
       page: that.data.pageIndex,
       size: common.pageSize,
+      userid: that.data.id,
     },
     success: function (res, s, m) {
       if (s && res.length != 0) {

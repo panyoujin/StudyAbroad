@@ -1,15 +1,14 @@
 <!--pages/dynamic/dynamicList/dynamicList.wxml-->
 <view class="container">
   <view class="searchResult">
-      <view class="clsHead">
+      <!-- <view class="clsHead">
         <image src="/img/account/bannerReg.png"></image>
         <label>Griffith Observatory</label>
-      </view>
+      </view> -->
       <block wx:for="{{dynamics}}" wx:key="item">
-     
         <navigator class="clsGroupc clsMoudel" wx:if="{{item.DynamicType=='1'}}" url="/pages/dynamic/dynamicDetails/dynamicDetails?id={{item.Id}}" >
           <view class="serviceInfo">
-              <view class="img">
+            <view class="img">
               <image src="{{apiUrl}}{{item.HeadImage}}"></image>
             </view>
             <view class="serviceTxtInfo">
@@ -21,7 +20,22 @@
             </view>
           </view>
           <view class="clsGroupc clsDynamicImg">
-            <image src="{{apiUrl}}{{item.ImageUrl}}"></image>
+            <image hidden="{{item.ImageUrl=='null'?true:false}}" src="{{apiUrl}}{{item.ImageUrl}}"></image>
+            <label>阅读：{{item.ReadCount}}</label>
+          </view>
+        </navigator>
+        <navigator class="clsGroupc clsMoudel" wx:if="{{item.DynamicType=='2'}}" url="/pages/dynamic/dynamicDetails/dynamicDetails?id={{item.Id}}" >
+          <view class="serviceInfo">
+            <view class="serviceTxtInfo clsSystemTxtInfo">
+              <view class="clsName">官方消息</view>
+              <view class="clsService">{{item.Content}}</view>
+            </view>
+            <view class="clsOther">
+              <label>{{item.CreateTime}}</label>
+            </view>
+          </view>
+          <view class="clsGroupc clsDynamicImg">
+            <image hidden="{{item.ImageUrl=='null'?true:false}}" src="{{apiUrl}}{{item.ImageUrl}}"></image>
             <label>阅读：{{item.ReadCount}}</label>
           </view>
         </navigator>

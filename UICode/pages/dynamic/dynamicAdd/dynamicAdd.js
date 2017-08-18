@@ -10,7 +10,6 @@ Page({
     imgUrlShow:[]
   },
 
-
   /**
      * 发布
      */
@@ -27,24 +26,12 @@ Page({
     that.setData({
       tip: ''
     })
-    common.POST({
-      url: "",
-      params: {
-        content: content
-      },
-      success: function (res, s, m) {
-        if (s) {
-          wx.navigateTo({
-            url: '/pages/dynamic/dynamicMy/dynamicMy'
-          })
-        } else {
-          that.setData({
-            tip: m
-          })
-        }
-      },
-      fail: function () { }
-    })
+    if (that.data.imgUrl.length>0){
+      postUploadImgAndData(that,content);
+    }else{
+      psotData(that, content, null);
+    }
+    
   },
 
   btnCleanImg:function(){
@@ -56,14 +43,14 @@ Page({
 
   btnAddImg:function(){
     var that = this;
-    if (that.data.imgUrl.length>2){
+    if (that.data.imgUrl.length>0){
       that.setData({
-        tip: '提示：图片最多为3张！'
+        tip: '提示：图片最多为1张！'
       })
         return;
     }
     wx.chooseImage({
-      count: 3, // 默认9
+      count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
@@ -133,3 +120,45 @@ Page({
   
   }
 })
+
+
+function postUploadImgAndData(that, content){
+  common.PostUpload({
+    url: '/upload',
+    filePath: that.data.imgUrl[0],
+    params: {},
+    success: function (res, s, m) {
+      if (s) {
+        psotData(that, content, res.file_path);
+      }
+      else {
+        that.setData({
+          tip: m
+        })
+      }
+    },
+    fail: function () { }
+  })
+}
+
+function psotData(that, content, imgUrl){
+  common.POST({
+    url: "/dynamic/insert_dynanic",
+    params: {
+      content: content,
+      imageUrl: imgUrl
+    },
+    success: function (res, s, m) {
+      if (s) {
+        wx.navigateTo({
+          url: '/pages/dynamic/dynamicMy/dynamicMy'
+        })
+      } else {
+        that.setData({
+          tip: m
+        })
+      }
+    },
+    fail: function () { }
+  })
+}

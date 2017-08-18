@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userType: 1,
+
     isSearch: true,
     searchCount: 1,
     pageIndex: 1,
@@ -16,12 +18,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var loginInfo = wx.getStorageSync('userLoginInfo');
+    if (loginInfo != null && loginInfo != "")[
+      this.setData({
+        userType: loginInfo.UserType
+      })
+    ]
+    if (this.data.userType!=1){
+      wx.setNavigationBarTitle({
+        title: '我发布的服务',
+      })
+    }
     searchList(this, 1)
   },
 
-  lookDemand: function(){
+  lookDemand: function(e){
     wx.navigateTo({
-      url: "/pages/account/applyPlanner/applyPlanner",
+      url: "/pages/service/serviceDetails/serviceDetails?id=" + e.currentTarget.dataset.id,
+    })
+  },
+  lookJinDu: function (e) {
+    wx.navigateTo({
+      url: "/pages/account/applyPlanner/applyPlanner?id=" + e.currentTarget.dataset.id,
     })
   },
 

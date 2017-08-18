@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    apiUrl: common.apiUrl + "/",
     id:"",
     dynamic:null
   },
@@ -30,7 +31,7 @@ Page({
       },
       success: function (res, s, m) {
         if (s && res.length != 0) {
-          var data = res[0];
+          var data = res;
           data.HeadImage = common.apiUrl + "/"+data.HeadImage;
           that.setData({
             dynamic: data,

@@ -2,7 +2,7 @@
 <view class="clsGroupr clsMsgHeads">
   <navigator url="/pages/message/msgService/msgService"  open-type="redirect" class="clsMsgTxt" >服务消息</navigator>
   <view class="clsMsgTxt clsMsgChecked clsMsgMid">系统消息</view>
-  <navigator url="/pages/message/msgTeam/msgTeam" open-type="redirect" class="clsMsgTxt" hidden="{{userType==1?ture:false}}">团队消息</navigator>
+  <navigator url="/pages/message/msgTeam/msgTeam" open-type="redirect" class="clsMsgTxt" hidden="{{userType==1?true:false}}">团队消息</navigator>
 </view>
 <view class="container">
 
