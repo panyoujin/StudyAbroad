@@ -43,6 +43,10 @@ page{
   vertical-align: middle;
   
 }
+.clsView navigator{
+  text-align: right;
+  text-decoration:underline;
+}
 
 
 .clsBtn{

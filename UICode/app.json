@@ -16,6 +16,9 @@
     "pages/account/applyPlanner/applyPlanner",
     "pages/account/applyDemand/applyDemand",
     "pages/account/customer/customer",
+    "pages/account/educationEdit/educationEdits",
+    "pages/account/sociologyEdit/sociologyEdit",
+    "pages/account/resourcesEdit/resourcesEdit",
     "pages/search/search",
     "pages/planner/plannerSearch/plannerSearch",
     "pages/planner/plannerMy/plannerMy",
@@ -30,6 +33,7 @@
     "pages/planner/plannerRegisterSucceed/plannerRegisterSucceed",
     "pages/planner/information/information",
     "pages/planner/informationDetails/informationDetails",
+    "pages/planner/plannerEdit/plannerEdit",
 
     "pages/demand/demandPublic/demandPublic",
     "pages/demand/orderDetails/orderDetails",

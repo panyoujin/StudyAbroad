@@ -37,6 +37,10 @@
       <input class="clsInput" name="eMail" placeholder="请输入邮箱" value="{{user.Email}}"  />
     </view>
 
+    <view class="clsView" hidden="{{user.UserType==1?true:false}}">
+      <navigator url="/pages/planner/plannerEdit/plannerEdit">更多信息</navigator>
+    </view>
+
     <view>{{tip}}</view>
     <button class="clsBtn" type="primary" formType="submit">{{btnTxt}}</button>
   </form>
