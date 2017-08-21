@@ -566,4 +566,11 @@
         <FileParam></FileParam>
         <BodyParam></BodyParam>
     </Interface>
+    <Interface>
+        <Name>申请规划师填写资料</Name>
+        <Url>http://localhost:5000/userinfo/updateuserinfobyupgrade</Url>
+        <PostParam>Name=徐大哥#;#Address=华盛顿#;#IDCard=12306666#;#IDCardJust=图片正面#;#IDCardBack=图片背面</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
 </InterfaceList>

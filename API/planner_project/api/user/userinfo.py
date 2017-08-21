@@ -10,7 +10,6 @@ from planner_project.sql.basic import  verification_code_sql
 #修改用户
 @app.route("/userinfo/updateuserinfo", methods=['POST'])
 def updateuserinfo():
-    print("updateuserinfo")
     ApiResponse = api_response.ApiResponse()
     name= request.form.get("name", type=str, default=None)
     sex = request.form.get("sex", type=int, default=0)
@@ -27,6 +26,31 @@ def updateuserinfo():
 
     raise custom_error.CustomFlaskErr(status_code=500, message="修改失败")
 
+# 申请是否填写资料，如果没 则保存
+@app.route("/userinfo/updateuserinfobyupgrade", methods=['POST'])
+def updateuserinfobyupgrade():
+    ApiResponse = api_response.ApiResponse()
+    Name= request.form.get("Name", type=str, default=None)
+    Address = request.form.get("Address", type=str, default=None)
+    IDCard = request.form.get("IDCard", type=str, default=None)
+    IDCardJust = request.form.get("IDCardJust", type=str, default=None)
+    IDCardBack = request.form.get("IDCardBack", type=str, default=None)
+
+    ChatNo = request.form.get("ChatNo", type=str, default=None)
+
+    user = request_helper.current_user_mush_login()
+
+    sql_list = [user_info_sql.update_user_info_by_upgrade]
+    args_list = [(Name,Address,IDCard,IDCardJust,IDCardBack,user["Id"],ChatNo,user["Id"])]
+
+    data_result = mysql.operate__many(sql_list,args_list)
+
+    if data_result!=None and data_result > 0:
+        ApiResponse.message = "修改成功"
+        ApiResponse.status = 200
+        return api_response.response_return(ApiResponse)
+
+    raise custom_error.CustomFlaskErr(status_code=500, message="修改失败")
 
 #修改用户头像
 @app.route("/userinfo/updateheadimage", methods=['POST'])
