@@ -31,8 +31,13 @@ def updateuserinfo():
 def updateuserinfobyupgrade():
     ApiResponse = api_response.ApiResponse()
     Name= request.form.get("Name", type=str, default=None)
+    if Name == None or Name=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="真实姓名不能为空")
+
     Address = request.form.get("Address", type=str, default=None)
     IDCard = request.form.get("IDCard", type=str, default=None)
+    if IDCard == None or IDCard=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="个人证件不能为空")
     IDCardJust = request.form.get("IDCardJust", type=str, default=None)
     IDCardBack = request.form.get("IDCardBack", type=str, default=None)
 
