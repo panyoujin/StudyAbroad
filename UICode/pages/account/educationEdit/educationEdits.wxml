@@ -1,0 +1,29 @@
+<!--pages/account/educationEdit/educationEdits.wxml-->
+<view class="container">
+  <form  class="formContent" bindsubmit="{{formSubmit}}" >
+    <view class="clsTxt">时间范围</view>
+    <view class="clsDate">
+      <picker mode="date" value="{{timeStart}}" start="{{dateNow}}" end="2999-12-12" bindchange="bindTimeStartChange">
+        <view class="picker">
+          {{timeStart}}
+        </view>
+      </picker>
+      <view class="pickerTxt">-</view>
+      <picker mode="date" value="{{timeEnd}}" start="{{timeStart}}" end="2999-12-12" bindchange="bindTimeEndChange">
+        <view class="picker">
+          {{timeEnd}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="clsTxt">学位</view>
+    <input placeholder="请输入学位" class="clsName" name='Degree' value="{{degree}}" />
+
+     <view class="clsTxt">学校名称</view>
+    <input placeholder="请输入学位学校名称" class="clsName" name='University' value="{{university}}"  />
+
+    <view class="errorMsg">{{tip}}</view>
+
+    <button class="formBtn" formType="submit">{{formSubmitTxt}}</button>
+  </form>
+</view>

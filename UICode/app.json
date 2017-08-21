@@ -5,6 +5,9 @@
     "pages/sysInfo/ContactUs/ContactUs",
     "pages/sysInfo/softwareInfo/softwareInfo",
     "pages/sysInfo/cooperate/cooperation",
+    "pages/sysInfo/contract/contract",
+    "pages/sysInfo/process/process",
+    
     "pages/account/login/login",
     "pages/account/forgetPwd/forgetPwd",
     "pages/account/browseHistory/browseHistory",
@@ -20,6 +23,7 @@
     "pages/account/sociologyEdit/sociologyEdit",
     "pages/account/resourcesEdit/resourcesEdit",
     "pages/search/search",
+
     "pages/planner/plannerSearch/plannerSearch",
     "pages/planner/plannerMy/plannerMy",
     "pages/planner/plannerList/plannerList",

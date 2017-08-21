@@ -159,7 +159,43 @@ swiper-item image{
 .serviceMap{
   margin: 20rpx;
 }
-.serviceMap image{
+.serviceMap .clsImg{
   width: 100%;
   height: 350rpx;
+}
+
+.servicerLc{
+  background-color: #fff;
+  border-radius: 10rpx;
+  padding:20rpx 0;
+}
+
+.clsMap{
+  position: relative;
+}
+
+.imgMapDw{
+  position: absolute;
+  width: 50rpx;
+  height: 60rpx;
+}
+.clsDw01{
+  top:200rpx;
+  left:70rpx;
+}
+.clsDw02{
+  top:100rpx;
+  left:30rpx;
+}
+.clsDw03{
+  top:130rpx;
+  left:400rpx;
+}
+.clsDw04{
+  top:120rpx;
+  left:460rpx;
+}
+.clsDw05{
+  top:160rpx;
+  left:530rpx;
 }

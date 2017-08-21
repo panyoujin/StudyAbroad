@@ -1,0 +1,13 @@
+<!--pages/sysInfo/contract/contract.wxml-->
+<view class="container">
+<view class="clsName">{{name}}</view>
+<text class="clsTxt">{{content}}</text>
+<view class="clsCheck">
+  <checkbox-group bindchange="checkboxChange">
+    <label class="checkbox" wx:for="{{items}}">
+      <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+    </label>
+  </checkbox-group>
+</view>
+<button class="clsBtn" bindtap="btnNext">下一步</button>
+</view>

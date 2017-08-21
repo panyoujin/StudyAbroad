@@ -1,0 +1,46 @@
+/* pages/account/resourcesEdit/resourcesEdit.wxss */
+.container{
+  margin: 20rpx;
+  font-size: 35rpx;
+}
+.clsDate,.picker,.clsName{
+  padding:20rpx;
+}
+.picker,.clsName{
+  margin: 20px 0;
+}
+.picker{
+  background-color: #fff;
+  line-height: 1.5;
+  border-radius: 8rpx;
+}
+.pickerTxt{
+  height:100rpx;
+  vertical-align:middle;
+  line-height:100rpx;
+  margin:0;
+}
+.clsDate{
+  display: flex;
+  flex-direction: row;
+  margin-left: -30rpx;
+} 
+.clsDate .picker{
+  margin:10rpx; 
+}
+.clsTxt{
+  margin-top: 10rpx;
+}
+.clsName{
+  width: 100%;
+  padding:10rpx;
+  border-radius: 8rpx;
+  background-color: #fff;
+}
+
+.formBtn{
+  margin-top: 20rpx;
+  margin-bottom: 50rpx;
+  background-color: #57b1fd;
+  color: #fff;
+}

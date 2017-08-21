@@ -16,22 +16,22 @@
     </view>
     <view class="clsView">
       <label class="clsTxt">个人证件*</label>
-      <input class="clsInput" name="age" placeholder="" value="{{user.IDCard}}"  />
+      <input class="clsInput" name="IDCard" placeholder="" value="{{user.IDCard}}"  />
     </view>
     <view class="clsView">
       <label class="clsTxt">住址</label>
-      <input class="clsInput" name="educational" placeholder="" value="{{user.Address}}"  />
+      <input class="clsInput" name="address" placeholder="" value="{{user.Address}}"  />
     </view>
-    <view class="clsView">
+    <!-- <view class="clsView">
       <label class="clsTxt">电话号码*</label>
-      <input class="clsInput" name="address" placeholder="" value="{{user.Phone}}"  />
+      <input class="clsInput" name="Phone" placeholder="" value="{{user.Phone}}"  />
     </view>
     <view class="clsView">
       <label class="clsTxt">微信号</label>
-      <input class="clsInput" name="eMail" placeholder="" value="{{user.Phone}}"  />
-    </view>
+      <input class="clsInput" name="Phone" placeholder="" value="{{user.Phone}}"  />
+    </view> -->
 
-    <view>{{tip}}</view>
+    <view class="errorMsg">{{tip}}</view>
     <button class="clsBtn" formType="submit">{{btnTxt}}</button>
   </form>
 </view>

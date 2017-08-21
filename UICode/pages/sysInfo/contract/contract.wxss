@@ -1,0 +1,34 @@
+/* pages/sysInfo/contract/contract.wxss */
+page{
+  background-color: #fff;
+}
+.container{
+  margin: 20rpx;
+  font-size: 30rpx;
+}
+.clsName,.clsTxt{
+  color: #727272;
+  line-height: 1.8;
+  font-family: '黑体';
+}
+.clsName{
+  font-size: 34rpx;
+  text-align: center;
+}
+.clsTxt{
+  text-indent: 2em;
+}
+.clsCheck{
+  margin: 20rpx 0;
+  line-height: 1.8;
+  font-family: '黑体';
+  color: #727272;
+  font-size: 34rpx;
+}
+
+
+.clsBtn{
+  margin: 50rpx 0;
+  background-color: #57b1fd;
+  color: #FFF;
+}

@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgSaveUrl01: "",
+    imgSaveUrl02: "",
     imgUrl01:"",
     imgUrl02:"",
     clsImgUrl01:"hideTag",
@@ -55,9 +57,16 @@ Page({
             pSex: res.Sex
           })
 
+          if (res.IDCardJust != null && res.IDCardJust != "" && res.IDCardBack != null && res.IDCardBack != ""){
+            wx.redirectTo({
+              url: '/pages/sysInfo/contract/contract',
+            })
+          }
+
           if (res.IDCardJust != null && res.IDCardJust !=""){
             that.setData({
               imgUrl01: common.apiUrl + "/" + res.IDCardJust,
+              imgSaveUrl01: res.IDCardJust,
               clsImgUrl01: "clsIdCardImg",
               clsChooseImg01: "hideTag",
             })
@@ -65,6 +74,7 @@ Page({
           if (res.IDCardBack != null && res.IDCardBack != "") {
             that.setData({
               imgUrl02: common.apiUrl + "/" +res.IDCardBack,
+              imgSaveUrl02: res.IDCardBack,
               clsImgUrl02: "clsIdCardImg",
               clsChooseImg02: "hideTag",
             })
@@ -81,9 +91,58 @@ Page({
     })
   },
 
-  btnSubmit:function(){
-    wx.navigateTo({
-      url: '/pages/service/ServiceAdd/ServiceAdd?addType=1',
+  btnSubmit:function(e){
+    var that = this;
+    var address = e.detail.value.address;
+    var IDCard = e.detail.value.IDCard;
+    var name = e.detail.value.name;
+    var img01 = that.data.imgSaveUrl01;
+    var img02 = that.data.imgSaveUrl02;
+
+    if (IDCard.length == 0 || name.length == 0 || img01.length == 0 || img02.length==0) {
+      that.setData({
+        tip: '提示：个人证件照片、真实姓名、个人证件号码不能为空！'
+      })
+      return;
+    }
+    that.setData({
+      tip: '',
+      btnSubmit: '',
+      btnTxt: "提交中..."
+    })
+    common.POST({
+      url: "/userinfo/updateuserinfobyupgrade",
+      params: {
+        Name: name,
+        Address: address,
+        IDCard: IDCard,
+        IDCardJust: img01,
+        IDCardBack: img02
+      },
+      success: function (res, s, m) {
+        if (s) {
+          that.setData({
+            btnSubmit: 'btnSubmit',
+            btnTxt: "下一步"
+          })
+          wx.redirectTo({
+            url: '/pages/sysInfo/contract/contract',
+          })
+        } else {
+          that.setData({
+            tip: m,
+            btnSubmit: 'btnSubmit',
+            btnTxt: "下一步"
+          })
+        }
+      },
+      fail: function () {
+        that.setData({
+          tip: m,
+          btnSubmit: 'btnSubmit',
+          btnTxt: "下一步"
+        })
+      }
     })
   },
   /**
@@ -110,7 +169,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var img01 = this.data.imgSaveUrl01;
+    var img02 = this.data.imgSaveUrl02;
   },
 
   /**
@@ -172,12 +232,14 @@ function uploadFileImg(that,url,num){
         if (num == 1) {
           that.setData({
             imgUrl01: common.apiUrl + "/" + res.file_path,
+            imgSaveUrl01: res.file_path,
             clsImgUrl01: "clsIdCardImg",
             clsChooseImg01: "hideTag",
           })
         } else {
           that.setData({
             imgUrl02: common.apiUrl + "/" + res.file_path,
+            imgSaveUrl02: res.file_path,
             clsImgUrl02: "clsIdCardImg",
             clsChooseImg02: "hideTag",
           })

@@ -14,7 +14,8 @@ Page({
     xuqiu: true,
     fuwu: true,
     dongtai: true,
-    apiUrl: common.apiUrl+'/'
+    apiUrl: common.apiUrl+'/',
+
   },
   //点击浮动按钮事件
   alertContent: function (e) {
@@ -85,6 +86,13 @@ Page({
           }
         })
       }
+    })
+  },
+
+  //流程
+  btnProcess:function(){
+    wx.navigateTo({
+      url: '/pages/sysInfo/process/process',
     })
   },
 

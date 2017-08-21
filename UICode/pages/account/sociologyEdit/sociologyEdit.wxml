@@ -1,0 +1,26 @@
+<!--pages/account/sociologyEdit/sociologyEdit.wxml-->
+<view class="container">
+  <form  class="formContent" bindsubmit="{{formSubmit}}" >
+    <view class="clsTxt">时间范围</view>
+    <view class="clsDate">
+      <picker mode="date" value="{{timeStart}}" start="{{dateNow}}" end="2999-12-12" bindchange="bindTimeStartChange">
+        <view class="picker">
+          {{timeStart}}
+        </view>
+      </picker>
+      <view class="pickerTxt">-</view>
+      <picker mode="date" value="{{timeEnd}}" start="{{timeStart}}" end="2999-12-12" bindchange="bindTimeEndChange">
+        <view class="picker">
+          {{timeEnd}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="clsTxt">详情</view>
+    <input placeholder="请输入详情" class="clsName" name='Description' value="{{description}}" />
+
+    <view class="errorMsg">{{tip}}</view>
+
+    <button class="formBtn" formType="submit">{{formSubmitTxt}}</button>
+  </form>
+</view>

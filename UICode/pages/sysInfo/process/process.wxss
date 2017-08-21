@@ -1,0 +1,7 @@
+/* pages/sysInfo/process/process.wxss */
+page{
+  background-color: #fff;
+}
+image{
+  padding:100rpx 50rpx;
+}

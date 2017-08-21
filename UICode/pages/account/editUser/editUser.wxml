@@ -24,7 +24,7 @@
       <label class="clsTxt">年龄</label>
       <input class="clsInput" name="age" placeholder="请输入年龄" value="{{user.Age}}"  />
     </view>
-    <view class="clsView">
+    <view class="clsView" hidden="{{user.UserType==1?false:true}}">
       <label class="clsTxt">学历</label>
       <input class="clsInput" name="educational" placeholder="请输入学历" value="{{user.Education}}"  />
     </view>

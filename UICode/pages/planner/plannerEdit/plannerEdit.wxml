@@ -1,0 +1,60 @@
+<!--pages/planner/plannerEdit/plannerEdit.wxml-->
+<view class="container" wx:if="{{isOK}}">
+
+  <view class="clsQualifications">
+    <!--学历介绍-->
+    <view class="clsQualification" >
+      <view class="clsEducationTitle">学历介绍</view>
+      <block wx:for="{{educations}}" wx:key="item">
+        <view class="clsEducation">{{item.Content}}</view>
+        <view class="clsGroupr clsLine">
+          <button class="clsBtn" bindtap="btnEditEducation" data-id="{{item.Id}}">编辑</button>
+          <button class="clsBtn" bindtap="btnDelEducation" data-id="{{item.Id}}">删除</button>
+        </view>
+      </block>
+      <button class="clsBtn" bindtap="btnAddEducation">新增</button>
+    </view>
+
+    <!--社会背景-->
+    <view class="clsQualification">
+      <view class="clsSocietyTitle">社会背景</view>
+      <block wx:for="{{societys}}" wx:key="item">
+        <view class="clsSociety">{{item.Content}}</view>
+        <view class="clsGroupr clsLine">
+          <button class="clsBtn" bindtap="btnEditSociology" data-id="{{item.Id}}">编辑</button>
+          <button class="clsBtn" bindtap="btnDelSociology" data-id="{{item.Id}}">删除</button>
+        </view>
+      </block>
+      <button class="clsBtn" bindtap="btnAddSociology">新增</button>
+    </view>
+
+    <!--资源背景-->
+    <view class="clsQualification">
+      <view class="clsResourTitle">资源背景</view>
+      <block wx:for="{{resours}}" wx:key="item">
+        <view class="clsResour">{{item.Content}}</view>
+        <view class="clsGroupr clsLine">
+          <button class="clsBtn" bindtap="btnEditResources" data-id="{{item.Id}}">编辑</button>
+          <button class="clsBtn" bindtap="btnDelResources" data-id="{{item.Id}}">删除</button>
+        </view>
+      </block>
+      <button class="clsBtn" bindtap="btnAddResources">新增</button>
+    </view>
+
+    <!-- <view class="clsQualification">
+      <view class="clsPersonTitle">个人背景</view>
+      <view class="clsPerson">个人背景XXXXXXXXXXXXXX</view>
+    </view> -->
+
+    <!-- <view class="clsQualification clsAutographHead">
+      <view class="clsAutographTitle">个人签名</view>
+      <view class="clsAutograph">{{planner.Autograph==null?"":planner.Autograph}}</view>
+    </view> -->
+  </view>
+
+</view>
+
+<view class="container" wx:else> 
+  <view class="pageMsg">规划师资历加载失败!</view>
+</view>
+
