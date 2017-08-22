@@ -59,6 +59,7 @@ def update_upgrade_user():
         raise custom_error.CustomFlaskErr(status_code=500, message="参数状态不能为空")
     #查询规划师升级数据
     upgradeInfo = mysql.get_object(upgrade_user_sql.get_upgrade_info_by_id, (Id))
+
     if upgradeInfo is None:
         raise custom_error.CustomFlaskErr(status_code=500, message="该审核数据不存在")
     if upgradeInfo["Status"] != 0:
@@ -70,8 +71,8 @@ def update_upgrade_user():
             raise custom_error.CustomFlaskErr(status_code=500, message="审核失败")
     # 审核通过
     if Status == 1:
-        idCard=""#判断IDCard是否不存在
-        if 'IDCard' in upgradeInfo:
+        idCard=" "#判断IDCard是否不存在
+        if 'IDCard' in upgradeInfo and upgradeInfo["IDCard"] is not None:
             idCard = upgradeInfo["IDCard"]
         sql_list = [upgrade_user_sql.update_upgrade_status,
                     upgrade_user_sql.update_user_type,
@@ -80,8 +81,8 @@ def update_upgrade_user():
         args_list = [(Status, UserId, Id),
                      (UserId,upgradeInfo["UserId"]),
                      (upgradeInfo["Name"],upgradeInfo["Sex"],upgradeInfo["Address"],upgradeInfo["Experience"],
-                      upgradeInfo["Email"],idCard,upgradeInfo["IDCardPic"],upgradeInfo["ServiceAreaId"],
-                      upgradeInfo["ServiceId"],UserId,upgradeInfo["UserId"],UserId,upgradeInfo["IDCardBackPic"]),
+                      upgradeInfo["Email"],idCard,upgradeInfo["IDCardPic"],upgradeInfo["IDCardBackPic"],upgradeInfo["ServiceAreaId"],
+                      upgradeInfo["ServiceId"],UserId,upgradeInfo["UserId"]),
                      (upgradeInfo["UserId"])]
         success = mysql.operate__many(sql_list, args_list)
         if success <= 0:
