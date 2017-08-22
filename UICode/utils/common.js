@@ -1,5 +1,5 @@
 
-var apiUrl = "http://39.108.125.58";
+var apiUrl = "https://www.graypie.cn";
 var programName = "规划师";
 var pageSize = 1;
 
