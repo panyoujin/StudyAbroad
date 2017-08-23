@@ -59,19 +59,19 @@ select_planner_qualifications = "SELECT 30 `Type`,CONCAT('学位：',e.`Degree`,
                                 ",YEAR(e.`TimeEnd`),' ',e.`University`) AS Content,e.`Sort`,e.`CreateTime`  " \
                                 ",e.`Id`,e.`TimeStart`,e.`TimeEnd`,e.`University`,e.`Degree`,'' AS Description " \
                                 "FROM `U_Education` e " \
-                                "WHERE e.`UserId`='%s' " \
+                                "WHERE e.`UserId`='%s' and `IsDelete`=FALSE " \
                                 "UNION ALL  " \
                                 "SELECT 20 `Type`,CONCAT(YEAR(s.`TimeStart`),'-',YEAR(s.`TimeEnd`),' ',s.`Description`) " \
                                 "AS Content,s.`Sort`,s.`CreateTime`  " \
                                 ",s.`Id`,s.`TimeStart`,s.`TimeEnd`,'','',s.`Description` " \
                                 "FROM `U_Society` s " \
-                                "WHERE s.`UserId`='%s' " \
+                                "WHERE s.`UserId`='%s'  and `IsDelete`=FALSE " \
                                 "UNION ALL  " \
                                 "SELECT 10 `Type`,CONCAT(YEAR(r.`TimeStart`),'-',YEAR(r.`TimeEnd`),' ',r.`Description`) " \
                                     "AS Content,r.`Sort`,r.`CreateTime`  " \
                                 ",r.`Id`,r.`TimeStart`,r.`TimeEnd`,'','',r.`Description` " \
                                 "FROM `U_Resour` r " \
-                                "WHERE r.`UserId`='%s' " \
+                                "WHERE r.`UserId`='%s'  and `IsDelete`=FALSE " \
                                 "ORDER BY `Type` DESC,`Sort` DESC,`CreateTime` DESC " \
                                 "LIMIT %s , %s "
 
@@ -80,7 +80,7 @@ select_planner_qualifications = "SELECT 30 `Type`,CONCAT('学位：',e.`Degree`,
 select_planner_education = "SELECT e.`Id`,CONCAT('学位：',e.`Degree`,' 毕业大学：',YEAR(e.`TimeStart`),'-',YEAR(e.`TimeEnd`),' ',e.`University`) AS Content,e.`Sort`,e.`CreateTime`  " \
                                 ",e.`TimeStart`,e.`TimeEnd`,e.`University`,e.`Degree`,'' AS Description " \
                            "FROM `U_Education` e " \
-                                "WHERE e.`UserId`='%s' " \
+                                "WHERE e.`UserId`='%s'  and `IsDelete`=FALSE " \
                                 "ORDER BY `Sort` DESC,`CreateTime` DESC " \
                                 "LIMIT %s , %s "
 
@@ -89,7 +89,7 @@ select_planner_education = "SELECT e.`Id`,CONCAT('学位：',e.`Degree`,' 毕业
 select_planner_society = "SELECT s.`Id`,CONCAT(YEAR(s.`TimeStart`),'-',YEAR(s.`TimeEnd`),' ',s.`Description`) AS Content,s.`Sort`,s.`CreateTime`  " \
                                 ",s.`TimeStart`,s.`TimeEnd`,'','',s.`Description " \
                          "FROM `U_Society` s " \
-                                "WHERE s.`UserId`='%s' " \
+                                "WHERE s.`UserId`='%s'  and `IsDelete`=FALSE " \
                                 "ORDER BY `Sort` DESC,`CreateTime` DESC " \
                                 "LIMIT %s , %s "
 
@@ -98,7 +98,7 @@ select_planner_society = "SELECT s.`Id`,CONCAT(YEAR(s.`TimeStart`),'-',YEAR(s.`T
 select_planner_resour = "SELECT r.`Id`,CONCAT(YEAR(r.`TimeStart`),'-',YEAR(r.`TimeEnd`),' ',r.`Description`) AS Content,r.`Sort`,r.`CreateTime`  " \
                                 ",r.`TimeStart`,r.`TimeEnd`,'','',r.`Description` " \
                         "FROM `U_Resour` r " \
-                                "WHERE r.`UserId`='%s' " \
+                                "WHERE r.`UserId`='%s'  and `IsDelete`=FALSE " \
                                 "ORDER BY `Sort` DESC,`CreateTime` DESC " \
                                 "LIMIT %s , %s "
 
