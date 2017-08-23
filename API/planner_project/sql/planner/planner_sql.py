@@ -55,15 +55,21 @@ select_planner_info = "SELECT ui.`UserId`,ui.`Name`,ui.`HeadImage`,ui.`Autograph
 
 
 #查询规划师资历
-select_planner_qualifications = "SELECT 30 `Type`,CONCAT('学位：',e.`Degree`,' 毕业大学：',YEAR(e.`TimeStart`),'-',YEAR(e.`TimeEnd`),' ',e.`University`) AS Content,e.`Sort`,e.`CreateTime`  " \
+select_planner_qualifications = "SELECT 30 `Type`,CONCAT('学位：',e.`Degree`,' 毕业大学：',YEAR(e.`TimeStart`),'-'" \
+                                ",YEAR(e.`TimeEnd`),' ',e.`University`) AS Content,e.`Sort`,e.`CreateTime`  " \
+                                ",e.`Id`,e.`TimeStart`,e.`TimeEnd`,e.`University`,e.`Degree`,'' AS Description " \
                                 "FROM `U_Education` e " \
                                 "WHERE e.`UserId`='%s' " \
                                 "UNION ALL  " \
-                                "SELECT 20 `Type`,CONCAT(YEAR(s.`TimeStart`),'-',YEAR(s.`TimeEnd`),' ',s.`Description`) AS Content,s.`Sort`,s.`CreateTime`  " \
+                                "SELECT 20 `Type`,CONCAT(YEAR(s.`TimeStart`),'-',YEAR(s.`TimeEnd`),' ',s.`Description`) " \
+                                "AS Content,s.`Sort`,s.`CreateTime`  " \
+                                ",s.`Id`,s.`TimeStart`,s.`TimeEnd`,'','',s.`Description` " \
                                 "FROM `U_Society` s " \
                                 "WHERE s.`UserId`='%s' " \
                                 "UNION ALL  " \
-                                "SELECT 10 `Type`,CONCAT(YEAR(r.`TimeStart`),'-',YEAR(r.`TimeEnd`),' ',r.`Description`) AS Content,r.`Sort`,r.`CreateTime`  " \
+                                "SELECT 10 `Type`,CONCAT(YEAR(r.`TimeStart`),'-',YEAR(r.`TimeEnd`),' ',r.`Description`) " \
+                                    "AS Content,r.`Sort`,r.`CreateTime`  " \
+                                ",r.`Id`,r.`TimeStart`,r.`TimeEnd`,'','',r.`Description` " \
                                 "FROM `U_Resour` r " \
                                 "WHERE r.`UserId`='%s' " \
                                 "ORDER BY `Type` DESC,`Sort` DESC,`CreateTime` DESC " \
@@ -72,7 +78,8 @@ select_planner_qualifications = "SELECT 30 `Type`,CONCAT('学位：',e.`Degree`,
 
 #学历背景
 select_planner_education = "SELECT e.`Id`,CONCAT('学位：',e.`Degree`,' 毕业大学：',YEAR(e.`TimeStart`),'-',YEAR(e.`TimeEnd`),' ',e.`University`) AS Content,e.`Sort`,e.`CreateTime`  " \
-                                "FROM `U_Education` e " \
+                                ",e.`TimeStart`,e.`TimeEnd`,e.`University`,e.`Degree`,'' AS Description " \
+                           "FROM `U_Education` e " \
                                 "WHERE e.`UserId`='%s' " \
                                 "ORDER BY `Sort` DESC,`CreateTime` DESC " \
                                 "LIMIT %s , %s "
@@ -80,7 +87,8 @@ select_planner_education = "SELECT e.`Id`,CONCAT('学位：',e.`Degree`,' 毕业
 
 #社会背景
 select_planner_society = "SELECT s.`Id`,CONCAT(YEAR(s.`TimeStart`),'-',YEAR(s.`TimeEnd`),' ',s.`Description`) AS Content,s.`Sort`,s.`CreateTime`  " \
-                                "FROM `U_Society` s " \
+                                ",s.`TimeStart`,s.`TimeEnd`,'','',s.`Description " \
+                         "FROM `U_Society` s " \
                                 "WHERE s.`UserId`='%s' " \
                                 "ORDER BY `Sort` DESC,`CreateTime` DESC " \
                                 "LIMIT %s , %s "
@@ -88,7 +96,8 @@ select_planner_society = "SELECT s.`Id`,CONCAT(YEAR(s.`TimeStart`),'-',YEAR(s.`T
 
 #资源背景
 select_planner_resour = "SELECT r.`Id`,CONCAT(YEAR(r.`TimeStart`),'-',YEAR(r.`TimeEnd`),' ',r.`Description`) AS Content,r.`Sort`,r.`CreateTime`  " \
-                                "FROM `U_Resour` r " \
+                                ",r.`TimeStart`,r.`TimeEnd`,'','',r.`Description` " \
+                        "FROM `U_Resour` r " \
                                 "WHERE r.`UserId`='%s' " \
                                 "ORDER BY `Sort` DESC,`CreateTime` DESC " \
                                 "LIMIT %s , %s "
@@ -113,7 +122,7 @@ select_planner_lables="SELECT ul.`LableName` FROM `U_UserLable` ul " \
 insert_education ="INSERT INTO `U_Education` ( `Id`, `UserId`, `TimeStart`, `TimeEnd`, `University`, `Degree`, `Sort`, `CreateUserID`, `CreateTime`, `ModifUserID`, `ModifTime`, `IsDelete`) " \
                   "VALUES ( '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', NOW(), '%s', NOW(), FALSE ) ;"
 #修改学历
-update_education ="UPDATE `U_Education` SET`TimeStart` = '%s',`TimeEnd` = '%s',`University` = '%s',`Degree` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW()'" \
+update_education ="UPDATE `U_Education` SET `TimeStart` = '%s',`TimeEnd` = '%s',`University` = '%s',`Degree` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW() " \
                   " WHERE `Id` = '%s'  AND `UserId` = '%s';"
 #删除学历
 delete_education ="UPDATE `U_Education` SET `IsDelete`=TRUE, `ModifUserID`='%s', `ModifTime`=NOW() " \
@@ -123,7 +132,7 @@ delete_education ="UPDATE `U_Education` SET `IsDelete`=TRUE, `ModifUserID`='%s',
 insert_resour ="INSERT INTO `U_Resour` (`Id`,`UserId`,`TimeStart`,`TimeEnd`,`Description`,`Sort`,`CreateUserID`,`CreateTime`,`ModifUserID`,`ModifTime`,`IsDelete`) " \
                "VALUES('%s','%s','%s','%s','%s','%s','%s',NOW(),'%s',NOW(),FALSE) "
 #修改资源背景
-update_resour ="UPDATE `U_Resour` SET `TimeStart` = '%s',`TimeEnd` = '%s',`Description` = '%s',`Sort` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW() " \
+update_resour ="UPDATE `U_Resour` SET `TimeStart` = '%s',`TimeEnd` = '%s',`Description` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW() " \
                "WHERE `Id` = 'Id' AND `UserId` = 'UserId'"
 #删除资源背景
 delete_resour ="UPDATE `U_Resour` SET `IsDelete`=TRUE, `ModifUserID`='%s', `ModifTime`=NOW() " \
@@ -134,7 +143,7 @@ delete_resour ="UPDATE `U_Resour` SET `IsDelete`=TRUE, `ModifUserID`='%s', `Modi
 insert_society ="INSERT INTO `U_Society` (`Id`,`UserId`,`TimeStart`,`TimeEnd`,`Description`,`Sort`,`CreateUserID`,`CreateTime`,`ModifUserID`,`ModifTime`,`IsDelete`) " \
                 "VALUES('%s','%s','%s','%s','%s','%s','%s',NOW(),'%s',NOW(),FALSE)"
 #修改社会背景
-update_society ="UPDATE `U_Society`  SET `TimeStart` = '%s',`TimeEnd` = '%s',`Description` = '%s',`Sort` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW() " \
+update_society ="UPDATE `U_Society`  SET `TimeStart` = '%s',`TimeEnd` = '%s',`Description` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW() " \
                 "WHERE `Id` = 'Id' AND `UserId` = '%s'"
 #删除社会背景
 delete_society ="UPDATE `U_Society` SET `IsDelete`=TRUE, `ModifUserID`='%s', `ModifTime`=NOW() " \

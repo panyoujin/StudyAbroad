@@ -297,7 +297,7 @@
     </Interface>
     <Interface>
         <Name>删除学历</Name>
-        <Url>http://localhost:5000/delete_education</Url>
+        <Url>http://localhost:5000/planner/delete_education</Url>
         <PostParam>Id=1</PostParam>
         <FileParam></FileParam>
         <BodyParam></BodyParam>
@@ -318,7 +318,7 @@
     </Interface>
     <Interface>
         <Name>删除资源背景</Name>
-        <Url>http://localhost:5000/delete_resour</Url>
+        <Url>http://localhost:5000/planner/delete_resour</Url>
         <PostParam>Id=1</PostParam>
         <FileParam></FileParam>
         <BodyParam></BodyParam>
@@ -339,7 +339,7 @@
     </Interface>
     <Interface>
         <Name>删除社会背景</Name>
-        <Url>http://localhost:5000/insert_society</Url>
+        <Url>http://localhost:5000/planner/insert_society</Url>
         <PostParam>Id=1</PostParam>
         <FileParam></FileParam>
         <BodyParam></BodyParam>

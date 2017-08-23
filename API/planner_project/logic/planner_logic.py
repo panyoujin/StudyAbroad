@@ -12,7 +12,6 @@ def select_planner_qualifications(userid,page=1,size=2):
     if size<=0:
         size=2
     return mysql.get_list(planner_sql.select_planner_qualifications,(userid,userid,userid,page,size))
-
 #学历背景
 def select_planner_education(userid,page=1,size=10):
     if page<=0:

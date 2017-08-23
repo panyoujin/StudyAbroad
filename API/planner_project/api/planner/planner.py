@@ -263,16 +263,15 @@ def update_education():
     Degree = request.form.get("Degree", type=str, default=None)
     if Degree == None or Degree=="":
         raise custom_error.CustomFlaskErr(status_code=500, message="学位不能为空")
-    Sort = request.form.get("Sort", type=int, default=0)
     user= request_helper.current_user_mush_login()
-    data = mysql.operate_object(planner_sql.update_education,(TimeStart,TimeEnd,University,Degree,Sort,user["Id"],Id,user["Id"]))
+    data = mysql.operate_object(planner_sql.update_education,(TimeStart,TimeEnd,University,Degree,user["Id"],Id,user["Id"]))
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data
     return api_response.response_return(ApiResponse)
 
 #删除学历
-@app.route("/demand_service/delete_education", methods=['POST'])
+@app.route("/planner/delete_education", methods=['POST'])
 def delete_education():
     ApiResponse = api_response.ApiResponse()
     Id = request.form.get("Id", type=str, default=None)
@@ -320,9 +319,8 @@ def update_resour():
     Description = request.form.get("Description", type=str, default=None)
     if Description == None or Description=="":
         raise custom_error.CustomFlaskErr(status_code=500, message="资源背景不能为空")
-    Sort = request.form.get("Sort", type=int, default=0)
     user= request_helper.current_user_mush_login()
-    data = mysql.operate_object(planner_sql.update_resour,(TimeStart,TimeEnd,Description,Sort,user["Id"],Id,user["Id"]))
+    data = mysql.operate_object(planner_sql.update_resour,(TimeStart,TimeEnd,Description,user["Id"],Id,user["Id"]))
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data
@@ -377,9 +375,8 @@ def update_society():
     Description = request.form.get("Description", type=str, default=None)
     if Description == None or Description=="":
         raise custom_error.CustomFlaskErr(status_code=500, message="社会背景不能为空")
-    Sort = request.form.get("Sort", type=int, default=0)
     user= request_helper.current_user_mush_login()
-    data = mysql.operate_object(planner_sql.update_education,(TimeStart,TimeEnd,Description,Sort,user["Id"],Id,user["Id"]))
+    data = mysql.operate_object(planner_sql.update_education,(TimeStart,TimeEnd,Description,user["Id"],Id,user["Id"]))
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data
