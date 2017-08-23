@@ -49,7 +49,7 @@ Page({
 
   btnDelEducation: function (e) {
     common.POST({
-      url: "/delete_education",
+      url: "/planner/delete_education",
       params: {
         Id: e.currentTarget.dataset.id
       },
@@ -74,7 +74,7 @@ Page({
   },
   btnDelSociology: function (e) {
     common.POST({
-      url: "/delete_society",
+      url: "/planner/delete_society",
       params: {
         Id: e.currentTarget.dataset.id
       },
@@ -99,7 +99,7 @@ Page({
   },
   btnDelResources: function (e) {
     common.POST({
-      url: "/delete_resour",
+      url: "/planner/delete_resour",
       params: {
         Id: e.currentTarget.dataset.id
       },
