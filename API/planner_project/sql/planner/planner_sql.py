@@ -133,7 +133,7 @@ insert_resour ="INSERT INTO `U_Resour` (`Id`,`UserId`,`TimeStart`,`TimeEnd`,`Des
                "VALUES('%s','%s','%s','%s','%s','%s','%s',NOW(),'%s',NOW(),FALSE) "
 #修改资源背景
 update_resour ="UPDATE `U_Resour` SET `TimeStart` = '%s',`TimeEnd` = '%s',`Description` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW() " \
-               "WHERE `Id` = 'Id' AND `UserId` = 'UserId'"
+               "WHERE `Id` = '%s' AND `UserId` = '%s'"
 #删除资源背景
 delete_resour ="UPDATE `U_Resour` SET `IsDelete`=TRUE, `ModifUserID`='%s', `ModifTime`=NOW() " \
                "WHERE `Id` = '%s' AND `UserId` = '%s'"
@@ -144,7 +144,7 @@ insert_society ="INSERT INTO `U_Society` (`Id`,`UserId`,`TimeStart`,`TimeEnd`,`D
                 "VALUES('%s','%s','%s','%s','%s','%s','%s',NOW(),'%s',NOW(),FALSE)"
 #修改社会背景
 update_society ="UPDATE `U_Society`  SET `TimeStart` = '%s',`TimeEnd` = '%s',`Description` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW() " \
-                "WHERE `Id` = 'Id' AND `UserId` = '%s'"
+                "WHERE `Id` = '%s' AND `UserId` = '%s'"
 #删除社会背景
 delete_society ="UPDATE `U_Society` SET `IsDelete`=TRUE, `ModifUserID`='%s', `ModifTime`=NOW() " \
                 "WHERE `Id` = '%s' AND `UserId` = '%s'"

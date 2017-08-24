@@ -12,8 +12,8 @@ def get_token():
 #获取当前登录用户 未登录返回None
 def current_user():
     user = session.get("user", None)
-    if user != None and any(user):
-        return user
+    #if user != None and any(user):
+    #    return user
     token= get_token()
     if token == None:
         return None
