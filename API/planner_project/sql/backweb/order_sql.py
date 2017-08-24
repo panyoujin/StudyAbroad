@@ -6,10 +6,10 @@ select_order_list = "SELECT du.`Id`,du.`DemandServiceId`,du.`UserId`,du.`OrderSt
                     "JOIN DS_DemandService ds ON ds.Id=du.DemandServiceId " \
                     "JOIN Base_ServiceArea sa ON sa.Id=ds.ServiceAreaId  " \
                     "JOIN Base_ServiceType st ON st.Id=ds.ServiceTypeId  " \
-                    "JOIN U_UserInfo plannerU ON du.UserId=plannerU.UserId  " \
-                    "JOIN U_UserInfo ui ON ui.UserId=ds.UserId  " \
+                    "JOIN U_UserInfo plannerU ON du.PlannerUserId=plannerU.UserId  " \
+                    "JOIN U_UserInfo ui ON ui.UserId=du.UserId  " \
                     "JOIN U_User u ON u.Id=ds.UserId  " \
-                    "JOIN U_User plannerUser ON plannerUser.Id=du.UserId " \
+                    "JOIN U_User plannerUser ON plannerUser.Id=du.PlannerUserId " \
                     "WHERE du.IsDelete= FALSE " \
                     "ORDER BY du.CreateTime DESC " \
                     "LIMIT %s , %s"

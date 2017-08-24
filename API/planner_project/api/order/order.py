@@ -110,19 +110,19 @@ def get_order_status():
             # if item["StartStatus"] == 4 and len(data)<=0:
             #     data.append({"StatusStr": "平台审查", "IsDo": "0", "ChangeTime": ""})
             if item["StartStatus"] == 4:
-                data[2]["IsDo"]="1"
+                data[2]["IsDo"] = "1"
                 data[2]["ChangeTime"] = item["ChangeTime"]
                 # data.append({"StatusStr": "线下签约", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
             # if item["StartStatus"] == 3 and len(data)<=0:
             #     data.append({"StatusStr": "线下签约", "IsDo": "0", "ChangeTime": ""})
             if item["StartStatus"] == 3:
-                data[1]["IsDo"]="1"
+                data[1]["IsDo"] = "1"
                 data[1]["ChangeTime"] = item["ChangeTime"]
                 # data.append({"StatusStr": "拟定合同", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
             # if item["StartStatus"] == 2 and len(data)<=0:
             #     data.append({"StatusStr": "拟定合同", "IsDo": "0", "ChangeTime": ""})
             if item["StartStatus"] == 2:
-                data[0]["IsDo"]="1"
+                data[0]["IsDo"] = "1"
                 data[0]["ChangeTime"] = item["ChangeTime"]
                 # data.append({"StatusStr": "客服回访", "IsDo": "1", "ChangeTime": item["ChangeTime"]})
     # else:
@@ -131,6 +131,7 @@ def get_order_status():
     ApiResponse.status = 200
     ApiResponse.data = data
     return api_response.response_return(ApiResponse)
+
 
 # 修改订单状态
 @app.route("/order/planer_update_order_status", methods=['POST'])
@@ -147,7 +148,8 @@ def planer_update_order_status():
     EndStatus = request.form.get("EndStatus", type=int, default=0)
     if EndStatus == 0:
         raise custom_error.CustomFlaskErr(status_code=500, message="结束状态不能为空")
-    print(EndStatus)
+    if EndStatus <= StartStatus:
+        raise custom_error.CustomFlaskErr(status_code=500, message="结束状态不能小于等于当前状态")
     sql_list = [order_sql.update_order_status,
                 order_sql.insert_order_flowing]
     args_list = [(EndStatus, userId, OrderId, StartStatus),
@@ -156,4 +158,3 @@ def planer_update_order_status():
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     return api_response.response_return(ApiResponse)
-
