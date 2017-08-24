@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>新增资料</title>
+    <title>新增轮播</title>
     <link href="/Resource/Style/ivory.css?v=3" rel="stylesheet" type="text/css" />
     <link href="/Resource/Style/main.css?v=3" rel="stylesheet" type="text/css" />
     <link href="/Resource/Style/FortAwesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -38,7 +38,7 @@
 <body>
     <form id="submitForm">
         <div id="contentheader">
-            <div id="contentheader_title">新增资料</div>
+            <div id="contentheader_title">新增轮播</div>
             <div id="contentheader_button">
                 <button type="submit" class="orange" onclick="submitForm();"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
             </div>
@@ -46,43 +46,42 @@
         </div>
 
         <div id="content">
-            <div class="area_title">资料信息</div>
+            <div class="area_title">轮播信息</div>
             <div class="area">
                 <table border="1" cellpadding="0" cellspacing="0" style="width: 80%;">
                     <tr>
-                        <th width="120">内容</th>
+                        <th width="100">描述</th>
                         <td colspan="3">
-                            <textarea type="text" rows="4" maxlength="256" style="height:100px;width:100%" placeholder="输入内容" id="ms_content" name="content"></textarea>
+                            <input id="Description" maxlength="256" name="Description" placeholder="输入描述" value="" type="text">
                         </td>
                     </tr>
                     <tr>
-                        <th width="120">url</th>
+                        <th width="100">跳转URL</th>
                         <td colspan="3">
-                            <input id="imageUrl" maxlength="256" Name="imageUrl" placeholder="请上传图片" value="" type="text" style="float:left;width: 80%">
+                            <input id="ClickUrl" maxlength="256" name="ClickUrl" placeholder="输入跳转地址" value="" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="100">url</th>
+                        <td colspan="3">
+                            <input id="ImageUrl" maxlength="256" name="ImageUrl" placeholder="请上传文件" value="" type="text" style="float:left">
                             <a href="javascript:;" style="font-size:12px;margin:auto 5px;margin-top:10px;color:#333333; " id="ImportBox">
                                 &nbsp;&nbsp;<i class="fa fa-upload"></i>上传图片
-                                <input type="file" id="Import" Name="file" />
+                                <input type="file" id="Import" name="file" />
                             </a>
                         </td>
                     </tr>
                     <tr>
-                        <th width="120">阅读数量</th>
-                        <td colspan="3">
-                            <input id="readCount" maxlength="3" Name="readCount" placeholder="输入排序" value="" type="text">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th width="120">是否置顶</th>
+                        <th width="100">是否置顶</th>
                         <td>
-                            <select id="IsTop" Name="IsTop">
+                            <select id="IsTop" name="IsTop">
                                 <option value="0">否</option>
                                 <option value="1">是</option>
                             </select>
                         </td>
-
                         <th width="100">排序</th>
                         <td>
-                            <input id="Sort" maxlength="3" Name="Sort" placeholder="输入排序" value="" type="text">
+                            <input id="Sort" maxlength="3" name="Sort" placeholder="输入排序" value="" type="text">
                         </td>
                     </tr>
                 </table>
@@ -95,9 +94,9 @@
     var submitForm = function () {
         $("#submitForm").validate({
             rules: {
-                ms_content: {
+                Description: {
                     required: true
-                },imageUrl:{
+                },ImageUrl:{
                     required: true
                 }, IsTop: {
                     number: true
@@ -105,26 +104,26 @@
                     number: true
                 }
             }, messages: {
-                ms_content: {
-                    required: "请输入内容"
-                },imageUrl:{
-                    required: "请上传图片"
+                Description: {
+                    required: "请输入描述"
+                },ImageUrl:{
+                    required: "请上传文件"
                 }, IsTop: {
                     number: "是否置顶必须为数字"
                 }, Sort: {
                     number: "排序必须为数字"
                 }
             }, submitHandler: function () {
-                $.ajaxForm("/system/insert_ms_dynamic", "submitForm",
+                $.ajaxForm("/base/insert_carouselimage", "submitForm",
                 function (result) {
                     if (result.status=="200") {
-                        $.alert("资料新增成功", function () {
+                        $.alert("轮播新增成功", function () {
                             //parent.gotoPage("/System/LableIndex.html");
                             $(window.top.document).contents().find("#pageContent")[0].contentWindow.queryList(1);
                             $.layerClose();
                         });
                     } else {
-                        $.alert("资料新增失败,失败原因："+result.message);
+                        $.alert("轮播新增失败,失败原因："+result.message);
                     }
                 },
                 function () {
@@ -145,7 +144,7 @@ var ImportFile = function (appId) {
             $("#Import").removeAttr("disabled").val("");
             $("#ImportBox i").attr("class", "fa fa-upload");
             if (!!result.data) {
-                $("#imageUrl").val(result.data.file_path);
+                $("#ImageUrl").val(result.data.file_path);
             } else {
                 $.alert(result.message);
             }

@@ -1,8 +1,8 @@
-﻿
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>规划师信息</title>
+    <title>基础信息</title>
     <link href="/Resource/Style/ivory.css?v=3" rel="stylesheet" type="text/css" />
     <link href="/Resource/Style/main.css?v=3" rel="stylesheet" type="text/css" />
     <link href="/Resource/Style/FortAwesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -16,7 +16,7 @@
 <body>
     
         <div id="contentheader">
-            <div id="contentheader_title">规划师信息</div>
+            <div id="contentheader_title">基础信息</div>
             <div id="contentheader_button">
                 <button onclick="parent.gotoPage('/User/PlannerIndex.html');" type="button"><i class="fa fa-times"></i>&nbsp;取消</button>
             </div>
@@ -25,41 +25,14 @@
 
         <div id="content">
             <div class="area" style="margin-bottom:35px;">
-            <div class="area_title">编辑规划师</div>
+            <div class="area_title">编辑基础信息</div>
                 <form id="submitForm">
                     <table border="1" cellpadding="0" cellspacing="0" style="width: 80%;">
                         <tr>
-                            <th width="100">姓名</th>
+                            <th width="100">客服电话</th>
                             <td>
-                                <input id="Name" maxlength="20" name="Name" placeholder="输入用户名称" value="" type="text">
-                                <input id="UserId" maxlength="20" name="UserId" value="" type="hidden">
+                                <input id="CustomerServiceTelephone" maxlength="20" name="CustomerServiceTelephone" placeholder="输入客服电话" value="" type="text">
                             </td>
-                            <th width="100">性别</th>
-                            <td>
-                                <select id="Sex" name="Sex">
-                                    <option value="1">男</option>
-                                    <option value="2">女</option>
-                                </select>
-                            </td>
-                            <th width="100">年龄</th>
-                            <td>
-                                <input id="Age" maxlength="3" name="Age" placeholder="输入年龄" value="" type="text">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th width="100">学历</th>
-                            <td>
-                                <input id="Education" maxlength="36" name="Education" placeholder="输入学历" value="" type="text">
-                            </td>
-                            <th width="100">地址</th>
-                            <td>
-                                <input id="Address" maxlength="13" name="Address" placeholder="输入地址" value="" type="text">
-                            </td>
-                            <th width="100">邮箱</th>
-                            <td>
-                                <input id="Email" maxlength="36" name="Email" placeholder="输入邮箱" value="" type="text">
-                            </td>
-                        </tr>
                     </table>
 
                 </form>
@@ -67,52 +40,41 @@
                     <button type="submit" class="orange" onclick="submitForm();"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
                 </div>
             </div>
-            <div class="area" style="margin-bottom:35px;">
-            <div class="area_title">学历背景<a href="javascript:;" style="font-size:12px;float:right;margin:auto 5px;" id="AddEducation" onclick="AddEducation()"><i class="fa fa-plus-square"></i> 新增</a></div>
 
-            <table border="1" cellpadding="0" cellspacing="0" class="table" id="EducationList">
-                <thead>
-                    <tr>
-                        <th width="15%">时间起</th>    
-                        <th width="15%">时间止</th>
-                        <th width="10%">学位</th>
-                        <th width="20%">毕业大学</th>
-                        <th width="10%">操作</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-            </div>
             <div class="area" style="margin-bottom:35px;">
-            <div class="area_title">社会背景<a href="javascript:;" style="font-size:12px;float:right;margin:auto 5px;" id="AddSociety" onclick="AddSociety()"><i class="fa fa-plus-square"></i> 新增</a></div>
+            <div class="area_title">合同</div>
 
-            <table border="1" cellpadding="0" cellspacing="0" class="table" id="SocietyList">
-                <thead>
-                    <tr>
-                        <th width="15%">时间起</th>    
-                        <th width="15%">时间止</th>
-                        <th width="30%">社会背景</th>
-                        <th width="10%">操作</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+            <form id="submitContract">
+                    <table border="1" cellpadding="0" cellspacing="0" style="width: 80%;">
+                        <tr>
+                            <th width="100">合同内容</th>
+                            <td>
+                                <textarea type="text" rows="4" maxlength="256" style="height:100px;width:100%" placeholder="输入合同内容" id="ContractContent" name="ContractContent"></textarea>
+                            </td>
+                    </table>
+
+                </form>
+                <div style="text-align:right;margin:15px 0 5px 0;">
+                    <button type="submit" class="orange" onclick="submitContract();"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
+                </div>
             </div>
             <div class="area" style="margin-bottom:35px;">
-            <div class="area_title">资源背景<a href="javascript:;" style="font-size:12px;float:right;margin:auto 5px;" id="AddResour" onclick="AddResour()"><i class="fa fa-plus-square"></i> 新增</a></div>
-            
-            <table border="1" cellpadding="0" cellspacing="0" class="table" id="ResourList">
+            <div class="area_title">首页轮播<a href="javascript:;" style="font-size:12px;float:right;margin:auto 5px;" id="AddCarouselImage" onclick="AddCarouselImage()"><i class="fa fa-plus-square"></i> 新增</a></div>
+
+            <table border="1" cellpadding="0" cellspacing="0" class="table" id="CarouselImageList">
                 <thead>
                     <tr>
-                        <th width="15%">时间起</th>    
-                        <th width="15%">时间止</th>
-                        <th width="30%">资源背景</th>
+                        <th width="20%">轮播图详情url</th>    
+                        <th width="20%">轮播图描述</th>
+                        <th width="20%">轮播图图片</th>
+                        <th width="10%">是否置顶</th>
                         <th width="10%">操作</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
             </table>
             </div>
+           
         </div>
 </body>
 </html>
@@ -120,32 +82,21 @@
     var submitForm = function () {
         $("#submitForm").validate({
             rules: {
-                Name: {
-                    required: true
-                }, Education: {
+               CustomerServiceTelephone: {
                     required: false
-                }, Age: {
-                    number: true
-                }, Email: {
-                    email: true
                 }
             }, messages: {
-                Name: {
-                    required: "请输入名称"
-                }, Age: {
-                    number: "年龄必须为数字"
-                }, Email: {
-                    email: "邮箱格式不正确"
+                CustomerServiceTelephone: {
+                    required: "请输入客服电话"
                 }
             }, submitHandler: function () {
-                $.ajaxForm("/user/back_updateuserinfo", "submitForm",
+                $.ajaxForm("/base/update_platforminfo", "submitForm",
                 function (result) {
                     if (result.status=="200") {
-                        $.alert("用户修改成功", function () {
-                            parent.gotoPage("/User/PlannerIndex.html");
+                        $.alert("客服电话修改成功", function () {
                         });
                     } else {
-                        $.alert("用户修改失败,失败原因："+result.message);
+                        $.alert("客服电话修改失败,失败原因："+result.message);
                     }
                 },
                 function () {
@@ -155,19 +106,39 @@
         });
 
     };
-    var userid ="";
+    var submitContract = function () {
+        $("#submitContract").validate({
+            rules: {
+               ContractContent: {
+                    required: false
+                }
+            }, messages: {
+                ContractContent: {
+                    required: "请输入合同内容"
+                }
+            }, submitHandler: function () {
+                $.ajaxForm("/base/update_Contract", "submitContract",
+                function (result) {
+                    if (result.status=="200") {
+                        $.alert("客服电话修改成功", function () {
+                        });
+                    } else {
+                        $.alert("客服电话修改失败,失败原因："+result.message);
+                    }
+                },
+                function () {
+                    $.alert("网络故障，请稍候重试!");
+                });
+            }
+        });
+
+    };
 $(function(){
-    userid = getUrlParam("id");
-    $.ajaxJson("/planner/select_planner_info", { userid: userid },
+    $.ajaxJson("/base/select_platforminfo", { },
             function (result) {
                 if (!!result.data) {
-                    $("#UserId").val(result.data.Id)
-                    $("#Name").val(result.data.Name)
-                    $("#Education").val(result.data.Education)
-                    $("#Sex").val(result.data.Sex)
-                    $("#Age").val(result.data.Age)
-                    $("#Address").val(result.data.Address)
-                    $("#Email").val(result.data.Email)
+                    $("#CustomerServiceTelephone").val(result.data.CustomerServiceTelephone)
+                    $("#ContractContent").val(result.data.ContractContent)
                 } else {
                     $.alert(result.message);
                 }
@@ -176,108 +147,51 @@ $(function(){
                     $.alert("网络故障，请稍候重试!");
             }
         );
-    loadEducationList(userid);
-    loadSocietyList(userid);
-    loadResourList(userid);
+    loadContractList();
 })
-function loadEducationList(userid){
-    $.ajaxJson("/planner/select_education_list", { userid: userid},
+function loadCarouselImageList(){
+    $.ajaxJson("/base/select_CarouselImage_list", { },
         function (result) {
             if (result && result.data.length > 0) {
                 var list = result.data;
                 var html = "";
                 for (var i = 0; i < result.data.length; i++) {
                     html += "<tr " + (i % 2 == 1 ? "class='even'" : "") + ">";
-                    html += "<td>" + (list[i].TimeStart ? list[i].TimeStart : "") + "</td>";
-                    html += "<td>" + (list[i].TimeEnd ? list[i].TimeEnd : "") + "</td>";
-                    html += "<td>" + (list[i].Degree ? list[i].Degree : "") + "</td>";
-                    html += "<td>" + (list[i].University ? list[i].University : "") + "</td>";
-                    html += "<td>";
-                        html += "<a href='javascript:void(0);' onclick='EditEducation(\"" + list[i].Id + "\")' title='编辑'>编辑</a>&nbsp;";
-                        html += "<a href='javascript:void(0);' onclick='DeleteEducation(\"" + list[i].Id + "\")' title='删除'>删除</a>&nbsp;";
-                    html += "</td>";
-                    html += "</tr>";
-                }
-                $("#EducationList tbody").html(html);
-            } else {
-                $("#EducationList tbody").html("<tr><td colspan='" + $("#EducationList thead tr th").length + "'>没有任何数据</td></tr>");
-            }
-        },
-        function () {
-            $("#EducationList tbody").html("<tr><td colspan='" + $("#EducationList thead tr th").length + "'>网络故障，请稍候重试！</td></tr>");
-        }
-    );
-}
-function loadSocietyList(userid){
-    $.ajaxJson("/planner/select_society_list", { userid: userid},
-        function (result) {
-            if (result && result.data.length > 0) {
-                var list = result.data;
-                var html = "";
-                for (var i = 0; i < result.data.length; i++) {
-                    html += "<tr " + (i % 2 == 1 ? "class='even'" : "") + ">";
-                    html += "<td>" + (list[i].TimeStart ? list[i].TimeStart : "") + "</td>";
-                    html += "<td>" + (list[i].TimeEnd ? list[i].TimeEnd : "") + "</td>";
+                    html += "<td>" + (list[i].ClickUrl ? list[i].ClickUrl : "") + "</td>";
                     html += "<td>" + (list[i].Description ? list[i].Description : "") + "</td>";
+                    html += "<td>" + (list[i].ImageUrl ? list[i].ImageUrl : "") + "</td>";
+                    html += "<td>" + (list[i].IsTop==1 ? "是" : "否") + "</td>";
                     html += "<td>";
-                        html += "<a href='javascript:void(0);' onclick='EditSociety(\"" + list[i].Id + "\")' title='编辑'>编辑</a>&nbsp;";
-                        html += "<a href='javascript:void(0);' onclick='DeleteSociety(\"" + list[i].Id + "\")' title='删除'>删除</a>&nbsp;";
+                        html += "<a href='javascript:void(0);' onclick='EditCarouselImage(\"" + list[i].Id + "\")' title='编辑'>编辑</a>&nbsp;";
+                        html += "<a href='javascript:void(0);' onclick='DeleteCarouselImage(\"" + list[i].Id + "\")' title='删除'>删除</a>&nbsp;";
                     html += "</td>";
                     html += "</tr>";
                 }
-                $("#SocietyList tbody").html(html);
+                $("#CarouselImageList tbody").html(html);
             } else {
-                $("#SocietyList tbody").html("<tr><td colspan='" + $("#SocietyList thead tr th").length + "'>没有任何数据</td></tr>");
+                $("#CarouselImageList tbody").html("<tr><td colspan='" + $("#CarouselImageList thead tr th").length + "'>没有任何数据</td></tr>");
             }
         },
         function () {
-            $("#SocietyList tbody").html("<tr><td colspan='" + $("#SocietyList thead tr th").length + "'>网络故障，请稍候重试！</td></tr>");
-        }
-    );
-}
-function loadResourList(userid){
-    $.ajaxJson("/planner/select_resour_list",{ userid: userid },
-        function (result) {
-            if (result && result.data.length > 0) {
-                var list = result.data;
-                var html = "";
-                for (var i = 0; i < result.data.length; i++) {
-                    html += "<tr " + (i % 2 == 1 ? "class='even'" : "") + ">";
-                    html += "<td>" + (list[i].TimeStart ? list[i].TimeStart : "") + "</td>";
-                    html += "<td>" + (list[i].TimeEnd ? list[i].TimeEnd : "") + "</td>";
-                    html += "<td>" + (list[i].Description ? list[i].Description : "") + "</td>";
-                    html += "<td>";
-                        html += "<a href='javascript:void(0);' onclick='EditResour(\"" + list[i].Id + "\")' title='编辑'>编辑</a>&nbsp;";
-                        html += "<a href='javascript:void(0);' onclick='DeleteResour(\"" + list[i].Id + "\")' title='删除'>删除</a>&nbsp;";
-                    html += "</td>";
-                    html += "</tr>";
-                }
-                $("#ResourList tbody").html(html);
-            } else {
-                $("#ResourList tbody").html("<tr><td colspan='" + $("#ResourList thead tr th").length + "'>没有任何数据</td></tr>");
-            }
-        },
-        function () {
-            $("#ResourList tbody").html("<tr><td colspan='" + $("#ResourList thead tr th").length + "'>网络故障，请稍候重试！</td></tr>");
+            $("#CarouselImageList tbody").html("<tr><td colspan='" + $("#CarouselImageList thead tr th").length + "'>网络故障，请稍候重试！</td></tr>");
         }
     );
 }
 
-
-function AddEducation() {
-    $.Dialog('/User/EducationAdd.html?userid='+userid,'',650,380);
+function AddCarouselImage() {
+    $.Dialog('/base/CarouselImageAdd.html?userid='+userid,'',650,380);
     //parent.gotoPage('/User/UserEdit.html?id=' + id);
 }
-function EditEducation(id) {
-    $.Dialog('/User/EducationEdit.html?id=' + id+'&userid='+userid,'',650,380);
+function EditCarouselImage(id) {
+    $.Dialog('/base/CarouselImageEdit.html?id=' + id+'&userid='+userid,'',650,380);
     //parent.gotoPage('/User/UserEdit.html?id=' + id);
 }
 
-function DeleteEducation(id) {
+function DeleteCarouselImage(id) {
     $.confirm("是否确认删除?", function () {
-        $.ajaxJson("/planner/back_delete_education", { id: id },
+        $.ajaxJson("/base/delete_CarouselImage", { id: id },
         function (result) {
-            loadEducationList(userid);
+            loadCarouselImageList(userid);
         },
         function (result) {
             $.alert("删除失败!");
@@ -285,46 +199,5 @@ function DeleteEducation(id) {
     });
 }
 
-function AddSociety() {
-    $.Dialog('/User/SocietyAdd.html?userid='+userid,'',650,380);
-    //parent.gotoPage('/User/UserEdit.html?id=' + id);
-}
-function EditSociety(id) {
-    $.Dialog('/User/SocietyEdit.html?id=' + id+'&userid='+userid,'',650,380);
-    //parent.gotoPage('/User/UserEdit.html?id=' + id);
-}
-
-function DeleteSociety(id) {
-    $.confirm("是否确认删除?", function () {
-        $.ajaxJson("/planner/back_delete_society", { id: id },
-        function (result) {
-            loadSocietyList(userid);
-        },
-        function (result) {
-            $.alert("删除失败!");
-        });
-    });
-}
-
-function AddResour() {
-    $.Dialog('/User/ResourAdd.html?userid='+userid,'',650,380);
-    //parent.gotoPage('/User/UserEdit.html?id=' + id);
-}
-function EditResour(id) {
-    $.Dialog('/User/ResourEdit.html?id=' + id+'&userid='+userid,'',650,380);
-    //parent.gotoPage('/User/UserEdit.html?id=' + id);
-}
-
-function DeleteResour(id) {
-    $.confirm("是否确认删除?", function () {
-        $.ajaxJson("/planner/back_delete_Resour", { id: id },
-        function (result) {
-            loadResourList(userid);
-        },
-        function (result) {
-            $.alert("删除失败!");
-        });
-    });
-}
 
 </script>
