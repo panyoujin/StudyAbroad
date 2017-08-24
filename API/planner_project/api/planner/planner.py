@@ -334,7 +334,7 @@ def delete_resour():
     if Id == None or Id=="":
         raise custom_error.CustomFlaskErr(status_code=500, message="请选择需要修改的资源背景")
     user= request_helper.current_user_mush_login()
-    data = mysql.operate_object(planner_sql.delete_society,(user["Id"],Id,user["Id"]))
+    data = mysql.operate_object(planner_sql.delete_resour,(user["Id"],Id,user["Id"]))
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data
@@ -376,7 +376,7 @@ def update_society():
     if Description == None or Description=="":
         raise custom_error.CustomFlaskErr(status_code=500, message="社会背景不能为空")
     user= request_helper.current_user_mush_login()
-    data = mysql.operate_object(planner_sql.update_education,(TimeStart,TimeEnd,Description,user["Id"],Id,user["Id"]))
+    data = mysql.operate_object(planner_sql.update_society,(TimeStart,TimeEnd,Description,user["Id"],Id,user["Id"]))
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data
@@ -444,7 +444,7 @@ def delete_album():
     if Id <=0:
         raise custom_error.CustomFlaskErr(status_code=500, message="请选择需要删除的照片")
     user= request_helper.current_user_mush_login()
-    data = mysql.operate_object(planner_sql.delete_society,(user["Id"],Id,user["Id"]))
+    data = mysql.operate_object(planner_sql.delete_album,(user["Id"],Id,user["Id"]))
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data
