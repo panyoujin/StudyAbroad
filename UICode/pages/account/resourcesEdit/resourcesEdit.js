@@ -26,8 +26,8 @@ Page({
       that.setData({
         id: id,
         description: options.description,
-        timeStart: options.timeStart,
-        timeEnd: options.timeEnd,
+        timeStart: options.timeStart.substring(0,10) ,
+        timeEnd: options.timeStart.substring(0, 10),
         formSubmitTxt: '编辑'
       })
     } else {

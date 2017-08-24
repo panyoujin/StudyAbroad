@@ -31,7 +31,8 @@ Page({
       url: "/basic/get_vcode",
       params: {
         Phone: that.data.userAccount,
-        CodeType: 2
+        CodeType: 2,
+        openId: getApp().globalData.wxOpenId
       },
       success: function (res, s, m) {
         if (s) {

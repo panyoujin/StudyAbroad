@@ -3,10 +3,10 @@
   <view class="clsCon" wx:for="{{demands}}" wx:key="coll" >
     <view class="clsName">需求描述：{{item.Name}}</view>
     <view class="clsTime">创建时间：<label>{{item.CreateTime}}</label></view>
-    <view class="clsTxt" hidden="{{userType!=1?true:false}}">当前进度</view>
+    <view class="clsTxt" hidden="{{userType!=1?true:false}}">当前进度:{{item.OrderStatusStr}}</view>
     
     <view class="clsOther">
-      <button bindtap="lookJinDu" size="mini" hidden="{{userType!=1?true:false}}" data-id="{{item.Id}}" >查看进度</button>
+      <button bindtap="lookJinDu" size="mini" hidden="{{userType!=1?true:false}}" data-id="{{item.orderId}}" >查看进度</button>
       <button bindtap="lookDemand" size="mini" data-id="{{item.Id}}" >查看详情</button>
     </view>
   </view>

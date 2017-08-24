@@ -8,7 +8,7 @@
       <block wx:for="{{educations}}" wx:key="item">
         <view class="clsEducation">{{item.Content}}</view>
         <view class="clsGroupr clsLine">
-          <button class="clsBtn" bindtap="btnEditEducation" data-id="{{item.Id}}">编辑</button>
+          <button class="clsBtn" bindtap="btnEditEducation" data-TimeStart="{{item.TimeStart}}" data-TimeEnd="{{item.TimeEnd}}" data-University="{{item.University}}"  data-Degree="{{item.Degree}}" data-id="{{item.Id}}">编辑</button>
           <button class="clsBtn" bindtap="btnDelEducation" data-id="{{item.Id}}">删除</button>
         </view>
       </block>
@@ -21,7 +21,7 @@
       <block wx:for="{{societys}}" wx:key="item">
         <view class="clsSociety">{{item.Content}}</view>
         <view class="clsGroupr clsLine">
-          <button class="clsBtn" bindtap="btnEditSociology" data-id="{{item.Id}}">编辑</button>
+          <button class="clsBtn" bindtap="btnEditSociology" data-Description="{{item.Description}}" data-TimeStart="{{item.TimeStart}}" data-TimeEnd="{{item.TimeEnd}}" data-id="{{item.Id}}">编辑</button>
           <button class="clsBtn" bindtap="btnDelSociology" data-id="{{item.Id}}">删除</button>
         </view>
       </block>
@@ -34,7 +34,7 @@
       <block wx:for="{{resours}}" wx:key="item">
         <view class="clsResour">{{item.Content}}</view>
         <view class="clsGroupr clsLine">
-          <button class="clsBtn" bindtap="btnEditResources" data-id="{{item.Id}}">编辑</button>
+          <button class="clsBtn" bindtap="btnEditResources" data-Description="{{item.Description}}" data-TimeStart="{{item.TimeStart}}" data-TimeEnd="{{item.TimeEnd}}" data-id="{{item.Id}}">编辑</button>
           <button class="clsBtn" bindtap="btnDelResources" data-id="{{item.Id}}">删除</button>
         </view>
       </block>

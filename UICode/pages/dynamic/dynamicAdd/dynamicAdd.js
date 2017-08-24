@@ -150,7 +150,7 @@ function psotData(that, content, imgUrl){
     },
     success: function (res, s, m) {
       if (s) {
-        wx.navigateTo({
+        wx.redirect({
           url: '/pages/dynamic/dynamicMy/dynamicMy'
         })
       } else {
