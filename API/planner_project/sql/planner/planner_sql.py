@@ -87,7 +87,7 @@ select_planner_education = "SELECT e.`Id`,CONCAT('学位：',e.`Degree`,' 毕业
 
 #社会背景
 select_planner_society = "SELECT s.`Id`,CONCAT(YEAR(s.`TimeStart`),'-',YEAR(s.`TimeEnd`),' ',s.`Description`) AS Content,s.`Sort`,s.`CreateTime`  " \
-                                ",s.`TimeStart`,s.`TimeEnd`,'','',s.`Description " \
+                                ",s.`TimeStart`,s.`TimeEnd`,'','',s.`Description` " \
                          "FROM `U_Society` s " \
                                 "WHERE s.`UserId`='%s'  and `IsDelete`=FALSE " \
                                 "ORDER BY `Sort` DESC,`CreateTime` DESC " \
