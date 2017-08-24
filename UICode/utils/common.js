@@ -149,8 +149,8 @@ function getHttpRequestStatus(status) {
     case 404:
       msg = "请求页面不存在";
       break;
-    case 404:
-      msg = "上传的文件超过3M限制";
+    case 413:
+      msg = "上传的文件大小超过限制";
       break;
     case 505:
       msg = "请求服务器内部错误";

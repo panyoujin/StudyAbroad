@@ -49,7 +49,7 @@
 
   <view class="clsSelect">
     <button bindtap="btnSelect" wx:if="{{userType==1}}" hidden="{{service.Type=='1'?true:false}}">选择服务</button>
-    <button bindtap="btnSelect" wx:if="{{userType!=1&&service.collection_count=='0'}}" hidden="{{service.Type=='2'?true:false}}">承接需求</button>
+    <button bindtap="btnSelect" wx:if="{{userType!=1&&service.undertake_count=='0'}}" hidden="{{service.Type=='2'?true:false}}">承接需求</button>
   </view>
 </view> 
 
