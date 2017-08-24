@@ -55,7 +55,7 @@ select_my_demand_service = "SELECT ds.`Id`,ds.UserId,ds.`Name`,ds.`Type`,ds.`Ser
                            "WHEN 5 THEN '平台审查'  " \
                            "WHEN 6 THEN '付款确认'  " \
                            "WHEN 7 THEN '服务完成' " \
-                           "ELSE '订单有误'  " \
+                           "ELSE ''  " \
                            "END AS OrderStatusStr " \
                            "FROM `DS_DemandService` ds " \
                            "JOIN `U_UserInfo` AS ui ON ds.`UserId`=ui.`UserId` " \

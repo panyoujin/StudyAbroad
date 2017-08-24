@@ -15,7 +15,7 @@ def insert_undertake():
     DemandId = request.form.get("DemandId", type=str, default=None)
     if DemandId == None or DemandId=="" :
         raise custom_error.CustomFlaskErr(status_code=500, message="需求id不能为空")
-    ContractId = request.form.ContractId("DemandId", type=int, default=0)
+    ContractId = request.form.get("ContractId", type=int, default=0)
     if ContractId == None or ContractId == 0:
         raise custom_error.CustomFlaskErr(status_code=500, message="合同id不能为空")
 
