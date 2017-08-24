@@ -223,11 +223,7 @@ function addDertake (that){
           duration: 1500
         })
       } else {
-        wx.showToast({
-          title: '获取信息失败',
-          image: '/img/error.png',
-          duration: 1500
-        })
+        common.AlertError(m);
       }
     },
     fail: function () { }

@@ -78,6 +78,7 @@ Page({
     that.setData({
       orderId: id,
       orderStatus: parseInt(orderStatus),
+      pService: parseInt(orderStatus)-1
     })
   },
 
