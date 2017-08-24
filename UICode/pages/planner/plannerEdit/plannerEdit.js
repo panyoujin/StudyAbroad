@@ -15,33 +15,33 @@ Page({
 
 
   btnAddEducation:function(){
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/account/educationEdit/educationEdits',
     })
   },
   btnAddSociology: function () {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/account/sociologyEdit/sociologyEdit',
     })
   },
   btnAddResources: function () {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/account/resourcesEdit/resourcesEdit',
     })
   },
 
   btnEditEducation: function (e) {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/account/educationEdit/educationEdits?timeStart=' + e.currentTarget.dataset.timestart + '&timeEnd=' + e.currentTarget.dataset.timeend + '&university=' + e.currentTarget.dataset.university + '&degree=' + e.currentTarget.dataset.degree+'&id=' + e.currentTarget.dataset.id,
     })
   },
   btnEditSociology: function (e) {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/account/sociologyEdit/sociologyEdit?timeStart=' + e.currentTarget.dataset.timestart + '&timeEnd=' + e.currentTarget.dataset.timeend + '&description=' + e.currentTarget.dataset.description + '&id=' + e.currentTarget.dataset.id,
     })
   },
   btnEditResources: function (e) {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/account/resourcesEdit/resourcesEdit?timeStart=' + e.currentTarget.dataset.timestart + '&timeEnd=' + e.currentTarget.dataset.timeend + '&description=' + e.currentTarget.dataset.description + '&&id=' + e.currentTarget.dataset.id,
     })
   },

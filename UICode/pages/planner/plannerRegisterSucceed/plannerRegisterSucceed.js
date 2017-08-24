@@ -9,7 +9,7 @@ Page({
   },
 
   btnKnow: function(){
-    wx.switchTab({
+    wx.reLaunch({
       url: "/pages/account/userInfo/userInfo"
     })  
   },

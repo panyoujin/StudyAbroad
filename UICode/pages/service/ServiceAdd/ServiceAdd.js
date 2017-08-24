@@ -120,7 +120,7 @@ Page({
       })
       return;
     }
-    if(priceStart >= priceEnd){
+    if (parseInt(priceStart) >= parseInt(priceEnd)){
       that.setData({
         tip: '提示：价格范围不正确！'
       })
@@ -155,7 +155,7 @@ Page({
           if (that.data.addType == 1){
             url ="/pages/demand/demandPublic/demandPublic"
           }
-          wx.redirect({
+          wx.redirectTo({
             url: url,
           })
           // wx.showToast({

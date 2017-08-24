@@ -2,7 +2,7 @@
   <form bindsubmit="btnPlannerregister">
     <view class="clsView">
       <label class="clsTxt">姓名：</label>
-      <input class="clsInput"  placeholder="请输入姓名" name="pName" />
+      <input class="clsInput"  placeholder="请输入姓名" name="pName" value='{{user.Name}}' />
     </view>
 
     <view class="clsView clsRadio">
@@ -16,7 +16,7 @@
     </view>
     <view class="clsView">
       <label class="clsTxt">身份证号码：</label>
-      <input class="clsInput"  placeholder="请输入身份证号码：" name="idcard" />
+      <input class="clsInput"  placeholder="请输入身份证号码：" name="idcard" value='{{user.IDCard}}' />
     </view>
     <view class="clsView">
       <label class="clsTxt">身份证</label>
@@ -30,12 +30,12 @@
 
     <view class="clsView">
       <label class="clsTxt">所在地：</label>
-      <input class="clsInput"  placeholder="请输入所在地" name="address" />
+      <input class="clsInput"  placeholder="请输入所在地" name="address" value='{{user.Address}}' />
     </view>
 
     <view class="clsView">
       <label class="clsTxt">资历：</label>
-      <textarea class="clsInput clsArea" name="record" placeholder="请输入资历" maxlength="1000" />
+      <textarea class="clsInput clsArea" name="record" placeholder="请输入资历" maxlength="1000" value='{{user.Education}}' />
     </view>
 
     <view class="clsView">
@@ -49,7 +49,7 @@
 
     <view class="clsView">
       <label class="clsTxt">邮箱：</label>
-      <input class="clsInput" placeholder="请输入邮箱" name="email" />
+      <input class="clsInput" placeholder="请输入邮箱" name="email" value='{{user.Email}}' />
     </view>
 
     <view class="clsView">

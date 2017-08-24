@@ -69,12 +69,12 @@ page{
 .clsPlannerHead navigator{
   /* margin-left: 80rpx;  */
   color: #099aff;
-  border:4rpx solid #099aff;
+  border:2rpx solid #099aff;
   border-radius: 8rpx;
   padding: 10rpx 30rpx;
   height: 36rpx;
   font-family: "黑体";
-  font-size: 28rpx;
+  font-size: 26rpx;
   margin:auto 0;
   margin-left: auto;
 }

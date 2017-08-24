@@ -1,7 +1,7 @@
 
 var apiUrl = "https://www.graypie.cn";
 var programName = "规划师";
-var pageSize = 1;
+var pageSize = 5;
 
 //http请求封装
 var requestHandler = {

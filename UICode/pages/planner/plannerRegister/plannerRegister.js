@@ -7,6 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    user:null,
+
     imgUrl01: "",
     imgUrl02: "",
     imgSaveUrl01: "",
@@ -67,9 +69,11 @@ Page({
         },
         success: function (res, s, m) {
           if (s) {
-            var user = wx.setStorageSync('userLoginInfo', res.user);
-            user.UserType = 2;
-            wx.setStorageSync('userLoginInfo', user)
+            var user = wx.getStorageSync('userLoginInfo');
+            if (user !=''){
+              user.UserType = 2;
+              wx.setStorageSync('userLoginInfo', user)
+            }
 
             wx.redirectTo({
               url: '/pages/planner/plannerRegisterSucceed/plannerRegisterSucceed'
@@ -129,6 +133,49 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+
+    var that = this;
+    var loginInfo = wx.getStorageSync('userLoginInfo');
+    if (loginInfo == "") {
+      wx.setStorageSync('backPage', "/pages/planner/plannerRegister/plannerRegister")
+      wx.redirectTo({
+        url: "/pages/account/login/login"
+      });
+      return;
+    } 
+
+    common.POST({
+      url: "/userinfo/get_user_info",
+      params: {
+        userid: loginInfo.Id,
+      },
+      success: function (res, s, m) {
+        if (s) {
+          that.setData({
+            user: res,
+            pSex: res.Sex
+          })
+          if (res.IDCardJust != null && res.IDCardJust != "") {
+            that.setData({
+              imgUrl01: common.apiUrl + "/" + res.IDCardJust,
+              imgSaveUrl01: res.IDCardJust,
+              clsImgUrl01: "clsIdCardImg",
+              clsChooseImg01: "hideTag",
+            })
+          }
+          if (res.IDCardBack != null && res.IDCardBack != "") {
+            that.setData({
+              imgUrl02: common.apiUrl + "/" + res.IDCardBack,
+              imgSaveUrl02: res.IDCardBack,
+              clsImgUrl02: "clsIdCardImg",
+              clsChooseImg02: "hideTag",
+            })
+          }
+        }
+      },
+      fail: function () { }
+    })
+
     common.POST({
       url: "/basic/servicelist",
       params: {},
