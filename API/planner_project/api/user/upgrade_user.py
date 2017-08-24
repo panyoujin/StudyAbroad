@@ -30,6 +30,9 @@ def upgrade_user():
     Experience = request.form.get("Experience", type=str, default=None)
     if Experience == None:
         raise custom_error.CustomFlaskErr(status_code=500, message="资历不能为空")
+    IDCard = request.form.get("IDCard", type=str, default=None)
+    if IDCard == None:
+        raise custom_error.CustomFlaskErr(status_code=500, message="身份证不能为空")
     IDCardPic = request.form.get("IDCardPic", type=str, default=None)
     if IDCardPic == None:
         raise custom_error.CustomFlaskErr(status_code=500, message="身份证正面不能为空")
@@ -44,7 +47,7 @@ def upgrade_user():
     if len(data_exists):
         raise custom_error.CustomFlaskErr(status_code=500, message="你已经存在申请过注册规划师")
 
-    requestData = (userId,Sex,Name,Address,ServiceId,ServiceAreaId,Email,Experience,IDCardPic,userId,IDCardBackPic)
+    requestData = (userId,Sex,Name,Address,ServiceId,ServiceAreaId,Email,Experience,IDCardPic,userId,IDCardBackPic,IDCard)
     data_register = mysql.operate_object(user_upgrade.insert_upgrade_user, requestData)
 
     if data_register > 0:
