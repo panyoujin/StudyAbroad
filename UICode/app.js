@@ -18,21 +18,21 @@ App({
       //调用登录接口
       wx.login({
         success: function (rr) {
-          /*if (rr.code) {
+          if (rr.code) {
             //发起网络请求
-            wx.request({
-              url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wxdee612b8de237c27&secret=db3131348210e0152992b74e2f5d73ee&js_code=' + rr.code+'&grant_type=authorization_code',
-              data: {
-                code: rr.code
-              },
-              success :function(rrr){
-                that.globalData.wxSessionkey = rrr.data.sessionkey_key
-                that.globalData.wxOpenId = rrr.data.openid
-              }
-            })
+            // wx.request({
+            //   url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wx0e6bd3860edeb78c&secret=db3131348210e0152992b74e2f5d73ee&js_code=' + rr.code+'&grant_type=authorization_code',
+            //   data: {
+            //     code: rr.code
+            //   },
+            //   success :function(rrr){
+            //     that.globalData.wxSessionkey = rrr.data.sessionkey_key
+            //     that.globalData.wxOpenId = rrr.data.openid
+            //   }
+            // })
           } else {
-            console.log('获取用户登录态失败！' + res.errMsg)
-          }*/
+            //console.log('获取用户登录态失败！' + res.errMsg)
+          }
 
           wx.getUserInfo({
             success: function (res) {

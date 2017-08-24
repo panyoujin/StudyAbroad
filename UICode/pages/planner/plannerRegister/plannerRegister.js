@@ -37,13 +37,14 @@ Page({
     var address = e.detail.value.address;
     var record = e.detail.value.record;
     var email = e.detail.value.email;
+    var idcard = e.detail.value.idcard;
     var pSex = that.data.pSex;
     var pServeice = that.data.pServeice;
-    var pArea = that.data.pArea;
+    var pArea = that.data.pArea; 
 
-    if (pName.length == 0 || imgSaveUrl01.length == 0 || address.length == 0 || record.length == 0 || email.length == 0 || pServeice == -1 || pArea==-1){
+    if (pName.length == 0 || idcard.length == 0|| imgSaveUrl01.length == 0 || address.length == 0 || record.length == 0 || email.length == 0 || pServeice == -1 || pArea==-1){
       that.setData({
-        tip: '提示：姓名、身份证、所在地、资历、服务区域、邮箱、服务不能为空！'
+        tip: '提示：姓名、身份证号码、身份证图片、所在地、资历、服务区域、邮箱、服务不能为空！'
       })
     }
     else {
@@ -59,13 +60,18 @@ Page({
           ServiceId: pServeice,
           ServiceAreaId: pArea,
           Email: email,
+          IDCard: idcard,
           Experience: record,
           IDCardPic: imgSaveUrl01,
           IDCardBackPic: imgSaveUrl02
         },
         success: function (res, s, m) {
           if (s) {
-            wx.navigateTo({
+            var user = wx.setStorageSync('userLoginInfo', res.user);
+            user.UserType = 2;
+            wx.setStorageSync('userLoginInfo', user)
+
+            wx.redirectTo({
               url: '/pages/planner/plannerRegisterSucceed/plannerRegisterSucceed'
             })
           }else{

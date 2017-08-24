@@ -15,6 +15,10 @@
       </radio-group>
     </view>
     <view class="clsView">
+      <label class="clsTxt">身份证号码：</label>
+      <input class="clsInput"  placeholder="请输入身份证号码：" name="idcard" />
+    </view>
+    <view class="clsView">
       <label class="clsTxt">身份证</label>
       <view class="clsImg">
         <view class="{{clsChooseImg01}}" bindtap="btnChooseImage01">+</view>

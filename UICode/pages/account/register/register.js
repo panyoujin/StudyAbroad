@@ -33,7 +33,8 @@ Page({
       url: "/basic/get_vcode",
       params: {
         Phone: that.data.userAccount,
-        CodeType: 1
+        CodeType: 1,
+        openId: getApp().globalData.wxOpenId
       },
       success: function (res, s, m) {
         if (s) {
@@ -86,8 +87,12 @@ Page({
         },
         success: function (res, s, m) {
           if (s) {
-            that.setData({
-              tip: "注册成功"
+            // wx.setStorageSync('userLoginToken', res.token)
+            // res.user.HeadImage = common.apiUrl + "/" + res.user.HeadImage;
+            // wx.setStorageSync('userLoginInfo', res.user)
+            common.Alert("注册成功");
+            wx.redirectTo({
+              url: '/pages/account/login/login',
             })
           }else{
             that.setData({

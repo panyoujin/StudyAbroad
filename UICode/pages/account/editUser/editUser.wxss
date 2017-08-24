@@ -16,7 +16,7 @@ page{
 }
 .clsImg{
   text-align: center;
-  width: 450rpx;
+  width: 250rpx;
 }
 .clsImg image{
   width: 80rpx;
@@ -26,6 +26,7 @@ page{
 }
 
 .clsTxt{
+  width: 150rpx;
   height: 82rpx;
   line-height: 82rpx;
   vertical-align: middle;
@@ -35,9 +36,8 @@ page{
 }
 .clsInput,.clsRadio{
   height: 80rpx;
-  
   line-height: 80rpx;
-  padding-left: 130rpx;
+  padding-left: 10rpx;
   color: #000;
   margin: 0;
   vertical-align: middle;

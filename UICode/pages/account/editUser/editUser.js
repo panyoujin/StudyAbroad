@@ -97,6 +97,7 @@ Page({
               title: '修改成功！',
               duration: 1500
             })
+            wx.navigateBack({})
           } else {
             wx.showToast({
               title: '修改失败！',

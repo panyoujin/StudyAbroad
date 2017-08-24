@@ -43,6 +43,9 @@ page{
   text-align: center;
   padding-top: 8rpx;
   color: #fff;
+  width: 100%;
+  overflow: hidden;
+  font-size: 30rpx;
 }
 
 .clsPlannerHead{

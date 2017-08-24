@@ -15,54 +15,55 @@ Page({
 
 
   btnAddEducation:function(){
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/account/educationEdit/educationEdits',
     })
   },
   btnAddSociology: function () {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/account/sociologyEdit/sociologyEdit',
     })
   },
   btnAddResources: function () {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/account/resourcesEdit/resourcesEdit',
     })
   },
 
   btnEditEducation: function (e) {
-    wx.redirectTo({
-      url: '/pages/account/educationEdit/educationEdits?timeStart=2017&timeEnd=2017&university=清华大学&degree=博士&id=' + e.currentTarget.dataset.id,
+    wx.navigateTo({
+      url: '/pages/account/educationEdit/educationEdits?timeStart=' + e.currentTarget.dataset.timestart + '&timeEnd=' + e.currentTarget.dataset.timeend + '&university=' + e.currentTarget.dataset.university + '&degree=' + e.currentTarget.dataset.degree+'&id=' + e.currentTarget.dataset.id,
     })
   },
   btnEditSociology: function (e) {
-    wx.redirectTo({
-      url: '/pages/account/sociologyEdit/sociologyEdit?timeStart=2017&timeEnd=2017&description=社会信息&id=' + e.currentTarget.dataset.id,
+    wx.navigateTo({
+      url: '/pages/account/sociologyEdit/sociologyEdit?timeStart=' + e.currentTarget.dataset.timestart + '&timeEnd=' + e.currentTarget.dataset.timeend + '&description=' + e.currentTarget.dataset.description + '&id=' + e.currentTarget.dataset.id,
     })
   },
   btnEditResources: function (e) {
-    wx.redirectTo({
-      url: '/pages/account/resourcesEdit/resourcesEdit?timeStart=2017&timeEnd=2017&description=资源信息&&id=' + e.currentTarget.dataset.id,
+    wx.navigateTo({
+      url: '/pages/account/resourcesEdit/resourcesEdit?timeStart=' + e.currentTarget.dataset.timestart + '&timeEnd=' + e.currentTarget.dataset.timeend + '&description=' + e.currentTarget.dataset.description + '&&id=' + e.currentTarget.dataset.id,
     })
   },
 
 
   btnDelEducation: function (e) {
+    var that = this;
     common.POST({
       url: "/planner/delete_education",
       params: {
         Id: e.currentTarget.dataset.id
       },
       success: function (res, s, m) {
-        if (s && res.length != 0) {
-          var educations = this.data.educations;
+        if (s) {
+          var educations = that.data.educations;
           for (var i = 0; i < educations.length;i++){
             if (educations[i].Id == e.currentTarget.dataset.id){
               educations.splice(i, 1)
               break;
             }
           }
-          this.setData({
+          that.setData({
             educations: educations
           })
         } else {
@@ -73,21 +74,22 @@ Page({
     })
   },
   btnDelSociology: function (e) {
+    var that = this;
     common.POST({
       url: "/planner/delete_society",
       params: {
         Id: e.currentTarget.dataset.id
       },
       success: function (res, s, m) {
-        if (s && res.length != 0) {
-          var societys = this.data.societys;
+        if (s) {
+          var societys = that.data.societys;
           for (var i = 0; i < societys.length; i++) {
             if (societys[i].Id == e.currentTarget.dataset.id) {
               societys.splice(i, 1)
               break;
             }
           }
-          this.setData({
+          that.setData({
             societys: societys
           })
         } else {
@@ -98,6 +100,7 @@ Page({
     })
   },
   btnDelResources: function (e) {
+    var that=this;
     common.POST({
       url: "/planner/delete_resour",
       params: {
@@ -105,14 +108,14 @@ Page({
       },
       success: function (res, s, m) {
         if (s && res.length != 0) {
-          var resours = this.data.resours;
+          var resours = that.data.resours;
           for (var i = 0; i < resours.length; i++) {
-            if (resours[i].Id == e.resours.dataset.id) {
+            if (resours[i].Id == e.currentTarget.dataset.id) {
               resours.splice(i, 1)
               break;
             }
           }
-          this.setData({
+          that.setData({
             resours: resours
           })
         } else {

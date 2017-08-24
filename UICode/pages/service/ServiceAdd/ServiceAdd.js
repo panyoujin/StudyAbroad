@@ -140,7 +140,7 @@ Page({
         PriceStart: priceStart,
         PriceEnd: priceEnd,
         Description: name,
-        plannerId: checkPlannerId,
+        plannerId: that.data.checkPlannerId,
         ServiceId: that.data.services[that.data.pService].Id,
         ServiceAreaId: that.data.areas[that.data.pArea].Id
       },
@@ -155,7 +155,7 @@ Page({
           if (that.data.addType == 1){
             url ="/pages/demand/demandPublic/demandPublic"
           }
-          wx.navigateTo({
+          wx.redirect({
             url: url,
           })
           // wx.showToast({

@@ -23,13 +23,14 @@ Page({
   onLoad: function (options) {
     var that=this;
     var id = options.id;
+    console.log(options);
     if (id != undefined) {
       that.setData({
         id: id,
         degree: options.degree,
         university: options.university,
-        timeStart: options.timeStart,
-        timeEnd: options.timeEnd,
+        timeStart: options.timeStart.substring(0,10) ,
+        timeEnd: options.timeStart.substring(0, 10),
         formSubmitTxt:'编辑'
       })
     }else{
