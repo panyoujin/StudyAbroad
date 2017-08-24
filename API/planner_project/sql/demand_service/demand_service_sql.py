@@ -4,10 +4,11 @@ select_search_demand_service = "SELECT ds.`Id`,ds.UserId,ds.`Name`,ds.`Type`,ds.
                                ",ds.`Sort`,ds.`IsTop`,ui.`Name` AS UserName,ui.`HeadImage`,sa.`Name` AS AreaName,st.`Name` AS TypeName " \
                                "FROM `DS_DemandService` ds " \
                                "JOIN `U_UserInfo` AS ui ON ds.`UserId`=ui.`UserId` " \
-                               " JOIN `U_User` AS uu ON uu.`Id`=ui.`UserId` AND uu.`UserType`=1 " \
+                               " JOIN `U_User` AS uu ON uu.`Id`=ui.`UserId` " \
                                "LEFT JOIN `Base_ServiceArea` sa ON sa.`Id`=ds.`ServiceAreaId`  " \
                                "LEFT JOIN `Base_ServiceType` st ON st.`Id`=ds.`ServiceTypeId` " \
                                "WHERE ds.`IsDelete` = FALSE " \
+                               "AND !(uu.`UserType`!=1 AND ds.Type=1) " \
                                "ORDER BY ds.`Sort` DESC ,ds.`CreateTime` DESC " \
                                "LIMIT %s , %s "
 # 需求服务详情
