@@ -68,7 +68,8 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#4facfe",
     "navigationBarTitleText": "规划师",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh":"true"
   },
   "tabBar": {
     "heigth":"200rpx",
