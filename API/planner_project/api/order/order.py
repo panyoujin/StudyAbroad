@@ -150,6 +150,8 @@ def planer_update_order_status():
         raise custom_error.CustomFlaskErr(status_code=500, message="结束状态不能为空")
     if EndStatus <= StartStatus:
         raise custom_error.CustomFlaskErr(status_code=500, message="结束状态不能小于等于当前状态")
+    if EndStatus > StartStatus + 1:
+        raise custom_error.CustomFlaskErr(status_code=500, message="不能跨流程提交")
     sql_list = [order_sql.update_order_status,
                 order_sql.insert_order_flowing]
     args_list = [(EndStatus, userId, OrderId, StartStatus),
