@@ -11,7 +11,7 @@
     <view class="formView">
       <image src="/img/account/user.png"></image>
       <label>用户名：</label>
-      <input type="text" type="number" name="userAccount" placeholder="请输入用户名" maxlength="18" />
+      <input type="text" name="userAccount" placeholder="请输入用户名" maxlength="18" />
     </view>
     <view class="formView">
       <image src="/img/account/forgetPwd.png"></image>
