@@ -125,7 +125,7 @@ $(function(){
             function (result) {
                 if (!!result.data) {
                     $("#CustomerServiceTelephone").val(result.data.platforminfo.CustomerServiceTelephone)
-                    $("#ContractContent").val(result.data.Contract.ContractContent)
+                    $("#ContractContent").val(result.data.Contract.Content)
                 } else {
                     $.alert(result.message);
                 }
@@ -166,11 +166,11 @@ function loadCarouselImageList(){
 }
 
 function AddCarouselImage() {
-    $.Dialog('/base/CarouselImageAdd.html?userid='+userid,'',650,380);
+    $.Dialog('/Base/CarouselImageAdd.html','',650,400);
     //parent.gotoPage('/User/UserEdit.html?id=' + id);
 }
 function EditCarouselImage(id) {
-    $.Dialog('/base/CarouselImageEdit.html?id=' + id+'&userid='+userid,'',650,380);
+    $.Dialog('/Base/CarouselImageEdit.html?id=' + id,'',650,400);
     //parent.gotoPage('/User/UserEdit.html?id=' + id);
 }
 

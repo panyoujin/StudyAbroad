@@ -32,7 +32,7 @@ def update_platforminfo():
     raise custom_error.CustomFlaskErr(status_code=500, message="修改失败")
 
 
-#修改客服电话信息
+#修改合同
 @app.route("/backweb/base/update_Contract", methods=['POST'])
 def update_Contract():
     ApiResponse = api_response.ApiResponse()
