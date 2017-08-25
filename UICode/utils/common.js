@@ -217,20 +217,24 @@ function Trim(str) {
  * 成功消息
  */
 function Alert(msg){
-  wx.showToast({
-    title: msg,
-    duration: 1500
-  })
+  setTimeout(function () { 
+    wx.showToast({
+      title: msg,
+      duration: 1500
+    })
+  }, 500);
 }
 /**
  * 失败消息
  */
 function AlertError(msg) {
-  wx.showToast({
-    title: msg,
-    image: '/img/error.png',
-    duration: 1500
-  })
+  setTimeout(function () {
+    wx.showToast({
+      title: msg,
+      image: '/img/error.png',
+      duration: 1500
+    })
+  }, 500);
 }
 
 module.exports = {
