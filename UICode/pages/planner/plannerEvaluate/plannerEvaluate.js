@@ -86,10 +86,8 @@ Page({
       },
       success: function (res, s, m) {
         if (s) {
-          wx.showToast({
-            title: '评价成功！',
-            duration: 1500
-          })
+          common.Alert("评价成功！");
+          setTimeout(function(){wx.navigateBack()},2000);
         } else {
           that.setData({
             tip: m

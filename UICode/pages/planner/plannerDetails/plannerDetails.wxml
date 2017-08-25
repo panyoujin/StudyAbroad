@@ -22,7 +22,7 @@
       </view>
       <view class="clsPlannerTxt clcComment">
         <label>好评率：</label>
-        <label>{{planner.PraiseCount/planner.CustomerCount*100}}%</label>
+        <label>{{planner.PraiseCount/(planner.CustomerCount==0?1:planner.CustomerCount)*100}}%</label>
       </view>
       <view class="clsPlannerTxt clsTeamTxt">
         <label>团队成员：</label>

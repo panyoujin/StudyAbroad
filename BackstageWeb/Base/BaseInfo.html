@@ -80,17 +80,13 @@
 </html>
 <script type="text/javascript">
     var submitForm = function () {
-        $("#submitForm").validate({
-            rules: {
-               CustomerServiceTelephone: {
-                    required: false
-                }
-            }, messages: {
-                CustomerServiceTelephone: {
-                    required: "请输入客服电话"
-                }
-            }, submitHandler: function () {
-                $.ajaxForm("/base/update_platforminfo", "submitForm",
+        
+        var CustomerServiceTelephone = $("#CustomerServiceTelephone").val();
+        if(!!!CustomerServiceTelephone){
+            $.alert("请先填写客服电话!");
+            return;
+        }
+        $.ajaxJson("/base/update_platforminfo", { CustomerServiceTelephone:CustomerServiceTelephone},
                 function (result) {
                     if (result.status=="200") {
                         $.alert("客服电话修改成功", function () {
@@ -102,43 +98,34 @@
                 function () {
                     $.alert("网络故障，请稍候重试!");
                 });
-            }
-        });
 
     };
     var submitContract = function () {
-        $("#submitContract").validate({
-            rules: {
-               ContractContent: {
-                    required: false
-                }
-            }, messages: {
-                ContractContent: {
-                    required: "请输入合同内容"
-                }
-            }, submitHandler: function () {
-                $.ajaxForm("/base/update_Contract", "submitContract",
+        var ContractContent = $("#ContractContent").val();
+        if(!!!ContractContent){
+            $.alert("请先填写合同内容!");
+            return;
+        }
+        $.ajaxJson("/base/update_Contract", { ContractContent:ContractContent},
                 function (result) {
                     if (result.status=="200") {
-                        $.alert("客服电话修改成功", function () {
+                        $.alert("合同内容修改成功", function () {
                         });
                     } else {
-                        $.alert("客服电话修改失败,失败原因："+result.message);
+                        $.alert("合同内容修改失败,失败原因："+result.message);
                     }
                 },
                 function () {
                     $.alert("网络故障，请稍候重试!");
                 });
-            }
-        });
 
     };
 $(function(){
     $.ajaxJson("/base/select_platforminfo", { },
             function (result) {
                 if (!!result.data) {
-                    $("#CustomerServiceTelephone").val(result.data.CustomerServiceTelephone)
-                    $("#ContractContent").val(result.data.ContractContent)
+                    $("#CustomerServiceTelephone").val(result.data.platforminfo.CustomerServiceTelephone)
+                    $("#ContractContent").val(result.data.Contract.Content)
                 } else {
                     $.alert(result.message);
                 }
@@ -147,10 +134,10 @@ $(function(){
                     $.alert("网络故障，请稍候重试!");
             }
         );
-    loadContractList();
+    loadCarouselImageList();
 })
 function loadCarouselImageList(){
-    $.ajaxJson("/base/select_CarouselImage_list", { },
+    $.ajaxJson("/base/select_carouselimage_list", { },
         function (result) {
             if (result && result.data.length > 0) {
                 var list = result.data;
@@ -179,11 +166,11 @@ function loadCarouselImageList(){
 }
 
 function AddCarouselImage() {
-    $.Dialog('/base/CarouselImageAdd.html?userid='+userid,'',650,380);
+    $.Dialog('/Base/CarouselImageAdd.html','',650,400);
     //parent.gotoPage('/User/UserEdit.html?id=' + id);
 }
 function EditCarouselImage(id) {
-    $.Dialog('/base/CarouselImageEdit.html?id=' + id+'&userid='+userid,'',650,380);
+    $.Dialog('/Base/CarouselImageEdit.html?id=' + id,'',650,400);
     //parent.gotoPage('/User/UserEdit.html?id=' + id);
 }
 

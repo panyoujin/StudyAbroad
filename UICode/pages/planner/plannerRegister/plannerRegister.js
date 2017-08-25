@@ -69,11 +69,11 @@ Page({
         },
         success: function (res, s, m) {
           if (s) {
-            var user = wx.getStorageSync('userLoginInfo');
-            if (user !=''){
-              user.UserType = 2;
-              wx.setStorageSync('userLoginInfo', user)
-            }
+            // var user = wx.getStorageSync('userLoginInfo');
+            // if (user !=''){
+            //   user.UserType = 2;
+            //   wx.setStorageSync('userLoginInfo', user)
+            // }
 
             wx.redirectTo({
               url: '/pages/planner/plannerRegisterSucceed/plannerRegisterSucceed'

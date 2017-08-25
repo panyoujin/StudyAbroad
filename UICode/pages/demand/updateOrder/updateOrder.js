@@ -35,6 +35,9 @@ Page({
       })
       return;
     }
+    that.setData({
+      tip: '',
+    })
     common.POST({
       url: "/order/planer_update_order_status",
       params: {
@@ -48,6 +51,10 @@ Page({
             title: '更新成功！',
             duration: 1500
           })
+          that.setData({
+            orderStatus: that.data.orderStatus+1,
+          })
+          
         } else {
           that.setData({
             tip: m,

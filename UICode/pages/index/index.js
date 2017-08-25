@@ -75,6 +75,33 @@ Page({
     })
   },
 
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    //获取首页规划师
+    common.POST({
+      url: "/home/planner",
+      params: {
+        count: 6
+      },
+      success: function (res, s, m) {
+        if (s && res.length != 0) {
+          that.setData({
+            plannerList: res
+          })
+        } else {
+          // var sc = sType == 1 ? 0 : -1;
+          // that.setData({
+          //   isSearch: false,
+          //   searchCount: sc
+          // })
+        }
+      },
+      fail: function () { }
+    })
+  },
+
   onLoad: function () {
     var that = this
     that.setData({
@@ -101,6 +128,7 @@ Page({
       },
       fail: function () { }
     })
+    
 
     //调用应用实例的方法获取全局数据
     // app.getUserInfo(function(userInfo){

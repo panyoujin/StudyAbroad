@@ -29,7 +29,7 @@
 .clsOther{
   position: absolute;
   right: 0;
-  bottom: 25rpx;
+  bottom: 35rpx;
   width: 180rpx;
 }
 .clsOther button{
@@ -38,6 +38,7 @@
   line-height:2.0;
   font-size:30rpx;
   padding:0rpx 15rpx;
+  margin: 5rpx 0;
   font-family: "黑体";
 }
 button::after{

@@ -85,7 +85,27 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    var that=this;
+    common.POST({
+      url: "/planner/get_order_detail",
+      params: {
+        OrderId: that.data.orderId
+      },
+      success: function (res, s, m) {
+        if (s) {
+          that.setData({
+            datas: res,
+          })
+        } else {
+          wx.showToast({
+            title: m,
+            image: '/img/error.png',
+            duration: 1500
+          })
+        }
+      },
+      fail: function () { }
+    })
   },
 
   /**
