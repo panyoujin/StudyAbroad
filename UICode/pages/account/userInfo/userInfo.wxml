@@ -1,6 +1,6 @@
 <view class="container {{UserType!=1?'containePlanner':''}}">
   <view class="backgroundImg" wx:if="{{UserType==1}}">
-    <image src="/img/account/uBackground.png" mode="scaleToFill"></image>
+    <image src="/img/account/uBackground.png" mode="aspectFill"></image>
   </view>
   <view class="clsUserHead" wx:if="{{UserType==1}}">
     <navigator url="/pages/account/editUser/editUser" hover-class="none">
@@ -57,7 +57,7 @@
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>
     <navigator class="clsView" url="/pages/message/msgService/msgService">
-        <image class="clsIcon" src="/img/account/uMyCollect.png" wx:if="{{UserType==1}}"></image>
+        <image class="clsIcon" src="/img/account/uPhone.png" wx:if="{{UserType==1}}"></image>
         <label>消息通知</label>
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>
@@ -76,15 +76,20 @@
         <label>平台合作资源</label>
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>
-    <navigator class="clsView clsViewLast" url="/pages/planner/information/information" wx:if="{{UserType!=1}}">
+    <navigator class="clsView" url="/pages/planner/information/information" wx:if="{{UserType!=1}}">
         <label>规划师相关资料</label>
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>
-    <navigator class="clsView clsViewLast" url="/pages/account/browseHistory/browseHistory" wx:if="{{UserType==1}}">
+    <navigator class="clsView" url="/pages/account/browseHistory/browseHistory" wx:if="{{UserType==1}}">
         <image class="clsIcon" src="/img/account/uBrowseHistory.png"></image>
         <label>浏览历史</label>
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>
+    <view class="clsView clsViewLast" bindtap="logOut">
+        <image class="clsIcon clsLogOut" src="/img/account/logOut.png" wx:if="{{UserType==1}}"></image>
+        <label>退出登录</label>
+        <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
+    </view>
   </view>
   <view class="clsBarBackgroundImg" wx:if="{{UserType==1}}">
     <image src="/img/account/uBackground.png" mode="scaleToFill"></image>
