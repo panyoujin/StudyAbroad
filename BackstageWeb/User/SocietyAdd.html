@@ -60,9 +60,9 @@
         $("#submitForm").validate({
             rules: {
                 TimeStart: {
-                    required: true
+                    required: false
                 }, TimeEnd: {
-                    required: true
+                    required: false
                 }, Description: {
                     required: true
                 }, Sort: {
@@ -70,7 +70,7 @@
                 }
             }, messages: {
                 TimeStart: {
-                    required: "请输入名称"
+                    required: "请输入开始时间"
                 }, TimeEnd: {
                     required: "请输入结束时间"
                 }, Description: {

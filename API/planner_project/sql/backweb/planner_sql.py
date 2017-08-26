@@ -59,7 +59,7 @@ select_resour_info = "SELECT r.`Id`,r.`TimeStart`,r.`TimeEnd`,r.`Description`,r.
 insert_education ="INSERT INTO `U_Education` ( `Id`, `UserId`, `TimeStart`, `TimeEnd`, `University`, `Degree`, `Sort`, `CreateUserID`, `CreateTime`, `ModifUserID`, `ModifTime`, `IsDelete`) " \
                   "VALUES ( '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', NOW(), '%s', NOW(), FALSE ) ;"
 #修改学历
-update_education ="UPDATE `U_Education` SET`TimeStart` = '%s',`TimeEnd` = '%s',`University` = '%s',`Degree` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW()'" \
+update_education ="UPDATE `U_Education` SET`TimeStart` = '%s',`TimeEnd` = '%s',`University` = '%s',`Degree` = '%s',`Sort` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW()" \
                   " WHERE `Id` = '%s';"
 #删除学历
 delete_education ="UPDATE `U_Education` SET `IsDelete`=TRUE, `ModifUserID`='%s', `ModifTime`=NOW() " \

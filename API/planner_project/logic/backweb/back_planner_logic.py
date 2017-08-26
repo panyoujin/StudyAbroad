@@ -76,7 +76,7 @@ def delete_resour(id,updateuserid):
 #新增社会背景
 def insert_society(id,userid,TimeStart,TimeEnd,Description,Sort,insertuserid):
     return mysql.operate_object(planner_sql.insert_society,(id,userid,TimeStart,TimeEnd,Description,Sort
-                                                            ,insertuserid,insertuserid))
+                                                           ,insertuserid,insertuserid))
 
 
 #修改社会背景
