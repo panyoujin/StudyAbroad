@@ -1,7 +1,7 @@
 <view class="container">
   <view class="searchResult">
     <view class="plannerInfo" wx:for="{{planners}}" wx:key="item">
-      <image src="{{item.HeadImage}}"></image>
+      <image src="{{item.HeadImage}}" mode="aspectFill" ></image>
       <label>{{item.Name}}|</label>
       <label>{{item.TeamName==null?"":item.TeamName}}|</label>
       <label>{{item.Lables==null?"":item.Lables}}|</label>

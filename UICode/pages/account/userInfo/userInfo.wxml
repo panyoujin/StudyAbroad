@@ -1,6 +1,6 @@
 <view class="container {{UserType!=1?'containePlanner':''}}">
   <view class="backgroundImg" wx:if="{{UserType==1}}">
-    <image src="/img/account/uBackground.png" mode="scaleToFill"></image>
+    <image src="/img/account/uBackground.png" mode="aspectFill"></image>
   </view>
   <view class="clsUserHead" wx:if="{{UserType==1}}">
     <navigator url="/pages/account/editUser/editUser" hover-class="none">
