@@ -62,9 +62,9 @@ page{
   margin:10rpx;
 }
 .clsPlannerHead label{
-  padding-left: 18rpx;
-  line-height: 170rpx;
-  vertical-align: middle;
+  margin: auto 0;
+  width: 260rpx;
+  overflow: hidden;
 }
 .clsPlannerHead navigator{
   /* margin-left: 80rpx;  */
@@ -134,4 +134,8 @@ page{
   clear:both;
   width:100%;
   height: 100%;
+}
+
+.clsLogOut{
+  opacity:0.5;
 }

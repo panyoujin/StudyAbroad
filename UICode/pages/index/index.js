@@ -5,9 +5,7 @@ var common = require('../../utils/common.js')
 var app = getApp()
 Page({
   data: {
-    imgUrls: [
-      { url: '', src: '/img/home/banner.png' }
-    ],
+    imgUrls: [],
     userInfo: {},
     plannerList:{},
     hidden: true,
@@ -50,7 +48,7 @@ Page({
       phoneNumber: '0752-123456',
     })
   },
-  //事件处理函数
+
   //banner图跳转
   swipclick: function (e) {
     
@@ -91,11 +89,6 @@ Page({
             plannerList: res
           })
         } else {
-          // var sc = sType == 1 ? 0 : -1;
-          // that.setData({
-          //   isSearch: false,
-          //   searchCount: sc
-          // })
         }
       },
       fail: function () { }
@@ -104,9 +97,9 @@ Page({
 
   onLoad: function () {
     var that = this
-    that.setData({
-      userInfo: app.globalData.userInfo
-    })
+    // that.setData({
+    //   userInfo: app.globalData.userInfo
+    // })
     //获取首页规划师
     common.POST({
       url: "/home/planner",
@@ -119,23 +112,28 @@ Page({
             plannerList: res
           })
         } else {
-          // var sc = sType == 1 ? 0 : -1;
-          // that.setData({
-          //   isSearch: false,
-          //   searchCount: sc
-          // })
         }
       },
       fail: function () { }
     })
-    
 
-    //调用应用实例的方法获取全局数据
-    // app.getUserInfo(function(userInfo){
-    //   //更新数据
-    //   that.setData({
-    //     userInfo:userInfo
-    //   })
-    // })
+    //获取首页banner
+    common.POST({
+      url: "/home/carousel",
+      params: {
+        count:5
+      },
+      success: function (res, s, m) {
+        if (s && res.length != 0) {
+          that.setData({
+            imgUrls: res
+          })
+        } else {
+        }
+      },
+      fail: function () { }
+    })
   }
+
+
 })
