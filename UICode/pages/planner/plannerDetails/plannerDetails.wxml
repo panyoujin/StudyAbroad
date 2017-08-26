@@ -2,7 +2,7 @@
   <!--pliannerInfo-->
   <view class="plannerInfo">
     <view class="plannerImg">
-      <image class="clsHead" src="{{planner.HeadImage}}"></image>
+      <image class="clsHead"  mode="aspectFill" src="{{planner.HeadImage}}"></image>
       <!-- <image class="clsBtnImg" bindtap="btnShare" src="/img/planner/pShare.png" mode="aspectFit"></image>
       <image class="clsBtnImg" bindtap="btnFollow" src="/img/planner/pFollow.png" mode="aspectFit"></image> -->
       <button class="clsBtn01" open-type="share">分享</button>

@@ -3,7 +3,7 @@
       <block wx:for="{{planners}}" wx:key="item">
         <navigator class="plannerInfo" url="/pages/planner/plannerDetails/plannerDetails?id={{item.Id==null?item.UserId:item.Id}}">
           <view class="img">
-            <image src="{{apiUrl}}{{item.HeadImage}}"></image>
+            <image src="{{apiUrl}}{{item.HeadImage}}" mode="aspectFill"></image>
           </view>
           <view class="plannerTxtInfo">
             <view class="clsName">{{item.Name}}</view>
