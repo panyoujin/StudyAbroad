@@ -45,3 +45,13 @@ def get_current_login_user():
     ApiResponse.status = 200
     ApiResponse.data=user
     return api_response.response_return(ApiResponse)
+
+
+#退出登录
+@app.route("/backweb/home/logout", methods=['POST'])
+def home_logout():
+    ApiResponse = api_response.ApiResponse()
+    session["user"]=None
+    ApiResponse.message = "退出成功"
+    ApiResponse.status = 200
+    return api_response.response_return(ApiResponse)

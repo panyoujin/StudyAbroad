@@ -68,6 +68,13 @@
             }
         };
         refreshValidateCode();
+        $.ajaxJson("/home/logout", {},
+            function (result) {
+                
+            },
+            function () {
+            }
+        );
     });
     var login = function (obj) {
         //window.location.href = "/";
