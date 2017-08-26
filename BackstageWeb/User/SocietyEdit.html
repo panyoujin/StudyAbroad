@@ -61,9 +61,9 @@
         $("#submitForm").validate({
             rules: {
                 TimeStart: {
-                    required: true
+                    required: false
                 }, TimeEnd: {
-                    required: true
+                    required: false
                 }, Description: {
                     required: true
                 }, Sort: {
@@ -71,7 +71,7 @@
                 }
             }, messages: {
                 TimeStart: {
-                    required: "请输入名称"
+                    required: "请输入开始时间"
                 }, TimeEnd: {
                     required: "请输入结束时间"
                 }, Description: {
@@ -83,7 +83,7 @@
                 $.ajaxForm("/planner/back_update_society", "submitForm",
                 function (result) {
                     if (result.status=="200") {
-                        $.alert("社会背景新增成功", function () {
+                        $.alert("社会背景修改成功", function () {
                             $(window.top.document).contents().find("#pageContent")[0].contentWindow.loadSocietyList(userid);
                             $.layerClose();
                         });
@@ -108,6 +108,7 @@ $(function(){
                     $("#TimeEnd").val(result.data.TimeEnd)
                     $("#Description").val(result.data.Description)
                     $("#Sort").val(result.data.Sort)
+                    $("#Id").val(id)
                 } else {
                     $.alert(result.message);
                 }

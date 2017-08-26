@@ -46,3 +46,12 @@ def get_login_user():
         return api_response.response_return(ApiResponse)
     raise custom_error.CustomFlaskErr(status_code=600, message="请先登录")
 
+
+#退出登录
+@app.route("/user/logout", methods=['POST'])
+def logout():
+    ApiResponse = api_response.ApiResponse()
+    session["user"]=None
+    ApiResponse.message = "退出成功"
+    ApiResponse.status = 200
+    return api_response.response_return(ApiResponse)

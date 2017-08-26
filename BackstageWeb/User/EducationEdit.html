@@ -61,9 +61,9 @@
         $("#submitForm").validate({
             rules: {
                 TimeStart: {
-                    required: true
+                    required: false
                 }, TimeEnd: {
-                    required: true
+                    required: false
                 }, Degree: {
                     required: true
                 }, University: {
@@ -71,7 +71,7 @@
                 }
             }, messages: {
                 TimeStart: {
-                    required: "请输入名称"
+                    required: "请输入开始时间"
                 }, TimeEnd: {
                     required: "请输入结束时间"
                 }, Degree: {
@@ -108,6 +108,7 @@ $(function(){
                     $("#TimeEnd").val(result.data.TimeEnd)
                     $("#Degree").val(result.data.Degree)
                     $("#University").val(result.data.University)
+                    $("#Id").val(id)
                 } else {
                     $.alert(result.message);
                 }

@@ -20,56 +20,70 @@ def select_planner_info(userId):
 def select_planner_education(userid):
     return mysql.get_list(planner_sql.select_planner_education,(userid))
 
+#学历背景详情
+def select_education_info(id):
+    return mysql.get_object(planner_sql.select_education_info,(id))
 
 #社会背景
 def select_planner_society(userid):
     return mysql.get_list(planner_sql.select_planner_society,(userid))
 
+#社会背景详情
+def select_society_info(id):
+    return mysql.get_object(planner_sql.select_society_info,(id))
 
 #资源背景
 def select_planner_resour(userid):
     return mysql.get_list(planner_sql.select_planner_resour,(userid))
 
+
+#资源背景详情
+def select_resour_info(id):
+    return mysql.get_object(planner_sql.select_resour_info,(id))
+
 #新增学历背景
 def insert_education(id,userid,TimeStart,TimeEnd,University,Degree,Sort,insertuserid):
-    return mysql.get_list(planner_sql.insert_education,(id,userid,TimeStart,TimeEnd,University,Degree,Sort,insertuserid,insertuserid))
+    return mysql.operate_object(planner_sql.insert_education,(id,userid,TimeStart,TimeEnd,University,Degree,Sort
+                                                              ,insertuserid,insertuserid))
 
 
 #修改学历背景
 def update_education(TimeStart,TimeEnd,University,Degree,Sort,Id,updateuserid):
-    return mysql.get_list(planner_sql.update_education,(TimeStart,TimeEnd,University,Degree,Sort,updateuserid,Id))
+    return mysql.operate_object(planner_sql.update_education,(TimeStart,TimeEnd,University,Degree,Sort,updateuserid,Id))
 
 
 #删除学历背景
 def delete_education(id,updateuserid):
-    return mysql.get_list(planner_sql.delete_education,(updateuserid,id))
+    return mysql.operate_object(planner_sql.delete_education,(updateuserid,id))
 
 
 #新增资源背景
 def insert_resour(id,userid,TimeStart,TimeEnd,Description,Sort,insertuserid):
-    return mysql.get_list(planner_sql.insert_resour,(id,userid,TimeStart,TimeEnd,Description,Sort,insertuserid,insertuserid))
+    return mysql.operate_object(planner_sql.insert_resour,(id,userid,TimeStart,TimeEnd,Description,Sort
+                                                           ,insertuserid,insertuserid))
 
 
 #修改资源背景
 def update_resour(TimeStart,TimeEnd,Description,Sort,Id,updateuserid):
-    return mysql.get_list(planner_sql.update_resour,(TimeStart,TimeEnd,Description,Sort,updateuserid,Id))
+    return mysql.operate_object(planner_sql.update_resour,(TimeStart,TimeEnd,Description,Sort,updateuserid,Id))
 
 
 #删除资源背景
 def delete_resour(id,updateuserid):
-    return mysql.get_list(planner_sql.delete_resour,(updateuserid,id))
+    return mysql.operate_object(planner_sql.delete_resour,(updateuserid,id))
 
 
 #新增社会背景
 def insert_society(id,userid,TimeStart,TimeEnd,Description,Sort,insertuserid):
-    return mysql.get_list(planner_sql.insert_society,(id,userid,TimeStart,TimeEnd,Description,Sort,insertuserid,insertuserid))
+    return mysql.operate_object(planner_sql.insert_society,(id,userid,TimeStart,TimeEnd,Description,Sort
+                                                           ,insertuserid,insertuserid))
 
 
 #修改社会背景
 def update_society(TimeStart,TimeEnd,Description,Sort,Id,updateuserid):
-    return mysql.get_list(planner_sql.update_society,(TimeStart,TimeEnd,Description,Sort,updateuserid,Id))
+    return mysql.operate_object(planner_sql.update_society,(TimeStart,TimeEnd,Description,Sort,updateuserid,Id))
 
 
 #删除社会背景
 def delete_society(id,updateuserid):
-    return mysql.get_list(planner_sql.delete_society,(updateuserid,id))
+    return mysql.operate_object(planner_sql.delete_society,(updateuserid,id))

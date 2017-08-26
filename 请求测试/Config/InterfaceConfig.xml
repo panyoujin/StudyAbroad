@@ -8,6 +8,13 @@
         <BodyParam></BodyParam>
     </Interface>
     <Interface>
+        <Name>退出登录</Name>
+        <Url>http://localhost:5000/user/logout</Url>
+        <PostParam></PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
+    <Interface>
         <Name>获取登录用户</Name>
         <Url>http://localhost:5000/user/get_login_user</Url>
         <PostParam></PostParam>

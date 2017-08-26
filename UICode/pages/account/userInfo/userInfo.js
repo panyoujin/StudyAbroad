@@ -35,6 +35,21 @@ Page({
       
   },
 
+  logOut:function(){
+    wx.setStorageSync('userLoginToken','');
+    wx.setStorageSync('userLoginInfo', '');
+
+    common.POST({
+      url: "/user/logout",
+      params: {},
+      success: function (res, s, m) {},
+      fail: function () { }
+    })
+
+    wx.navigateTo({
+      url: '/pages/account/login/login',
+    })
+  },
   editHeadImg:function(){
     // wx.removeStorageSync("userLoginInfo")
     var that = this;
@@ -125,7 +140,25 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    var that = this;
+    //判断用户是否已经登陆
+    common.CheckLogin("/pages/account/userInfo/userInfo");
+
+    setTimeout(function(){
+      var loginInfo = wx.getStorageSync('userLoginInfo');
+      if (loginInfo == "") {
+        wx.redirectTo({
+          url: "/pages/account/login/login"
+        });
+      } else {
+        that.setData({
+          myInfo: loginInfo,
+          headImage: loginInfo.HeadImage,
+          UserType: loginInfo.UserType
+        })
+      }
+    },1000);
+    
   },
 
   /**
