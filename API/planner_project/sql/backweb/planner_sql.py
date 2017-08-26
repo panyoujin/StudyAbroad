@@ -20,11 +20,16 @@ select_planner_info="SELECT u.`Id`,ui.`Name`,u.`Phone`,ui.`Sex`,ui.`Age`,ui.`Ema
 
 
 #学历背景
-select_planner_education = "SELECT e.`Id`,e.`TimeStart`'e.`TimeEnd`,e.`Degree`e.`University`,e.`Sort`,e.`CreateTime`  " \
+select_planner_education = "SELECT e.`Id`,e.`TimeStart`,e.`TimeEnd`,e.`Degree`,e.`University`,e.`Sort`,e.`CreateTime`  " \
                                 "FROM `U_Education` e " \
                                 "WHERE e.`UserId`='%s' " \
                                 "ORDER BY `Sort` DESC,`CreateTime` DESC "
 
+#学历背景详情
+select_education_info = "SELECT e.`Id`,e.`TimeStart`,e.`TimeEnd`,e.`Degree`,e.`University`,e.`Sort`,e.`CreateTime`  " \
+                                "FROM `U_Education` e " \
+                                "WHERE e.`Id`='%s' " \
+                                "ORDER BY `Sort` DESC,`CreateTime` DESC "
 
 #社会背景
 select_planner_society = "SELECT s.`Id`,s.`TimeStart`,s.`TimeEnd`,s.`Description`,s.`Sort`,s.`CreateTime`  " \
@@ -32,6 +37,11 @@ select_planner_society = "SELECT s.`Id`,s.`TimeStart`,s.`TimeEnd`,s.`Description
                                 "WHERE s.`UserId`='%s' " \
                                 "ORDER BY `Sort` DESC,`CreateTime` DESC "
 
+#社会背景
+select_society_info = "SELECT s.`Id`,s.`TimeStart`,s.`TimeEnd`,s.`Description`,s.`Sort`,s.`CreateTime`  " \
+                                "FROM `U_Society` s " \
+                                "WHERE s.`Id`='%s' " \
+                                "ORDER BY `Sort` DESC,`CreateTime` DESC "
 
 #资源背景
 select_planner_resour = "SELECT r.`Id`,r.`TimeStart`,r.`TimeEnd`,r.`Description`,r.`Sort`,r.`CreateTime`  " \
@@ -39,6 +49,11 @@ select_planner_resour = "SELECT r.`Id`,r.`TimeStart`,r.`TimeEnd`,r.`Description`
                                 "WHERE r.`UserId`='%s' " \
                                 "ORDER BY `Sort` DESC,`CreateTime` DESC "
 
+#资源背景
+select_resour_info = "SELECT r.`Id`,r.`TimeStart`,r.`TimeEnd`,r.`Description`,r.`Sort`,r.`CreateTime`  " \
+                                "FROM `U_Resour` r " \
+                                "WHERE r.`Id`='%s' " \
+                                "ORDER BY `Sort` DESC,`CreateTime` DESC "
 
 #新增学历
 insert_education ="INSERT INTO `U_Education` ( `Id`, `UserId`, `TimeStart`, `TimeEnd`, `University`, `Degree`, `Sort`, `CreateUserID`, `CreateTime`, `ModifUserID`, `ModifTime`, `IsDelete`) " \
@@ -55,7 +70,7 @@ insert_resour ="INSERT INTO `U_Resour` (`Id`,`UserId`,`TimeStart`,`TimeEnd`,`Des
                "VALUES('%s','%s','%s','%s','%s','%s','%s',NOW(),'%s',NOW(),FALSE) "
 #修改资源背景
 update_resour ="UPDATE `U_Resour` SET `TimeStart` = '%s',`TimeEnd` = '%s',`Description` = '%s',`Sort` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW() " \
-               "WHERE `Id` = 'Id'"
+               "WHERE `Id` = '%s'"
 #删除资源背景
 delete_resour ="UPDATE `U_Resour` SET `IsDelete`=TRUE, `ModifUserID`='%s', `ModifTime`=NOW() " \
                "WHERE `Id` = '%s'"
@@ -66,7 +81,7 @@ insert_society ="INSERT INTO `U_Society` (`Id`,`UserId`,`TimeStart`,`TimeEnd`,`D
                 "VALUES('%s','%s','%s','%s','%s','%s','%s',NOW(),'%s',NOW(),FALSE)"
 #修改社会背景
 update_society ="UPDATE `U_Society`  SET `TimeStart` = '%s',`TimeEnd` = '%s',`Description` = '%s',`Sort` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW() " \
-                "WHERE `Id` = 'Id'"
+                "WHERE `Id` = '%s'"
 #删除社会背景
 delete_society ="UPDATE `U_Society` SET `IsDelete`=TRUE, `ModifUserID`='%s', `ModifTime`=NOW() " \
                 "WHERE `Id` = '%s'"
