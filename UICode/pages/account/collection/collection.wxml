@@ -7,7 +7,7 @@
             <image src="{{apiUrl}}{{item.HeadImage}}"></image>
           </view>
           <view class="serviceTxtInfo">
-            <view class="clsName">姓名：{{item.Name}}</view>
+            <view class="clsName">姓名：{{item.UserName}}</view>
             <view class="clsService">类型：{{item.Type=="1"?"需求":"服务"}}</view>
             <view class="clsService">服务模块：{{item.TypeName}}</view>
             <view class="clsService">服务区域：{{item.AreaName}}</view>
