@@ -259,6 +259,20 @@ var resortSystemList = function (systemList) {
     } catch (e) { }
     return newSystemList;
 }
+var ImportFile = function (fileID) {
+        $("#ImportBox i").attr("class", "fa fa-spinner fa-pulse ");
+        $(Import).upload("/upload?" + Math.random(), function (result) {
+            $("#Import").removeAttr("disabled").val("");
+            $("#ImportBox i").attr("class", "fa fa-upload");
+            if (!!result.data) {
+                $("#"+fileID).val(result.data.file_path);
+            } else {
+                $.alert(result.message);
+            }
+        }, 'json');
+        window.setTimeout(function () { $("#Import").attr("disabled", true); }, 1);
+    }
+
 //获取url中的参数
 var getUrlParam=function(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象

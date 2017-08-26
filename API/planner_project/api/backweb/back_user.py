@@ -49,8 +49,9 @@ def back_updateuserinfo():
     education = request.form.get("Education", type=str, default=None)
     address = request.form.get("Address", type=str, default=None)
     email = request.form.get("Email", type=str, default=None)
+    headImage = request.form.get("HeadImage", type=str, default=None)
     user = request_back_helper.current_user_mush_login()
-    data_register =  user_logic.update_userinfo(name, sex, age, education, address, email, userid, user["UserId"])
+    data_register =  user_logic.update_userinfo(name, sex, age, education, address, email,headImage, userid, user["UserId"])
     if data_register:
         ApiResponse.message = "修改成功"
         ApiResponse.status = 200

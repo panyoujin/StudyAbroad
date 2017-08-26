@@ -66,7 +66,7 @@ def select_education_info():
     ApiResponse.data = education
     return api_response.response_return(ApiResponse)
 
-#获取资源背景
+#获取社会背景
 @app.route("/backweb/planner/select_society_list", methods=['POST'])
 def select_society_list():
     ApiResponse = api_response.ApiResponse()
@@ -80,7 +80,7 @@ def select_society_list():
     return api_response.response_return(ApiResponse)
 
 
-#获取资源背景详情
+#获取社会背景详情
 @app.route("/backweb/planner/select_society_info", methods=['POST'])
 def select_society_info():
     ApiResponse = api_response.ApiResponse()
@@ -94,7 +94,7 @@ def select_society_info():
     ApiResponse.data = education
     return api_response.response_return(ApiResponse)
 
-#获取社会背景
+#获取资源背景
 @app.route("/backweb/planner/select_resour_list", methods=['POST'])
 def select_resour_list():
     ApiResponse = api_response.ApiResponse()
@@ -108,7 +108,7 @@ def select_resour_list():
     ApiResponse.data = resour
     return api_response.response_return(ApiResponse)
 
-#获取社会背景详情
+#获取资源背景详情
 @app.route("/backweb/planner/select_resour_info", methods=['POST'])
 def select_resour_info():
     ApiResponse = api_response.ApiResponse()
@@ -175,10 +175,10 @@ def back_update_education():
     return api_response.response_return(ApiResponse)
 
 #删除学历
-@app.route("/backweb/demand_service/back_delete_education", methods=['POST'])
+@app.route("/backweb/planner/back_delete_education", methods=['POST'])
 def back_delete_education():
     ApiResponse = api_response.ApiResponse()
-    Id = request.form.get("Id", type=str, default=None)
+    Id = request.form.get("id", type=str, default=None)
     if Id == None or Id=="":
         raise custom_error.CustomFlaskErr(status_code=500, message="请选择需要删除的学历")
     user = request_back_helper.current_user_mush_login()
@@ -238,11 +238,12 @@ def back_update_resour():
 @app.route("/backweb/planner/back_delete_resour", methods=['POST'])
 def back_delete_resour():
     ApiResponse = api_response.ApiResponse()
-    Id = request.form.get("Id", type=str, default=None)
+    Id = request.form.get("id", type=str, default=None)
     if Id == None or Id=="":
         raise custom_error.CustomFlaskErr(status_code=500, message="请选择需要删除的资源背景")
     user = request_back_helper.current_user_mush_login()
-    data = back_planner_logic.delete_society,(Id,user["UserId"])
+    data=mysql.operate_object(planner_sql.delete_resour,(user["UserId"],Id))
+    #data = back_planner_logic.delete_society,(Id,user["UserId"])
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data
@@ -300,11 +301,12 @@ def back_update_society():
 @app.route("/backweb/planner/back_delete_society", methods=['POST'])
 def back_delete_society():
     ApiResponse = api_response.ApiResponse()
-    Id = request.form.get("Id", type=str, default=None)
+    Id = request.form.get("id", type=str, default=None)
     if Id == None or Id=="":
         raise custom_error.CustomFlaskErr(status_code=500, message="请选择需要删除的社会背景")
     user = request_back_helper.current_user_mush_login()
-    data = back_planner_logic.delete_society,(Id,user["UserId"])
+    data=mysql.operate_object(planner_sql.delete_society,(user["UserId"],Id))
+    #data = back_planner_logic.delete_society,(Id,user["UserId"])
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data

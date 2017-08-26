@@ -18,14 +18,14 @@ select_user_list_count="SELECT COUNT(0) AS listCount  "\
                     "AND ('%s' IS NULL OR '%s'='' OR ui.`Name` LIKE '%s' OR u.`Phone` LIKE '%s')  "
 
 #获取用户详情
-select_user_info="SELECT u.`Id`,ui.`Name`,u.`Phone`,ui.`Sex`,ui.`Age`,ui.`Email`,ui.`Education`,ui.`Address` "\
+select_user_info="SELECT u.`Id`,ui.`Name`,u.`Phone`,ui.`Sex`,ui.`Age`,ui.`Email`,ui.`Education`,ui.`Address`,ui.`HeadImage` "\
                     "FROM `U_User` u "\
                     "LEFT JOIN `U_UserInfo` ui ON u.`Id`=ui.`UserId` "\
                     "WHERE u.`UserType`=1 AND u.`Id`='%s'  "
 
 #修改用户信息
 update_user_info="UPDATE `U_UserInfo` SET `Name` = '%s',`Sex` = '%s',`Age` = '%s',`Education` = '%s',`Address` = '%s'" \
-                 ",`Email` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW() " \
+                 ",`Email` = '%s',`HeadImage` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW() " \
                  "WHERE `UserId` = '%s' ;"
 
 
