@@ -13,12 +13,12 @@
 
 
 <style type="text/css">
-    #ImportBox {
+    .ImportBox {
         position: relative;
         cursor: default;
     }
 
-    #Import {
+    .Import {
         position: absolute;
         top: 0;
         left: 0;
@@ -84,12 +84,39 @@
                             </td>
                         </tr>
                     <tr>
-                        <th width="100">url</th>
+                        <th width="100">头像</th>
                         <td colspan="3">
-                            <input id="HeadImage" maxlength="256" name="HeadImage" placeholder="请上传头像" value="" type="text">
-                            <a href="javascript:;" style="font-size:12px;margin:auto 5px;margin-top:10px;color:#333333; width: 70%" id="ImportBox">
+                            <img src="" id="HeadImageView" width="100px" height="100px">
+                            <input id="HeadImage" maxlength="256" name="HeadImage" value="" type="hidden">
+                            <a href="javascript:;" style="font-size:12px;margin:auto 5px;margin-top:10px;color:#333333; width: 70%" id="ImportBox" class="ImportBox">
                                 &nbsp;&nbsp;<i class="fa fa-upload"></i>上传头像
-                                <input type="file" id="Import" name="file" />
+                                <input type="file" id="Import" name="file" class="Import" />
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="100">身份证号码</th>
+                        <td colspan="5">
+                            <input id="IDCard" maxlength="20" name="IDCard" value="" placeholder="输入身份证号码" type="text" style="width: 100%;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="100">身份证正面</th>
+                        <td>
+                            <img src="" id="IDCardJustView" width="100px" height="100px">
+                            <input id="IDCardJust" maxlength="256" name="IDCardJust" value="" type="hidden">
+                            <a href="javascript:;" style="font-size:12px;margin:auto 5px;margin-top:10px;color:#333333; width: 70%" id="ImportBoxIDCardJust" class="ImportBox">
+                                &nbsp;&nbsp;<i class="fa fa-upload"></i>上传身份证正面
+                                <input type="file" id="ImportIDCardJust" name="file" class="Import" />
+                            </a>
+                        </td>
+                        <th width="100">身份证反面</th>
+                        <td>
+                            <img src="" id="IDCardBackView" width="100px" height="100px">
+                            <input id="IDCardBack" maxlength="256" name="IDCardBack" value="" type="hidden">
+                            <a href="javascript:;" style="font-size:12px;margin:auto 5px;margin-top:10px;color:#333333; width: 70%" id="ImportBoxIDCardBack" class="ImportBox">
+                                &nbsp;&nbsp;<i class="fa fa-upload"></i>上传身份证反面
+                                <input type="file" id="ImportIDCardBack" name="file" class="Import" />
                             </a>
                         </td>
                     </tr>
@@ -188,7 +215,9 @@
     var userid=""
 $(function(){
     userid = getUrlParam("id");
-        $("#Import").change(function () { ImportFile("HeadImage"); });
+        $("#Import").change(function () { ImportFile("Import","HeadImage","HeadImageView"); });
+        $("#ImportIDCardJust").change(function () { ImportFile("ImportIDCardJust","IDCardJust","IDCardJustView"); });
+        $("#ImportIDCardBack").change(function () { ImportFile("ImportIDCardBack","IDCardBack","IDCardBackView"); });
     $.ajaxJson("/planner/select_planner_info", { userid: userid },
             function (result) {
                 if (!!result.data) {
@@ -200,6 +229,12 @@ $(function(){
                     $("#Address").val(result.data.Address)
                     $("#Email").val(result.data.Email)
                     $("#HeadImage").val(result.data.HeadImage)
+                    $("#HeadImageView").attr("src", "/" + result.data.HeadImage)
+                    $("#IDCard").val(result.data.IDCard)
+                    $("#IDCardJust").val(result.data.IDCardJust)
+                    $("#IDCardJustView").attr("src", "/" + result.data.IDCardJust)
+                    $("#IDCardBack").val(result.data.IDCardBack)
+                    $("#IDCardBackView").attr("src", "/" + result.data.IDCardBack)
                 } else {
                     $.alert(result.message);
                 }

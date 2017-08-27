@@ -56,9 +56,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <th width="120">url</th>
+                        <th width="120">图片</th>
                         <td colspan="3">
-                            <input id="imageUrl" maxlength="256" Name="imageUrl" placeholder="请上传图片" value="" type="text" style="float:left;width: 80%">
+                            <img src="" id="imageUrlView" width="100px" height="100px">
+                            <input id="imageUrl" maxlength="256" name="imageUrl" value="" type="hidden">
+                            <!-- <input id="imageUrl" maxlength="256" Name="imageUrl" placeholder="请上传图片" value="" type="text" style="float:left;width: 80%"> -->
                             <a href="javascript:;" style="font-size:12px;margin:auto 5px;margin-top:10px;color:#333333; " id="ImportBox">
                                 &nbsp;&nbsp;<i class="fa fa-upload"></i>上传图片
                                 <input type="file" id="Import" Name="file" />
@@ -136,10 +138,10 @@
     };
 
 $(function(){
-        $("#Import").change(function () { ImportFile(); });
+        $("#Import").change(function () { ImportFile("Import","imageUrl","imageUrlView"); });
     });
 
-var ImportFile = function (appId) {
+/*var ImportFile = function (appId) {
         $("#ImportBox i").attr("class", "fa fa-spinner fa-pulse ");
         $(Import).upload("/upload?" + Math.random(), function (result) {
             $("#Import").removeAttr("disabled").val("");
@@ -151,5 +153,5 @@ var ImportFile = function (appId) {
             }
         }, 'json');
         window.setTimeout(function () { $("#Import").attr("disabled", true); }, 1);
-    }
+    }*/
 </script>

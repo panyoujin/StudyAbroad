@@ -131,10 +131,10 @@
     };
 
 $(function(){
-        $("#Import").change(function () { ImportFile(); });
+        $("#Import").change(function () { ImportFile("Import","fileUrl"); });
     });
 
-var ImportFile = function (appId) {
+/*var ImportFile = function (appId) {
         $("#ImportBox i").attr("class", "fa fa-spinner fa-pulse ");
         $(Import).upload("/upload?" + Math.random(), function (result) {
             $("#Import").removeAttr("disabled").val("");
@@ -146,5 +146,5 @@ var ImportFile = function (appId) {
             }
         }, 'json');
         window.setTimeout(function () { $("#Import").attr("disabled", true); }, 1);
-    }
+    }*/
 </script>
