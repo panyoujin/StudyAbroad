@@ -17,9 +17,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      isFirst:false
-    });
     //判断用户是否已经登陆
     common.CheckLogin("/pages/account/userInfo/userInfo");
     initData(this);
@@ -109,8 +106,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if(!this.data.isFrist){
+    if (!this.data.isFirst){
       init(this);
+    }else{
+      this.setData({
+        isFirst: false
+      });
     }
   },
 
