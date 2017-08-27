@@ -9,13 +9,17 @@ Page({
   data: {
     UserType:1,
     myInfo:null,
-    headImage: ""
+    headImage: "",
+    isFirst: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {     
+  onLoad: function (options) {
+    //判断用户是否已经登陆
+    common.CheckLogin("/pages/account/userInfo/userInfo");
+    initData(this);
   },
 
   logOut:function(){
@@ -102,24 +106,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this;
-    //判断用户是否已经登陆
-    common.CheckLogin("/pages/account/userInfo/userInfo");
-
-    setTimeout(function () {
-      var loginInfo = wx.getStorageSync('userLoginInfo');
-      if (loginInfo == "") {
-        wx.redirectTo({
-          url: "/pages/account/login/login"
-        });
-      } else {
-        that.setData({
-          myInfo: loginInfo,
-          headImage: loginInfo.HeadImage,
-          UserType: loginInfo.UserType
-        })
-      }
-    }, 1000);
+    if (!this.data.isFirst){
+      init(this);
+    }else{
+      this.setData({
+        isFirst: false
+      });
+    }
   },
 
   /**
@@ -140,25 +133,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    var that = this;
-    //判断用户是否已经登陆
-    common.CheckLogin("/pages/account/userInfo/userInfo");
-
-    setTimeout(function(){
-      var loginInfo = wx.getStorageSync('userLoginInfo');
-      if (loginInfo == "") {
-        wx.redirectTo({
-          url: "/pages/account/login/login"
-        });
-      } else {
-        that.setData({
-          myInfo: loginInfo,
-          headImage: loginInfo.HeadImage,
-          UserType: loginInfo.UserType
-        })
-      }
-    },1000);
-    
+    init(this);
   },
 
   /**
@@ -175,3 +150,26 @@ Page({
   
   }
 })
+
+function init(that){
+  //判断用户是否已经登陆
+  common.CheckLogin("/pages/account/userInfo/userInfo");
+  setTimeout(function () {
+    initData(that);
+  }, 1000);
+}
+
+function initData(that){
+  var loginInfo = wx.getStorageSync('userLoginInfo');
+  if (loginInfo == "") {
+    wx.redirectTo({
+      url: "/pages/account/login/login"
+    });
+  } else {
+    that.setData({
+      myInfo: loginInfo,
+      headImage: loginInfo.HeadImage,
+      UserType: loginInfo.UserType
+    })
+  }
+}
