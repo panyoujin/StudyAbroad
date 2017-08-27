@@ -16,9 +16,9 @@ select_user_by_id="SELECT `Id`,`Account`,`Password`,`Phone`,`UserType`,`LoginTim
 select_user_login_info = "SELECT u.`Id`,u.`Account`,u.`Phone`,u.`UserType`,ui.`Name`, ui.`HeadImage` " \
                          "FROM `U_User` u " \
                          "LEFT JOIN `U_UserInfo` ui ON ui.`UserId`=u.`Id` " \
-                         "WHERE LoginToken ='%s'"
+                         "WHERE LoginToken ='%s' AND u.`IsDelete` = FALSE "
 #修改Token
-update_user_token = "UPDATE `U_User` SET `LoginTime` = NOW(), `LoginToken` = '%s', `LoginIP` = '%s' WHERE `Account` = '%s' AND `Password`='%s'"
+update_user_token = "UPDATE `U_User` SET `LoginTime` = NOW(), `LoginToken` = '%s', `LoginIP` = '%s' WHERE `Account` = '%s' AND `Password`='%s' and `IsDelete` = FALSE"
 
 #修改用户密码
 update_user_password="UPDATE `U_User` SET `Password`='%s' WHERE Account='%s'"
