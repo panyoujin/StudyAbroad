@@ -43,6 +43,12 @@ Page({
       hidden: true
     });
   },
+  //点击后隐藏
+  btnHideWindows:function(){
+    this.setData({
+      hidden: true
+    });
+  },
   payPhoneNum: function (e) {
     wx.makePhoneCall({
       phoneNumber: '0752-123456',
@@ -77,6 +83,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    var that=this;
     //获取首页规划师
     common.POST({
       url: "/home/planner",

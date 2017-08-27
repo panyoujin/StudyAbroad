@@ -73,7 +73,7 @@ Page({
       })
     ]
     
-    searchList(this, 1)
+    //searchList(this, 1)
   },
 
   /**
@@ -87,7 +87,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.setData({
+      msgs: [],
+      isSearch: true,
+      searchCount: 1,
+      pageIndex: 1
+    })
+    searchList(this, 1);
   },
 
   /**

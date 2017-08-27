@@ -218,6 +218,7 @@
   line-height: 80rpx;
   vertical-align: middle;
   padding:10rpx 0;
+  padding-left: 10rpx;
 }
 .clsMsg .clsBtn{
   padding:10rpx 0;

@@ -74,50 +74,55 @@ Page({
       that.setData({
         tip: '提示：姓名不能为空！'
       })
+      return;
     }
-    else {
+    if (parseInt(age) < 18 || parseInt(age)>70) {
       that.setData({
-        tip: '',
-        btnTxt: "保存修改中...",
-        btnSubmit:''
+        tip: '提示：年龄必须为18-70！'
       })
-      common.POST({
-        url: "/userinfo/updateuserinfo",
-        params: {
-          name: pName,
-          sex: that.data.pSex,
-          age: age,
-          education: educational,
-          address: address,
-          email: eMail,
-        },
-        success: function (res, s, m) {
-          if (s) {
-            wx.showToast({
-              title: '修改成功！',
-              duration: 1500
-            })
-            wx.navigateBack({})
-          } else {
-            wx.showToast({
-              title: '修改失败！',
-              image: '/img/error.png',
-              duration: 1500
-            })
-          }
-          that.setData({
-            btnTxt: "保存修改",
-            btnSubmit: 'btnEditUser'
-          })
-        },
-        fail: function () {
-          that.setData({
-            btnTxt: "保存修改",
-            btnSubmit: 'btnEditUser'
-          })
-         }
-      })
+      return;
     }
+    that.setData({
+      tip: '',
+      btnTxt: "保存修改中...",
+      btnSubmit:''
+    })
+    common.POST({
+      url: "/userinfo/updateuserinfo",
+      params: {
+        name: pName,
+        sex: that.data.pSex,
+        age: age,
+        education: educational,
+        address: address,
+        email: eMail,
+      },
+      success: function (res, s, m) {
+        if (s) {
+          wx.showToast({
+            title: '修改成功！',
+            duration: 1500
+          })
+          wx.navigateBack({})
+        } else {
+          wx.showToast({
+            title: '修改失败！',
+            image: '/img/error.png',
+            duration: 1500
+          })
+        }
+        that.setData({
+          btnTxt: "保存修改",
+          btnSubmit: 'btnEditUser'
+        })
+      },
+      fail: function () {
+        that.setData({
+          btnTxt: "保存修改",
+          btnSubmit: 'btnEditUser'
+        })
+        }
+    })
   },
 
   /**

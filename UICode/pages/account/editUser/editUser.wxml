@@ -41,7 +41,7 @@
       <navigator url="/pages/planner/plannerEdit/plannerEdit">更多信息</navigator>
     </view>
 
-    <view>{{tip}}</view>
+    <view class="errorMsg">{{tip}}</view>
     <button class="clsBtn" type="primary" formType="submit">{{btnTxt}}</button>
   </form>
 </view>
