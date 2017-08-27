@@ -55,19 +55,19 @@ select_planner_info = "SELECT ui.`UserId`,ui.`Name`,ui.`HeadImage`,ui.`Autograph
 
 
 #查询规划师资历
-select_planner_qualifications = "SELECT 30 `Type`,CONCAT(LEFT(e.`TimeStart`,4),'-',LEFT(e.`TimeEnd`,4),' 学位：',e.`Degree`,' 毕业大学：'" \
+select_planner_qualifications = "SELECT 30 `Type`,CONCAT(LEFT(e.`TimeStart`,4),CASE WHEN LENGTH(e.`TimeStart`)>0 THEN '-' ELSE '' END,LEFT(e.`TimeEnd`,4),' 学位：',e.`Degree`,' 毕业大学：'" \
                                 ",e.`University`) AS Content,e.`Sort`,e.`CreateTime`  " \
                                 ",e.`Id`,e.`TimeStart`,e.`TimeEnd`,e.`University`,e.`Degree`,'' AS Description " \
                                 "FROM `U_Education` e " \
                                 "WHERE e.`UserId`='%s' and `IsDelete`=FALSE " \
                                 "UNION ALL  " \
-                                "SELECT 20 `Type`,CONCAT(LEFT(s.`TimeStart`,4),'-',LEFT(s.`TimeEnd`,4),' ',s.`Description`) " \
+                                "SELECT 20 `Type`,CONCAT(LEFT(s.`TimeStart`,4),CASE WHEN LENGTH(s.`TimeStart`)>0 THEN '-' ELSE '' END,LEFT(s.`TimeEnd`,4),' ',s.`Description`) " \
                                 "AS Content,s.`Sort`,s.`CreateTime`  " \
                                 ",s.`Id`,s.`TimeStart`,s.`TimeEnd`,'','',s.`Description` " \
                                 "FROM `U_Society` s " \
                                 "WHERE s.`UserId`='%s'  and `IsDelete`=FALSE " \
                                 "UNION ALL  " \
-                                "SELECT 10 `Type`,CONCAT(LEFT(r.`TimeStart`,4),'-',LEFT(r.`TimeEnd`,4),' ',r.`Description`) " \
+                                "SELECT 10 `Type`,CONCAT(LEFT(r.`TimeStart`,4),CASE WHEN LENGTH(r.`TimeStart`)>0 THEN '-' ELSE '' END,LEFT(r.`TimeEnd`,4),' ',r.`Description`) " \
                                     "AS Content,r.`Sort`,r.`CreateTime`  " \
                                 ",r.`Id`,r.`TimeStart`,r.`TimeEnd`,'','',r.`Description` " \
                                 "FROM `U_Resour` r " \
@@ -77,7 +77,7 @@ select_planner_qualifications = "SELECT 30 `Type`,CONCAT(LEFT(e.`TimeStart`,4),'
 
 
 #学历背景
-select_planner_education = "SELECT e.`Id`,CONCAT(LEFT(e.`TimeStart`,4),'-',LEFT(e.`TimeEnd`,4)" \
+select_planner_education = "SELECT e.`Id`,CONCAT(LEFT(e.`TimeStart`,4),CASE WHEN LENGTH(e.`TimeStart`)>0 THEN '-' ELSE '' END,LEFT(e.`TimeEnd`,4)" \
                            ",' 学位：',e.`Degree`,' 毕业大学：',e.`University`) AS Content,e.`Sort`,e.`CreateTime`  " \
                                 ",e.`TimeStart`,e.`TimeEnd`,e.`University`,e.`Degree`,'' AS Description " \
                            "FROM `U_Education` e " \
@@ -87,7 +87,7 @@ select_planner_education = "SELECT e.`Id`,CONCAT(LEFT(e.`TimeStart`,4),'-',LEFT(
 
 
 #社会背景
-select_planner_society = "SELECT s.`Id`,CONCAT(LEFT(s.`TimeStart`,4),'-',LEFT(s.`TimeEnd`,4),' ',s.`Description`) AS Content,s.`Sort`,s.`CreateTime`  " \
+select_planner_society = "SELECT s.`Id`,CONCAT(LEFT(s.`TimeStart`,4),CASE WHEN LENGTH(s.`TimeStart`)>0 THEN '-' ELSE '' END,LEFT(s.`TimeEnd`,4),' ',s.`Description`) AS Content,s.`Sort`,s.`CreateTime`  " \
                                 ",s.`TimeStart`,s.`TimeEnd`,'','',s.`Description` " \
                          "FROM `U_Society` s " \
                                 "WHERE s.`UserId`='%s'  and `IsDelete`=FALSE " \
@@ -96,7 +96,7 @@ select_planner_society = "SELECT s.`Id`,CONCAT(LEFT(s.`TimeStart`,4),'-',LEFT(s.
 
 
 #资源背景
-select_planner_resour = "SELECT r.`Id`,CONCAT(LEFT(r.`TimeStart`,4),'-',LEFT(r.`TimeEnd`,4),' ',r.`Description`) AS Content,r.`Sort`,r.`CreateTime`  " \
+select_planner_resour = "SELECT r.`Id`,CONCAT(LEFT(r.`TimeStart`,4),CASE WHEN LENGTH(r.`TimeStart`)>0 THEN '-' ELSE '' END',LEFT(r.`TimeEnd`,4),' ',r.`Description`) AS Content,r.`Sort`,r.`CreateTime`  " \
                                 ",r.`TimeStart`,r.`TimeEnd`,'','',r.`Description` " \
                         "FROM `U_Resour` r " \
                                 "WHERE r.`UserId`='%s'  and `IsDelete`=FALSE " \
