@@ -1,6 +1,6 @@
 #coding:utf-8
 from flask import request
-
+import uuid
 from planner_project import app
 from planner_project.common import api_response, custom_error, request_back_helper
 from planner_project.logic.backweb import user_logic,team_logic
@@ -43,14 +43,22 @@ def select_user_info():
 def back_updateuserinfo():
     ApiResponse = api_response.ApiResponse()
     userid= request.form.get("UserId", type=str, default=None)
+    account= request.form.get("Account", type=str, default=None)
+    phone= request.form.get("Phone", type=str, default=None)
+    password= request.form.get("Password", type=str, default=None)
+    userType = request.form.get("UserType", type=int, default=0)
     name= request.form.get("Name", type=str, default=None)
     sex = request.form.get("Sex", type=int, default=0)
     age = request.form.get("Age", type=int, default=0)
     education = request.form.get("Education", type=str, default=None)
     address = request.form.get("Address", type=str, default=None)
     email = request.form.get("Email", type=str, default=None)
+    headImage = request.form.get("HeadImage", type=str, default=None)
+    IDCard = request.form.get("IDCard", type=str, default=None)
+    IDCardJust = request.form.get("IDCardJust", type=str, default=None)
+    IDCardBack = request.form.get("IDCardBack", type=str, default=None)
     user = request_back_helper.current_user_mush_login()
-    data_register =  user_logic.update_userinfo(name, sex, age, education, address, email, userid, user["UserId"])
+    data_register =  user_logic.update_userinfo(account,phone,password,userType,name, sex, age, education, address, email,headImage,IDCard,IDCardJust,IDCardBack, userid, user["UserId"])
     if data_register:
         ApiResponse.message = "修改成功"
         ApiResponse.status = 200
@@ -67,6 +75,34 @@ def delete_user():
     userid= request.form.get("UserId", type=str, default=None)
     user = request_back_helper.current_user_mush_login()
     data_register =  user_logic.delete_user(userid, user["UserId"])
+    if data_register:
+        ApiResponse.message = "修改成功"
+        ApiResponse.status = 200
+        return api_response.response_return(ApiResponse)
+
+    raise custom_error.CustomFlaskErr(status_code=500, message="修改失败")
+
+#修改用户信息
+@app.route("/backweb/user/back_insert_userinfo", methods=['POST'])
+def back_insert_userinfo():
+    ApiResponse = api_response.ApiResponse()
+    account= request.form.get("Account", type=str, default=None)
+    phone= request.form.get("Phone", type=str, default=None)
+    password= request.form.get("Password", type=str, default=None)
+    userType = request.form.get("UserType", type=int, default=0)
+    name= request.form.get("Name", type=str, default=None)
+    sex = request.form.get("Sex", type=int, default=0)
+    age = request.form.get("Age", type=int, default=0)
+    education = request.form.get("Education", type=str, default=None)
+    address = request.form.get("Address", type=str, default=None)
+    email = request.form.get("Email", type=str, default=None)
+    headImage = request.form.get("HeadImage", type=str, default=None)
+    IDCard = request.form.get("IDCard", type=str, default=None)
+    IDCardJust = request.form.get("IDCardJust", type=str, default=None)
+    IDCardBack = request.form.get("IDCardBack", type=str, default=None)
+    user = request_back_helper.current_user_mush_login()
+    guid = str(uuid.uuid1())
+    data_register =  user_logic.insert_userinfo(guid,account,phone,password,userType,name, sex, age, education, address, email,headImage,IDCard,IDCardJust,IDCardBack, user["UserId"])
     if data_register:
         ApiResponse.message = "修改成功"
         ApiResponse.status = 200

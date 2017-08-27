@@ -16,7 +16,9 @@
 <body>
     <div id="contentheader">
         <div id="contentheader_title">用户列表</div>
-       
+       <div id="contentheader_button">
+            <button type="button" class="orange" onclick="Add();"><i class="fa fa-plus"></i>&nbsp;新增</button>
+        </div>
         <div style="clear:both;"></div>
     </div>
 
@@ -30,6 +32,8 @@
         <table border="1" cellpadding="0" cellspacing="0" class="table" id="dataList">
             <thead>
                 <tr>
+                    <th width="13%">帐号</th>
+                    <th width="13%">用户类型</th>
                     <th width="13%">用户名称</th>
                     <th width="13%">手机</th>
                     <th width="13%">注册区域</th>
@@ -57,8 +61,12 @@
             }
         };
     });
+
+    function Add() {
+        parent.gotoPage('/User/UserAdd.html');
+    }
     function Edit(id) {
-        $.Dialog('/User/UserEdit.html?id=' + id,'',650,380);
+        parent.gotoPage('/User/UserEdit.html?id=' + id);
         //parent.gotoPage('/User/UserEdit.html?id=' + id);
     }
 
@@ -89,14 +97,24 @@
                     var html = "";
                     for (var i = 0; i < result.data.length; i++) {
                         html += "<tr " + (i % 2 == 1 ? "class='even'" : "") + ">";
+                        html += "<td>" + (list[i].Account ? list[i].Account : "") + "</td>";
+                        if(list[i].UserType==1){
+                        html += "<td>普通用户</td>";
+                        }else if(list[i].UserType==2){
+                        html += "<td>菜鸟规划师</td>";
+                        }else if(list[i].UserType==3){
+                        html += "<td>规划师</td>";
+                        }else{
+                            html += "<td>未知</td>";
+                        }
                         html += "<td>" + (list[i].Name ? list[i].Name : "") + "</td>";
                         html += "<td>" + (list[i].Phone ? list[i].Phone : "") + "</td>";
                         html += "<td>" + (list[i].AreaName ? list[i].AreaName : "") + "</td>";
                         html += "<td>" + (list[i].TypeName ? list[i].TypeName : "") + "</td>";
                         html += "<td>" + (list[i].CreateTime ? list[i].CreateTime : "") + "</td>";
                         html += "<td>";
-                            html += "<a href='javascript:void(0);' onclick='Edit(\"" + list[i].Id + "\")' title='编辑'><i class='fa fa-pencil'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;";
-                            html += "<a href='javascript:void(0);' onclick='Delete(\"" + list[i].Id + "\")' title='删除'><i class='fa fa-trash-o'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;";
+                            html += "<a href='javascript:void(0);' onclick='Edit(\"" + list[i].Id + "\")' title='编辑'>编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;";
+                            html += "<a href='javascript:void(0);' onclick='Delete(\"" + list[i].Id + "\")' title='删除'>删除</a>&nbsp;&nbsp;&nbsp;&nbsp;";
 
                         html += "</td>";
                         html += "</tr>";

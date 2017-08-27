@@ -52,7 +52,7 @@
                     <tr>
                         <th width="100">名称</th>
                         <td>
-                            <input id="Name" maxlength="256" name="Name" placeholder="输入用户名称" value="" type="text">
+                            <input id="Name" maxlength="256" name="Name" placeholder="输入名称" value="" type="text">
                             <input id="fileId"  name="fileId" value="" type="hidden">
                         </td>
                     </tr>
@@ -61,7 +61,7 @@
                         <td>
                             <input id="fileUrl" maxlength="256" name="fileUrl" placeholder="请上传文件" value="" type="text">
                             <a href="javascript:;" style="font-size:12px;margin:auto 5px;margin-top:10px;color:#333333; " id="ImportBox">
-                                &nbsp;&nbsp;<i class="fa fa-upload"></i>上传图片
+                                &nbsp;&nbsp;<i class="fa fa-upload"></i>上传文件
                                 <input type="file" id="Import" name="file" />
                             </a>
                         </td>
@@ -132,7 +132,7 @@
     };
 $(function(){
 
-        $("#Import").change(function () { ImportFile(); });
+        $("#Import").change(function () { ImportFile("Import","fileUrl"); });
         var fileId = getUrlParam("id");
     $.ajaxJson("/system/select_sys_file_info", { fileId: fileId },
             function (result) {
@@ -152,7 +152,7 @@ $(function(){
         );
 })
 
-var ImportFile = function (appId) {
+/*var ImportFile = function (appId) {
         $("#ImportBox i").attr("class", "fa fa-spinner fa-pulse ");
         $(Import).upload("/upload?" + Math.random(), function (result) {
             $("#Import").removeAttr("disabled").val("");
@@ -164,5 +164,5 @@ var ImportFile = function (appId) {
             }
         }, 'json');
         window.setTimeout(function () { $("#Import").attr("disabled", true); }, 1);
-    }
+    }*/
 </script>

@@ -40,4 +40,5 @@ update_user_type = "UPDATE U_User SET UserType=2,ModifUserID='%s',ModifTime=now(
 update_user_info = "UPDATE U_UserInfo SET Name='%s',Sex=%s,Address='%s',Education='%s',Email='%s',IDCard='%s',IDCardJust='%s',IDCardBack='%s',ServiceAreaId=%s,ServiceTypeId=%s,ModifUserID='%s',ModifTime=Now()" \
                    "where UserId='%s'"
 # 规划师统计表
-insert_planner_statistics="INSERT INTO `U_PlannerStatistics`(`UserId`,`CreateTime`) VALUES('%s',NOW())"
+insert_planner_statistics="INSERT INTO `U_PlannerStatistics`(`UserId`,`CreateUserID`,`CreateTime`,`ModifUserID`,`ModifTime`,`IsDelete`) " \
+                          "SELECT '%s', '%s',NOW(), '%s',NOW(),FALSE FROM `U_User` WHERE Id='%s' AND IsDelete = FALSE AND NOT EXISTS (SELECT UserId FROM U_PlannerStatistics WHERE UserId= '%s') LIMIT 0,1"

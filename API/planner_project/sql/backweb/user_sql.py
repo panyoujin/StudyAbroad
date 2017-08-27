@@ -1,10 +1,10 @@
 #获取用户列表
-select_user_list="SELECT u.`Id`,ui.`Name`,u.`Phone` ,sa.`Name` AS AreaName,st.`Name` TypeName,u.`CreateTime` "\
+select_user_list="SELECT u.`Id`,u.`Account`,u.`Phone`,u.`Password`,u.`UserType`,ui.`Name`,u.`Phone` ,sa.`Name` AS AreaName,st.`Name` TypeName,u.`CreateTime` "\
                     "FROM `U_User` u "\
                     "LEFT JOIN `U_UserInfo` ui ON u.`Id`=ui.`UserId` "\
                     "LEFT JOIN `Base_ServiceArea` sa ON ui.`ServiceAreaId`=sa.`Id` "\
                     "LEFT JOIN `Base_ServiceType` st ON ui.`ServiceTypeId`=st.`Id` "\
-                    "WHERE  u.`UserType`=1 AND u.`IsDelete`=FALSE "\
+                    "WHERE  u.`UserType`=1 and u.`IsDelete`=FALSE "\
                     "AND ('%s' IS NULL OR '%s'='' OR ui.`Name` LIKE '%s' OR u.`Phone` LIKE '%s')  "\
                     "ORDER BY u.CreateTime DESC ,ui.`Name`  " \
                     "LIMIT %s , %s "
@@ -14,18 +14,20 @@ select_user_list_count="SELECT COUNT(0) AS listCount  "\
                     "LEFT JOIN `U_UserInfo` ui ON u.`Id`=ui.`UserId` "\
                     "LEFT JOIN `Base_ServiceArea` sa ON ui.`ServiceAreaId`=sa.`Id` "\
                     "LEFT JOIN `Base_ServiceType` st ON ui.`ServiceTypeId`=st.`Id` "\
-                    "WHERE  u.`UserType`=1 AND u.`IsDelete`=FALSE "\
+                    "WHERE   u.`UserType`=1 and  u.`IsDelete`=FALSE "\
                     "AND ('%s' IS NULL OR '%s'='' OR ui.`Name` LIKE '%s' OR u.`Phone` LIKE '%s')  "
 
 #获取用户详情
-select_user_info="SELECT u.`Id`,ui.`Name`,u.`Phone`,ui.`Sex`,ui.`Age`,ui.`Email`,ui.`Education`,ui.`Address` "\
+select_user_info="SELECT u.`Id`,u.`Account`,u.`Phone`,u.`Password`,u.`UserType`,ui.`Name`,u.`Phone`,ui.`Sex`,ui.`Age`,ui.`Email`,ui.`Education`,ui.`Address`,ui.`HeadImage`,ui.`IDCard`,ui.`IDCardJust`,ui.`IDCardBack` "\
                     "FROM `U_User` u "\
                     "LEFT JOIN `U_UserInfo` ui ON u.`Id`=ui.`UserId` "\
-                    "WHERE u.`UserType`=1 AND u.`Id`='%s'  "
+                    "WHERE u.`Id`='%s'  "
 
 #修改用户信息
-update_user_info="UPDATE `U_UserInfo` SET `Name` = '%s',`Sex` = '%s',`Age` = '%s',`Education` = '%s',`Address` = '%s'" \
-                 ",`Email` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW() " \
+update_user_info="UPDATE `U_User` SET `Account`='%s',`Phone`='%s',`Password`='%s',`UserType`='%s',`ModifUserID` = '%s',`ModifTime` = NOW() " \
+                 "WHERE `Id` = '%s' ;" \
+                 "UPDATE `U_UserInfo` SET `Name` = '%s',`Sex` = '%s',`Age` = '%s',`Education` = '%s',`Address` = '%s'" \
+                 ",`Email` = '%s',`HeadImage` = '%s',`IDCard` = '%s',`IDCardJust` = '%s',`IDCardBack` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW() " \
                  "WHERE `UserId` = '%s' ;"
 
 
@@ -34,3 +36,12 @@ delete_user="UPDATE `U_UserInfo` SET `IsDelete`=TRUE,`ModifUserID` = '%s',`Modif
                  "WHERE `UserId` = '%s' ;" \
                  "UPDATE `U_User` SET `IsDelete`=TRUE,`ModifUserID` = '%s',`ModifTime` = NOW() " \
                  "WHERE `Id` = '%s' ;"
+
+#插入用户
+insert_user="INSERT INTO `U_User` (`Id`,`Account`,`Phone`,`Password`,`UserType`,`CreateUserID`,`CreateTime`,`ModifUserID`,`ModifTime`,`IsDelete`)  " \
+                "VALUES('%s','%s','%s','%s','%s','%s',NOW(),'%s',NOW(),FALSE) ; " \
+            "INSERT INTO `U_UserInfo` (`UserId`,`Name`,`Sex`,`Age`,`Education`,`Address`,`Email`,`HeadImage`,IDCard,IDCardJust,IDCardBack,`CreateUserID`,`CreateTime`,`ModifUserID`,`ModifTime`,`IsDelete`)  " \
+                "VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s',NOW(),'%s',NOW(),FALSE) ;"
+
+#查询用户是否存在
+select_userid_by_account = "SELECT `Id` FROM `U_User` WHERE Account ='%s' and `IsDelete`= FALSE"

@@ -10,7 +10,6 @@
     <script src="/Resource/Script/jqueryupload/jqueryupload.js" type="text/javascript"></script>
     <script src="/Resource/Script/common.js?v=5" type="text/javascript"></script>
     <script type="text/javascript" src="/Resource/Script/jquery.validate.js"></script>
-    <script src="/Resource/Script/simplersa/md5.js" type="text/javascript"></script>
 
 <style type="text/css">
     .ImportBox {
@@ -39,9 +38,9 @@
 <body>
     <form id="submitForm">
         <div id="contentheader">
-            <div id="contentheader_title">编辑用户</div>
+            <div id="contentheader_title">新增用户</div>
             <div id="contentheader_button">
-            <button onclick="parent.gotoPage('/User/UserIndex.html');" type="button">取消</button>
+                <button onclick="parent.gotoPage('/User/UserIndex.html');" type="button">取消</button>
                 <button type="submit" class="orange" onclick="submitForm();"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
             </div>
             <div style="clear:both;"></div>
@@ -51,7 +50,8 @@
             <div class="area_title">用户信息</div>
             <div class="area">
                 <table border="1" cellpadding="0" cellspacing="0" style="width: 80%;">
-                <tr>
+
+                    <tr>
                         <th width="100">帐号</th>
                         <td>
                             <input id="Account" maxlength="50" name="Account" placeholder="输入帐号" value="" type="text">
@@ -64,8 +64,7 @@
                     <tr>
                         <th width="100">密码</th>
                         <td>
-                            <input id="PasswordNew" maxlength="50" name="PasswordNew" placeholder="输入密码" value="" type="Password">
-                            <input id="Password" maxlength="50" name="Password" placeholder="输入密码" value="" type="hidden">
+                            <input id="Password" maxlength="50" name="Password" placeholder="输入密码" value="" type="Password">
                         </td>
                         <th width="100">用户类型</th>
                         <td>
@@ -80,7 +79,6 @@
                         <th width="100">姓名</th>
                         <td>
                             <input id="Name" maxlength="50" name="Name" placeholder="输入姓名" value="" type="text">
-                            <input id="UserId" maxlength="40" name="UserId" placeholder="输入用户名称" value="" type="hidden">
                         </td>
                         <th width="100">学历</th>
                         <td>
@@ -155,10 +153,6 @@
 </html>
 <script type="text/javascript">
     var submitForm = function () {
-        if($("#Password").val()!=$("#PasswordNew").val()){
-            $("#Password").val(hex_md5($("#PasswordNew").val()))
-            $("#PasswordNew").val($("#Password").val())
-        }
         $("#submitForm").validate({
             rules: {
                 Name: {
@@ -177,16 +171,16 @@
                     number: "年龄必须为数字"
                 }
             }, submitHandler: function () {
-                $.ajaxForm("/user/back_updateuserinfo", "submitForm",
+                $.ajaxForm("/user/back_insert_userinfo", "submitForm",
                 function (result) {
                     if (result.status=="200") {
-                        $.alert("用户修改成功", function () {
+                        $.alert("用户新增成功", function () {
                             parent.gotoPage("/User/UserIndex.html");
                             //$(window.top.document).contents().find("#pageContent")[0].contentWindow.queryList(1);
                             //$.layerClose();
                         });
                     } else {
-                        $.alert("用户修改失败,失败原因："+result.message);
+                        $.alert("用户新增失败,失败原因："+result.message);
                     }
                 },
                 function () {
@@ -197,40 +191,9 @@
 
     };
 $(function(){
-    var userid = getUrlParam("id");
-        $("#Import").change(function () { ImportFile("Import","HeadImage","HeadImageView"); });
-        $("#ImportIDCardJust").change(function () { ImportFile("ImportIDCardJust","IDCardJust","IDCardJustView"); });
-        $("#ImportIDCardBack").change(function () { ImportFile("ImportIDCardBack","IDCardBack","IDCardBackView"); });
-    $.ajaxJson("/user/select_user_info", { userid: userid },
-            function (result) {
-                if (!!result.data) {
-                    $("#UserId").val(result.data.Id)
-                    $("#Account").val(result.data.Account)
-                    $("#Phone").val(result.data.Phone)
-                    $("#Password").val(result.data.Password)
-                    $("#PasswordNew").val(result.data.Password)
-                    $("#UserType").val(result.data.UserType)
-                    $("#Name").val(result.data.Name)
-                    $("#Education").val(result.data.Education)
-                    $("#Sex").val(result.data.Sex)
-                    $("#Age").val(result.data.Age)
-                    $("#Address").val(result.data.Address)
-                    $("#Email").val(result.data.Email)
-                    $("#HeadImage").val(result.data.HeadImage)
-                    $("#HeadImageView").attr("src", "/" + result.data.HeadImage)
-                    $("#IDCard").val(result.data.IDCard)
-                    $("#IDCardJust").val(result.data.IDCardJust)
-                    $("#IDCardJustView").attr("src", "/" + result.data.IDCardJust)
-                    $("#IDCardBack").val(result.data.IDCardBack)
-                    $("#IDCardBackView").attr("src", "/" + result.data.IDCardBack)
-                } else {
-                    $.alert(result.message);
-                }
-            },
-            function () {
-                    $.alert("网络故障，请稍候重试!");
-            }
-        );
+    $("#Import").change(function () { ImportFile("Import","HeadImage","HeadImageView"); });
+    $("#ImportIDCardJust").change(function () { ImportFile("ImportIDCardJust","IDCardJust","IDCardJustView"); });
+    $("#ImportIDCardBack").change(function () { ImportFile("ImportIDCardBack","IDCardBack","IDCardBackView"); });
 })
 
 </script>

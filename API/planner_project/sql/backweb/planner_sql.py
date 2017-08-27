@@ -13,7 +13,7 @@ select_planner_list="SELECT u.`Id`,ui.`Name`,ui.`HeadImage`,u.`Phone`,ps.`NewEva
                     "LIMIT %s , %s "
 
 #获取用户详情
-select_planner_info="SELECT u.`Id`,ui.`Name`,u.`Phone`,ui.`Sex`,ui.`Age`,ui.`Email`,ui.`Education`,ui.`Address` "\
+select_planner_info="SELECT u.`Id`,ui.`Name`,u.`Phone`,ui.`Sex`,ui.`Age`,ui.`Email`,ui.`Education`,ui.`Address`,ui.`HeadImage` "\
                     "FROM `U_User` u "\
                     "LEFT JOIN `U_UserInfo` ui ON u.`Id`=ui.`UserId` "\
                     "WHERE u.`UserType` in (2,3) AND u.`Id`='%s'  "
@@ -22,37 +22,37 @@ select_planner_info="SELECT u.`Id`,ui.`Name`,u.`Phone`,ui.`Sex`,ui.`Age`,ui.`Ema
 #学历背景
 select_planner_education = "SELECT e.`Id`,e.`TimeStart`,e.`TimeEnd`,e.`Degree`,e.`University`,e.`Sort`,e.`CreateTime`  " \
                                 "FROM `U_Education` e " \
-                                "WHERE e.`UserId`='%s' " \
+                                "WHERE e.`UserId`='%s' AND `IsDelete` = FALSE " \
                                 "ORDER BY `Sort` DESC,`CreateTime` DESC "
 
 #学历背景详情
 select_education_info = "SELECT e.`Id`,e.`TimeStart`,e.`TimeEnd`,e.`Degree`,e.`University`,e.`Sort`,e.`CreateTime`  " \
                                 "FROM `U_Education` e " \
-                                "WHERE e.`Id`='%s' " \
+                                "WHERE e.`Id`='%s' AND `IsDelete` = FALSE " \
                                 "ORDER BY `Sort` DESC,`CreateTime` DESC "
 
 #社会背景
 select_planner_society = "SELECT s.`Id`,s.`TimeStart`,s.`TimeEnd`,s.`Description`,s.`Sort`,s.`CreateTime`  " \
                                 "FROM `U_Society` s " \
-                                "WHERE s.`UserId`='%s' " \
+                                "WHERE s.`UserId`='%s' AND `IsDelete` = FALSE " \
                                 "ORDER BY `Sort` DESC,`CreateTime` DESC "
 
 #社会背景
 select_society_info = "SELECT s.`Id`,s.`TimeStart`,s.`TimeEnd`,s.`Description`,s.`Sort`,s.`CreateTime`  " \
                                 "FROM `U_Society` s " \
-                                "WHERE s.`Id`='%s' " \
+                                "WHERE s.`Id`='%s' AND `IsDelete` = FALSE " \
                                 "ORDER BY `Sort` DESC,`CreateTime` DESC "
 
 #资源背景
 select_planner_resour = "SELECT r.`Id`,r.`TimeStart`,r.`TimeEnd`,r.`Description`,r.`Sort`,r.`CreateTime`  " \
                                 "FROM `U_Resour` r " \
-                                "WHERE r.`UserId`='%s' " \
+                                "WHERE r.`UserId`='%s' AND `IsDelete` = FALSE " \
                                 "ORDER BY `Sort` DESC,`CreateTime` DESC "
 
 #资源背景
 select_resour_info = "SELECT r.`Id`,r.`TimeStart`,r.`TimeEnd`,r.`Description`,r.`Sort`,r.`CreateTime`  " \
                                 "FROM `U_Resour` r " \
-                                "WHERE r.`Id`='%s' " \
+                                "WHERE r.`Id`='%s' AND `IsDelete` = FALSE " \
                                 "ORDER BY `Sort` DESC,`CreateTime` DESC "
 
 #新增学历

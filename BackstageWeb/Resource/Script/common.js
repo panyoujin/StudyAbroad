@@ -259,6 +259,25 @@ var resortSystemList = function (systemList) {
     } catch (e) { }
     return newSystemList;
 }
+var ImportFile = function (uploadId,fileID,fileViewId) {
+        //$("ImportBox i").attr("class", "fa fa-spinner fa-pulse ");
+        $("#"+uploadId).upload("/upload?" + Math.random(), function (result) {
+            //$("Import").removeAttr("disabled").val("");
+            //$("ImportBox i").attr("class", "fa fa-upload");
+            if (!!result.data) {
+                if(!!fileID){
+                    $("#"+fileID).val(result.data.file_path);
+                }
+                if(!!fileViewId){
+                    $("#"+fileViewId).attr("src", "/" + result.data.file_path)
+                }
+            } else {
+                $.alert(result.message);
+            }
+        }, 'json');
+        window.setTimeout(function () { /*$("Import").attr("disabled", true);*/ }, 1);
+    }
+
 //获取url中的参数
 var getUrlParam=function(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
