@@ -22,9 +22,9 @@
       </view>
       <view class="clsPlannerTxt clcComment">
         <label>好评率：</label>
-        <label>{{planner.PraiseCount/(planner.CustomerCount==0?1:planner.CustomerCount)*100}}%</label>
+        <label>{{(planner.PraiseCount==0?1:planner.PraiseCount)/(planner.CustomerCount==0?1:planner.CustomerCount)*100}}%</label>
       </view>
-      <view class="clsPlannerTxt clsTeamTxt">
+      <view class="clsPlannerTxt clsTeamTxt" wx:if="{{teamlist.length != 0}}">
         <label>团队成员：</label>
       </view>
       <view class="clsPlannerTxt clsTeamMember">
@@ -56,7 +56,7 @@
   <!--客户评价-->
   <navigator class="clsEvaluateInfo" url="/pages/planner/evaluate/evaluate?id={{plannerId}}">
     <view class="clsEvaluateTitle">
-      <label>评价</label>
+      <label>印象</label>
       <image src="/img/planner/pValuation.png"></image>
       <image src="/img/planner/pValuation.png"></image>
       <image src="/img/planner/pValuation.png"></image>
@@ -90,9 +90,9 @@
 
 
 <view class="clsGroupr clsMsg" hidden="{{hidMsgView}}">
-  <view class="clsImg">
-    <image src="/img/msg/msg.png" mode="scaleToFill"></image>
+  <view class="clsImg" hidden="true">
+    <image src="/img/msg/msg.png" mode="scaleToFill" ></image>
   </view>
-  <input bindinput="bindKeyInputMsg" confirm-type="发送" bindblur="bindblurMsg" focus="{{msgFocus}}" bindconfirm="sendMsg" placeholder="消息内容"/>
+  <input bindinput="bindKeyInputMsg" confirm-type="发送" bindblur="bindblurMsg" focus="{{msgFocus}}" bindconfirm="sendMsg" placeholder="消息内容" value="{{msg}}" />
   <view class="clsBtn" bindtap="sendMsg">发送</view>
 </view>

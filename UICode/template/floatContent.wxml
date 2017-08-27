@@ -6,17 +6,17 @@
 
 <modal hidden="{{hidden}}" confirm-text="确定" bindconfirm="confirm" no-cancel="{{true}}">
   <view class="clsSelect" hidden="{{xuqiu}}">
-    <navigator url="/pages/service/ContractDataAdd/ContractDataAdd" open-type="navigate">
+    <navigator url="/pages/service/ContractDataAdd/ContractDataAdd" bindtap="btnHideWindows" open-type="navigate">
       <button>发布需求</button>
     </navigator>
   </view>
   <view class="clsSelect" style="margin-top:10rpx" hidden="{{fuwu}}">
-    <navigator url="/pages/service/ServiceAdd/ServiceAdd" open-type="navigate">
+    <navigator url="/pages/service/ServiceAdd/ServiceAdd" bindtap="btnHideWindows" open-type="navigate">
       <button>发布服务</button>
     </navigator>
   </view>
   <view class="clsSelect" style="margin-top:10rpx" hidden="{{dongtai}}">
-    <navigator url="/pages/dynamic/dynamicAdd/dynamicAdd" open-type="navigate">
+    <navigator url="/pages/dynamic/dynamicAdd/dynamicAdd" bindtap="btnHideWindows" open-type="navigate">
       <button>发布动态</button>
     </navigator>
   </view>

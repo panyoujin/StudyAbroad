@@ -6,7 +6,8 @@
     </view>
     <view class="plannerHeadTxt">
       <view class="plannerBtnMsg">
-        <image bindtap="btnFollow" src="/img/planner/pFollow02.png" mode="aspectFit"></image>
+        <!-- <image bindtap="btnFollow" src="/img/planner/pFollow02.png" mode="aspectFit"></image> -->
+        <button class="clsBtn02" bindtap="btnFollow">{{isfllow==0?'+关注':'-关注'}}</button>
       </view>
       <view class="clsPlannerTxt">
         <label>认证区域：</label>
@@ -18,7 +19,7 @@
       </view>
       <view class="clsPlannerTxt clcComment">
         <label>好评率：</label>
-        <label>{{planner.PraiseCount/planner.CustomerCount*100}}%</label>
+        <label>{{(planner.PraiseCount==0?1:planner.PraiseCount)/(planner.CustomerCount==0?1:planner.CustomerCount)*100}}%</label>
       </view>
     </view>
   </view>

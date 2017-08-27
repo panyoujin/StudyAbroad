@@ -55,7 +55,8 @@ Page({
         if (s) {
           that.setData({
             hidMsgView: true,
-            msgFocus: false
+            msgFocus: false,
+            msg:''
           })
           wx.showToast({
             title: "发送成功",
@@ -114,6 +115,7 @@ Page({
             teamlist: res.teamlist
           })
           wx.setStorageSync('planner', res.planner);
+          wx.setStorageSync('isfllow', res.fllow_count);
         } else {
           wx.showToast({
             title: '获取数据失败！' + m,
@@ -166,6 +168,7 @@ Page({
                 that.setData({
                   isfllow: isfllow
                 })
+                wx.setStorageSync('isfllow', isfllow);
               } else {
                 common.AlertError(msg + '失败');
               }
@@ -194,7 +197,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var isfllow = wx.getStorageSync('isfllow');
+    this.setData({
+      isfllow: isfllow
+    })
   },
 
   /**

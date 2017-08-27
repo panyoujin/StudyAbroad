@@ -17,7 +17,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    searchList(this, 1)
+    //searchList(this, 1)
   },
 
   /**
@@ -31,7 +31,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.setData({
+      services: [],
+      isSearch: true,
+      searchCount: 1,
+      pageIndex: 1
+    })
+    searchList(this, 1);
   },
 
   /**

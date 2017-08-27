@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isfllow: 0,
     isOK: true,
     planner:null,
     educations: null,
@@ -23,7 +24,11 @@ Page({
       that.setData({ isOK: false })
       return;
     }
-    that.setData({ planner: planner })
+    var isfllow = wx.getStorageSync('isfllow');
+    that.setData({ 
+      planner: planner,
+      isfllow: isfllow
+    })
     common.POST({
       url: "/planner/qualifications",
       params: {
@@ -55,28 +60,37 @@ Page({
    */
   btnFollow: function () {
     var that = this;
+    var title = '关注';
+    var content = '确定关注该规划师？';
+    var msg = "关注该规划师";
+    var url = '/planner/follow';
+    var isfllow = 1;
+    if (that.data.isfllow == 1) {
+      title = '取消关注';
+      content = '确定取消关注该规划师？';
+      url = '/planner/unfollow';
+      msg = "取消关注该规划师";
+      isfllow = 0;
+    }
     wx.showModal({
-      title: '关注',
-      content: '确定关注该规划师？',
+      title: title,
+      content: content,
       success: function (res) {
         if (res.confirm) {
           common.POST({
-            url: "/planner/follow",
+            url: url,
             params: {
               plannerId: that.data.planner.UserId
             },
             success: function (res, s, m) {
               if (s) {
-                wx.showToast({
-                  title: '成功关注该规划师！',
-                  duration: 1500
+                common.Alert("成功" + msg);
+                that.setData({
+                  isfllow: isfllow
                 })
+                wx.setStorageSync('isfllow', isfllow);
               } else {
-                wx.showToast({
-                  title: '关注该规划师失败！',
-                  image: '/img/error.png',
-                  duration: 1500
-                })
+                common.AlertError(msg + '失败');
               }
             },
             fail: function () { }

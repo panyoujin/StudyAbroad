@@ -37,9 +37,9 @@ Page({
           var msgs = that.data.msgs;
           msgs.splice(0, 0, { UserId: '', Content: that.data.msg, Type: '1', Name: that.data.userName })
           that.setData({
-            msgs: msgs
+            msgs: msgs,
+            msg: ''
           })
-
           wx.showToast({
             title: "发送成功",
             duration: 1500

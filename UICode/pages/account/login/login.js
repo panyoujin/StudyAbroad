@@ -38,7 +38,8 @@ Page({
             res.user.HeadImage = common.apiUrl + "/" + res.user.HeadImage ;
             wx.setStorageSync('userLoginInfo', res.user)
             
-            var backPage = wx.getStorageSync('backPage');
+            //var backPage = wx.getStorageSync('backPage');
+            var backPage = "";
             if (backPage==""){
               backPage ="/pages/index/index";
             }

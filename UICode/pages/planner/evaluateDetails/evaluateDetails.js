@@ -24,7 +24,7 @@ Page({
     var that = this;
     var id = options.id;
     if (id == undefined) {
-      id = "08c1ffea-57fe-11e7-a958-0242c0a80005"
+      id = ""
     }
     that.setData({
       orderId: id
@@ -51,6 +51,9 @@ Page({
       },
       success: function (res, s, m) {
         if (s && res.length != 0) {
+          that.setData({
+            msg: ''
+          })
           wx.showToast({
             title: "发送成功",
             duration: 1500

@@ -49,6 +49,17 @@
 .clcComment{
   color: #099aff;
 }
+.clsBtn02{
+  width: 140rpx;
+  background-color: #099aff;
+  color: #fff;
+  line-height:1.8;
+  font-size:28rpx;
+  margin-top: 15rpx;
+  font-family: "黑体";
+  border: none;
+  border-radius:28rpx;
+}
 
 /*clsQualification*/
 .clsQualifications{

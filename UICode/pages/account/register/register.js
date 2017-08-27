@@ -87,12 +87,13 @@ Page({
         },
         success: function (res, s, m) {
           if (s) {
-            // wx.setStorageSync('userLoginToken', res.token)
-            // res.user.HeadImage = common.apiUrl + "/" + res.user.HeadImage;
-            // wx.setStorageSync('userLoginInfo', res.user)
-            common.Alert("注册成功");
-            wx.redirectTo({
-              url: '/pages/account/login/login',
+            //common.Alert("注册成功");
+            wx.setStorageSync('userLoginToken', res.token)
+            res.user.HeadImage = common.apiUrl + "/" + res.user.HeadImage;
+            wx.setStorageSync('userLoginInfo', res.user)
+
+            wx.switchTab({
+              url: '/pages/index/index',
             })
           }else{
             that.setData({
