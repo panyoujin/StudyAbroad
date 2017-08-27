@@ -13,7 +13,7 @@ select_planner_list="SELECT u.`Id`,ui.`Name`,ui.`HeadImage`,u.`Phone`,ps.`NewEva
                     "LIMIT %s , %s "
 
 #获取用户详情
-select_planner_info="SELECT u.`Id`,ui.`Name`,u.`Phone`,ui.`Sex`,ui.`Age`,ui.`Email`,ui.`Education`,ui.`Address`,ui.`HeadImage` "\
+select_planner_info="SELECT u.`Id`,ui.`Name`,u.`Phone`,ui.`Sex`,ui.`Age`,ui.`Email`,ui.`Education`,ui.`Address`,ui.`HeadImage`,ui.`IDCard`,ui.`IDCardJust`,ui.`IDCardBack` "\
                     "FROM `U_User` u "\
                     "LEFT JOIN `U_UserInfo` ui ON u.`Id`=ui.`UserId` "\
                     "WHERE u.`UserType` in (2,3) AND u.`Id`='%s'  "
