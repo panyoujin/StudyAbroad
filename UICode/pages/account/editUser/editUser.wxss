@@ -51,4 +51,6 @@ page{
 
 .clsBtn{
   margin: 50rpx 0;
+  background-color: #57b1fd;
+  color: #fff;
 }
