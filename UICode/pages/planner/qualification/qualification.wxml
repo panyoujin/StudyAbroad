@@ -7,7 +7,7 @@
     <view class="plannerHeadTxt">
       <view class="plannerBtnMsg">
         <!-- <image bindtap="btnFollow" src="/img/planner/pFollow02.png" mode="aspectFit"></image> -->
-        <button class="clsBtn02" bindtap="btnFollow">{{isfllow==0?'+关注':'-关注'}}</button>
+        <button class="clsBtn02" bindtap="btnFollow">{{isfllow==0?'关注':'已关注'}}</button>
       </view>
       <view class="clsPlannerTxt">
         <label>认证区域：</label>

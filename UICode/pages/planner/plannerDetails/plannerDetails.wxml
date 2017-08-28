@@ -6,7 +6,7 @@
       <!-- <image class="clsBtnImg" bindtap="btnShare" src="/img/planner/pShare.png" mode="aspectFit"></image>
       <image class="clsBtnImg" bindtap="btnFollow" src="/img/planner/pFollow.png" mode="aspectFit"></image> -->
       <button class="clsBtn01" open-type="share">分享</button>
-      <button class="clsBtn02" bindtap="btnFollow">{{isfllow==0?'+关注':'-关注'}}</button>
+      <button class="clsBtn02" bindtap="btnFollow">{{isfllow==0?'关注':'已关注'}}</button>
     </view>
     <view class="plannerHeadTxt">
       <view class="plannerBtnMsg">
@@ -41,7 +41,7 @@
   <navigator class="clsQualifications"  url="/pages/planner/qualification/qualification">
     <view class="clsQualificationTitle">资历介绍</view>
     <block wx:for="{{qualifications}}" wx:key="item">
-      <view class="clsQualification">学位：{{item.Content}}</view>
+      <view class="clsQualification">{{item.Content}}</view>
     </block>
   </navigator>
 

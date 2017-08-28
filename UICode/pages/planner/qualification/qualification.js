@@ -62,14 +62,13 @@ Page({
     var that = this;
     var title = '关注';
     var content = '确定关注该规划师？';
-    var msg = "关注该规划师";
+    var msg = "";
     var url = '/planner/follow';
     var isfllow = 1;
     if (that.data.isfllow == 1) {
       title = '取消关注';
       content = '确定取消关注该规划师？';
       url = '/planner/unfollow';
-      msg = "取消关注该规划师";
       isfllow = 0;
     }
     wx.showModal({

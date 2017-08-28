@@ -16,12 +16,12 @@ var requestHandler = {
   },
 }
 //GET请求  
-function GET(requestHandler) {
-  request('GET', requestHandler)
+function GET(requestHandler, isNoLoading) {
+  request('GET', requestHandler, isNoLoading)
 }
 //POST请求  
-function POST(requestHandler) {
-  request('POST', requestHandler)
+function POST(requestHandler, isNoLoading) {
+  request('POST', requestHandler, isNoLoading)
 }
 //PostUpload请求
 function PostUpload(requestHandler) {
@@ -29,10 +29,12 @@ function PostUpload(requestHandler) {
 }
 
 //请求
-function request(method, requestHandler) {
-  wx.showLoading({
-    title: '加载中',
-  })
+function request(method, requestHandler, isNoLoading) {
+  if (!isNoLoading){
+    wx.showLoading({
+      title: '加载中',
+    })
+  }
   //注意：可以对params加密等处理  
   var params = requestHandler.params;
   wx.request({
@@ -135,28 +137,28 @@ function uploadFile(requestHandler) {
 
 //根据http返回状态返回信息
 function getHttpRequestStatus(status) {
-  var msg = "未知错误0x0000"
+  var msg = "未知错误"
   switch (status) {
     case 200:
       msg = "";
       break;
     case 400:
-      msg = "请求页面无效";
+      msg = "页面无效";
       break;
     case 401:
-      msg = "请求页面未授权";
+      msg = "页面未授权";
       break;
     case 404:
-      msg = "请求页面不存在";
+      msg = "页面不存在";
       break;
     case 413:
-      msg = "上传的文件大小超过限制";
+      msg = "文件过大";
       break;
     case 505:
-      msg = "请求服务器内部错误";
+      msg = "内部错误";
       break;
     case 504:
-      msg = "请求网关超时";
+      msg = "网关超时";
       break;
   }
   return msg;
@@ -205,7 +207,7 @@ function CheckLogin(url){
       }
     },
     fail: function () { }
-  })
+  },true)
 }
 /**
  * 去除空格

@@ -82,7 +82,7 @@ Page({
   }
 })
 
-function searchList(that, sType = 1) {
+function searchList(that, sType) {
   if (!that.data.isSearch)
     return;
   common.POST({
@@ -108,5 +108,5 @@ function searchList(that, sType = 1) {
       }
     },
     fail: function () { }
-  })
+  }, true)
 }

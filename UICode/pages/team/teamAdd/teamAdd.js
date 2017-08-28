@@ -45,10 +45,7 @@ Page({
       },
       success: function (res, s, m) {
         if (s) {
-          wx.showToast({
-            title: '提交成功',
-            duration: 1500
-          })
+          common.Alert('创建成功');
         } else {
           that.setData({
             tip: m

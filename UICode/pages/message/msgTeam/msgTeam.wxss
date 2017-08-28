@@ -37,12 +37,13 @@
   padding-bottom: 0;
 }
 .clsTxtLeft{
-  width: 50%;
+  width: 70%; 
   text-align: left;
+  line-height: 1.35;
 }
 .clsTxtRight{
   text-align: right;
-  width: 50%;
+  width: 25%;
 }
 .clsMid{
   border-bottom: 2rpx solid #eee;

@@ -96,14 +96,29 @@ Page({
     that.setData({
       searchValue: value
     })
-    searchList(this);
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    var that = this;
+    searchList(that);
 
     var loginInfo = wx.getStorageSync('userLoginInfo');
     if (loginInfo == "") {
       wx.redirectTo({
         url: "/pages/account/login/login"
       });
-    } 
+    }
     common.POST({
       url: "/planner/select_user_team",
       params: {
@@ -118,20 +133,6 @@ Page({
       },
       fail: function () { }
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
   },
 
   /**

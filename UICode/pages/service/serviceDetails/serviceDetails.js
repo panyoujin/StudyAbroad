@@ -94,14 +94,13 @@ Page({
     var that = this;
     var title = '收藏';
     var content = '确定收藏该需求/服务';
-    var msg = "收藏";
+    var msg = "";
     var url = '/demand_service/collection';
     var isfllow = 1;
     if (that.data.isfllow == 1) {
       title = '取消收藏';
       content = '确定取消收藏该需求/服务？';
       url = '/demand_service/uncollection';
-      msg = "取消收藏";
       isfllow = 0;
     }
     wx.showModal({

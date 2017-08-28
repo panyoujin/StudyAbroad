@@ -22,9 +22,9 @@
       <label class="clsTxt">身份证</label>
       <view class="clsImg">
         <view class="{{clsChooseImg01}}" bindtap="btnChooseImage01">+</view>
-        <image class="{{clsImgUrl01}}" bindtap="btnChooseImage01" src="{{imgUrl01}}"></image>
+        <image mode="aspectFit" class="{{clsImgUrl01}}" bindtap="btnChooseImage01" src="{{imgUrl01}}"></image>
         <view class="{{clsChooseImg02}}" bindtap="btnChooseImage02">+</view>
-        <image class="{{clsImgUrl02}}" bindtap="btnChooseImage02" src="{{imgUrl02}}"></image>
+        <image mode="aspectFit" class="{{clsImgUrl02}}" bindtap="btnChooseImage02" src="{{imgUrl02}}"></image>
       </view>
     </view>
 
