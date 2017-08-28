@@ -78,6 +78,20 @@
     </view>-->
   </navigator>
 
+  <view class="clsExamples">
+    <view class="clsExampleTitle">个人相册</view>
+    <view class="swiperView">
+      <swiper class="" indicator-dots="false" autoplay="true" interval="{{3000}}" duration="{{500}}">
+        <block wx:key="banerImg" wx:for="{{imgUrls}}">
+          <swiper-item>
+            <image mode="aspectFit" src="{{apiUrl}}{{item}}"  />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+  
+
   <view class="clsSelect">
     <button bindtap="btnSelect">选择该规划师</button>
   </view>

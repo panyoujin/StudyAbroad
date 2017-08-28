@@ -3,6 +3,17 @@
   font-size: 30rpx;
   padding-bottom: 50rpx;
 }
+/* imgs */
+.swiperView {
+  height: 380rpx;
+}
+.swiperView swiper {
+  height: 100%;
+}
+swiper-item image{
+  width: 100%;
+  height: 100%;
+}
 
 /**plannerInfo*/
 .plannerInfo{

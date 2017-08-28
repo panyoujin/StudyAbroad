@@ -7,6 +7,7 @@ Page({
    */
   data: {
     filePath:"/img/account/bannerReg.png",
+    apiUrl: common.apiUrl+"/",
     isSearch: true,
     searchCount: 1,
     pageIndex: 1,
@@ -20,12 +21,46 @@ Page({
     searchList(this, 1)
   },
 
+  btnDelImg:function(e){
+    var that=this;
+    wx.showModal({
+      title: "删除",
+      content: "确定删除照片？",
+      success: function (res) {
+        if (res.confirm) {
+          common.POST({
+            url: "/planner/delete_album",
+            params: {
+              Id: e.currentTarget.dataset.id
+            },
+            success: function (res, s, m) {
+              if (s) {
+                common.Alert("删除成功");
+              } else {
+                common.AlertError(m);
+              }
+              that.setData({
+                imgs: [],
+                isSearch: true,
+                searchCount: 1,
+                pageIndex: 1
+              })
+              searchList(that, 1);
+            },
+            fail: function () { }
+          })
+        }
+      }
+    })
+    
+  },
+
   //添加图片
   addBtnImg:function(){
     var that = this;
     wx.chooseImage({
       count: 1, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
         //返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
@@ -44,30 +79,23 @@ Page({
                 },
                 success: function (res, s, m) {
                   if (s) {
-                    wx.showToast({
-                      title: '图片上传成功！',
-                      duration: 1000
-                    })
+                    common.Alert("上传成功");
                   } else {
-                    wx.showToast({
-                      title: '图片上传失败！' + m,
-                      image: '/img/error.png',
-                      duration: 1500
-                    })
+                    common.Alert(m);
                   }
+                  that.setData({
+                    imgs: [],
+                    isSearch: true,
+                    searchCount: 1,
+                    pageIndex: 1
+                  })
+                  searchList(that, 1);
                 },
                 fail: function () { }
               })
-              that.setData({
-                filePath: common.apiUrl + "/" + 　res.file_path
-              })
             }
             else {
-              wx.showToast({
-                title: '图片上传失败！' + m,
-                image: '/img/error.png',
-                duration: 1500
-              })
+              common.Alert("上传失败");
             }
           },
           fail: function () { }
@@ -108,7 +136,13 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    this.setData({
+      imgs: [],
+      isSearch: true,
+      searchCount: 1,
+      pageIndex: 1
+    })
+    searchList(this, 1);
   },
 
   /**
@@ -126,14 +160,14 @@ Page({
   }
 })
 
-function searchList(that, sType = 1) {
+function searchList(that, sType) {
   if (!that.data.isSearch)
     return;
   common.POST({
-    url: "/planner/order_list",
+    url: "/userinfo/user_album",
     params: {
       page: that.data.pageIndex,
-      size: 10,
+      size: 6,
     },
     success: function (res, s, m) {
       if (s && res.length != 0) {

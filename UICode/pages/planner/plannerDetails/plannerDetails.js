@@ -21,7 +21,12 @@ Page({
     userType:1,
     hidMsgView:true,
     msgFocus:false,
-    msg: ""
+    msg: "",
+
+    imgUrls: [
+      'files/2017-08-25/5f1ced9a-894d-11e7-8d3a-00163e08b8b6.png', 
+      "files/2017-08-28/78d06592-8bfe-11e7-8d3a-00163e08b8b6.png", 
+    "files/2017-08-28/3ad7f7b4-8bfe-11e7-8d3a-00163e08b8b6.jpg"]
   },
 
   showSendMsg:function(){

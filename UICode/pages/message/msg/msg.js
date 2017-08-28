@@ -40,16 +40,9 @@ Page({
             msgs: msgs,
             msg: ''
           })
-          wx.showToast({
-            title: "发送成功",
-            duration: 1500
-          })
+          common.Alert("发送成功");
         } else {
-          wx.showToast({
-            title: '发送消息失败！' + m,
-            image: '/img/error.png',
-            duration: 1500
-          })
+          common.AlertError(m);
         }
       },
       fail: function () { }

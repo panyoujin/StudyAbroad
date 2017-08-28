@@ -61,6 +61,10 @@
         <label>消息通知</label>
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>
+    <navigator class="clsView" url="/pages/account/myImgs/myImgs" wx:if="{{UserType!=1}}">
+        <label>个人相册</label>
+        <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
+    </navigator>
     <!-- <navigator class="clsView" url="/pages/sysInfo/ContactUs/ContactUs">
         <image class="clsIcon" src="/img/account/uPhone.png" wx:if="{{UserType==1}}"></image>
         <label>联系我们</label>

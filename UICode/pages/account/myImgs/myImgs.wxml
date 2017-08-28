@@ -1,26 +1,8 @@
 <view class="container">
   <view class="clsImgs">
-    <view class="clsImg">
-    <image src="{{filePath}}"></image>
-    </view>
-    <view class="clsImg">
-      <image src="/img/account/bannerReg.png"></image>
-    </view>
-    <view class="clsImg">
-      <image src="/img/account/bannerReg.png"></image>
-    </view>
-    <view class="clsImg">
-      <image src="/img/account/bannerReg.png"></image>
-    </view>
-    <view class="clsImg">
-      <image src="/img/account/bannerReg.png"></image>
-    </view>
-    <view class="clsImg">
-      <image src="/img/account/bannerReg.png"></image>
-    </view>
-    <view class="clsImg">
-      <image src="/img/account/bannerReg.png"></image>
-    </view>
+    <view class="clsImg" wx:for="{{imgs}}" wx:key="item">
+      <image mode="aspectFit" data-id="{{item.Id}}" bindtap="btnDelImg" src="{{apiUrl}}{{item.Url}}"></image>
+    </view>    
   </view>
   <view class="clsAdd">
     <button bindtap="addBtnImg" class="addBtn">添加图片</button>

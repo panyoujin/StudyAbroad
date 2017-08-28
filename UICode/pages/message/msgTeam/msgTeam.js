@@ -23,16 +23,9 @@ Page({
       },
       success: function (res, s, m) {
         if (s) {
-          wx.showToast({
-            title: '申请已通过',
-            duration: 1500
-          })
+          common.Alert("申请通过");
         } else {
-          wx.showToast({
-            title: m,
-            image: '/img/error.png',
-            duration: 1500
-          })
+          common.AlertError(m);
         }
       },
       fail: function () { }
