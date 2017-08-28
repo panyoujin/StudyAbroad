@@ -56,7 +56,7 @@ select_team_notice_list="SELECT tn.`Id`,tn.`UserId`,tn.`TeamId`,tn.`Message`,tn.
 #新增团队通知
 insert_team_notice="INSERT INTO `StudyAbroad`.`T_TeamNotice` (`Id`,`UserId`,`TeamId`,`Message`,`Status`,`IsAdmin`,`CreateUserID`,`CreateTime`,`UnionId` ) VALUES(UUID(),'%s','%s','%s',%s,%s,'%s',NOW(),'%s')"
 #新增团队成员
-insert_team_member="INSERT INTO `T_TeamMember` (`TeamId`,`UserId`,`CreateUserID`,`CreateTime`) VALUES (%s,'%s','%s',NOW())"
+insert_team_member="INSERT INTO `T_TeamMember` (`TeamId`,`UserId`,`CreateUserID`,`CreateTime`) VALUES ('%s','%s','%s',NOW())"
 #修改管理员的团队通知
 update_team_admin_notice="UPDATE T_TeamNotice SET `Status`=2,`ModifTime`=NOW(),`ModifUserID`='%s' WHERE `Id`='%s' AND `Status`=1"
 #修改出管理员外的团队通知
