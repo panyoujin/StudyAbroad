@@ -7,6 +7,7 @@ from planner_project.data_access import mysql
 from planner_project.sql.planner import planner_sql
 from planner_project.logic import  team_logic,order_logic,planner_logic
 from planner_project.logic.order_logic import  order_sql
+from  planner_project.sql.user import  user_info_sql
 
 
 #规划师搜索
@@ -97,12 +98,13 @@ def plannerinfo():
     complete_order_list=order_logic.select_planner_complete_order_list(plannerId,0,1)
     lables=planner_logic.select_planner_lables(plannerId,0,4)
     evaluate=planner_logic.select_planner_evaluate(plannerId,0,1)
+    albumList = mysql.get_list(user_info_sql.select_user_album,(plannerId,0,9))
     fllow_count=0
     user = request_helper.current_user()
     if user != None and any(user) and user["Id"]!=plannerId:
         obj= planner_logic.get_whether_follw(user["Id"],plannerId)
         fllow_count=obj["fllow_count"]
-    data = { 'planner':planner,"teamlist": teamlist,"qualifications":qualifications,"order":complete_order_list,"lables":lables,"evaluate":evaluate,"fllow_count":fllow_count}
+    data = { 'planner':planner,"teamlist": teamlist,"qualifications":qualifications,"order":complete_order_list,"lables":lables,"evaluate":evaluate,"fllow_count":fllow_count,"albumList":albumList}
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data
