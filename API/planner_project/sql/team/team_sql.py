@@ -1,7 +1,7 @@
 #获取指定用户所在的团队成员列表
 select_planner_team_member_list="SELECT tm.UserId,ui.`Name`,ui.`HeadImage`,tm.`Sort` " \
                                 "FROM `U_PlannerStatistics` ps " \
-                                "JOIN `T_TeamMember` tm ON ps.`TeamId` = tm.`TeamId` AND tm.`UserId` != ps.`UserId` " \
+                                "JOIN `T_TeamMember` tm ON ps.`TeamId` = tm.`TeamId` " \
                                 "JOIN `U_UserInfo` ui ON ui.`UserId`=tm.`UserId` " \
                                 "WHERE ps.`UserId`='%s' AND tm.`IsDelete`= FALSE " \
                                 "ORDER BY tm.`Sort` DESC,tm.`CreateTime` DESC " \

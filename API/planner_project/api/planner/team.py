@@ -67,6 +67,7 @@ def insert_team():
     if teamInfo != None:
         raise custom_error.CustomFlaskErr(status_code=500, message="你已经是其他团队的成员，如需注册团队请先退出其他团队！")
     data=team_logic.insert_team(guid,user["Id"],name,serviceAreaId,serviceDescription)
+
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     return api_response.response_return(ApiResponse)
