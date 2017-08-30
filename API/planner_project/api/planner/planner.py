@@ -97,6 +97,8 @@ def plannerinfo():
     qualifications=planner_logic.select_planner_qualifications(plannerId,0,2)
     complete_order_list=order_logic.select_planner_complete_order_list(plannerId,0,1)
     lables=planner_logic.select_planner_lables(plannerId,0,4)
+    ServiceTypeList=planner_logic.select_user_servicetype_list(plannerId,0,9)
+    ServiceAreaList=planner_logic.select_user_servicearea_list(plannerId,0,9)
     evaluate=planner_logic.select_planner_evaluate(plannerId,0,1)
     albumList = mysql.get_list(user_info_sql.select_user_album,(plannerId,0,9))
     fllow_count=0
@@ -104,7 +106,8 @@ def plannerinfo():
     if user != None and any(user) and user["Id"]!=plannerId:
         obj= planner_logic.get_whether_follw(user["Id"],plannerId)
         fllow_count=obj["fllow_count"]
-    data = { 'planner':planner,"teamlist": teamlist,"qualifications":qualifications,"order":complete_order_list,"lables":lables,"evaluate":evaluate,"fllow_count":fllow_count,"albumList":albumList}
+    data = { 'planner':planner,"teamlist": teamlist,"qualifications":qualifications,"order":complete_order_list,"lables":lables
+        ,"evaluate":evaluate,"fllow_count":fllow_count,"albumList":albumList,"ServiceTypeList":ServiceTypeList,"ServiceAreaList":ServiceAreaList}
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data

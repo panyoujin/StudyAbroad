@@ -169,3 +169,20 @@ select_lable_list="SELECT `Id`,`Name`,`Description`,`IsTop`,`Sort`,`CreateTime` 
                          "WHERE `IsDelete`=FALSE " \
                          "ORDER BY `IsTop` DESC ,`Sort` DESC,`CreateTime` DESC "\
                          "LIMIT %s , %s "
+
+#获取指定规划师服务区域列表
+select_user_servicearea_list="SELECT sa.`Name` " \
+                             "FROM `U_UserInfo` ui " \
+                            "LEFT JOIN `Base_ServiceArea` sa ON FIND_IN_SET(sa.`Id`,ui.`ServiceAreaId`)>0 " \
+                            "WHERE ui.`UserId`='%s' AND  ui.`IsDelete`=FALSE AND  sa.`IsDelete`=FALSE "\
+                            "ORDER BY sa.`IsTop` DESC ,sa.`Sort` DESC,sa.`CreateTime` DESC "\
+                            "LIMIT %s , %s"
+
+#获取指定规划师服务类型列表
+select_user_servicetype_list="SELECT st.`Name` " \
+                             "FROM `U_UserInfo` ui " \
+                            "LEFT JOIN `Base_ServiceType` st ON FIND_IN_SET(st.`Id`,ui.`ServiceAreaId`)>0 " \
+                            "WHERE ui.`UserId`='%s' AND  ui.`IsDelete`=FALSE AND  st.`IsDelete`=FALSE "\
+                            "ORDER BY st.`IsTop` DESC ,st.`Sort` DESC,st.`CreateTime` DESC "\
+                            "LIMIT %s , %s"
+

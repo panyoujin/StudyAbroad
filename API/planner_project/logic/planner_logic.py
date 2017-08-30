@@ -69,3 +69,21 @@ def select_lable_list(page,size):
     if size<=0:
         size=10
     return mysql.get_list(planner_sql.select_lable_list,((page-1)*size,size))
+
+
+#获取指定规划师服务区域列表
+def select_user_servicearea_list(userid,page,size):
+    if page<=0:
+        page=1
+    if size<=0:
+        size=10
+    return mysql.get_list(planner_sql.select_user_servicearea_list,(userid,(page-1)*size,size))
+
+
+#获取指定规划师服务类型列表
+def select_user_servicetype_list(userid,page,size):
+    if page<=0:
+        page=1
+    if size<=0:
+        size=10
+    return mysql.get_list(planner_sql.select_user_servicetype_list,(userid,(page-1)*size,size))
