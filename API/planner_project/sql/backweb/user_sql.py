@@ -1,9 +1,9 @@
 #获取用户列表
-select_user_list="SELECT u.`Id`,u.`Account`,u.`Phone`,u.`Password`,u.`UserType`,ui.`Name`,u.`Phone` ,sa.`Name` AS AreaName,st.`Name` TypeName,u.`CreateTime` "\
+select_user_list="SELECT u.`Id`,u.`Account`,u.`Phone`,u.`Password`,u.`UserType`,ui.`Name`,u.`Phone` ,u.`CreateTime` "\
+                      ",(SELECT GROUP_CONCAT(sa.`Name`) FROM `Base_ServiceArea` sa WHERE FIND_IN_SET(sa.`Id`,ui.`ServiceAreaId`)>0) AS AreaName" \
+                      ",(SELECT GROUP_CONCAT(st.`Name`) FROM `Base_ServiceType` st WHERE FIND_IN_SET(st.`Id`,ui.`ServiceTypeId`)>0) AS TypeName " \
                     "FROM `U_User` u "\
                     "LEFT JOIN `U_UserInfo` ui ON u.`Id`=ui.`UserId` "\
-                    "LEFT JOIN `Base_ServiceArea` sa ON ui.`ServiceAreaId`=sa.`Id` "\
-                    "LEFT JOIN `Base_ServiceType` st ON ui.`ServiceTypeId`=st.`Id` "\
                     "WHERE  u.`UserType`=1 and u.`IsDelete`=FALSE "\
                     "AND ('%s' IS NULL OR '%s'='' OR ui.`Name` LIKE '%s' OR u.`Phone` LIKE '%s')  "\
                     "ORDER BY u.CreateTime DESC ,ui.`Name`  " \
@@ -12,13 +12,13 @@ select_user_list="SELECT u.`Id`,u.`Account`,u.`Phone`,u.`Password`,u.`UserType`,
 select_user_list_count="SELECT COUNT(0) AS listCount  "\
                     "FROM `U_User` u "\
                     "LEFT JOIN `U_UserInfo` ui ON u.`Id`=ui.`UserId` "\
-                    "LEFT JOIN `Base_ServiceArea` sa ON ui.`ServiceAreaId`=sa.`Id` "\
-                    "LEFT JOIN `Base_ServiceType` st ON ui.`ServiceTypeId`=st.`Id` "\
                     "WHERE   u.`UserType`=1 and  u.`IsDelete`=FALSE "\
                     "AND ('%s' IS NULL OR '%s'='' OR ui.`Name` LIKE '%s' OR u.`Phone` LIKE '%s')  "
 
 #获取用户详情
 select_user_info="SELECT u.`Id`,u.`Account`,u.`Phone`,u.`Password`,u.`UserType`,ui.`Name`,u.`Phone`,ui.`Sex`,ui.`Age`,ui.`Email`,ui.`Education`,ui.`Address`,ui.`HeadImage`,ui.`IDCard`,ui.`IDCardJust`,ui.`IDCardBack` "\
+                      ",(SELECT GROUP_CONCAT(sa.`Name`) FROM `Base_ServiceArea` sa WHERE FIND_IN_SET(sa.`Id`,ui.`ServiceAreaId`)>0) AS AreaName" \
+                      ",(SELECT GROUP_CONCAT(st.`Name`) FROM `Base_ServiceType` st WHERE FIND_IN_SET(st.`Id`,ui.`ServiceTypeId`)>0) AS TypeName " \
                     "FROM `U_User` u "\
                     "LEFT JOIN `U_UserInfo` ui ON u.`Id`=ui.`UserId` "\
                     "WHERE u.`Id`='%s'  "

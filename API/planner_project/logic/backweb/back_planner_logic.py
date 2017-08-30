@@ -10,7 +10,7 @@ def select_planner_list(name,page=1,size=10):
     if size<=0:
         size=10
     sear="%"+ name +"%"
-    return mysql.get_list(planner_sql.select_planner_list,(name,name,sear,sear,sear,(page-1)*size,size))
+    return mysql.get_list(planner_sql.select_planner_list,(name,name,sear,(page-1)*size,size))
 
 #获取规划师详情
 def select_planner_info(userId):

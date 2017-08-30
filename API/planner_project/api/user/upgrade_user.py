@@ -18,11 +18,11 @@ def upgrade_user():
     Address = request.form.get("Address", type=str, default=None)
     if Address == None:
         raise custom_error.CustomFlaskErr(status_code=500, message="地址不能为空")
-    ServiceId = request.form.get("ServiceId", type=int, default=0)
-    if ServiceId == 0:
+    ServiceId = request.form.get("ServiceId", type=str, default=None)
+    if ServiceId == None or ServiceId=="":
         raise custom_error.CustomFlaskErr(status_code=500, message="服务不能为空")
-    ServiceAreaId = request.form.get("ServiceAreaId", type=int, default=0)
-    if ServiceAreaId == 0:
+    ServiceAreaId = request.form.get("ServiceAreaId", type=str, default=None)
+    if ServiceAreaId == None or ServiceAreaId=="":
         raise custom_error.CustomFlaskErr(status_code=500, message="服务区域不能为空")
     Email = request.form.get("Email", type=str, default=None)
     if Email == None:
