@@ -40,7 +40,7 @@ select_planner_order_list = "SELECT du.`Id`,du.`DemandServiceId`,du.`UserId`,du.
                             " WHEN 6 THEN '付款确认' " \
                             " WHEN 7 THEN '服务完成' " \
                             " ELSE '订单有误' " \
-                            "END AS OrderStatusStr " \
+                            "END AS OrderStatusStr ,IF(ee.Id IS NULL,0,1) AS isEvaluate,IF(du.OrderStatus=7,1,0) AS isFished " \
                             "FROM `DS_Order` du  " \
                             "JOIN DS_DemandService ds ON ds.Id=du.DemandServiceId  " \
                             "JOIN Base_ServiceArea sa ON sa.Id=ds.ServiceAreaId  " \
@@ -49,6 +49,7 @@ select_planner_order_list = "SELECT du.`Id`,du.`DemandServiceId`,du.`UserId`,du.
                             "JOIN U_UserInfo ui ON ui.UserId=du.`UserId`   " \
                             "JOIN U_User u ON u.Id=du.`UserId`   " \
                             "JOIN U_User plannerUser ON plannerUser.Id=du.`PlannerUserId`   " \
+                            "LEFT JOIN `U_Evaluate` ee ON ee.`OrderId`=du.`Id` AND ee.IsFirst=1 " \
                             "WHERE du.IsDelete= FALSE " \
                             "AND plannerU.`UserId`='%s' " \
                             "ORDER BY du.CreateTime DESC " \
@@ -81,8 +82,8 @@ select_planner_order_detail = "SELECT du.`Id`,du.`DemandServiceId`,du.`UserId`,d
                               "AND du.`Id`='%s' "
 # 获取订单的状态 以及时间
 get_order_status = "SELECT `Id`,`OrderId`,`StartStatus`,`EndStatus`,`ChangeTime` FROM `DS_OrderFlowingWater` " \
-                      "WHERE `OrderId`='%s' AND `IsDelete`=FALSE " \
-                      "ORDER BY `CreateTime` DESC"
+                   "WHERE `OrderId`='%s' AND `IsDelete`=FALSE " \
+                   "ORDER BY `CreateTime` DESC"
 # 获取指定订单的评论
 select_order_evaluate = "SELECT e.`OrderId`,e.`Content`,e.`CreateTime` ,ui.`Name` " \
                         "FROM `U_Evaluate` e " \
@@ -97,7 +98,6 @@ insert_order = "INSERT INTO `StudyAbroad`.`DS_Order` (`Id`,`PlannerUserId`,`User
                "VALUES (UUID(),'%s','%s',%s,%s,'%s','%s','%s',%s,%s,%s,%s,'%s','%s','%s',NOW())"
 
 select_order_createtime = "SELECT IF(DATE_ADD(`CreateTime`,INTERVAL 30 SECOND) >= NOW(),0,1) AS isCanInsert FROM `DS_Order` WHERE `CreateUserID`='%s' ORDER BY `CreateTime` DESC LIMIT 1"
-
 
 # 新增评论
 insert_evaluate = "UPDATE `DS_Order` SET `EvaluateContent`='%s',`Synthesis`='%s',`Quality`='%s',`Efficiency`='%s',`Lable`='%s' " \
@@ -129,4 +129,4 @@ select_evaluate_info = "SELECT e.`OrderId`,e.`Content`,e.`CreateTime` ,ui.`Name`
 insert_order_flowing = "insert into `DS_OrderFlowingWater` (`OrderId`,`UserId`,`StartStatus`,`EndStatus`,`Remarks`,`ChangeTime`,`CreateUserID`,`CreateTime`) " \
                        "values('%s','%s',%s,%s,'',now(),'%s',now())"
 
-update_order_status="UPDATE `DS_Order` SET OrderStatus=%s,ModifUserID='%s',ModifTime=NOW() WHERE Id='%s' AND OrderStatus=%s"
+update_order_status = "UPDATE `DS_Order` SET OrderStatus=%s,ModifUserID='%s',ModifTime=NOW() WHERE Id='%s' AND OrderStatus=%s"
