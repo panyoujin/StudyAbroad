@@ -35,7 +35,7 @@ select_user_team=" SELECT t.`Id`,t.`Name` TeamName,ui.`Name` UserName,ui.`HeadIm
 #获取指定用户所在的团队成员列表
 select_team_member_list="SELECT tm.UserId,ui.`Name`,ui.`HeadImage`,ps.`NewEvaluate`,ps.`CustomerCount`,ps.`PraiseCount`,ps.`BadReviewCount`,ps.Lables,ps.Sort " \
                         "FROM `T_TeamMember` tm " \
-                        "JOIN `U_PlannerStatistics` ps ON ps.`TeamId` = tm.`TeamId` AND tm.`UserId` != ps.`UserId` " \
+                        "JOIN `U_PlannerStatistics` ps ON ps.`TeamId` = tm.`TeamId` " \
                         "JOIN `U_UserInfo` ui ON ui.`UserId`=tm.`UserId` " \
                         "WHERE tm.`TeamId`='%s' AND tm.`IsDelete`= FALSE " \
                         "ORDER BY tm.`Sort` DESC,tm.`CreateTime` DESC " \
