@@ -7,7 +7,10 @@
     </view>
     <view class="clsGroupc clsHead02">
       <view class="clsTxt01">成立时间：{{myTeam.CreateTime}}</view>
-      <button class="btnLook" bindtap="btnLookTeam">团队详情</button>
+      <view class="clsGroupr">
+        <button class="btnLook" bindtap="btnDelTeam">退出</button>
+        <button class="btnLook" bindtap="btnLookTeam">详情</button>
+      </view>
     </view>
 </view>
 <view class="clsGroupr clsHeads"  hidden="{{myTeam==null?false:true}}">

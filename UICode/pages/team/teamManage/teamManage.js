@@ -39,7 +39,35 @@ Page({
    */
   btnLookTeam:function(){
     wx.navigateTo({
-      url: '/pages/planner/plannerMy/plannerMy?url=team&temaId=1&temaName=团队001',
+      url: '/pages/planner/plannerMy/plannerMy?url=team&temaId=' + this.data.myTeam.Id + '&temaName=' + this.data.myTeam.TeamName,
+    })
+  },
+  btnDelTeam:function(){
+    var that = this;
+    wx.showModal({
+      title: "退出团队",
+      content: "你确定退出该团队？",
+      success: function (res) {
+        if (res.confirm) {
+          common.POST({
+            url: "/team/quit_team",
+            params: {
+              TeamId: that.data.myTeam.Id
+            },
+            success: function (res, s, m) {
+              if (s) {
+                common.Alert("成功");
+                that.setData({
+                  myTeam: null
+                })
+              } else {
+                common.AlertError(m);
+              }
+            },
+            fail: function () { }
+          })
+        }
+      }
     })
   },
   /**

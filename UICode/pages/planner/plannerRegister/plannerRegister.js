@@ -21,8 +21,10 @@ Page({
     apiUrl: common.apiUrl + "/",
     pSex: 1,
     pServeice: -1,
+    pServeiceNum:[],
     services:{},
     pArea:-1,
+    pAreaNum:[],
     areas:{}
   },
 

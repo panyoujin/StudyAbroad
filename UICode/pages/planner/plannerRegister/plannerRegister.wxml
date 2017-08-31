@@ -40,11 +40,21 @@
 
     <view class="clsView">
       <label class="clsTxt">认证服务区域：</label>
-      <radio-group class="radio-group clsRadio" bindchange="radioAreaChange">
+      <!-- <radio-group class="radio-group clsRadio" bindchange="radioAreaChange">
         <label class="radio clsNotChecked {{item.Id==pArea?'clsChecked':''}}" wx:for="{{areas}}" wx:key="item">
           <radio class="hideTag" value="{{item.Id}}" checked="{{item.checked}}"/>{{item.Name}}
         </label>
-      </radio-group>
+      </radio-group> -->
+      <view class="clsGroupr clsLables">
+        <block wx:for="{{areas}}" wx:key="item">
+          <block wx:if="{{pAreaNum[index]}}">
+            <view class="clsLable clsChecked" data-key="{{index}}" data-value="{{item.Name}}" bindtap="btnAreaChange" >{{item.Name}}</view>
+          </block>
+          <block wx:else>
+            <view class="clsLable" data-key="{{index}}" data-value="{{item.Name}}" bindtap="btnAreaChange" >{{item.Name}}</view>
+          </block>
+        </block>
+      </view>
     </view>
 
     <view class="clsView">
@@ -54,11 +64,21 @@
 
     <view class="clsView">
       <label class="clsTxt">认证服务：</label>
-      <radio-group class="radio-group clsRadio" bindchange="radioServiceChange">
+      <!-- <radio-group class="radio-group clsRadio" bindchange="radioServiceChange">
         <label class="radio clsNotChecked {{item.Id==pServeice?'clsChecked':''}}" wx:for="{{services}}" wx:key="item">
           <radio class="hideTag" value="{{item.Id}}" checked="{{item.checked}}"/>{{item.Name}}
         </label>
-      </radio-group>
+      </radio-group> -->
+      <view class="clsGroupr clsLables">
+        <block wx:for="{{services}}" wx:key="item">
+          <block wx:if="{{pServeiceNum[index]}}">
+            <view class="clsLable clsChecked" data-key="{{index}}" data-value="{{item.Name}}" bindtap="btnServiceChange" >{{item.Name}}</view>
+          </block>
+          <block wx:else>
+            <view class="clsLable" data-key="{{index}}" data-value="{{item.Name}}" bindtap="btnServiceChange" >{{item.Name}}</view>
+          </block>
+        </block>
+      </view>
     </view>
 
     <view class="errorMsg">{{tip}}</view>

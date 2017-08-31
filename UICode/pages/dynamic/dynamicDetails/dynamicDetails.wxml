@@ -15,7 +15,7 @@
       </view>
     </view>
     <view class="clsGroupc clsDynamicImg">
-      <image hidden="{{dynamic.ImageUrl=='null'?true:false}}" src="{{apiUrl}}{{dynamic.ImageUrl}}"></image>
+      <image mode="widthFix" hidden="{{dynamic.ImageUrl=='null'?true:false}}" src="{{apiUrl}}{{dynamic.ImageUrl}}"></image>
       <label>阅读：{{dynamic.ReadCount}}</label>
       <view class="clsBtnView">
         <button class="clsShare" open-type="share">分享给好友</button>
