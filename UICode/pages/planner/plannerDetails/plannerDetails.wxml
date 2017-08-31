@@ -75,6 +75,7 @@
       <block wx:for="{{data.lables}}" wx:key="item">
         <view class="clsLable">{{item.LableName}}</view>
       </block>
+      <view class="clsLable" hidden="{{checkLable}}"  >资深规划师</view>
     </view>
     
     <!--<view class="clsEvaluates">

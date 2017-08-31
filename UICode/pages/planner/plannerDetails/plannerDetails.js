@@ -11,6 +11,7 @@ Page({
     plannerId:'',
     data:null,
     checkPlannerImgs:true,
+    checkLable:true,
     isfllow:0,
 
     userId:"",
@@ -111,7 +112,8 @@ Page({
           that.setData({
             isfllow: res.fllow_count,
             data:res,
-            checkPlannerImgs: res.albumList.length==0?true:false
+            checkPlannerImgs: res.albumList.length==0?true:false,
+            checkLable: res.lables.length != 0 ? true : false
           })
           wx.setStorageSync('planner', res.planner);
           wx.setStorageSync('isfllow', res.fllow_count);
