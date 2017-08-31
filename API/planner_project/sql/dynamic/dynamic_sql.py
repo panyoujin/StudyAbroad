@@ -10,7 +10,7 @@ select_dynamic_list="SELECT d.`Id`,d.`UserId`,d.`Content`,d.`ImageUrl`,d.`Dynami
 select_user_dynamic_list="SELECT d.`Id`,d.`UserId`,d.`Content`,d.`ImageUrl`,d.`DynamicType`,d.`ReadCount`,d.`CreateUserID`,d.`CreateTime`,ui.`Name` AS UserName,ui.`HeadImage` " \
                         "FROM `MS_Dynamic` d " \
                         "LEFT JOIN `U_UserInfo` ui ON ui.`UserId`=d.`UserId` " \
-                        "WHERE d.`IsDelete` =FALSE AND d.`UserId` = '%s' " \
+                        "WHERE d.`IsDelete` =FALSE AND ui.`IsDelete` =FALSE AND d.`UserId` = '%s' " \
                         "ORDER BY d.`IsTop` DESC,d.`Sort` DESC,d.`CreateTime` DESC " \
                         "LIMIT %s, %s "
 #新增动态
@@ -21,7 +21,7 @@ insert_dynanic="INSERT INTO `MS_Dynamic` (`UserId`,`DynamicType`,`Content`,`Imag
 select_dynamic_info="SELECT d.`Id`,d.`UserId`,d.`Content`,d.`ImageUrl`,d.`DynamicType`,d.`ReadCount`,d.`CreateUserID`,d.`CreateTime`,ui.`Name` AS UserName,ui.`HeadImage` " \
                     "FROM `MS_Dynamic` d " \
                     "LEFT JOIN `U_UserInfo` ui ON ui.`UserId`=d.`UserId` " \
-                    "WHERE d.`IsDelete` =FALSE AND d.`Id` = %s ;"
+                    "WHERE d.`IsDelete` =FALSE AND ui.`IsDelete` =FALSE AND d.`Id` = %s ;"
 
 #修改阅读数
 update_dynamic_readcount="UPDATE MS_Dynamic SET ReadCount=ReadCount+1 WHERE Id = %s;"

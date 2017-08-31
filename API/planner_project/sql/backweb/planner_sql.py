@@ -1,24 +1,24 @@
 #获取用户列表
 select_planner_list="SELECT u.`Id`,ui.`Name`,ui.`HeadImage`,u.`Phone`,ps.`NewEvaluate`,ps.`CustomerCount`  ,ps.`PraiseCount`" \
                     ",ps.`BadReviewCount`,t.`Name` AS TeamName,Lables,ps.Sort ,ps.`IsTop`  " \
-                      ",(SELECT GROUP_CONCAT(sa.`Name`) FROM `Base_ServiceArea` sa WHERE FIND_IN_SET(sa.`Id`,ui.`ServiceAreaId`)>0) AS AreaName" \
-                      ",(SELECT GROUP_CONCAT(st.`Name`) FROM `Base_ServiceType` st WHERE FIND_IN_SET(st.`Id`,ui.`ServiceTypeId`)>0) AS TypeName " \
+                      ",(SELECT GROUP_CONCAT(sa.`Name`) FROM `Base_ServiceArea` sa WHERE FIND_IN_SET(sa.`Id`,ui.`ServiceAreaId`)>0 AND sa.`IsDelete` = FALSE) AS AreaName" \
+                      ",(SELECT GROUP_CONCAT(st.`Name`) FROM `Base_ServiceType` st WHERE FIND_IN_SET(st.`Id`,ui.`ServiceTypeId`)>0 AND st.`IsDelete` = FALSE) AS TypeName " \
                     "FROM `U_User` u   " \
                     "JOIN `U_UserInfo` ui ON ui.`UserId`=u.`Id`   " \
                     "JOIN `U_PlannerStatistics` ps ON ps.`UserId`=u.`Id`   " \
                     "LEFT JOIN `T_Team` t ON ps.`TeamId`=t.`Id`   " \
-                    "WHERE u.`UserType` IN (2,3) AND u.`IsDelete` = FALSE    " \
+                    "WHERE u.`UserType` IN (2,3) AND u.`IsDelete` = FALSE AND ui.`IsDelete` = FALSE AND ps.`IsDelete` = FALSE    " \
                      "AND ('%s' IS NULL OR '%s'='' OR ui.`Name` LIKE '%s') " \
                      "ORDER BY ps.`IsTop` DESC,ps.Sort DESC ,u.`Id` " \
                     "LIMIT %s , %s "
 
 #获取用户详情
 select_planner_info="SELECT u.`Id`,ui.`Name`,u.`Phone`,ui.`Sex`,ui.`Age`,ui.`Email`,ui.`Education`,ui.`Address`,ui.`HeadImage`,ui.`IDCard`,ui.`IDCardJust`,ui.`IDCardBack` "\
-                      ",(SELECT GROUP_CONCAT(sa.`Name`) FROM `Base_ServiceArea` sa WHERE FIND_IN_SET(sa.`Id`,ui.`ServiceAreaId`)>0) AS AreaName" \
-                      ",(SELECT GROUP_CONCAT(st.`Name`) FROM `Base_ServiceType` st WHERE FIND_IN_SET(st.`Id`,ui.`ServiceTypeId`)>0) AS TypeName " \
+                      ",(SELECT GROUP_CONCAT(sa.`Name`) FROM `Base_ServiceArea` sa WHERE FIND_IN_SET(sa.`Id`,ui.`ServiceAreaId`)>0 AND sa.`IsDelete` = FALSE) AS AreaName" \
+                      ",(SELECT GROUP_CONCAT(st.`Name`) FROM `Base_ServiceType` st WHERE FIND_IN_SET(st.`Id`,ui.`ServiceTypeId`)>0 AND st.`IsDelete` = FALSE) AS TypeName " \
                     "FROM `U_User` u "\
                     "LEFT JOIN `U_UserInfo` ui ON u.`Id`=ui.`UserId` "\
-                    "WHERE u.`UserType` in (2,3) AND u.`Id`='%s'  "
+                    "WHERE u.`UserType` in (2,3) AND u.`Id`='%s'  AND u.`IsDelete` = FALSE AND ui.`IsDelete` = FALSE "
 
 
 #学历背景

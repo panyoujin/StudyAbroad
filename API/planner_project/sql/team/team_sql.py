@@ -1,9 +1,9 @@
 # 获取指定用户所在的团队成员列表
 select_planner_team_member_list = "SELECT tm.UserId,ui.`Name`,ui.`HeadImage`,tm.`Sort` " \
                                   "FROM `U_PlannerStatistics` ps " \
-                                  "JOIN `T_TeamMember` tm ON ps.`TeamId` = tm.`TeamId` " \
+                                  "JOIN `T_TeamMember` tm ON ps.`UserId` = tm.`UserId` " \
                                   "JOIN `U_UserInfo` ui ON ui.`UserId`=tm.`UserId` " \
-                                  "WHERE ps.`UserId`='%s' AND tm.`IsDelete`= FALSE " \
+                                  "WHERE ps.`UserId`='%s' AND tm.`IsDelete`= FALSE  AND ps.`IsDelete`= FALSE  AND ui.`IsDelete`= FALSE" \
                                   "ORDER BY tm.`Sort` DESC,tm.`CreateTime` DESC " \
                                   "LIMIT %s, %s "
 
@@ -37,7 +37,7 @@ select_team_member_list = "SELECT tm.UserId,ui.`Name`,ui.`HeadImage`,ps.`NewEval
                           "FROM `T_TeamMember` tm " \
                           "JOIN `U_PlannerStatistics` ps ON ps.`UserId` = tm.`UserId`  " \
                           "JOIN `U_UserInfo` ui ON ui.`UserId`=tm.`UserId` " \
-                          "WHERE tm.`TeamId`='%s' AND tm.`IsDelete`= FALSE " \
+                          "WHERE tm.`TeamId`='%s' AND tm.`IsDelete`= FALSE AND ps.`IsDelete`= FALSE AND ui.`IsDelete`= FALSE " \
                           "ORDER BY tm.`Sort` DESC,tm.`CreateTime` DESC " \
                           "LIMIT %s, %s "
 
