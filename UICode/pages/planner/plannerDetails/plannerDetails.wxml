@@ -2,7 +2,7 @@
   <!--pliannerInfo-->
   <view class="plannerInfo">
     <view class="plannerImg">
-      <image class="clsHead"  mode="aspectFill" src="{{planner.HeadImage}}"></image>
+      <image class="clsHead" mode="aspectFill" src="{{data.planner.HeadImage}}"></image>
       <!-- <image class="clsBtnImg" bindtap="btnShare" src="/img/planner/pShare.png" mode="aspectFit"></image>
       <image class="clsBtnImg" bindtap="btnFollow" src="/img/planner/pFollow.png" mode="aspectFit"></image> -->
       <button class="clsBtn01" open-type="share">分享</button>
@@ -12,26 +12,34 @@
       <view class="plannerBtnMsg">
         <image src="/img/planner/pMsg.png" bindtap="showSendMsg" hidden="{{userType!=1&&userId!=plannerId?false:true}}">发送消息</image>
       </view>
-      <view class="clsPlannerTxt">
-        <label>认证区域：</label>
-        <label>{{planner.AreaName}}</label>
+      <view class="clsPlannerAreaService">
+        <view>认证区域：</view>
+        <view class="clsPlannerArea">
+          <block wx:for='{{data.ServiceAreaList}}' wx:key="item" wx:for-index="idx" wx:if="{{idx<6}}">
+            <view class="clsServiceLable {{colorStr[idx]}}">{{item.Name}}</view>
+          </block>
+        </view>
+        <!-- <label>{{planner.AreaName}}</label> -->
       </view>
-      <view class="clsPlannerTxt">
-        <label>认证服务：</label>
-        <label>{{planner.TypeName}}</label>
+      <view class="clsPlannerAreaService">
+        <view>认证服务：</view>
+        <view class="clsPlannerTxtServer">
+            <block wx:for='{{data.ServiceTypeList}}' wx:key="item" wx:for-index="idx" wx:if="{{idx<6}}">
+            <view class="clsServiceLable {{colorStr[idx+1]}}">{{item.Name}}</view>
+          </block>
+        </view>
+        <!-- <label>{{planner.TypeName}}</label> -->
       </view>
       <view class="clsPlannerTxt clcComment">
         <label>好评率：</label>
-        <label>{{(planner.PraiseCount==0?1:planner.PraiseCount)/(planner.CustomerCount==0?1:planner.CustomerCount)*100}}%</label>
+        <label>{{(data.planner.PraiseCount==0?1:data.planner.PraiseCount)/(data.planner.CustomerCount==0?1:data.planner.CustomerCount)*100}}%</label>
       </view>
-      <view class="clsPlannerTxt clsTeamTxt" wx:if="{{teamlist.length != 0}}">
+      <view class="clsPlannerTxt clsTeamTxt"  wx:for="{{data.teamlist}}" wx:key="item" wx:if="{{index < 1}}">
         <label>团队成员：</label>
       </view>
       <view class="clsPlannerTxt clsTeamMember">
-        <block wx:for="{{teamlist}}" wx:key="item">
-          <block wx:if="index < 4">
-            <image src="{{apiUrl}}{{item.HeadImage}}"></image>
-          </block>
+        <block wx:for="{{data.teamlist}}" wx:key="item" wx:if="{{index < 4}}">
+          <image mode="aspectFill" src="{{apiUrl}}{{item.HeadImage}}"></image>
         </block>
       </view>
     </view>
@@ -40,7 +48,7 @@
   <!--资历-->
   <navigator class="clsQualifications"  url="/pages/planner/qualification/qualification">
     <view class="clsQualificationTitle">资历介绍</view>
-    <block wx:for="{{qualifications}}" wx:key="item">
+    <block wx:for="{{data.qualifications}}" wx:key="item">
       <view class="clsQualification">{{item.Content}}</view>
     </block>
   </navigator>
@@ -48,7 +56,7 @@
   <!--成功案例-->
   <navigator class="clsExamples" url="/pages/planner/example/example?id={{plannerId}}">
     <view class="clsExampleTitle">成功案例</view>
-    <block wx:for="{{order}}" wx:key="item">
+    <block wx:for="{{data.order}}" wx:key="item">
       <view class="clsExample">{{index+1}}:{{item.Description}}</view>
     </block>
   </navigator>
@@ -64,7 +72,7 @@
       <image src="/img/planner/pValuation.png"></image>
     </view>
     <view class="clsLables">
-      <block wx:for="{{lables}}" wx:key="item">
+      <block wx:for="{{data.lables}}" wx:key="item">
         <view class="clsLable">{{item.LableName}}</view>
       </block>
     </view>
@@ -80,15 +88,13 @@
 
   <view class="clsExamples">
     <view class="clsExampleTitle">个人相册</view>
-    <view class="swiperView">
-      <swiper class="" indicator-dots="false" autoplay="true" interval="{{3000}}" duration="{{500}}">
-        <block wx:key="banerImg" wx:for="{{imgUrls}}">
-          <swiper-item>
-            <image mode="aspectFit" src="{{apiUrl}}{{item}}"  />
-          </swiper-item>
-        </block>
-      </swiper>
-    </view>
+    <swiper class="swiperView" hidden="{{checkPlannerImgs}}" indicator-dots="false" autoplay="true" interval="{{3000}}" duration="{{500}}">
+      <block wx:key="banerImg" wx:for="{{data.albumList}}">
+        <swiper-item>
+          <image mode="aspectFit" src="{{apiUrl}}{{item.Url}}"  />
+        </swiper-item>
+      </block>
+    </swiper>
   </view>
   
 

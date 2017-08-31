@@ -16,6 +16,7 @@ Page({
   },
 
   btnOk: function (e) {
+    var that=this;
     common.POST({
       url: "/team/agree_join_team",
       params: {
@@ -24,6 +25,13 @@ Page({
       success: function (res, s, m) {
         if (s) {
           common.Alert("申请通过");
+          that.setData({
+            msgs: [],
+            isSearch: true,
+            searchCount: 1,
+            pageIndex: 1
+          })
+          searchList(that, 1);
         } else {
           common.AlertError(m);
         }
@@ -32,6 +40,7 @@ Page({
     })
   },
   btnCancel:function(e){
+    var that = this;
     common.POST({
       url: "/team/disagree_join_team",
       params: {
@@ -39,16 +48,16 @@ Page({
       },
       success: function (res, s, m) {
         if (s) {
-          wx.showToast({
-            title: '申请已拒接',
-            duration: 1500
+          common.Alert("申请已拒接");
+          that.setData({
+            msgs: [],
+            isSearch: true,
+            searchCount: 1,
+            pageIndex: 1
           })
+          searchList(that, 1);
         } else {
-          wx.showToast({
-            title: m,
-            image: '/img/error.png',
-            duration: 1500
-          })
+          common.AlertError(m);
         }
       },
       fail: function () { }

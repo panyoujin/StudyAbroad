@@ -20,10 +20,10 @@ Page({
 
     apiUrl: common.apiUrl + "/",
     pSex: 1,
-    pServeice: -1,
+    pServeice: '',
     pServeiceNum:[],
     services:{},
-    pArea:-1,
+    pArea:'',
     pAreaNum:[],
     areas:{}
   },
@@ -45,50 +45,50 @@ Page({
     var pSex = that.data.pSex;
     var pServeice = that.data.pServeice;
     var pArea = that.data.pArea; 
-
     if (pName.length == 0 || idcard.length == 0|| imgSaveUrl01.length == 0 || address.length == 0 || record.length == 0 || email.length == 0 || pServeice == -1 || pArea==-1){
       that.setData({
         tip: '提示：姓名、身份证号码、身份证图片、所在地、资历、服务区域、邮箱、服务不能为空！'
       })
+      return;
     }
-    else {
-      that.setData({
-        tip: ''
-      })
-      common.POST({
-        url: "/userinfo/upgrade_user",
-        params: {
-          Sex: pSex,
-          Name: pName,
-          Address: address,
-          ServiceId: pServeice,
-          ServiceAreaId: pArea,
-          Email: email,
-          IDCard: idcard,
-          Experience: record,
-          IDCardPic: imgSaveUrl01,
-          IDCardBackPic: imgSaveUrl02
-        },
-        success: function (res, s, m) {
-          if (s) {
-            // var user = wx.getStorageSync('userLoginInfo');
-            // if (user !=''){
-            //   user.UserType = 2;
-            //   wx.setStorageSync('userLoginInfo', user)
-            // }
+    pServeice = pServeice.substring(0, pServeice.length - 1).substr(1);
+    pArea = pArea.substring(0, pArea.length - 1).substr(1)
+    that.setData({
+      tip: ''
+    })
+    common.POST({
+      url: "/userinfo/upgrade_user",
+      params: {
+        Sex: pSex,
+        Name: pName,
+        Address: address,
+        ServiceId: pServeice,
+        ServiceAreaId: pArea,
+        Email: email,
+        IDCard: idcard,
+        Experience: record,
+        IDCardPic: imgSaveUrl01,
+        IDCardBackPic: imgSaveUrl02
+      },
+      success: function (res, s, m) {
+        if (s) {
+          // var user = wx.getStorageSync('userLoginInfo');
+          // if (user !=''){
+          //   user.UserType = 2;
+          //   wx.setStorageSync('userLoginInfo', user)
+          // }
 
-            wx.redirectTo({
-              url: '/pages/planner/plannerRegisterSucceed/plannerRegisterSucceed'
-            })
-          }else{
-            that.setData({
-              tip: m
-            })
-          }
-        },
-        fail: function () { }
-      })
-    }
+          wx.redirectTo({
+            url: '/pages/planner/plannerRegisterSucceed/plannerRegisterSucceed'
+          })
+        }else{
+          that.setData({
+            tip: m
+          })
+        }
+      },
+      fail: function () { }
+    })
   },
 
 
@@ -128,6 +128,59 @@ Page({
     this.setData({
       pServeice: e.detail.value
     });
+  },
+
+  /**
+* 认证服务区域
+*/
+  btnAreaChange: function (e) {
+    var that = this;
+    var key = e.currentTarget.dataset.key;
+    var value = that.data.areas[key].Id;
+
+    var pArea = that.data.pArea;
+    if (pArea.indexOf("," + value + ",") >= 0) {
+      pArea = pArea.replace(value + ",", "");
+    }else{
+      pArea = pArea + "," + value + ",";
+    }
+    pArea = pArea.replace(",,", ",");
+
+    var pAreaNum = that.data.pAreaNum;
+    pAreaNum[key] = !(pAreaNum[key] == null ? false : pAreaNum[key]);
+
+    that.setData({
+      pArea: pArea,
+      pAreaNum: pAreaNum,
+    })
+
+    //console.log(pArea.substring(0, pArea.length-1).substr(1));
+  },
+  /**
+  * 认证服务
+  */
+  btnServiceChange: function (e) {
+    var that = this;
+    var key = e.currentTarget.dataset.key;
+    var value = that.data.services[key].Id;
+
+    var pServeice = that.data.pServeice;
+    if (pServeice.indexOf("," + value + ",") >= 0) {
+      pServeice = pServeice.replace(value + ",", "");
+    }else{
+      pServeice = pServeice + "," + value + ",";
+    }
+    pServeice = pServeice.replace(",,", ",");
+
+    var pServeiceNum = that.data.pServeiceNum;
+    pServeiceNum[key] = !(pServeiceNum[key] == null ? false : pServeiceNum[key]);
+
+    that.setData({
+      pServeice: pServeice,
+      pServeiceNum: pServeiceNum,
+    })
+
+    //console.log(pServeice.substring(0, pServeice.length-1).substr(1));
   },
 
   /**

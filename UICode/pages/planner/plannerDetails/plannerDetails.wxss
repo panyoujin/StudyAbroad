@@ -7,9 +7,6 @@
 .swiperView {
   height: 380rpx;
 }
-.swiperView swiper {
-  height: 100%;
-}
 swiper-item image{
   width: 100%;
   height: 100%;
@@ -77,9 +74,27 @@ swiper-item image{
 .clsPlannerTxt{
   display: flex;
   flex-direction:row;
-  
   margin: 12rpx;
   color: #3e3e3e;
+}
+.clsPlannerAreaService{
+  display: flex;
+  flex-direction:column;
+  margin: 12rpx;
+  color: #3e3e3e;
+}
+.clsPlannerArea{
+  font-family: "黑体";
+  display: flex;
+  flex-wrap:wrap;
+  width: 400rpx;
+  line-height: 1.5;
+}
+.clsPlannerTxtServer{
+  font-family: "黑体";
+  display: flex;
+  flex-wrap:wrap;
+  line-height: 1.5;
 }
 .clsTeamTxt{
   color: #929292;
@@ -98,6 +113,36 @@ swiper-item image{
   border-radius: 5rpx;
 }
 
+.clsServiceLable{
+  color:#fff;
+  font-size:26rpx;
+  padding:14rpx;
+  vertical-align:middle;
+  line-height:20rpx;
+  margin-right:6rpx;
+  margin-top: 5rpx;
+}
+.clsLablesColor01{
+  background-color: #afdd86;
+}
+.clsLablesColor02{
+  background-color: #f6846a;
+}
+.clsLablesColor03{
+  background-color: #67b0d6;
+}
+.clsLablesColor04{
+  background-color: #dddd86;
+}
+.clsLablesColor05{
+  background-color: #e5846a;
+}
+.clsLablesColor06{
+  background-color: #56b0d6;
+}
+.clsLablesColor07{
+  background-color: #67afd6;
+}
 /*clsQualifications*/
 .clsQualifications{
   background-color: #fff;

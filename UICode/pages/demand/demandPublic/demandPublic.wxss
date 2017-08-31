@@ -35,10 +35,10 @@
 .clsOther button{
   background-color: #fff;
   color: #099aff;
-  line-height:2.0;
+  line-height:1.6;
   font-size:30rpx;
   padding:0rpx 15rpx;
-  margin: 5rpx 0;
+  margin: 8rpx 0;
   font-family: "黑体";
 }
 button::after{

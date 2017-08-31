@@ -9,12 +9,8 @@ Page({
     apiUrl: common.apiUrl +"/",
     isOK : true,
     plannerId:'',
-    planner:null,
-    evaluate:null,
-    lables: null,
-    order: null,
-    qualifications: null,
-    teamlist: null,
+    data:null,
+    checkPlannerImgs:true,
     isfllow:0,
 
     userId:"",
@@ -23,6 +19,8 @@ Page({
     msgFocus:false,
     msg: "",
 
+    colorStr: ["clsLablesColor01", "clsLablesColor02", "clsLablesColor03", 
+      "clsLablesColor04", "clsLablesColor05", "clsLablesColor06", "clsLablesColor07"],
     imgUrls: [
       'files/2017-08-25/5f1ced9a-894d-11e7-8d3a-00163e08b8b6.png', 
       "files/2017-08-28/78d06592-8bfe-11e7-8d3a-00163e08b8b6.png", 
@@ -112,21 +110,13 @@ Page({
           }
           that.setData({
             isfllow: res.fllow_count,
-            planner: res.planner,
-            evaluate: res.evaluate,
-            lables: res.lables,
-            order: res.order,
-            qualifications: res.qualifications,
-            teamlist: res.teamlist
+            data:res,
+            checkPlannerImgs: res.albumList.length==0?true:false
           })
           wx.setStorageSync('planner', res.planner);
           wx.setStorageSync('isfllow', res.fllow_count);
         } else {
-          wx.showToast({
-            title: '获取数据失败！' + m,
-            image: '/img/error.png',
-            duration: 1500
-          })
+          common.AlertError(m);
         }
       },
       fail: function () { }

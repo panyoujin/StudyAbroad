@@ -147,9 +147,10 @@ Page({
 
     var lable = that.data.lable;
     if(lable.indexOf("," + value + ",") >= 0){
-      var lable = lable.replace(value + ",", "");
+      lable = lable.replace(value + ",", "");
+    }else{
+      lable = lable + "," + value + ","
     }
-    lable = lable + "," + value + ","
     lable = lable.replace(",,", ",");
 
     var lableNum = that.data.lableNum;
