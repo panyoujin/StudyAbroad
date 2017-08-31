@@ -44,8 +44,7 @@ select_team_member_list = "SELECT tm.UserId,ui.`Name`,ui.`HeadImage`,ps.`NewEval
 # 查询是否已经是团队成员
 exists_team_peoper = "SELECT tt.`Id`,tt.`UserId`,tt.`TeamId`,tt.`Message`,tt.`Status`,tt.`IsAdmin`,tt.UnionId " \
                      "FROM `T_TeamNotice` tt " \
-                     "JOIN `T_TeamMember` tm ON tt.TeamId=tm.TeamId AND tt.UserId=tm.UserId" \
-                     "WHERE tt.`UserId`='%s' AND tt.`TeamId`='%s' AND tt.`IsDelete`=FALSE AND tm.`IsDelete`=FALSE "
+                     "WHERE tt.`UserId`='%s' AND tt.`IsDelete`=FALSE"
 
 # 查询是否已经是团队成员根据noticeid
 exists_team_peoper_bynoticeid = "SELECT t1.`Id`,t1.`UserId`,t1.`TeamId`,t1.`Message`,t1.`Status`,t1.`IsAdmin`,t1.UnionId,t2.`UserId` AS duUserId " \
@@ -85,3 +84,5 @@ disband_team1 = "UPDATE `T_Team` SET `ModifUserID`='%s',`ModifTime`=NOW(),`IsDel
 disband_team2 = "UPDATE  `T_TeamMember` SET `ModifUserID`='%s',`ModifTime`=NOW(),`IsDelete`=TRUE WHERE `TeamId`='%s'"
 # 用改规划师资料表的团队id为空
 update_planner_statistics_null = "UPDATE U_PlannerStatistics SET TeamId=NULL,`ModifTime`=NOW() WHERE UserId='%s'"
+# 删除团队通知
+delete_team_notice="UPDATE `T_TeamNotice` SET `ModifTime`=NOW(),`IsDelete`=TRUE WHERE `UserId`='%s' AND `TeamId`='%s'"

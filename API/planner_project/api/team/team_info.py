@@ -22,12 +22,12 @@ def join_team():
     if TeamId is None or TeamId == '':
         raise custom_error.CustomFlaskErr(status_code=500, message="团队id不能为空")
 
-    exists_team = mysql.get_object(team_sql.exists_team_peoper, (userId, TeamId))
+    exists_team = mysql.get_object(team_sql.exists_team_peoper, (userId))
 
     if exists_team is not None and exists_team["Status"] == 1:
         raise custom_error.CustomFlaskErr(status_code=500, message="您已经申请过加入该团队，请耐心等待审核")
     if exists_team is not None and exists_team["Status"] == 2:
-        raise custom_error.CustomFlaskErr(status_code=500, message="您已经是该团队成员")
+        raise custom_error.CustomFlaskErr(status_code=500, message="您已经是团队成员")
 
     team_detail = mysql.get_object(team_sql.select_team_adminid, (TeamId))
 
@@ -128,12 +128,12 @@ def quit_team():
         raise custom_error.CustomFlaskErr(status_code=500, message="团队id不能为空")
     is_team_admin = mysql.get_object(team_sql.is_team_admin, (TeamId, userId))
     if (is_team_admin["total"] > 0):  # 是团队管理员，解散团队
-        sql_list = [team_sql.disband_team1, team_sql.disband_team2, team_sql.update_planner_statistics_null]
-        args_list = [(userId, TeamId, userId), (userId, TeamId), (userId)]
+        sql_list = [team_sql.disband_team1, team_sql.disband_team2, team_sql.update_planner_statistics_null,team_sql.delete_team_notice]
+        args_list = [(userId, TeamId, userId), (userId, TeamId), (userId),(userId, TeamId)]
         resultInt = mysql.operate__many(sql_list, args_list)
     else:
-        sql_list = [team_sql.quit_team, team_sql.update_planner_statistics_null]
-        args_list = [(userId, TeamId, userId), (userId)]
+        sql_list = [team_sql.quit_team, team_sql.update_planner_statistics_null,team_sql.delete_team_notice]
+        args_list = [(userId, TeamId, userId), (userId),(userId, TeamId)]
         resultInt = mysql.operate__many(sql_list, args_list)
     if resultInt <= 0:
         raise custom_error.CustomFlaskErr(status_code=500, message="退出团队失败")
