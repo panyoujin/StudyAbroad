@@ -4,7 +4,7 @@ select_user_list="SELECT u.`Id`,u.`Account`,u.`Phone`,u.`Password`,u.`UserType`,
                       ",(SELECT GROUP_CONCAT(st.`Name`) FROM `Base_ServiceType` st WHERE FIND_IN_SET(st.`Id`,ui.`ServiceTypeId`)>0) AS TypeName " \
                     "FROM `U_User` u "\
                     "LEFT JOIN `U_UserInfo` ui ON u.`Id`=ui.`UserId` "\
-                    "WHERE  u.`UserType`=1 and u.`IsDelete`=FALSE "\
+                    "WHERE  u.`UserType`=1 AND u.`IsDelete` = FALSE AND ui.`IsDelete` = FALSE "\
                     "AND ('%s' IS NULL OR '%s'='' OR ui.`Name` LIKE '%s' OR u.`Phone` LIKE '%s')  "\
                     "ORDER BY u.CreateTime DESC ,ui.`Name`  " \
                     "LIMIT %s , %s "
@@ -12,7 +12,7 @@ select_user_list="SELECT u.`Id`,u.`Account`,u.`Phone`,u.`Password`,u.`UserType`,
 select_user_list_count="SELECT COUNT(0) AS listCount  "\
                     "FROM `U_User` u "\
                     "LEFT JOIN `U_UserInfo` ui ON u.`Id`=ui.`UserId` "\
-                    "WHERE   u.`UserType`=1 and  u.`IsDelete`=FALSE "\
+                    "WHERE   u.`UserType`=1 AND u.`IsDelete` = FALSE AND ui.`IsDelete` = FALSE "\
                     "AND ('%s' IS NULL OR '%s'='' OR ui.`Name` LIKE '%s' OR u.`Phone` LIKE '%s')  "
 
 #获取用户详情
@@ -21,7 +21,7 @@ select_user_info="SELECT u.`Id`,u.`Account`,u.`Phone`,u.`Password`,u.`UserType`,
                       ",(SELECT GROUP_CONCAT(st.`Name`) FROM `Base_ServiceType` st WHERE FIND_IN_SET(st.`Id`,ui.`ServiceTypeId`)>0) AS TypeName " \
                     "FROM `U_User` u "\
                     "LEFT JOIN `U_UserInfo` ui ON u.`Id`=ui.`UserId` "\
-                    "WHERE u.`Id`='%s'  "
+                    "WHERE u.`Id`='%s'  AND u.`IsDelete` = FALSE AND ui.`IsDelete` = FALSE "
 
 #修改用户信息
 update_user_info="UPDATE `U_User` SET `Account`='%s',`Phone`='%s',`Password`='%s',`UserType`='%s',`ModifUserID` = '%s',`ModifTime` = NOW() " \

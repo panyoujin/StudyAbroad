@@ -3,7 +3,7 @@ select_top_planner = "SELECT ui.`UserId`,ui.`Name`,ui.`HeadImage`,ps.`Sort` " \
                        "FROM `U_User` u " \
                        "LEFT JOIN `U_UserInfo` ui ON ui.`UserId`=u.`Id` " \
                        "JOIN `U_PlannerStatistics` ps ON ps.`UserId`=u.`Id` " \
-                       "WHERE u.`IsDelete`=FALSE AND u.`UserType` IN (2,3) " \
+                       "WHERE u.`IsDelete`=FALSE AND ui.`IsDelete`=FALSE AND ps.`IsDelete`=FALSE AND u.`UserType` IN (2,3) " \
                        "ORDER BY ps.Sort DESC ,u.`Id` " \
                        "LIMIT 0, %s "
 
@@ -17,7 +17,7 @@ select_search_planner = "SELECT * FROM ( SELECT u.`Id`,ui.`Name`,ui.`HeadImage`,
                        "LEFT JOIN `Base_ServiceArea` sa ON FIND_IN_SET(sa.`Id`,ui.`ServiceAreaId`)>0 " \
                        "LEFT JOIN `Base_ServiceType` st ON FIND_IN_SET(st.`Id`,ui.`ServiceTypeId`)>0 " \
                        "LEFT JOIN `U_UserLable` ul ON ul.`UserId`=u.`Id` " \
-                       "WHERE u.`UserType` IN (2,3) AND u.`IsDelete` = FALSE " \
+                       "WHERE u.`UserType` IN (2,3) AND  u.`IsDelete`=FALSE AND ui.`IsDelete`=FALSE AND ps.`IsDelete`=FALSE " \
                        "AND ('%s' IS NULL OR '%s'='' OR ui.`Name` LIKE '%s' OR sa.`Name` LIKE '%s' OR st.`Name` LIKE '%s' OR ul.`LableName` LIKE '%s') " \
                         "GROUP BY u.`Id`) AS t "\
                        "ORDER BY Sort DESC ,`Id` " \
@@ -39,7 +39,7 @@ select_follw_planner = "SELECT u.`Id`,ui.`Name`,ui.`HeadImage`,ps.`NewEvaluate`,
                        "LEFT JOIN `U_UserInfo` ui ON ui.`UserId`=u.`Id` " \
                        "JOIN `U_PlannerStatistics` ps ON ps.`UserId`=u.`Id` " \
                        "LEFT JOIN `T_Team` t ON ps.`TeamId`=t.`Id` " \
-                       "WHERE f.UserId='%s' AND u.`IsDelete`=FALSE AND u.`UserType` IN (2,3) " \
+                       "WHERE f.UserId='%s' AND f.`IsDelete`=FALSE AND u.`IsDelete`=FALSE AND ui.`IsDelete`=FALSE AND ps.`IsDelete`=FALSE AND u.`UserType` IN (2,3) " \
                        "ORDER BY f.FollwTime DESC " \
                        "LIMIT %s , %s "
 
@@ -47,12 +47,10 @@ select_follw_planner = "SELECT u.`Id`,ui.`Name`,ui.`HeadImage`,ps.`NewEvaluate`,
 #查询规划师详情
 select_planner_info = "SELECT ui.`UserId`,ui.`Name`,ui.`HeadImage`,ui.`Autograph`,ps.`NewEvaluate`,ps.`CustomerCount` " \
                       ",ps.`PraiseCount`,ps.`BadReviewCount`" \
-                      ",(SELECT GROUP_CONCAT(sa.`Name`) FROM `Base_ServiceArea` sa WHERE FIND_IN_SET(sa.`Id`,ui.`ServiceAreaId`)>0) AS AreaName" \
-                      ",(SELECT GROUP_CONCAT(st.`Name`) FROM `Base_ServiceType` st WHERE FIND_IN_SET(st.`Id`,ui.`ServiceTypeId`)>0) AS TypeName " \
+                      ",'' AS AreaName" \
+                      ",'' AS TypeName " \
                       "FROM `U_PlannerStatistics` ps " \
                       "JOIN `U_UserInfo` ui ON ui.`UserId`=ps.`UserId` " \
-                      "LEFT JOIN `Base_ServiceArea` sa ON sa.`Id`=ui.`ServiceAreaId`  " \
-                      "LEFT JOIN `Base_ServiceType` st ON st.`Id`=ui.`ServiceTypeId`  " \
                       "WHERE ps.`UserId`='%s'"
 
 
