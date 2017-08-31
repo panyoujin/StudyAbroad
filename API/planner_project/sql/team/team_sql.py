@@ -68,7 +68,7 @@ disagree_team_admin_notice="UPDATE T_TeamNotice SET `Status`=3,`ModifTime`=NOW()
 #修改出管理员外不同意的团队通知
 disagree_team_notice="UPDATE `T_TeamNotice` SET `Status`=3,`ModifTime`=NOW(),`ModifUserID`='%s' WHERE `UnionId`='%s' AND `IsAdmin`=2"
 #判断是否团队管理员
-is_team_admin="SELECT COUNT(1) FROM `T_Team` WHERE `Id`='%s' AND `AdminUserId`='%s'"
+is_team_admin="SELECT COUNT(1) as total FROM `T_Team` WHERE `Id`='%s' AND `AdminUserId`='%s'"
 #退出团队
 quit_team="UPDATE `T_TeamMember` SET `ModifUserID`='%s',`ModifTime`=NOW(),`IsDelete`=TRUE WHERE `TeamId`='%s' AND `UserId`='%s'"
 #解散团队1
