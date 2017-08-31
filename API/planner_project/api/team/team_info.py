@@ -81,9 +81,10 @@ def agree_join_team():
         raise custom_error.CustomFlaskErr(status_code=500, message="您不是团队管理员")
     if exists_team is None or exists_team["Status"] != 1:
         raise custom_error.CustomFlaskErr(status_code=500, message="您没有需要审核的团队消息")
-
-    sql_list = [team_sql.insert_team_member, team_sql.update_team_admin_notice, team_sql.update_team_notice]
-    args_list = [(exists_team["TeamId"], userId, userId), (userId, NoticeId), (userId, exists_team["UnionId"])]
+    sql_list = [team_sql.insert_team_member, team_sql.update_team_admin_notice, team_sql.update_team_notice,
+                team_sql.update_planner_statistics]
+    args_list = [(exists_team["TeamId"], exists_team["duUserId"], userId), (userId, NoticeId),
+                 (userId, exists_team["UnionId"]), (exists_team["TeamId"], userId, exists_team["duUserId"])]
     resultInt = mysql.operate__many(sql_list, args_list)
     if resultInt <= 0:
         raise custom_error.CustomFlaskErr(status_code=500, message="审批失败")
@@ -126,12 +127,14 @@ def quit_team():
     if TeamId is None or TeamId == '':
         raise custom_error.CustomFlaskErr(status_code=500, message="团队id不能为空")
     is_team_admin = mysql.get_object(team_sql.is_team_admin, (TeamId, userId))
-    if (len(is_team_admin) > 0):  # 是团队管理员，解散团队
-        sql_list = [team_sql.disband_team1, team_sql.disband_team2]
-        args_list = [(userId, TeamId, userId), (userId, TeamId)]
+    if (is_team_admin["total"] > 0):  # 是团队管理员，解散团队
+        sql_list = [team_sql.disband_team1, team_sql.disband_team2, team_sql.update_planner_statistics_null]
+        args_list = [(userId, TeamId, userId), (userId, TeamId), (userId)]
         resultInt = mysql.operate__many(sql_list, args_list)
     else:
-        resultInt = mysql.operate_object(team_sql.quit_team, (userId, TeamId, userId))
+        sql_list = [team_sql.quit_team, team_sql.update_planner_statistics_null]
+        args_list = [(userId, TeamId, userId), (userId)]
+        resultInt = mysql.operate__many(sql_list, args_list)
     if resultInt <= 0:
         raise custom_error.CustomFlaskErr(status_code=500, message="退出团队失败")
     ApiResponse.message = "成功"
