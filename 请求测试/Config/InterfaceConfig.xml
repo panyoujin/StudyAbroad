@@ -1,6 +1,13 @@
 ﻿<InterfaceList>
     <!-- 用户 -->
     <Interface>
+        <Name>获取基础信息</Name>
+        <Url>http://localhost:5000/basic/platforminfo</Url>
+        <PostParam></PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
+    <Interface>
         <Name>登录</Name>
         <Url>http://localhost:5000/user/login</Url>
         <PostParam>Account=pyj#;#Password=e10adc3949ba59abbe56e057f20f883e</PostParam>

@@ -1,6 +1,6 @@
 #获取用户列表
 select_planner_list="SELECT u.`Id`,ui.`Name`,ui.`HeadImage`,u.`Phone`,ps.`NewEvaluate`,ps.`CustomerCount`  ,ps.`PraiseCount`" \
-                    ",ps.`BadReviewCount`,t.`Name` AS TeamName,Lables,ps.Sort ,ps.`IsTop`  " \
+                    ",ps.`BadReviewCount`,t.`Name` AS TeamName,Lables,ps.Sort ,ps.`IsTop`,ps.`BigV`,u.CreateTime  " \
                       ",(SELECT GROUP_CONCAT(sa.`Name`) FROM `Base_ServiceArea` sa WHERE FIND_IN_SET(sa.`Id`,ui.`ServiceAreaId`)>0 AND sa.`IsDelete` = FALSE) AS AreaName" \
                       ",(SELECT GROUP_CONCAT(st.`Name`) FROM `Base_ServiceType` st WHERE FIND_IN_SET(st.`Id`,ui.`ServiceTypeId`)>0 AND st.`IsDelete` = FALSE) AS TypeName " \
                     "FROM `U_User` u   " \
@@ -88,3 +88,6 @@ update_society ="UPDATE `U_Society`  SET `TimeStart` = '%s',`TimeEnd` = '%s',`De
 delete_society ="UPDATE `U_Society` SET `IsDelete`=TRUE, `ModifUserID`='%s', `ModifTime`=NOW() " \
                 "WHERE `Id` = '%s'"
 
+#修改大v
+update_BigV ="UPDATE `U_PlannerStatistics` SET `BigV`=%s, `ModifUserID`='%s', `ModifTime`=NOW() " \
+                "WHERE `UserId` = '%s'"

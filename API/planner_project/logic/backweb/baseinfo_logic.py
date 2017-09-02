@@ -3,15 +3,15 @@ from planner_project.data_access import mysql
 from planner_project.sql.backweb import baseinfo_sql
 
 
-#获取客服电话
-def select_customer_telephone():
-    return mysql.get_object(baseinfo_sql.select_customer_telephone, ())
+#获取基础信息
+def select_platforminfo():
+    return mysql.get_object(baseinfo_sql.select_platforminfo, ())
 
-#修改客服电话
-def update_customer_telephone(CustomerServiceTelephone,current_user_id):
+#修改基础信息
+def update_platforminfo(CustomerServiceTelephone,FlowImage,BigVImage,current_user_id):
     if CustomerServiceTelephone == None or CustomerServiceTelephone=="" or current_user_id == None or current_user_id=="":
         raise custom_error.CustomFlaskErr(status_code=500, message="参数不正确，请刷新后重试")
-    data_register = mysql.operate_object(baseinfo_sql.update_customer_telephone,(CustomerServiceTelephone,current_user_id))
+    data_register = mysql.operate_object(baseinfo_sql.update_platforminfo,(CustomerServiceTelephone,FlowImage,BigVImage,current_user_id))
     return data_register > 0
 
 #获取合同

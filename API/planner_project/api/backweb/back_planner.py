@@ -311,3 +311,19 @@ def back_delete_society():
     ApiResponse.status = 200
     ApiResponse.data = data
     return api_response.response_return(ApiResponse)
+
+#修改大v
+@app.route("/backweb/planner/update_BigV", methods=['POST'])
+def update_BigV():
+    ApiResponse = api_response.ApiResponse()
+    UserId = request.form.get("UserId", type=str, default=None)
+    BigV = request.form.get("BigV", type=int, default=0)
+    if UserId == None or UserId=="":
+        raise custom_error.CustomFlaskErr(status_code=500, message="请选择需要修改的规划师")
+    user = request_back_helper.current_user_mush_login()
+    data=mysql.operate_object(planner_sql.update_BigV,(BigV,user["UserId"],UserId))
+    #data = back_planner_logic.update_BigV,(BigV,UserId,user["UserId"])
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    ApiResponse.data = data
+    return api_response.response_return(ApiResponse)

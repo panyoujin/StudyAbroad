@@ -6,24 +6,26 @@ from planner_project.common import api_response, custom_error, request_back_help
 from planner_project.logic.backweb import baseinfo_logic
 
 
-#获取轮询信息
+#获取基础信息
 @app.route("/backweb/base/select_platforminfo", methods=['POST'])
 def select_platforminfo():
     ApiResponse = api_response.ApiResponse()
 
-    platforminfo = baseinfo_logic.select_customer_telephone()
+    platforminfo = baseinfo_logic.select_platforminfo()
     Contract = baseinfo_logic.select_contract()
     ApiResponse.data={"platforminfo":platforminfo,"Contract":Contract}
     return api_response.response_return(ApiResponse)
 
 
-#修改客服电话信息
+#修改基础信息
 @app.route("/backweb/base/update_platforminfo", methods=['POST'])
 def update_platforminfo():
     ApiResponse = api_response.ApiResponse()
     CustomerServiceTelephone= request.form.get("CustomerServiceTelephone", type=str, default=None)
+    FlowImage= request.form.get("FlowImage", type=str, default=None)
+    BigVImage= request.form.get("BigVImage", type=str, default=None)
     user = request_back_helper.current_user_mush_login()
-    data_register =  baseinfo_logic.update_customer_telephone(CustomerServiceTelephone,user["UserId"])
+    data_register =  baseinfo_logic.update_platforminfo(CustomerServiceTelephone,FlowImage,BigVImage,user["UserId"])
     if data_register:
         ApiResponse.message = "修改成功"
         ApiResponse.status = 200

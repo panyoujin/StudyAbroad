@@ -87,3 +87,8 @@ def update_society(TimeStart,TimeEnd,Description,Sort,Id,updateuserid):
 #删除社会背景
 def delete_society(id,updateuserid):
     return mysql.operate_object(planner_sql.delete_society,(updateuserid,id))
+
+#修改大v
+def update_BigV(isv,id,updateuserid):
+    return mysql.operate_object(planner_sql.update_BigV, (isv,updateuserid,id))
+    #return mysql.operate_object(planner_sql.update_BigV,(isv,updateuserid,id))

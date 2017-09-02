@@ -7,10 +7,33 @@
     <link href="/Resource/Style/main.css?v=3" rel="stylesheet" type="text/css" />
     <link href="/Resource/Style/FortAwesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <script src="/Resource/Script/jquery.min.js" type="text/javascript"></script>
+    <script src="/Resource/Script/jqueryupload/jqueryupload.js" type="text/javascript"></script>
     <script src="/Resource/Script/common.js?v=5" type="text/javascript"></script>
     <script type="text/javascript" src="/Resource/Script/jquery.validate.js"></script>
 
 
+<style type="text/css">
+    .ImportBox {
+        position: relative;
+        cursor: default;
+    }
+
+    .Import {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 30px;
+        font-size: 0px;
+        font-size: 200px\9;
+        overflow: hidden;
+        filter: alpha(opacity=0);
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
+</style>
 
 </head>
 <body>
@@ -30,9 +53,31 @@
                     <table border="1" cellpadding="0" cellspacing="0" style="width: 80%;">
                         <tr>
                             <th width="100">客服电话</th>
-                            <td>
+                            <td colspan="3">
                                 <input id="CustomerServiceTelephone" maxlength="20" name="CustomerServiceTelephone" placeholder="输入客服电话" value="" type="text">
                             </td>
+                            </tr>
+
+                    <tr>
+                        <th width="100">流程图片</th>
+                        <td>
+                            <img src="" id="FlowImageView" width="100px" height="100px">
+                            <input id="FlowImage" maxlength="256" name="FlowImage" value="" type="hidden">
+                            <a href="javascript:;" style="font-size:12px;margin:auto 5px;margin-top:10px;color:#333333; width: 70%" id="ImportBoxFlowImage" class="ImportBox">
+                                &nbsp;&nbsp;<i class="fa fa-upload"></i>上传流程图片
+                                <input type="file" id="ImportFlowImage" name="file" class="Import" />
+                            </a>
+                        </td>
+                        <th width="100">大V图标</th>
+                        <td>
+                            <img src="" id="BigVImageView" width="100px" height="100px">
+                            <input id="BigVImage" maxlength="256" name="BigVImage" value="" type="hidden">
+                            <a href="javascript:;" style="font-size:12px;margin:auto 5px;margin-top:10px;color:#333333; width: 70%" id="ImportBoxBigVImage" class="ImportBox">
+                                &nbsp;&nbsp;<i class="fa fa-upload"></i>上传大V图标
+                                <input type="file" id="ImportBigVImage" name="file" class="Import" />
+                            </a>
+                        </td>
+                    </tr>
                     </table>
 
                 </form>
@@ -86,13 +131,24 @@
             $.alert("请先填写客服电话!");
             return;
         }
-        $.ajaxJson("/base/update_platforminfo", { CustomerServiceTelephone:CustomerServiceTelephone},
+
+        var FlowImage = $("#FlowImage").val();
+        if(!!!FlowImage){
+            $.alert("请上传流程图片!");
+            return;
+        }
+        var BigVImage = $("#BigVImage").val();
+        if(!!!BigVImage){
+            $.alert("请上传大V图标!");
+            return;
+        }
+        $.ajaxJson("/base/update_platforminfo", { CustomerServiceTelephone:CustomerServiceTelephone,FlowImage:FlowImage,BigVImage:BigVImage},
                 function (result) {
                     if (result.status=="200") {
-                        $.alert("客服电话修改成功", function () {
+                        $.alert("基础信息修改成功", function () {
                         });
                     } else {
-                        $.alert("客服电话修改失败,失败原因："+result.message);
+                        $.alert("基础信息修改失败,失败原因："+result.message);
                     }
                 },
                 function () {
@@ -121,11 +177,19 @@
 
     };
 $(function(){
+        $("#ImportFlowImage").change(function () { ImportFile("ImportFlowImage","FlowImage","FlowImageView"); });
+        $("#ImportBigVImage").change(function () { ImportFile("ImportBigVImage","BigVImage","BigVImageView"); });
     $.ajaxJson("/base/select_platforminfo", { },
             function (result) {
                 if (!!result.data) {
                     $("#CustomerServiceTelephone").val(result.data.platforminfo.CustomerServiceTelephone)
                     $("#ContractContent").val(result.data.Contract.Content)
+                    $("#BigVImage").val(result.data.platforminfo.BigVImage)
+                    if(!!result.data.platforminfo.BigVImage)
+                    $("#BigVImageView").attr("src", "/" + result.data.platforminfo.BigVImage)
+                    $("#FlowImage").val(result.data.platforminfo.FlowImage)
+                    if(!!result.data.platforminfo.FlowImage)
+                    $("#FlowImageView").attr("src", "/" + result.data.platforminfo.FlowImage)
                 } else {
                     $.alert(result.message);
                 }

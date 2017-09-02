@@ -1,11 +1,11 @@
-#客服电话
-select_customer_telephone="SELECT c.`Id`,c.`CustomerServiceTelephone` " \
+#基础信息
+select_platforminfo="SELECT c.`Id`,c.`CustomerServiceTelephone`,c.`FlowImage`,c.`BigVImage` " \
                     "FROM `Base_PlatformInfo` c " \
                     "WHERE c.IsDelete=FALSE " \
                     "LIMIT 0, 1 "
 
-#修改客服电话
-update_customer_telephone="UPDATE `Base_PlatformInfo` SET `CustomerServiceTelephone`='%s',`ModifUserID` = '%s',`ModifTime` = NOW();"
+#修改基础信息
+update_platforminfo="UPDATE `Base_PlatformInfo` SET `CustomerServiceTelephone`='%s',`FlowImage`='%s',`BigVImage`='%s',`ModifUserID` = '%s',`ModifTime` = NOW();"
 
 #合同信息
 select_contract="SELECT c.`Id`,c.`Content` " \
