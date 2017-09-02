@@ -45,14 +45,16 @@ def generate_order():
     sql_list = [demand_service_sql.insert_order,
                 demand_service_sql.insert_order_flowing,
                 demand_service_sql.update_demand_undertake_success,
-                demand_service_sql.update_demand_undertake_fail]
+                demand_service_sql.update_demand_undertake_fail,
+                demand_service_sql.update_demand_service_success]
     args_list = [(guid, myundertake["PlannerUserId"], myundertake["UserId"], myundertake["ContractId"],
                   myundertake["DemandId"], myundertake["Description"], myundertake["Description"],
                   myundertake["ServiceAreaId"], myundertake["ServiceTypeId"], myundertake["PriceStart"],
                   myundertake["PriceEnd"], myundertake["TimeStart"], myundertake["TimeEnd"], userId),
                  (guid, myundertake["UserId"], userId),
                  (userId, Id),
-                 (userId, myundertake["DemandId"], Id)]
+                 (userId, myundertake["DemandId"], Id),
+                 (myundertake["DemandId"])]
     resultInt = mysql.operate__many(sql_list, args_list)
     print(resultInt)
     if resultInt > 0:

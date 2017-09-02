@@ -75,6 +75,7 @@ insert_order_flowing = "insert into `DS_OrderFlowingWater` (`OrderId`,`UserId`,`
 update_demand_undertake_success="UPDATE `DS_DemandUndertake` SET `Status`=2,ModifUserID='%s',ModifTime=NOW() WHERE Status=1 and Id='%s' "
 #修改该条承接数据的状态为 申请不通过
 update_demand_undertake_fail="update `DS_DemandUndertake` set `Status`=3,ModifUserID='%s',ModifTime=now() where Status=1 and DemandId='%s' and Id!='%s' "
-
+#修改该需求被承接
+update_demand_service_success= "UPDATE DS_DemandService SET `IsUndertake`=1,`ModifTime`=NOW() WHERE `Id`='%s' AND `IsUndertake`=0 "
 #获取需要发通知的列表
 select_demand_undertake_notice_list="select `Id`,`DemandId`,`UserId`,`Status`,`CreateUserID`,`CreateTime` from `DS_DemandUndertake` where DemandId='%s'"
