@@ -59,3 +59,11 @@ def get_config_list():
     ApiResponse.message = "成功"
     ApiResponse.data = data
     return api_response.response_return(ApiResponse)
+#获取基础配置列表
+@app.route("/basic/get_config_all", methods=['POST'])
+def get_config_all():
+    ApiResponse = api_response.ApiResponse()
+    data= mysql.get_list(basic_sql.get_config_all, ())
+    ApiResponse.message = "成功"
+    ApiResponse.data = data
+    return api_response.response_return(ApiResponse)

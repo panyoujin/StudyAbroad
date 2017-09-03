@@ -601,4 +601,11 @@
         <FileParam></FileParam>
         <BodyParam></BodyParam>
     </Interface>
+    <Interface>
+        <Name>获取基础配置全部列表</Name>
+        <Url>http://localhost:5000/basic/get_config_all</Url>
+        <PostParam></PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
 </InterfaceList>
