@@ -62,7 +62,7 @@
       <image class="moduleImg" src="/img/home/point.png" mode="aspectFill"></image>
       <label>游学指引</label>
     </navigator>
-    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=其他" class="moduleInfo" open-type="navigate" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=" class="moduleInfo" open-type="navigate" >
       <image class="moduleImg" src="/img/home/other.png" mode="aspectFill"></image>
       <label>其他</label>
     </navigator>

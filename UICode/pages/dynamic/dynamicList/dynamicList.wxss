@@ -92,6 +92,7 @@
 }
 .clsDynamicImg image{
   width: 100%;
+  height: 380rpx;
 }
 .clsDynamicImg label{
   padding-top: 10rpx;
