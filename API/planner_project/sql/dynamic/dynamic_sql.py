@@ -2,7 +2,7 @@
 select_dynamic_list="SELECT d.`Id`,d.`UserId`,d.`Content`,d.`ImageUrl`,d.`DynamicType`,d.`ReadCount`,d.`CreateUserID`,d.`CreateTime`,ui.`Name` AS UserName,ui.`HeadImage` " \
                         "FROM `MS_Dynamic` d " \
                         "LEFT JOIN `U_UserInfo` ui ON ui.`UserId`=d.`UserId` " \
-                        "WHERE d.`IsDelete` =FALSE " \
+                        "WHERE d.`IsDelete` =FALSE  AND ui.`IsDelete` =FALSE" \
                         "ORDER BY d.`IsTop` DESC,d.`Sort` DESC,d.`CreateTime` DESC " \
                         "LIMIT %s, %s "
 
