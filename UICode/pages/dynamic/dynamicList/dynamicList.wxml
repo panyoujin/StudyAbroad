@@ -20,7 +20,7 @@
             </view>
           </view>
           <view class="clsGroupc clsDynamicImg">
-            <image mode="aspectFit" hidden="{{item.ImageUrl=='null'?true:false}}" src="{{apiUrl}}{{item.ImageUrl}}"></image>
+            <image mode="top" hidden="{{item.ImageUrl=='null'?true:false}}" src="{{apiUrl}}{{item.ImageUrl}}"></image>
             <label>阅读：{{item.ReadCount}}</label>
           </view>
         </navigator>
@@ -35,7 +35,7 @@
             </view>
           </view>
           <view class="clsGroupc clsDynamicImg">
-            <image mode="aspectFit" hidden="{{item.ImageUrl=='null'?true:false}}" src="{{apiUrl}}{{item.ImageUrl}}"></image>
+            <image mode="top" hidden="{{item.ImageUrl=='null'?true:false}}" src="{{apiUrl}}{{item.ImageUrl}}"></image>
             <label>阅读：{{item.ReadCount}}</label>
           </view>
         </navigator>
