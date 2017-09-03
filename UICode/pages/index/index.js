@@ -14,6 +14,10 @@ Page({
     dongtai: true,
     apiUrl: common.apiUrl+'/',
 
+    phone:'',
+    followUrl:"",
+    vIcon:""
+
   },
   //点击浮动按钮事件
   alertContent: function (e) {
@@ -51,7 +55,7 @@ Page({
   },
   payPhoneNum: function (e) {
     wx.makePhoneCall({
-      phoneNumber: '0752-123456',
+      phoneNumber: this.data.phone,
     })
   },
 
@@ -75,7 +79,7 @@ Page({
   //流程
   btnProcess:function(){
     wx.navigateTo({
-      url: '/pages/sysInfo/process/process',
+      url: '/pages/sysInfo/process/process?img=' + this.data.followUrl,
     })
   },
 
@@ -104,6 +108,28 @@ Page({
 
   onLoad: function () {
     var that = this
+
+    var config = app.globalData.config;
+    for (var i in config){
+      switch (config[i].Key) {
+        case 'phone':
+          that.setData({
+            phone: config[i].Value
+          })
+          break;
+        case 'follow':
+          that.setData({
+            followUrl: common.apiUrl + '/' +　config[i].Img
+          })
+          break;
+        case 'vIcon':
+          that.setData({
+            vIcon: common.apiUrl + '/' + config[i].Img
+          })
+          break;
+      }
+    }
+
     // that.setData({
     //   userInfo: app.globalData.userInfo
     // })

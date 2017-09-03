@@ -21,6 +21,6 @@
     </navigator>
   </view>
   <view class="classname" style="margin-top:20rpx;  38rpx;font-weight: bold;font-family: '黑体';">
-    欢迎致电客户了解更多，联系电话:<span bindtap="payPhoneNum" style="text-decoration: underline;color:#57b1fd">0752-12345678</span>
+    欢迎致电客户了解更多，联系电话:<span bindtap="payPhoneNum" style="text-decoration: underline;color:#57b1fd">{{phone}}</span>
   </view>
 </modal>

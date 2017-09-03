@@ -90,6 +90,7 @@ swiper-item image{
   flex-direction:row;
   margin:20rpx 25rpx 5rpx;
   padding: 10rpx 0 10rpx;
+  position:relative;
 }
 .planningPersonInfo label{
   font-size: 25rpx;
@@ -105,10 +106,20 @@ swiper-item image{
   position: relative;
 }
 .planningImgIcon{
-    bottom: 8rpx;
-    right: 10rpx;
-    float: right;
-    position:absolute;
+  top:-10rpx;
+  left:-20rpx;
+  float:right;
+  position:absolute;
+  font-size:32rpx;
+  color:yellow;
+  /* background-color: #999; */
+  border-radius:60rpx;
+  font-family: "黑体";
+  width: 60rpx;
+  height: 60rpx;
+  vertical-align: middle;
+  text-align: center;
+  padding: 5rpx;
 }
 .planningImgTxt{
     bottom: 0rpx;

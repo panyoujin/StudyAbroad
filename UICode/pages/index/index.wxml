@@ -25,9 +25,9 @@
    <view class="planningPerson">
     <block wx:for="{{plannerList}}" wx:key="item">
     <navigator url="/pages/planner/plannerDetails/plannerDetails?id={{item.UserId}}"  class="planningPersonInfo" open-type="navigate" >
-        <image class="planningPersonImg" src="{{apiUrl}}{{item.HeadImage}}" mode="aspectFill">
-          <!-- <icon type="info" size="10" class="planningImgIcon" /> -->
-        </image>
+        <image class="planningPersonImg" src="{{apiUrl}}{{item.HeadImage}}" mode="aspectFill"></image>
+        <!-- <view class="planningImgIcon">V</view> -->
+        <image class="planningImgIcon" src="{{vIcon}}" hidden="{{item.BigV=='1'?false:true}}" ></image>
         <label>{{item.Name}}</label>
       </navigator>
     </block>
@@ -88,7 +88,7 @@
   </view>
 
   <view class="serviceMap servicerLc" bindtap="btnProcess">
-    <image class="clsImg" mode="aspectFit" src="/img/home/liucheng.png"></image>
+    <image class="clsImg" mode="aspectFit" src="{{followUrl}}"></image>
   </view>
 
 </view>
