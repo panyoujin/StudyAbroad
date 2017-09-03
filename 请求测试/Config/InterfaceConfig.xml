@@ -587,4 +587,18 @@
         <FileParam></FileParam>
         <BodyParam></BodyParam>
     </Interface>
+    <Interface>
+        <Name>根据key获取单个基础配置</Name>
+        <Url>http://localhost:5000/basic/get_config</Url>
+        <PostParam>Key=home.phone</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
+    <Interface>
+        <Name>根据key获取基础配置列表</Name>
+        <Url>http://localhost:5000/basic/get_config_list</Url>
+        <PostParam>Key=home.phone</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
 </InterfaceList>
