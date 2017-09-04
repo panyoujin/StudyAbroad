@@ -36,8 +36,8 @@
         <!-- <view class="clsTeamInfos" url="/pages/planner/plannerMy/plannerMy?url=team&temaId={{item.Id}}"> -->
             <view class="clsGroupr clsTeamInfo">
               <view class="clsGroupc clsHead01">
-                <view class="clsTxt clsTxtColor01">队名:{{item.UserName}}</view>
-                <view class="clsTxt clsTxtColor02">队长:{{item.TeamName}}</view>
+                <view class="clsTxt clsTxtColor01">队名:{{item.TeamName}}</view>
+                <view class="clsTxt clsTxtColor02">队长:{{item.UserName}}</view>
                 <view class="clsTxt clsTxtColor03">成立时间：{{item.CreateTime}}</view>
               </view>
               <view class="clsGroupc clsHead02"  hidden="{{myTeam==null?false:true}}">
