@@ -7,7 +7,7 @@ Page({
    */
   data: {
     apiUrl: common.apiUrl + "/",
-    pArea: -1,
+    pArea: -999,
     areas: {}
   },
   /**
@@ -27,7 +27,7 @@ Page({
     var teamContent = e.detail.value.teamContent;
     var pArea = that.data.pArea;
 
-    if (name.length == 0 || pArea == -1 || teamContent.length == 0) {
+    if (name.length == 0 || pArea == -999 || teamContent.length == 0) {
       that.setData({
         tip: '提示：团队名字、认证服务区域、团队服务重点不能为空！'
       })
