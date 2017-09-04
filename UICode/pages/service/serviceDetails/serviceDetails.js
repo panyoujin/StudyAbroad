@@ -38,43 +38,7 @@ Page({
       })
     }
 
-    var service = null;
-
-    // var services = wx.getStorageSync("queryServices");
-    // var i = 0
-    // while (i< services.length){
-    //   if (services[i].Id == id){
-    //     service = services[i];
-    //     break;
-    //   }
-    //   i++;
-    // }
-    // if (service == "" || service == null) {
-    //   that.setData({ isOK: false })
-    //   return;
-    // }
-    // service.HeadImage = common.apiUrl + "/" + service.HeadImage;
-    // that.setData({
-    //   service: service
-    // })
-    
-    common.POST({
-      url: "/demand_service/demand_service_info",
-      params: {
-        demandServiceId: id
-      },
-      success: function (res, s, m) {
-        service = res;
-        service.HeadImage = common.apiUrl + "/" + service.HeadImage;
-        that.setData({
-          service: service
-        })
-       },
-      fail: function () { 
-        that.setData({ isOK: false })
-        return;
-      }
-    })
+    init(that);
 
     //添加浏览历史
     common.POST({
@@ -117,8 +81,9 @@ Page({
               if (s) {
                 common.Alert("成功"+msg);
                 that.setData({
-                  isfllow: isfllow
-                })
+                  isfllow: isfllow,
+                });
+                init(that);
               } else {
                 common.AlertError(msg+"失败");
               }
@@ -226,5 +191,26 @@ function addDertake (that){
       }
     },
     fail: function () { }
+  })
+}
+
+function init(that){
+  common.POST({
+    url: "/demand_service/demand_service_info",
+    params: {
+      demandServiceId: that.data.demandId
+    },
+    success: function (res, s, m) {
+       var service = res;
+      service.HeadImage = common.apiUrl + "/" + service.HeadImage;
+      that.setData({
+        service: service,
+        isfllow: service.isfllow,
+      })
+    },
+    fail: function () {
+      that.setData({ isOK: false })
+      return;
+    }
   })
 }
