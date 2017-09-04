@@ -42,6 +42,7 @@ def demand_service_info():
         data_exists = mysql.get_object(demand_undertake.select_exists_demand_service, (demandServiceId, user["Id"]))
         undertake_count=data_exists["total"]
     data["collection_count"]=collection_count
+    data["isfllow"] = collection_count
     data["undertake_count"]=undertake_count
     ApiResponse.message = "成功"
     ApiResponse.status = 200
@@ -56,8 +57,10 @@ def collection():
     ApiResponse = api_response.ApiResponse()
     user = request_helper.current_user_mush_login()
     demandServiceId = request.form.get("demandServiceId", type=str, default=None)
+    sql_list=(demand_service_sql.demand_service_collection,demand_service_sql.add_demand_service_count)
+    args=[(user["Id"],demandServiceId),(demandServiceId)]
     if any(user) and demandServiceId !=None and demandServiceId !="":
-        count = mysql.operate_object(demand_service_sql.demand_service_collection, (user["Id"],demandServiceId))
+        count = mysql.operate__many(sql_list, args)
     ApiResponse.message = "收藏成功"
     ApiResponse.status = 200
     return api_response.response_return(ApiResponse)
@@ -68,8 +71,11 @@ def uncollection():
     ApiResponse = api_response.ApiResponse()
     user = request_helper.current_user_mush_login()
     demandServiceId = request.form.get("demandServiceId", type=str, default=None)
+    sql_list=(demand_service_sql.demand_service_uncollection,demand_service_sql.sub_demand_service_count)
+    args=[(user["Id"],demandServiceId),(demandServiceId)]
+
     if any(user) and demandServiceId !=None and demandServiceId !="":
-        count = mysql.operate_object(demand_service_sql.demand_service_uncollection, (user["Id"],demandServiceId))
+        count = mysql.operate__many(sql_list,args)
     ApiResponse.message = "收藏成功"
     ApiResponse.status = 200
     return api_response.response_return(ApiResponse)
