@@ -94,9 +94,9 @@ Page({
       },
       success: function (res, s, m) {
         if (s) {
-          common.Alert("已申请");
+          common.Alert("申请成功");
         } else {
-          common.AlertError('你已加入过');
+          common.AlertError('已加过团队');
         }
       },
       fail: function () { }
