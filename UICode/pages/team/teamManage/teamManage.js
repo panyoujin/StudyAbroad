@@ -84,10 +84,7 @@ Page({
   btnJoin:function(e){
     var that = this;
     if (e.currentTarget.dataset.Isjoin == 1){
-      wx.showToast({
-        title: '您已经是该团队成员',
-        duration: 1500
-      })
+      common.Alert("已是团成员");
       return;
     }
     common.POST({
@@ -97,16 +94,9 @@ Page({
       },
       success: function (res, s, m) {
         if (s) {
-          wx.showToast({
-            title: '已申请加入改团队',
-            duration: 1500
-          })
+          common.Alert("已申请");
         } else {
-          wx.showToast({
-            title: m,
-            image: '/img/error.png',
-            duration: 1500
-          })
+          common.AlertError('你已加入过');
         }
       },
       fail: function () { }
