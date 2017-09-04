@@ -87,68 +87,17 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    var that=this;
-    //获取首页规划师
-    common.POST({
-      url: "/home/planner",
-      params: {
-        count: 6
-      },
-      success: function (res, s, m) {
-        if (s && res.length != 0) {
-          that.setData({
-            plannerList: res
-          })
-        } else {
-        }
-      },
-      fail: function () { }
-    })
+    init(this);
   },
 
   onLoad: function () {
     var that = this
 
-    var config = app.globalData.config;
-    for (var i in config){
-      switch (config[i].Key) {
-        case 'phone':
-          that.setData({
-            phone: config[i].Value
-          })
-          break;
-        case 'follow':
-          that.setData({
-            followUrl: common.apiUrl + '/' +　config[i].Img
-          })
-          break;
-        case 'vIcon':
-          that.setData({
-            vIcon: common.apiUrl + '/' + config[i].Img
-          })
-          break;
-      }
-    }
+    init(that);
 
     // that.setData({
     //   userInfo: app.globalData.userInfo
     // })
-    //获取首页规划师
-    common.POST({
-      url: "/home/planner",
-      params: {
-        count: 6
-      },
-      success: function (res, s, m) {
-        if (s && res.length != 0) {
-          that.setData({
-            plannerList: res
-          })
-        } else {
-        }
-      },
-      fail: function () { }
-    })
 
     //获取首页banner
     common.POST({
@@ -170,3 +119,54 @@ Page({
 
 
 })
+
+function init(that){
+  //配置信息
+  common.POST({
+    url: "/basic/get_config_all",
+    params: {},
+    success: function (res, s, m) {
+      if (s) {
+        var config = res;
+        for (var i in config) {
+          switch (config[i].Key) {
+            case 'phone':
+              that.setData({
+                phone: config[i].Value
+              })
+              break;
+            case 'follow':
+              that.setData({
+                followUrl: common.apiUrl + '/' + config[i].Img
+              })
+              break;
+            case 'vIcon':
+              that.setData({
+                vIcon: common.apiUrl + '/' + config[i].Img
+              })
+              break;
+          }
+        }
+      } else {
+      }
+    },
+    fail: function () { }
+  })
+
+  //获取首页规划师
+  common.POST({
+    url: "/home/planner",
+    params: {
+      count: 6
+    },
+    success: function (res, s, m) {
+      if (s && res.length != 0) {
+        that.setData({
+          plannerList: res
+        })
+      } else {
+      }
+    },
+    fail: function () { }
+  })
+}

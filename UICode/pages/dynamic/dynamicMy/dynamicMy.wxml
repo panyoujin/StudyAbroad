@@ -5,7 +5,7 @@
         <navigator class="clsGroupc clsMoudel" url="/pages/dynamic/dynamicDetails/dynamicDetails?id={{item.Id}}" >
           <view class="serviceInfo">
               <view class="img">
-              <image src="{{apiUrl}}{{item.HeadImage}}"></image>
+              <image src="{{apiUrl + item.HeadImage}}"></image>
             </view>
             <view class="serviceTxtInfo">
               <view class="clsName">姓名：{{item.UserName}}</view>
@@ -16,7 +16,7 @@
             </view>
           </view>
           <view class="clsGroupc clsDynamicImg">
-            <image hidden="{{item.ImageUrl=='null'}}" src="{{apiUrl}}{{item.ImageUrl}}"></image>
+            <image mode="top" hidden="{{item.ImageUrl=='null'}}" src="{{apiUrl}}{{item.ImageUrl}}"></image>
             <label>阅读：{{item.ReadCount}}</label>
           </view>
         </navigator>

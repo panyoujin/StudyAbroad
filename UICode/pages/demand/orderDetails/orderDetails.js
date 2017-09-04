@@ -28,7 +28,7 @@ Page({
     }
     that.setData({
       orderId: id,
-      headImage: options.headImage == 'null' ? "/img/person.jpg" : common.apiUrl + "/" + options.headImage,
+      headImage: (options.headImage == 'null' || options.headImage == "undefined" || options.headImage == undefined) ? "/img/person.jpg" : common.apiUrl + "/" + options.headImage,
     })
 
     common.POST({

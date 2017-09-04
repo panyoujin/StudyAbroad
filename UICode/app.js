@@ -15,18 +15,18 @@ App({
 
     var that = this
 
-    //配置信息
-    common.POST({
-      url: "/basic/get_config_all",
-      params: {},
-      success: function (res, s, m) {
-        if (s) {
-          that.globalData.config=res;
-        } else {
-        }
-      },
-      fail: function () { }
-    })
+    // //配置信息
+    // common.POST({
+    //   url: "/basic/get_config_all",
+    //   params: {},
+    //   success: function (res, s, m) {
+    //     if (s) {
+    //       that.globalData.config=res;
+    //     } else {
+    //     }
+    //   },
+    //   fail: function () { }
+    // })
 
 
     if (this.globalData.userInfo) {
