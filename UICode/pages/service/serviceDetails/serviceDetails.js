@@ -61,7 +61,7 @@ Page({
     var msg = "";
     var url = '/demand_service/collection';
     var isfllow = 1;
-    if (that.data.isfllow == 1) {
+    if (that.data.service.isfllow == 1) {
       title = '取消收藏';
       content = '确定取消收藏该需求/服务？';
       url = '/demand_service/uncollection';

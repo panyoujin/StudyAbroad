@@ -1,6 +1,7 @@
 #coding:utf-8
 from flask import request
 import uuid
+import hashlib
 from planner_project import app
 from planner_project.common import api_response, custom_error, request_back_helper
 from planner_project.logic.backweb import user_logic,team_logic
@@ -102,6 +103,8 @@ def back_insert_userinfo():
     IDCardBack = request.form.get("IDCardBack", type=str, default=None)
     user = request_back_helper.current_user_mush_login()
     guid = str(uuid.uuid1())
+    password= hashlib.md5(password.encode(encoding='gb2312')).hexdigest()
+
     data_register =  user_logic.insert_userinfo(guid,account,phone,password,userType,name, sex, age, education, address, email,headImage,IDCard,IDCardJust,IDCardBack, user["UserId"])
     if data_register:
         ApiResponse.message = "修改成功"

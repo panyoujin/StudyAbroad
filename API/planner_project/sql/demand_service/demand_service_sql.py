@@ -15,7 +15,7 @@ select_search_demand_service = "SELECT ds.`Id`,ds.UserId,ds.`Name`,ds.`Type`,ds.
 # 需求服务详情
 select_demand_service_info = "SELECT ds.`Id`,ds.UserId,ds.`Name`,ds.`Type`,ds.`ServiceAreaId`,ds.`ServiceTypeId` " \
                              ",ds.`PriceStart`,ds.`PriceEnd`,ds.`TimeStart`,ds.`TimeEnd`,ds.`CreateTime`,ds.`CollectionCount` " \
-                             ",ds.`Sort`,ds.`IsTop`,ui.`Name` AS UserName,ui.`HeadImage`,sa.`Name` AS AreaName,st.`Name` AS TypeName " \
+                             ",ds.`Sort`,ds.`IsTop`,ui.`Name` AS UserName,ui.`HeadImage`,sa.`Name` AS AreaName,st.`Name` AS TypeName,0 AS isfllow   " \
                              "FROM `DS_DemandService` ds " \
                              "JOIN `U_UserInfo` AS ui ON ds.`UserId`=ui.`UserId` " \
                              "LEFT JOIN `Base_ServiceArea` sa ON sa.`Id`=ds.`ServiceAreaId`  " \
@@ -27,8 +27,12 @@ select_demand_service_info = "SELECT ds.`Id`,ds.UserId,ds.`Name`,ds.`Type`,ds.`S
 # 收藏
 demand_service_collection = "INSERT INTO `U_Collection` (`UserId`,`DemandServiceId`,`CollectionTime`) VALUES('%s','%s',NOW())" \
                             " ON DUPLICATE KEY UPDATE CollectionTime=NOW() "
+#新增收藏数量
+add_demand_service_count="UPDATE `DS_DemandService` SET `CollectionCount`= CollectionCount + 1 WHERE `Id`='%s'"
 # 取消收藏
 demand_service_uncollection = "DELETE FROM `U_Collection` WHERE UserId='%s' AND DemandServiceId='%s'; "
+#减少收藏数量
+sub_demand_service_count="UPDATE `DS_DemandService` SET `CollectionCount`= CollectionCount - 1 WHERE `Id`='%s'"
 
 # 是否已收藏
 get_whether_collection = "SELECT COUNT(0) as collection_count FROM U_Collection WHERE DemandServiceId='%s' AND UserId='%s';"

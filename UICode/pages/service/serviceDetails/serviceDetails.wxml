@@ -9,7 +9,7 @@
         <!-- <image class="clsBtnImg" bindtap="btnShare" src="/img/planner/pShare.png" mode="aspectFit"></image> -->
         <!-- <image class="clsBtnImg" bindtap="btnFollow" src="/img/planner/pFollow.png" mode="aspectFit"></image> -->
         <button class="clsBtn01" open-type="share">分享</button>
-        <button class="clsBtn02" bindtap="btnFollow">{{isfllow==0?'收藏':'已收藏'}}</button>
+        <button class="clsBtn02" bindtap="btnFollow">{{service.isfllow==0?'收藏':'已收藏'}}</button>
       </view>
       <view class="clsPlannerTxt">
         <label></label>
