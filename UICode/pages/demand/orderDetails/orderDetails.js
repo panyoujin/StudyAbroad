@@ -27,8 +27,7 @@ Page({
       return;
     }
     that.setData({
-      orderId: id,
-      headImage: (options.headImage == 'null' || options.headImage == "undefined" || options.headImage == undefined) ? "/img/person.jpg" : common.apiUrl + "/" + options.headImage,
+      orderId: id
     })
 
     common.POST({
@@ -40,6 +39,7 @@ Page({
         if (s) {
           that.setData({
             datas: res,
+            headImage: common.apiUrl + "/" + res.HeadImage
           })
         } else {
           wx.showToast({
@@ -95,6 +95,7 @@ Page({
         if (s) {
           that.setData({
             datas: res,
+            headImage: common.apiUrl + "/" + res.HeadImage
           })
         } else {
           wx.showToast({
