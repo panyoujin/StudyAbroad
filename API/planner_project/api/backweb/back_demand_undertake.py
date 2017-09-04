@@ -65,10 +65,10 @@ def generate_order():
         for item in notice_list:
             if item["Id"] == Id:
                 mysql.operate_object(system_notice_sql.insert_system_notice,
-                                     (item["UserId"], "您申请的承接需求通过.", userId))
+                                     (item["UserId"], "您申请的承接 "+myundertake["Name"]+" 的需求通过.", userId))
             else:
                 mysql.operate_object(system_notice_sql.insert_system_notice,
-                                     (item["UserId"], "您申请的承接需求不通过.", userId))
+                                     (item["UserId"], "您申请的承接 "+myundertake["Name"]+" 的需求不通过.", userId))
     ApiResponse = api_response.ApiResponse()
     ApiResponse.message = "成功"
     ApiResponse.status = 200
