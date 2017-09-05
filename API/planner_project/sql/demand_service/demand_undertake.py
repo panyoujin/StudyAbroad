@@ -5,7 +5,7 @@ select_exists_demand_service="SELECT COUNT(1) as total FROM `DS_DemandUndertake`
 select_exists_demand="SELECT `Id`,`IsUndertake` FROM `DS_DemandService` WHERE `Id`='%s' AND `IsDelete`=FALSE"
 
 #新增申请承接
-insert_demand_undertake="INSERT INTO `StudyAbroad`.`DS_DemandUndertake` (`Id`,`DemandId`,`UserId`,`CreateUserID`,`CreateTime`" \
+insert_demand_undertake="INSERT INTO `DS_DemandUndertake` (`Id`,`DemandId`,`UserId`,`CreateUserID`,`CreateTime`" \
                         ",IsUser,ContractId) VALUES (UUID(),'%s','%s','%s',NOW(),%s,%s) "
 
 

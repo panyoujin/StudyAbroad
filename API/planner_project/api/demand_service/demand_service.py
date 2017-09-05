@@ -175,7 +175,7 @@ def insert_browse_service():
                                 (guid,user["Id"],Name,Type,ServiceAreaId,ServiceTypeId,PriceStart
                                  ,PriceEnd,TimeStart,TimeEnd,Description,user["Id"],user["Id"]))
     plannerId = request.form.get("plannerId", type=str, default=None)
-    ContractId = request.form.get("ContractId", type=str, default=None)
+    ContractId = request.form.get("ContractId", type=int, default=0)
     if plannerId != None and plannerId != "" and Type==1:
         #新增承接
         mysql.operate_object(demand_undertake.insert_demand_undertake, (guid, plannerId,user["Id"],enum.IsUser.yes,ContractId))
