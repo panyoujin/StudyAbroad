@@ -9,7 +9,7 @@ select_search_demand_service = "SELECT ds.`Id`,ds.UserId,ds.`Name`,ds.`Type`,ds.
                                "LEFT JOIN `Base_ServiceType` st ON st.`Id`=ds.`ServiceTypeId` " \
                                "WHERE ds.`IsDelete` = FALSE " \
                                "AND !(uu.`UserType`!=1 AND ds.Type=1) " \
-                                "AND ds.IsUndertake!=1 "\
+                                "AND ds.IsUndertake =0 "\
                                "ORDER BY ds.`Sort` DESC ,ds.`CreateTime` DESC " \
                                "LIMIT %s , %s "
 # 需求服务详情
