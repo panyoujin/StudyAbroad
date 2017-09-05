@@ -45,3 +45,33 @@ def delete_base_config():
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     return api_response.response_return(ApiResponse)
+
+
+# 获取单个基础配置
+@app.route("/backweb/config/get_base_config_by_id", methods=['POST'])
+def get_base_config_by_id():
+    ApiResponse = api_response.ApiResponse()
+    Id = request.form.get("Id", type=int, default=0)
+    if Id <= 0:
+        raise custom_error.CustomFlaskErr(status_code=500, message="Id不能为空")
+
+    ApiResponse.data = mysql.get_list(config_sql.get_base_config_by_id, (Id))
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    return api_response.response_return(ApiResponse)
+
+# 获取单个基础配置
+@app.route("/backweb/config/update_base_config_by_id", methods=['POST'])
+def update_base_config_by_id():
+    ApiResponse = api_response.ApiResponse()
+    Id = request.form.get("Id", type=int, default=0)
+    if Id <= 0:
+        raise custom_error.CustomFlaskErr(status_code=500, message="Id不能为空")
+    Value = request.form.get("Value", type=str, default=None)
+    Remark = request.form.get("Remark", type=str, default=None)
+    imageUrl = request.form.get("imageUrl", type=str, default=None)
+
+    ApiResponse.data = mysql.get_list(config_sql.update_config, (Value,Remark,imageUrl,Id))
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    return api_response.response_return(ApiResponse)
