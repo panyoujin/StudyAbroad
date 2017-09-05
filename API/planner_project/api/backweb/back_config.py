@@ -55,12 +55,12 @@ def get_base_config_by_id():
     if Id <= 0:
         raise custom_error.CustomFlaskErr(status_code=500, message="Id不能为空")
 
-    ApiResponse.data = mysql.get_list(config_sql.get_base_config_by_id, (Id))
+    ApiResponse.data = mysql.get_object(config_sql.get_base_config_by_id, (Id))
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     return api_response.response_return(ApiResponse)
 
-# 获取单个基础配置
+# 更新单个配置
 @app.route("/backweb/config/update_base_config_by_id", methods=['POST'])
 def update_base_config_by_id():
     ApiResponse = api_response.ApiResponse()
