@@ -13,12 +13,13 @@ def select_demand_list():
     size = request.form.get("size", type=int, default=10)
     name = request.form.get("name", type=str, default="")
     page = request.form.get("page", type=int, default=1)
+    type = request.form.get("type", type=int, default=1)
     if page <= 0:
         page = 1
     if size <= 0:
         size = 10
-    data = mysql.get_list(demand_service_sql.select_demand_list, ((page - 1) * size, size))
-    listCount = mysql.get_object(demand_service_sql.select_demand_count, ())
+    data = mysql.get_list(demand_service_sql.select_demand_list, (type,(page - 1) * size, size))
+    listCount = mysql.get_object(demand_service_sql.select_demand_count, (type))
 
     if listCount is not None:
         ApiResponse.data = data

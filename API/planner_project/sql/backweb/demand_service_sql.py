@@ -39,8 +39,8 @@ select_demand_list = "SELECT ds.Description ,sa.Name AS ServiceAreaName,st.Name 
                      "JOIN Base_ServiceArea sa on sa.Id=ds.ServiceAreaId " \
                      "JOIN Base_ServiceType st on st.Id=ds.ServiceTypeId " \
                      "JOIN U_UserInfo ui on ds.UserId=ui.UserId " \
-                     " where ds.Type=1 " \
-                     "ORDER BY ds.IsUndertake ASC ,ds.CreateTime DESC " \
+                     " where ds.Type=%s " \
+                     "ORDER BY ds.IsUndertake ASC ,ds.IsTop DESC,ds.CreateTime DESC " \
                      "LIMIT %s,%s"
 # 后台获取需求列表 数量
 select_demand_count = "SELECT count(1) AS count " \
@@ -48,7 +48,7 @@ select_demand_count = "SELECT count(1) AS count " \
                       "JOIN U_User u on ds.UserId=u.Id " \
                       "JOIN Base_ServiceArea sa on sa.Id=ds.ServiceAreaId " \
                       "JOIN Base_ServiceType st on st.Id=ds.ServiceTypeId " \
-                      "JOIN U_UserInfo ui on ds.UserId=ui.UserId where ds.Type=1"
+                      "JOIN U_UserInfo ui on ds.UserId=ui.UserId where ds.Type=%s"
 
 # 修改需求的置顶状态或者失效状态
 update_demand_status = "UPDATE DS_DemandService SET IsTop=%s,IsUndertake=%s,ModifUserID='%s',ModifTime=now() WHERE Id='%s' "
