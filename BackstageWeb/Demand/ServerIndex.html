@@ -105,7 +105,7 @@
                         html += "<td>";
 
                         if (list[i].IsUndertake == 0) {
-                            html += "<a href='javascript:void(0);' onclick='update_status(\"" + list[i].Id + "\",\"" + 2 + "\",\"" + list[i].IsTop + "\")' title='设置失效'>设置失效</a>";
+                            html += "<a href='javascript:void(0);' onclick='update_status(\"" + list[i].Id + "\",\"" + 2 + "\",\"" + list[i].IsTop + "\")' title='设置失效'>设置失效</a><br />";
 
                             if (list[i].IsTop == 0) {
                                 html += "<a href='javascript:void(0);' onclick='update_status(\"" + list[i].Id + "\",\"" + list[i].IsUndertake + "\",\"" + 1 + "\")' title='置顶'>置顶</a>";
