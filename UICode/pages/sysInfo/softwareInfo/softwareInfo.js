@@ -1,18 +1,34 @@
 // pages/sysInfo/softwareInfo/softwareInfo.js
+var common = require('../../../utils/common.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    site:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that=this;
+    common.POST({
+      url: "/basic/get_config",
+      params: { 
+        Key:"site"
+      },
+      success: function (res, s, m) {
+        if (s) {
+          that.setData({
+            site: res.Value
+          })
+        } else {
+        }
+      },
+      fail: function () { }
+    })
   },
 
   /**

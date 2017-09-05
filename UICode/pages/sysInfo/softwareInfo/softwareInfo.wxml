@@ -9,6 +9,6 @@
   </view>
   <view class="clsView">
       <label class="clsHeadTxt">网站</label>
-      <label class="clsLastTxt">https://www.baidu.com</label>
+      <label class="clsLastTxt">{{site}}</label>
   </view>
 </view>
