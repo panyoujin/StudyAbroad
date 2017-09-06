@@ -99,7 +99,7 @@ Page({
       url: "/planner/plannerinfo",
       params: {
         page: 1,
-        size: 1,
+        size: 10,
         plannerId: plannerId
       },
       success: function (res, s, m) {
@@ -107,6 +107,7 @@ Page({
           if (res != null && res.planner != null) {
             res.planner.HeadImage = common.apiUrl + "/" + res.planner.HeadImage
           }
+          console.log(res)
           that.setData({
             isfllow: res.fllow_count,
             data:res,
