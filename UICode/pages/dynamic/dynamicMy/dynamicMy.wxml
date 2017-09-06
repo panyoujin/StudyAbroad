@@ -5,7 +5,7 @@
         <navigator class="clsGroupc clsMoudel" url="/pages/dynamic/dynamicDetails/dynamicDetails?id={{item.Id}}" >
           <view class="serviceInfo">
               <view class="img">
-              <image src="{{apiUrl + item.HeadImage}}"></image>
+              <image mode="aspectFill" src="{{apiUrl + item.HeadImage}}"></image>
             </view>
             <view class="serviceTxtInfo">
               <view class="clsName">姓名：{{item.UserName}}</view>

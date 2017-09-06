@@ -4,7 +4,7 @@
     <view class="clsView">
       <label class="clsTxt">头像</label>
       <view class="clsImg">
-        <image src="{{headImage}}"></image>
+        <image mode="aspectFill" src="{{headImage}}"></image>
       </view>
     </view>
     <view class="clsView">
