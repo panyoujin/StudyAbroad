@@ -1,5 +1,5 @@
 #查询用户是否存在
-select_exists_user = "SELECT 1 FROM `U_User` WHERE Account ='%s'"
+select_exists_user = "SELECT 1 FROM `U_User` WHERE Account ='%s' AND `IsDelete`=FALSE "
 #新增用户表
 insert_user = "INSERT INTO `U_User` (`Id`,`Account`,`Password`,`CreateTime`,`Phone`) VALUES('%s','%s','%s',NOW(),'%s')"
 #新增用户信息表
