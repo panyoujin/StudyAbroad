@@ -96,7 +96,7 @@ select_planner_society = "SELECT s.`Id`,CONCAT(LEFT(s.`TimeStart`,4),CASE WHEN L
 
 
 #资源背景
-select_planner_resour = "SELECT r.`Id`,CONCAT(LEFT(r.`TimeStart`,4),CASE WHEN LENGTH(r.`TimeStart`)>0 THEN '-' ELSE '' END',LEFT(r.`TimeEnd`,4),' ',r.`Description`) AS Content,r.`Sort`,r.`CreateTime`  " \
+select_planner_resour = "SELECT r.`Id`,CONCAT(LEFT(r.`TimeStart`,4),CASE WHEN LENGTH(r.`TimeStart`)>0 THEN '-' ELSE '' END,LEFT(r.`TimeEnd`,4),' ',r.`Description`) AS Content,r.`Sort`,r.`CreateTime`  " \
                                 ",r.`TimeStart`,r.`TimeEnd`,'','',r.`Description` " \
                         "FROM `U_Resour` r " \
                                 "WHERE r.`UserId`='%s'  and `IsDelete`=FALSE " \
