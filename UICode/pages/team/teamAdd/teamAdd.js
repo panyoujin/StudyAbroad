@@ -45,7 +45,8 @@ Page({
       },
       success: function (res, s, m) {
         if (s) {
-          common.Alert('创建成功');
+          //common.Alert('创建成功');
+          wx.navigateBack();
         } else {
           that.setData({
             tip: m
