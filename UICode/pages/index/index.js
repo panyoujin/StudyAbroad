@@ -161,6 +161,11 @@ function init(that){
     },
     success: function (res, s, m) {
       if (s && res.length != 0) {
+        for (var i = 0; i < res.length;i++){
+          if (res[i].Name.length>3){
+            res[i].Name = res[i].Name.substring(0,3)+'..'
+            }
+        }
         that.setData({
           plannerList: res
         })

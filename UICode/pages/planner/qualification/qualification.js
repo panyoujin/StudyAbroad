@@ -9,9 +9,16 @@ Page({
     isfllow: 0,
     isOK: true,
     planner:null,
+    data:null,
     educations: null,
     societys: null,
-    resours: null
+    resours: null,
+    colorStr: ["clsLablesColor01", "clsLablesColor02", "clsLablesColor03",
+      "clsLablesColor04", "clsLablesColor05", "clsLablesColor06", "clsLablesColor07"],
+    imgUrls: [
+      'files/2017-08-25/5f1ced9a-894d-11e7-8d3a-00163e08b8b6.png',
+      "files/2017-08-28/78d06592-8bfe-11e7-8d3a-00163e08b8b6.png",
+      "files/2017-08-28/3ad7f7b4-8bfe-11e7-8d3a-00163e08b8b6.jpg"]
   },
 
   /**
@@ -25,9 +32,14 @@ Page({
       return;
     }
     var isfllow = wx.getStorageSync('isfllow');
+    var ServiceAreaList = wx.getStorageSync('ServiceAreaList');
+    var ServiceTypeList = wx.getStorageSync('ServiceTypeList');
+
     that.setData({ 
       planner: planner,
-      isfllow: isfllow
+      isfllow: isfllow,
+      ServiceAreaList: ServiceAreaList,
+      ServiceTypeList: ServiceTypeList
     })
     common.POST({
       url: "/planner/qualifications",
@@ -53,6 +65,9 @@ Page({
       },
       fail: function () { }
     })
+
+
+
   },
 
   /**

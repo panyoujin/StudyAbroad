@@ -87,3 +87,67 @@
 .clsAutographHead{
   border-bottom:none;
 }
+
+.clsPlannerAreaService{
+  display: flex;
+  flex-direction:column;
+  margin: 12rpx;
+  color: #3e3e3e;
+}
+.clsPlannerArea{
+  font-family: "黑体";
+  display: flex;
+  flex-wrap:wrap;
+  width: 400rpx;
+  line-height: 1.5;
+}
+.clsServiceLable{
+  color:#fff;
+  font-size:26rpx;
+  padding:14rpx;
+  vertical-align:middle;
+  line-height:20rpx;
+  margin-right:6rpx;
+  margin-top: 5rpx;
+}
+.clsPlannerAreaService{
+  display: flex;
+  flex-direction:column;
+  margin: 12rpx;
+  color: #3e3e3e;
+}
+.clsPlannerTxtServer{
+  font-family: "黑体";
+  display: flex;
+  flex-wrap:wrap;
+  line-height: 1.5;
+}
+
+.clsLablesColor01{
+  background-color: #afdd86;
+}
+.clsLablesColor02{
+  background-color: #f6846a;
+}
+.clsLablesColor03{
+  background-color: #67b0d6;
+}
+.clsLablesColor04{
+  background-color: #dddd86;
+}
+.clsLablesColor05{
+  background-color: #e5846a;
+}
+.clsLablesColor06{
+  background-color: #56b0d6;
+}
+.clsLablesColor07{
+  background-color: #67afd6;
+}
+.plannerName{
+  text-align: center;
+  line-height:1.8;
+  font-size:25rpx;
+  margin-top: 15rpx;
+  font-family: "黑体";
+}

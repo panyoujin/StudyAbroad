@@ -2,21 +2,35 @@
   <!--pliannerInfo-->
   <view class="plannerInfo">
     <view class="plannerImg">
-      <image class="clsHead" src="{{planner.HeadImage}}"></image>
+      <image class="clsHead" mode="aspectFill" src="{{planner.HeadImage}}"></image>
+      <view class="plannerName">
+        <text>{{planner.Name}}</text>
+      </view>
+      <button class="clsBtn02" bindtap="btnFollow">{{isfllow==0?'关注':'已关注'}}</button>
     </view>
     <view class="plannerHeadTxt">
-      <view class="plannerBtnMsg">
-        <!-- <image bindtap="btnFollow" src="/img/planner/pFollow02.png" mode="aspectFit"></image> -->
-        <button class="clsBtn02" bindtap="btnFollow">{{isfllow==0?'关注':'已关注'}}</button>
+
+
+      <view class="clsPlannerAreaService">
+        <view>认证区域：</view>
+        <view class="clsPlannerArea">
+          <block wx:for='{{ServiceAreaList}}' wx:key="item" wx:for-index="idx" wx:if="{{idx<6}}">
+            <view class="clsServiceLable {{colorStr[idx]}}">{{item.Name}}</view>
+          </block>
+        </view>
+        <!-- <label>{{planner.AreaName}}</label> -->
       </view>
-      <view class="clsPlannerTxt">
-        <label>认证区域：</label>
-        <label>{{planner.AreaName}}</label>
+
+      <view class="clsPlannerAreaService">
+        <view>认证服务：</view>
+        <view class="clsPlannerTxtServer">
+          <block wx:for='{{ServiceTypeList}}' wx:key="item" wx:for-index="idx" wx:if="{{idx<6}}">
+            <view class="clsServiceLable {{colorStr[idx+1]}}">{{item.Name}}</view>
+          </block>
+        </view>
+        <!-- <label>{{planner.TypeName}}</label> -->
       </view>
-      <view class="clsPlannerTxt">
-        <label>认证服务：</label>
-        <label>{{planner.TypeName}}</label>
-      </view>
+
       <view class="clsPlannerTxt clcComment">
         <label>好评率：</label>
         <label>{{(planner.PraiseCount==0?1:planner.PraiseCount)/(planner.CustomerCount==0?1:planner.CustomerCount)*100}}%</label>
@@ -26,7 +40,7 @@
 
   <view class="clsQualifications">
     <!--学历介绍-->
-    <view class="clsQualification" >
+    <view class="clsQualification">
       <view class="clsEducationTitle">学历介绍</view>
       <block wx:for="{{educations}}" wx:key="item">
         <view class="clsEducation">{{item.Content}}</view>
@@ -62,6 +76,6 @@
 
 </view>
 
-<view class="container" wx:else> 
+<view class="container" wx:else>
   <view class="pageMsg">规划师资历加载失败!</view>
 </view>

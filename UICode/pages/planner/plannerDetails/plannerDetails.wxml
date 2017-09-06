@@ -24,7 +24,7 @@
       <view class="clsPlannerAreaService">
         <view>认证服务：</view>
         <view class="clsPlannerTxtServer">
-            <block wx:for='{{data.ServiceTypeList}}' wx:key="item" wx:for-index="idx" wx:if="{{idx<6}}">
+          <block wx:for='{{data.ServiceTypeList}}' wx:key="item" wx:for-index="idx" wx:if="{{idx<6}}">
             <view class="clsServiceLable {{colorStr[idx+1]}}">{{item.Name}}</view>
           </block>
         </view>
@@ -34,7 +34,7 @@
         <label>好评率：</label>
         <label>{{(data.planner.PraiseCount==0?1:data.planner.PraiseCount)/(data.planner.CustomerCount==0?1:data.planner.CustomerCount)*100}}%</label>
       </view>
-      <view class="clsPlannerTxt clsTeamTxt"  wx:for="{{data.teamlist}}" wx:key="item" wx:if="{{index < 1}}">
+      <view class="clsPlannerTxt clsTeamTxt" wx:for="{{data.teamlist}}" wx:key="item" wx:if="{{index < 1}}">
         <label>团队成员：</label>
       </view>
       <view class="clsPlannerTxt clsTeamMember">
@@ -46,7 +46,7 @@
   </view>
 
   <!--资历-->
-  <navigator class="clsQualifications"  url="/pages/planner/qualification/qualification">
+  <navigator class="clsQualifications" url="/pages/planner/qualification/qualification">
     <view class="clsQualificationTitle">资历介绍</view>
     <block wx:for="{{data.qualifications}}" wx:key="item">
       <view class="clsQualification">{{item.Content}}</view>
@@ -75,9 +75,9 @@
       <block wx:for="{{data.lables}}" wx:key="item">
         <view class="clsLable">{{item.LableName}}</view>
       </block>
-      <view class="clsLable" hidden="{{checkLable}}"  >资深规划师</view>
+      <view class="clsLable" hidden="{{checkLable}}">资深规划师</view>
     </view>
-    
+
     <!--<view class="clsEvaluates">
       <view class="clsEvaluate" wx:for="{{evaluate}}" wx:key="item">
         <view class="clsEvaluateCon">评论：{{item.Content}}</view>
@@ -92,12 +92,12 @@
     <swiper class="swiperView" hidden="{{checkPlannerImgs}}" indicator-dots="false" autoplay="true" interval="{{3000}}" duration="{{500}}">
       <block wx:key="banerImg" wx:for="{{data.albumList}}">
         <swiper-item>
-          <image mode="aspectFit" src="{{apiUrl}}{{item.Url}}"  />
+          <image mode="aspectFit" src="{{apiUrl}}{{item.Url}}" />
         </swiper-item>
       </block>
     </swiper>
   </view>
-  
+
 
   <view class="clsSelect">
     <button bindtap="btnSelect">选择该规划师</button>
@@ -105,14 +105,14 @@
 
 </view>
 
-<view class="container" wx:else> 
+<view class="container" wx:else>
   <view class="pageMsg">该规划师不存在!</view>
 </view>
 
 
 <view class="clsGroupr clsMsg" hidden="{{hidMsgView}}">
   <view class="clsImg" hidden="true">
-    <image src="/img/msg/msg.png" mode="scaleToFill" ></image>
+    <image src="/img/msg/msg.png" mode="scaleToFill"></image>
   </view>
   <input bindinput="bindKeyInputMsg" confirm-type="发送" bindblur="bindblurMsg" focus="{{msgFocus}}" bindconfirm="sendMsg" placeholder="消息内容" value="{{msg}}" />
   <view class="clsBtn" bindtap="sendMsg">发送</view>

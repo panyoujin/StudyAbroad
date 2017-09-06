@@ -13,13 +13,11 @@ Page({
     checkPlannerImgs:true,
     checkLable:true,
     isfllow:0,
-
     userId:"",
     userType:1,
     hidMsgView:true,
     msgFocus:false,
     msg: "",
-
     colorStr: ["clsLablesColor01", "clsLablesColor02", "clsLablesColor03", 
       "clsLablesColor04", "clsLablesColor05", "clsLablesColor06", "clsLablesColor07"],
     imgUrls: [
@@ -117,6 +115,9 @@ Page({
           })
           wx.setStorageSync('planner', res.planner);
           wx.setStorageSync('isfllow', res.fllow_count);
+          wx.setStorageSync('ServiceAreaList', res.ServiceAreaList);
+          wx.setStorageSync('ServiceTypeList', res.ServiceTypeList);
+          wx.setNavigationBarTitle({ title: '规划师 '+res.planner.Name});
         } else {
           common.AlertError(m);
         }
