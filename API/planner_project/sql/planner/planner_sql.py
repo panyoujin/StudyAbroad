@@ -179,7 +179,7 @@ select_user_servicearea_list="SELECT sa.`Name` " \
 #获取指定规划师服务类型列表
 select_user_servicetype_list="SELECT st.`Name` " \
                              "FROM `U_UserInfo` ui " \
-                            "LEFT JOIN `Base_ServiceType` st ON FIND_IN_SET(st.`Id`,ui.`ServiceAreaId`)>0 " \
+                            "LEFT JOIN `Base_ServiceType` st ON FIND_IN_SET(st.`Id`,ui.`ServiceTypeId`)>0 " \
                             "WHERE ui.`UserId`='%s' AND  ui.`IsDelete`=FALSE AND  st.`IsDelete`=FALSE "\
                             "ORDER BY st.`IsTop` DESC ,st.`Sort` DESC,st.`CreateTime` DESC "\
                             "LIMIT %s , %s"
