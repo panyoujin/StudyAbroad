@@ -3,8 +3,9 @@ select_planner_team_member_list = "SELECT tm.UserId,ui.`Name`,ui.`HeadImage`,tm.
                                   "FROM `U_PlannerStatistics` ps " \
                                   "JOIN `T_TeamMember` tm ON ps.`UserId` = tm.`UserId` " \
                                   "JOIN `U_UserInfo` ui ON ui.`UserId`=tm.`UserId` " \
-                                  "WHERE ps.`UserId`='%s' AND tm.`IsDelete`= FALSE  AND ps.`IsDelete`= FALSE  AND ui.`IsDelete`= FALSE " \
-                                  "ORDER BY tm.`Sort` DESC,tm.`CreateTime` DESC "
+                                  "WHERE ps.`UserId`='%s' AND tm.`IsDelete`= FALSE  AND ps.`IsDelete`= FALSE  AND ui.`IsDelete`= FALSE  " \
+                                  "ORDER BY tm.`Sort` DESC,tm.`CreateTime` DESC " \
+                                  "LIMIT %s, %s "
 
 # 新增团队
 insert_team = "INSERT INTO `T_Team` (`Id`,`AdminUserId`,`Name`,`ServiceAreaId`,`ServiceDescription`,`CreateUserID`,`CreateTime`,`ModifUserID`,`ModifTime`) " \
