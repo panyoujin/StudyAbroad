@@ -99,7 +99,7 @@ Page({
       url: "/planner/plannerinfo",
       params: {
         page: 1,
-        size: 6,
+        size: 4,
         plannerId: plannerId
       },
       success: function (res, s, m) {
