@@ -3,7 +3,7 @@
   <view class="searchResult">
     <view class="serviceInfo">
       <view class="img" hidden="{{dynamic.DynamicType==2?true:false}}">
-        <image src="{{dynamic.HeadImage}}"></image>
+        <image mode="aspectFill" src="{{dynamic.HeadImage}}"></image>
       </view>
       <view class="serviceTxtInfo {{dynamic.DynamicType==2?'clsSystemTxtInfo':''}}" >
         <view class="clsName" hidden="{{dynamic.DynamicType==2?true:false}}">姓名：{{dynamic.UserName}}</view>
