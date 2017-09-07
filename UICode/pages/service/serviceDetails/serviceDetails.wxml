@@ -2,7 +2,7 @@
   <!--pliannerInfo-->
   <view class="plannerInfo">
     <view class="plannerImg">
-      <image class="clsHead" src="{{service.HeadImage}}"></image>
+      <image  mode="aspectFill" class="clsHead" src="{{service.HeadImage}}"></image>
     </view>
     <view class="plannerHeadTxt">
       <view class="plannerBtnMsg">

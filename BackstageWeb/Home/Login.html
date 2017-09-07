@@ -93,7 +93,7 @@
         setMaxDigits(131);
         password = hex_md5(password);
 
-        $.ajaxJson("/home/login", {UserName: account, Password: password},
+        $.loginAjax("/home/login", {UserName: account, Password: password},
             function (result) {
                 if (result && result.status == 200) {
                     sessionStorage.removeItem("UToken");

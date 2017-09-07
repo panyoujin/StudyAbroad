@@ -3,7 +3,7 @@
       <block wx:for="{{services}}" wx:key="item">
         <navigator class="serviceInfo" url="/pages/service/serviceDetails/serviceDetails?id={{item.Id}}">
           <view class="img">
-            <image src="{{apiUrl}}{{item.HeadImage}}"></image>
+            <image  mode="aspectFill" src="{{apiUrl}}{{item.HeadImage}}"></image>
           </view>
           <view class="serviceTxtInfo">
             <view class="clsName">姓名：{{item.UserName}}</view>
