@@ -60,6 +60,14 @@
                             <td>
                                 <input id="Phone" maxlength="20" name="Phone" placeholder="输入手机号码" value="" type="text">
                             </td>
+                            <th width="100">用户类型</th>
+                            <td>
+                                <select id="UserType" name="UserType">
+                                    <option value="1">普通用户</option>
+                                    <option value="2">菜鸟规划师</option>
+                                    <option value="3">规划师</option>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <th width="100">姓名</th>
@@ -277,6 +285,7 @@ function loadPlannerInfo(userid){
                     $("#UserId").val(result.data.Id)
                     $("#Account").val(result.data.Account)
                     $("#Phone").val(result.data.Phone)
+                    $("#UserType").val(result.data.UserType)
                     $("#Name").val(result.data.Name)
                     $("#Education").val(result.data.Education)
                     $("#Sex").val(result.data.Sex)

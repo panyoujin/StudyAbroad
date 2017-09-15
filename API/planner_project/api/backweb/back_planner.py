@@ -46,7 +46,6 @@ def back_updateplanner():
     userid = request.form.get("UserId", type=str, default=None)
     account = request.form.get("Account", type=str, default=None)
     phone = request.form.get("Phone", type=str, default=None)
-    password = request.form.get("Password", type=str, default=None)
     userType = request.form.get("UserType", type=int, default=0)
     name = request.form.get("Name", type=str, default=None)
     sex = request.form.get("Sex", type=int, default=0)
@@ -61,7 +60,7 @@ def back_updateplanner():
     ServiceAreaId = request.form.get("ServiceAreaId", type=str, default=None)
     ServiceTypeId = request.form.get("ServiceTypeId", type=str, default=None)
     user = request_back_helper.current_user_mush_login()
-    data_register = back_planner_logic.update_planner(account, phone, password, userType, name, sex, age, education, address,
+    data_register = back_planner_logic.update_planner(account, phone, userType, name, sex, age, education, address,
                                                email, headImage, IDCard, IDCardJust, IDCardBack,ServiceAreaId,ServiceTypeId, userid, user["UserId"])
     if data_register:
         ApiResponse.message = "修改成功"

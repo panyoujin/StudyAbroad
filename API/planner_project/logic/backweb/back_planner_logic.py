@@ -20,7 +20,7 @@ def select_planner_info(userId):
 
 
 #修改用户信息
-def update_planner(account,phone,password,userType,name,sex,age,education,address,email,headImage,IDCard,IDCardJust,IDCardBack,ServiceAreaId,ServiceTypeId,userId,current_user_id):
+def update_planner(account,phone,userType,name,sex,age,education,address,email,headImage,IDCard,IDCardJust,IDCardBack,ServiceAreaId,ServiceTypeId,userId,current_user_id):
     if userId == None or userId=="" or current_user_id == None or current_user_id=="":
         raise custom_error.CustomFlaskErr(status_code=500, message="参数不正确，请刷新后重试")
     if account == None or account=="" or name == None or name=="":
@@ -28,7 +28,7 @@ def update_planner(account,phone,password,userType,name,sex,age,education,addres
     a_userid = mysql.get_object(user_sql.select_userid_by_account, (account))
     if a_userid!=None and a_userid!="" and a_userid["Id"]!=userId:
         raise custom_error.CustomFlaskErr(status_code=500, message="账号已经存在")
-    data_register = mysql.operate_object(planner_sql.update_planner,(account,phone,password,userType,current_user_id,userId
+    data_register = mysql.operate_object(planner_sql.update_planner,(account,phone,userType,current_user_id,userId
                                                                     ,name,sex,age,education,address,email,headImage,IDCard,IDCardJust,IDCardBack,ServiceAreaId,ServiceTypeId,current_user_id,userId))
     #if userType==2 or userType ==3:
     #    mysql.operate_object(upgrade_user_sql.insert_planner_statistics,(userId,current_user_id,current_user_id,userId,userId))

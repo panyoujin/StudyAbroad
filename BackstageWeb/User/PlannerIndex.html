@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>用户列表</title>
+    <title>规划师列表</title>
     <link href="/Resource/Style/ivory.css?v=3" rel="stylesheet" type="text/css" />
     <link href="/Resource/Style/main.css?v=3" rel="stylesheet" type="text/css" />
     <link href="/Resource/Style/FortAwesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -15,7 +15,7 @@
 
 <body>
     <div id="contentheader">
-        <div id="contentheader_title">用户列表</div>
+        <div id="contentheader_title">规划师列表</div>
        
         <div style="clear:both;"></div>
     </div>
@@ -92,7 +92,7 @@
     var queryList = function (index) {
         $("#dataList tbody").html("<tr style='height:" + $("#dataList tbody").height() + "px'><td colspan='" + $("#dataList thead tr th").length + "'><i class='fa fa-spinner fa-pulse'></i></td></tr>");
         var name = $.trim($("#Name").val());
-        $.ajaxJson("/planner/select_planner_list", { page: index, name: name,size:30 },
+        $.ajaxJson("/planner/select_planner_list", { page: index, name: name,size:15 },
             function (result) {
                 if (result && result.data.length > 0) {
                     var list = result.data;
@@ -121,11 +121,11 @@
                 } else {
                     $("#dataList tbody").html("<tr><td colspan='" + $("#dataList thead tr th").length + "'>没有任何数据</td></tr>");
                 }
-                $("#paginationbox").html($.InitPagin(index, 30, result.listCount));
+                $("#paginationbox").html($.InitPagin(index, 15, result.listCount));
             },
 
             function () {
-                $("#paginationbox").html($.InitPagin(index, 30, 0));
+                $("#paginationbox").html($.InitPagin(index, 15, 0));
                 $("#dataList tbody").html("<tr><td colspan='" + $("#dataList thead tr th").length + "'>网络故障，请稍候重试！</td></tr>");
             }
         );
