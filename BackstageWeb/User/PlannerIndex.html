@@ -121,11 +121,11 @@
                 } else {
                     $("#dataList tbody").html("<tr><td colspan='" + $("#dataList thead tr th").length + "'>没有任何数据</td></tr>");
                 }
-                $("#paginationbox").html($.InitPagin(index, 15, result.ListCount));
+                $("#paginationbox").html($.InitPagin(index, 30, result.listCount));
             },
 
             function () {
-                $("#paginationbox").html($.InitPagin(index, 15, 0));
+                $("#paginationbox").html($.InitPagin(index, 30, 0));
                 $("#dataList tbody").html("<tr><td colspan='" + $("#dataList thead tr th").length + "'>网络故障，请稍候重试！</td></tr>");
             }
         );

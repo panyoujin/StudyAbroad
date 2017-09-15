@@ -52,6 +52,16 @@
                 <form id="submitForm">
                     <table border="1" cellpadding="0" cellspacing="0" style="width: 80%;">
                         <tr>
+                            <th width="100">帐号</th>
+                            <td>
+                                <input id="Account" maxlength="50" name="Account" placeholder="输入帐号" value="" type="text">
+                            </td>
+                            <th width="100">手机号码</th>
+                            <td>
+                                <input id="Phone" maxlength="20" name="Phone" placeholder="输入手机号码" value="" type="text">
+                            </td>
+                        </tr>
+                        <tr>
                             <th width="100">姓名</th>
                             <td>
                                 <input id="Name" maxlength="20" name="Name" placeholder="输入姓名" value="" type="text">
@@ -81,6 +91,20 @@
                             <th width="100">邮箱</th>
                             <td>
                                 <input id="Email" maxlength="256" name="Email" placeholder="输入邮箱" value="" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="100">服务区域</th>
+                            <td colspan="5">
+                                <div id="checkbox_sa"></div>
+                                <input id="ServiceAreaId" maxlength="20" name="ServiceAreaId" value="" type="hidden">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="100">服务类型</th>
+                            <td colspan="5">
+                                <div id="checkbox_st"></div>
+                                <input id="ServiceTypeId" maxlength="20" name="ServiceTypeId" value="" type="hidden">
                             </td>
                         </tr>
                     <tr>
@@ -178,7 +202,26 @@
 </html>
 <script type="text/javascript">
     var submitForm = function () {
-        alert( $("#submitForm").length)
+        var sa_ids = ""
+        $.each($("#checkbox_sa [type=checkbox]"),function(i,item){
+            if(item.checked){
+                if(sa_ids.length>0){
+                    sa_ids+=",";
+                }
+                sa_ids+=$(item).val();
+            }
+        })
+        $("#ServiceAreaId").val(sa_ids);
+        var st_ids = ""
+        $.each($("#checkbox_st [type=checkbox]"),function(i,item){
+            if(item.checked){
+                if(st_ids.length>0){
+                    st_ids+=",";
+                }
+                st_ids+=$(item).val();
+            }
+        })
+        $("#ServiceTypeId").val(st_ids);
         /*$("#submitForm").validate({
             rules: {
                 Name: {
@@ -193,16 +236,16 @@
                     number: "年龄必须为数字"
                 }
             }, submitHandler: function () {*/
-                $.ajaxForm("/user/back_updateuserinfo", "submitForm",
+                $.ajaxForm("/user/back_updateplanner", "submitForm",
                 function (result) {
                     if (result.status=="200") {
-                        $.alert("用户修改成功", function () {
+                        $.alert("规划师修改成功", function () {
                             //parent.gotoPage("/User/UserIndex.html");
                             $(window.top.document).contents().find("#pageContent")[0].contentWindow.queryList(1);
                             $.layerClose();
                         });
                     } else {
-                        $.alert("用户修改失败,失败原因："+result.message);
+                        $.alert("规划师修改失败,失败原因："+result.message);
                     }
                 },
                 function () {
@@ -218,10 +261,22 @@ $(function(){
         $("#Import").change(function () { ImportFile("Import","HeadImage","HeadImageView"); });
         $("#ImportIDCardJust").change(function () { ImportFile("ImportIDCardJust","IDCardJust","IDCardJustView"); });
         $("#ImportIDCardBack").change(function () { ImportFile("ImportIDCardBack","IDCardBack","IDCardBackView"); });
+        
+        
+    loadPlannerInfo(userid);
+    loadServiceType();
+    loadServiceArea();
+    loadEducationList(userid);
+    loadSocietyList(userid);
+    loadResourList(userid);
+})
+function loadPlannerInfo(userid){
     $.ajaxJson("/planner/select_planner_info", { userid: userid },
             function (result) {
                 if (!!result.data) {
                     $("#UserId").val(result.data.Id)
+                    $("#Account").val(result.data.Account)
+                    $("#Phone").val(result.data.Phone)
                     $("#Name").val(result.data.Name)
                     $("#Education").val(result.data.Education)
                     $("#Sex").val(result.data.Sex)
@@ -235,6 +290,9 @@ $(function(){
                     $("#IDCardJustView").attr("src", "/" + result.data.IDCardJust)
                     $("#IDCardBack").val(result.data.IDCardBack)
                     $("#IDCardBackView").attr("src", "/" + result.data.IDCardBack)
+                    $("#ServiceAreaId").val(result.data.ServiceAreaId)
+                    $("#ServiceTypeId").val(result.data.ServiceTypeId)
+                    loadCheckList()
                 } else {
                     $.alert(result.message);
                 }
@@ -243,10 +301,52 @@ $(function(){
                     $.alert("网络故障，请稍候重试!");
             }
         );
-    loadEducationList(userid);
-    loadSocietyList(userid);
-    loadResourList(userid);
-})
+}
+function loadServiceType(){
+    $.ajaxJson("/system/select_service_type_list", { page: 1,size:30 },
+        function (result) {
+            if (!!result.data) {
+                var html=""
+                for (var i = 0; i < result.data.length; i++) {
+                    if(i%10==0){
+                        html += "<br />"
+                    }
+                    html += '<label><input id="ServiceTypeId_'+result.data[i].Id+'" type="checkbox" value="'+result.data[i].Id+'" />'+result.data[i].Name+' </label> ';
+                }
+                $("#checkbox_st").html(html);
+                loadCheckList()
+            } else {
+                $.alert(result.message);
+            }
+        },
+        function () {
+                $.alert("网络故障，请稍候重试!");
+        }
+    );
+}
+function loadServiceArea(){
+    $.ajaxJson("/system/select_service_area_list", { page: 1,size:30 },
+            function (result) {
+                if (!!result.data) {
+                    var html=""
+                    for (var i = 0; i < result.data.length; i++) {
+                        if(i%10==0){
+                            html += "<br />"
+                        }
+                        html += '<label><input id="ServiceAreaId_'+result.data[i].Id+'" type="checkbox" value="'+result.data[i].Id+'" />'+result.data[i].Name+' </label> ';
+                    }
+                    $("#checkbox_sa").html(html);
+                    loadCheckList()
+                    
+                } else {
+                    $.alert(result.message);
+                }
+            },
+            function () {
+                    $.alert("网络故障，请稍候重试!");
+            }
+        );
+}
 function loadEducationList(userid){
     $.ajaxJson("/planner/select_education_list", { userid: userid},
         function (result) {
@@ -329,7 +429,29 @@ function loadResourList(userid){
         }
     );
 }
-
+var init_st=false;
+var init_sa=false;
+function loadCheckList(){
+    if($("#ServiceTypeId").val().length>0&&!init_st){
+        if($("#checkbox_st [type=checkbox]").length>0){
+            st = $("#ServiceTypeId").val().split(",");
+            for(var sti =0;sti<st.length;sti++ ){
+                $("#ServiceTypeId_"+st[sti]).attr('checked','true');
+            }
+            init_st=true;
+        }
+    }
+    if($("#ServiceAreaId").val().length>0&&!init_sa){
+        if($("#checkbox_sa [type=checkbox]").length>0){
+            sa = $("#ServiceAreaId").val().split(",");
+            for(var sai =0;sai<sa.length;sai++ ){
+                $("#ServiceAreaId_"+sa[sai]).attr('checked','true');
+            }
+            init_sa=true;
+        }
+        
+    }
+}
 
 function AddEducation() {
     $.Dialog('/User/EducationAdd.html?userid='+userid,'',650,380);
