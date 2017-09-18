@@ -180,7 +180,7 @@ Page({
       pServeiceNum: pServeiceNum,
     })
 
-    //console.log(pServeice.substring(0, pServeice.length-1).substr(1));
+    // console.log(pServeice.substring(0, pServeice.length-1).substr(1));
   },
 
   /**
@@ -239,6 +239,24 @@ Page({
           that.setData({
             services : res
           })
+          for (var key in res) {
+            var pServeice = that.data.pServeice;
+            var pServeiceNum = that.data.pServeiceNum;
+            var value = res[key].Id;
+            if (res[key].Name == "移民" || res[key].Name == "留学"){
+              if (pServeice.indexOf("," + value + ",") >= 0) {
+                pServeice = pServeice.replace(value + ",", "");
+              } else {
+                pServeice = pServeice + "," + value + ",";
+              }
+              pServeice = pServeice.replace(",,", ",");
+              pServeiceNum[key] = true;
+            }
+            that.setData({
+              pServeice: pServeice,
+              pServeiceNum: pServeiceNum,
+            })
+          }
         } else {
           that.setData({
             tip: m

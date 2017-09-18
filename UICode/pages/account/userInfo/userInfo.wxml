@@ -48,7 +48,7 @@
     </navigator>
     <navigator class="clsView" url="/pages/planner/plannerMy/plannerMy" wx:if="{{UserType==1}}">
         <image class="clsIcon" src="/img/account/uMyFollowPlanner.png"></image>
-        <label>我关注的规划师</label>
+        <label>我收藏的规划师</label>
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>
     <navigator class="clsView" url="/pages/account/collection/collection" wx:if="{{UserType==1}}">

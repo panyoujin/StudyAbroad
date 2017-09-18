@@ -8,8 +8,8 @@
       </view>
     </view>
     <view class="clsView">
-      <label class="clsTxt">姓名</label>
-      <input class="clsInput" name="name" placeholder="请输入姓名" value="{{user.Name}}"  />
+      <label class="clsTxt">呢称</label>
+      <input class="clsInput" name="name" placeholder="请输入呢称" value="{{user.Name}}"  />
     </view>
     <view class="clsView">
       <label class="clsTxt">性别</label>

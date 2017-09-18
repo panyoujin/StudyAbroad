@@ -6,7 +6,7 @@
       <view class="plannerName">
         <text>{{planner.Name}}</text>
       </view>
-      <button class="clsBtn02" bindtap="btnFollow">{{isfllow==0?'关注':'已关注'}}</button>
+      <button class="clsBtn02" bindtap="btnFollow">{{isfllow==0?'收藏':'已收藏'}}</button>
     </view>
     <view class="plannerHeadTxt">
 

@@ -16,7 +16,8 @@ Page({
 
     phone:'',
     followUrl:"",
-    vIcon:""
+    vIcon:"",
+    areas:[]
 
   },
   //点击浮动按钮事件
@@ -143,6 +144,11 @@ function init(that){
             case 'vIcon':
               that.setData({
                 vIcon: common.apiUrl + '/' + config[i].Img
+              })
+              break;
+            case 'areas':
+              that.setData({
+                areas: config[i].Value.split(',')
               })
               break;
           }

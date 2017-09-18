@@ -37,7 +37,11 @@ Page({
         checkPlannerId: checkPlannerId,
         addType:1
       })
-    }   
+    }else{
+      wx.setNavigationBarTitle({
+        title: '发布服务',
+      })
+    }
 
     var date = new Date();
     var year = date.getFullYear();
@@ -120,9 +124,9 @@ Page({
       })
       return;
     }
-    if (parseInt(priceStart) >= parseInt(priceEnd)){
+    if (parseInt(priceStart) >= parseInt(priceEnd) || parseInt(priceStart) < 1 || parseInt(priceEnd)>1000000){
       that.setData({
-        tip: '提示：价格范围不正确！'
+        tip: '提示：价格范围应为1-100W！'
       })
       return;
     }

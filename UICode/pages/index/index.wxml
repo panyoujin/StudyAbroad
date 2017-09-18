@@ -68,6 +68,12 @@
     </navigator>
   </view>
 
+  <view class="moduleView moduleView02">
+    <navigator wx:for="{{areas}}" wx:key="item" url="/pages/planner/plannerSearch/plannerSearch?value={{item=='其它'?'':item}}" class="moduleInfo" open-type="navigate" >
+      <label>{{item}}</label>
+    </navigator>
+  </view>
+
   <view class="serviceMap clsMap">
     <image class="clsImg" src="/img/home/map.png"></image>
     <navigator url="/pages/planner/plannerSearch/plannerSearch?value=美国" open-type="navigate" >
@@ -88,7 +94,7 @@
   </view>
 
   <view class="serviceMap servicerLc" bindtap="btnProcess">
-    <image class="clsImg" mode="aspectFit" src="{{followUrl}}"></image>
+    <image class="clsImg" mode="widthFix" src="{{followUrl}}"></image>
   </view>
 
 </view>

@@ -139,14 +139,14 @@ Page({
    */
   btnFollow: function () {
     var that = this;
-    var title ='关注';
-    var content = '确定关注该规划师？';
+    var title ='收藏';
+    var content = '确定收藏该规划师？';
     var msg ="";
     var url = '/planner/follow';
     var isfllow=1;
     if(that.data.isfllow==1){
-      title = '取消关注';
-      content = '确定取消关注该规划师？';
+      title = '取消收藏';
+      content = '确定取消收藏该规划师？';
       url = '/planner/unfollow';
       isfllow=0;
     }

@@ -107,8 +107,8 @@ swiper-item image{
   position: relative;
 }
 .planningImgIcon{
-  top:-10rpx;
-  left:-20rpx;
+  bottom:0rpx;
+  left:20px;
   float:right;
   position:absolute;
   font-size:32rpx;
@@ -144,12 +144,19 @@ swiper-item image{
   margin: 7rpx 20rpx 0;
   padding: 20rpx 3rpx;
   border-radius: 8rpx;
-  height: 310rpx;
-  
+  /* height: 310rpx; */
 }
-.moduleInfo{
+.moduleView .moduleInfo{
   width: 19%;
   height: 140rpx;
+  padding: 5rpx 10rpx;
+  margin: 5rpx 10rpx;
+  display: flex;
+  flex-direction:column;
+}
+.moduleView02 .moduleInfo{
+  width: 19%;
+  height: 46rpx;
   padding: 5rpx 10rpx;
   margin: 5rpx 10rpx;
   display: flex;
@@ -173,13 +180,13 @@ swiper-item image{
 }
 .serviceMap .clsImg{
   width: 100%;
-  height: 350rpx;
+   height: 350rpx; 
 }
 
 .servicerLc{
   background-color: #fff;
   border-radius: 10rpx;
-  padding:20rpx 0;
+  padding:20rpx;
 }
 
 .clsMap{
