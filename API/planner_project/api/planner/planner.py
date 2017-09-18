@@ -72,8 +72,9 @@ def follow_list():
     data = mysql.get_list(planner_sql.select_follw_planner,(user["Id"],(page-1)*size,size))
     if data and len(data):
         for i in range(len(data)):
-            lablesArray=data[i]["Lables"].split(",")
-            data[i]["Lables"]=lablesArray
+            if data[i]["Lables"] is not None:
+                lablesArray=data[i]["Lables"].split(",")
+                data[i]["Lables"]=lablesArray
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = data

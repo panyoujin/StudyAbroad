@@ -39,7 +39,7 @@ select_follw_planner = "SELECT u.`Id`,ui.`Name`,ui.`HeadImage`,ps.`NewEvaluate`,
                        "LEFT JOIN `U_UserInfo` ui ON ui.`UserId`=u.`Id` " \
                        "JOIN `U_PlannerStatistics` ps ON ps.`UserId`=u.`Id` " \
                        "LEFT JOIN `T_Team` t ON ps.`TeamId`=t.`Id` " \
-                       "WHERE f.UserId='%s' AND f.`IsDelete`=FALSE AND u.`IsDelete`=FALSE AND ui.`IsDelete`=FALSE AND ps.`IsDelete`=FALSE AND u.`UserType` IN (2,3) " \
+                       "WHERE f.UserId='%s'  AND u.`IsDelete`=FALSE AND ui.`IsDelete`=FALSE AND ps.`IsDelete`=FALSE AND u.`UserType` IN (2,3) " \
                        "ORDER BY f.FollwTime DESC " \
                        "LIMIT %s , %s "
 
