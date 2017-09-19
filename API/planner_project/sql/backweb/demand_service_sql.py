@@ -2,7 +2,7 @@
 select_demand_undertake_list = "SELECT du.`Id`,du.`DemandId`,du.`UserId`,du.`Status`,du.`CreateUserID`,du.`CreateTime`, " \
                                "if(du.IsUser=1,'是','否') IsUserStr,ds.PriceStart,ds.PriceEnd," \
                                "ds.TimeStart,ds.TimeEnd,sa.Name AS ServiceAreaName,st.Name AS ServiceTypeName, " \
-                               "ds.Description,ui.Name,u.Phone,plannerU.Name AS PlannerName,plannerUser.Phone as plannerPhone " \
+                               "ds.Description,ui.RealName,u.Phone,plannerU.RealName AS PlannerRealName,plannerUser.Phone as plannerPhone " \
                                "FROM `DS_DemandUndertake` du " \
                                "JOIN DS_DemandService ds on ds.Id=du.DemandId " \
                                "join Base_ServiceArea sa on sa.Id=ds.ServiceAreaId " \
@@ -29,7 +29,7 @@ select_demand_undertake_count = "SELECT count(1) as count " \
 # ==============需求管理
 # 后台获取需求列表
 select_demand_list = "SELECT ds.Description ,sa.Name AS ServiceAreaName,st.Name AS ServiceTypeName, " \
-                     "u.Phone,ds.CreateTime,ui.Name,format(ds.PriceStart,2) PriceStart," \
+                     "u.Phone,ds.CreateTime,ui.RealName,format(ds.PriceStart,2) PriceStart," \
                      "format(ds.PriceEnd,2) AS PriceEnd,TimeStart,TimeEnd, " \
                      "if(ds.IsTop=0,'否','是') AS TopStr,if(ui.Sex=1,'男','女') AS Sex,ui.Age,ui.Address, " \
                      "if(ds.IsUndertake=0,'未承接',if(ds.IsUndertake=1,'已承接','已失效')) UndertakeStr," \

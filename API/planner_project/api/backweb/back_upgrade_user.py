@@ -19,8 +19,8 @@ def get_upgrade_apply_list():
     if size <= 0:
         size = 10
     sear = "%" + name + "%"
-    data = mysql.get_list(upgrade_user_sql.get_upgrade_apply_list, (sear, sear, sear, (page - 1) * size, size))
-    listCount = mysql.get_object(upgrade_user_sql.get_upgrade_apply_count, (sear, sear, sear))
+    data = mysql.get_list(upgrade_user_sql.get_upgrade_apply_list, (name, name, sear, (page - 1) * size, size))
+    listCount = mysql.get_object(upgrade_user_sql.get_upgrade_apply_count, (name, name, sear))
 
     ApiResponse.message = "成功"
     ApiResponse.status = 200

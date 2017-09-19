@@ -1,5 +1,5 @@
 #获取团队列表
-select_team_list="SELECT t.`Id`,ui.`Name`,t.`Name` AS TeamName,u.`Phone` ,sa.`Name` AS AreaName,st.`Name` AS TypeName,t.`CreateTime` ,t.`IsTop` "\
+select_team_list="SELECT t.`Id`,ui.`RealName`,t.`Name` AS TeamName,u.`Phone` ,sa.`Name` AS AreaName,st.`Name` AS TypeName,t.`CreateTime` ,t.`IsTop` "\
                     "FROM `T_Team` t  "\
                     "LEFT JOIN `U_UserInfo` ui ON t.`AdminUserId`=ui.`UserId` "\
                     "LEFT JOIN `U_User` u ON u.`Id`=ui.`UserId`  "\
@@ -11,7 +11,7 @@ select_team_list="SELECT t.`Id`,ui.`Name`,t.`Name` AS TeamName,u.`Phone` ,sa.`Na
                     "LIMIT %s , %s "
 
 #获取指定团队成员列表
-select_teamm_ember_list="SELECT tm.`Id`,tm.`TeamId`,tm.`UserId`,ui.`Name`,u.`Phone` ,sa.`Name` AS AreaName,st.`Name` AS TypeName,tm.`CreateTime` "\
+select_teamm_ember_list="SELECT tm.`Id`,tm.`TeamId`,tm.`UserId`,ui.`RealName`,u.`Phone` ,sa.`Name` AS AreaName,st.`Name` AS TypeName,tm.`CreateTime` "\
                     "FROM `T_TeamMember` tm   "\
                     "JOIN `U_UserInfo` ui ON tm.`UserId`=ui.`UserId`  "\
                     "JOIN `U_User` u ON u.`Id`=ui.`UserId`  "\

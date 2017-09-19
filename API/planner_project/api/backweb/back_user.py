@@ -48,6 +48,7 @@ def back_updateuserinfo():
     password = request.form.get("Password", type=str, default=None)
     userType = request.form.get("UserType", type=int, default=0)
     name = request.form.get("Name", type=str, default=None)
+    realName = request.form.get("RealName", type=str, default=None)
     sex = request.form.get("Sex", type=int, default=0)
     age = request.form.get("Age", type=int, default=0)
     education = request.form.get("Education", type=str, default=None)
@@ -58,7 +59,7 @@ def back_updateuserinfo():
     IDCardJust = request.form.get("IDCardJust", type=str, default=None)
     IDCardBack = request.form.get("IDCardBack", type=str, default=None)
     user = request_back_helper.current_user_mush_login()
-    data_register = user_logic.update_userinfo(account, phone, password, userType, name, sex, age, education, address,
+    data_register = user_logic.update_userinfo(account, phone, password, userType, name,realName, sex, age, education, address,
                                                email, headImage, IDCard, IDCardJust, IDCardBack, userid, user["UserId"])
     if data_register:
         ApiResponse.message = "修改成功"
@@ -92,6 +93,7 @@ def back_insert_userinfo():
     password = request.form.get("Password", type=str, default=None)
     userType = request.form.get("UserType", type=int, default=0)
     name = request.form.get("Name", type=str, default=None)
+    realName = request.form.get("RealName", type=str, default=None)
     sex = request.form.get("Sex", type=int, default=0)
     age = request.form.get("Age", type=int, default=0)
     education = request.form.get("Education", type=str, default=None)
@@ -107,7 +109,7 @@ def back_insert_userinfo():
     guid = str(uuid.uuid1())
     password = hashlib.md5(password.encode(encoding='gb2312')).hexdigest()
 
-    data_register = user_logic.insert_userinfo(guid, account, phone, password, userType, name, sex, age, education,
+    data_register = user_logic.insert_userinfo(guid, account, phone, password, userType, name,realName, sex, age, education,
                                                address, email, headImage, IDCard, IDCardJust, IDCardBack,
                                                user["UserId"])
     if data_register:

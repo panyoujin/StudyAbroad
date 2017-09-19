@@ -23,7 +23,7 @@
     </div>
 
     <div id="contentsearch">
-        <label>姓名</label><input type="text" placeholder="输入姓名" id="Name" maxlength="20" />
+        <label>昵称</label><input type="text" placeholder="输入昵称" id="Name" maxlength="20" />
         <button type="button" class="blue" style="float:right;" onclick="search();"><i class="fa fa-search"></i>&nbsp;查询</button>
         <div class="clear"></div>
     </div>
@@ -32,12 +32,13 @@
         <table border="1" cellpadding="0" cellspacing="0" class="table" id="dataList">
             <thead>
                 <tr>
-                    <th width="13%">帐号</th>
-                    <th width="13%">用户类型</th>
-                    <th width="13%">用户名称</th>
-                    <th width="13%">手机</th>
-                    <th width="13%">注册区域</th>
-                    <th width="15%">注册模块</th>
+                    <th width="10%">帐号</th>
+                    <th width="10%">用户类型</th>
+                    <th width="10%">昵称</th>
+                    <th width="10%">真实姓名</th>
+                    <th width="8%">手机</th>
+                    <th width="5%">注册区域</th>
+                    <th width="5%">注册模块</th>
                     <th>注册时间</th>
                     <th width="10%">操作</th>
                 </tr>
@@ -108,6 +109,7 @@
                             html += "<td>未知</td>";
                         }
                         html += "<td>" + (list[i].Name ? list[i].Name : "") + "</td>";
+                        html += "<td>" + (list[i].RealName ? list[i].RealName : "") + "</td>";
                         html += "<td>" + (list[i].Phone ? list[i].Phone : "") + "</td>";
                         html += "<td>" + (list[i].AreaName ? list[i].AreaName : "") + "</td>";
                         html += "<td>" + (list[i].TypeName ? list[i].TypeName : "") + "</td>";
