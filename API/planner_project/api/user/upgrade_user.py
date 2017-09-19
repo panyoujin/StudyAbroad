@@ -14,7 +14,7 @@ def upgrade_user():
         raise custom_error.CustomFlaskErr(status_code=500, message="性别不能为空")
     Name = request.form.get("Name", type=str, default=None)
     if Name == None:
-        raise custom_error.CustomFlaskErr(status_code=500, message="姓名不能为空")
+        raise custom_error.CustomFlaskErr(status_code=500, message="真实姓名不能为空")
     Address = request.form.get("Address", type=str, default=None)
     if Address == None:
         raise custom_error.CustomFlaskErr(status_code=500, message="地址不能为空")

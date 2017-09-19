@@ -6,7 +6,7 @@ update_user_info = "UPDATE `U_UserInfo` SET `Name` = '%s',`Sex` = '%s',`Age` = '
 update_user_headimage = "UPDATE `U_UserInfo` SET `HeadImage` = '%s',`ModifUserID` = '%s',`ModifTime` = NOW() " \
                         "WHERE `UserId` = '%s' ;"
 # 申请是否填写资料，如果没 则保存
-update_user_info_by_upgrade = "UPDATE `U_UserInfo` SET `Name`='%s',`Address`='%s',`IDCard`='%s',`IDCardJust`='%s',`IDCardBack`='%s',`ModifUserID`='%s',ChatNo='%s',`ModifTime`=NOW() " \
+update_user_info_by_upgrade = "UPDATE `U_UserInfo` SET `RealName`='%s',`Address`='%s',`IDCard`='%s',`IDCardJust`='%s',`IDCardBack`='%s',`ModifUserID`='%s',ChatNo='%s',`ModifTime`=NOW() " \
                               "WHERE `UserId` = '%s' "
 
 
