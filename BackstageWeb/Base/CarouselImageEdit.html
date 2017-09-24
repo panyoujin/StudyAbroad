@@ -117,7 +117,7 @@
                     number: "排序必须为数字"
                 }
             }, submitHandler: function () {
-                $.ajaxForm("/base/update_carouselimage", "submitForm",
+                $.ajaxForm("/base/update_carouselimage_info", "submitForm",
                 function (result) {
                     if (result.status=="200") {
                         $.alert("轮播修改成功", function () {
@@ -140,7 +140,7 @@ $(function(){
 
         $("#Import").change(function () { ImportFile(); });
         var imageId = getUrlParam("id");
-    $.ajaxJson("/base/select_carouselimage", { imageId: imageId },
+    $.ajaxJson("/base/select_carouselimage_info", { imageId: imageId },
             function (result) {
                 if (!!result.data) {
                     $("#imageId").val(result.data.Id)

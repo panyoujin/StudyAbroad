@@ -4,7 +4,7 @@ select_top_planner = "SELECT ui.`UserId`,ui.`Name`,ui.`HeadImage`,ps.`Sort`,ps.`
                        "LEFT JOIN `U_UserInfo` ui ON ui.`UserId`=u.`Id` " \
                        "JOIN `U_PlannerStatistics` ps ON ps.`UserId`=u.`Id` " \
                        "WHERE u.`IsDelete`=FALSE AND ui.`IsDelete`=FALSE AND ps.`IsDelete`=FALSE AND u.`UserType` IN (2,3) " \
-                       "ORDER BY ps.Sort DESC ,u.`Id` " \
+                       "ORDER BY ps.BigV DESC ,NULLIF(ps.ModifTime,ps.CreateTime) DESC,u.`Id` " \
                        "LIMIT 0, %s "
 
 #查询规划师

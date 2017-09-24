@@ -9,7 +9,7 @@ select_planner_list="SELECT u.`Id`,ui.`Name`,ui.`RealName`,ui.`HeadImage`,u.`Pho
                     "LEFT JOIN `T_Team` t ON ps.`TeamId`=t.`Id`   " \
                     "WHERE u.`UserType` IN (2,3) AND u.`IsDelete` = FALSE AND ui.`IsDelete` = FALSE AND ps.`IsDelete` = FALSE    " \
                      "AND ('%s' IS NULL OR '%s'='' OR ui.`Name` LIKE '%s') " \
-                     "ORDER BY ps.`IsTop` DESC,ps.Sort DESC ,u.`Id` " \
+                     "ORDER BY ps.`BigV` DESC,NULLIF(ps.ModifTime,ps.CreateTime) DESC ,u.`Id` " \
                     "LIMIT %s , %s "
 #获取用户数量
 select_planner_list_count="SELECT  COUNT(0) AS listCount FROM `U_User` u   " \

@@ -241,9 +241,9 @@ function EditCarouselImage(id) {
 
 function DeleteCarouselImage(id) {
     $.confirm("是否确认删除?", function () {
-        $.ajaxJson("/base/delete_CarouselImage", { id: id },
+        $.ajaxJson("/base/delete_carouselimage", { imageId: id },
         function (result) {
-            loadCarouselImageList(userid);
+            loadCarouselImageList();
         },
         function (result) {
             $.alert("删除失败!");
