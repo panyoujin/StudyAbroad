@@ -18,6 +18,9 @@ def insert_evaluate():
     content = request.form.get("content", type=str, default=None)
     if content == None or content=="":
         raise custom_error.CustomFlaskErr(status_code=500, message="请输入评价内容")
+    total = order_logic.select_order_is_evaluate(orderId);
+    if total!=None and total["total"]>0:
+        raise custom_error.CustomFlaskErr(status_code=500, message="请不要重复评论")
 
     lable = request.form.get("lable", type=str, default=None)
     sort = request.form.get("sort", type=int, default=0)

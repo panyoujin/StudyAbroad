@@ -99,6 +99,7 @@ insert_order = "INSERT INTO `StudyAbroad`.`DS_Order` (`Id`,`PlannerUserId`,`User
 
 select_order_createtime = "SELECT IF(DATE_ADD(`CreateTime`,INTERVAL 30 SECOND) >= NOW(),0,1) AS isCanInsert FROM `DS_Order` WHERE `CreateUserID`='%s' ORDER BY `CreateTime` DESC LIMIT 1"
 
+select_order_is_evaluate="SELECT count(0) as total FROM U_Evaluate WHERE OrderId='%s';"
 # 新增评论
 insert_evaluate = "UPDATE `DS_Order` SET `EvaluateContent`='%s',`Synthesis`='%s',`Quality`='%s',`Efficiency`='%s',`Lable`='%s' " \
                   "WHERE `Id`='%s' AND `UserId`='%s' AND `OrderStatus`=7 " \
@@ -111,7 +112,13 @@ insert_evaluate = "UPDATE `DS_Order` SET `EvaluateContent`='%s',`Synthesis`='%s'
                   "INSERT INTO `U_Evaluate` ( `OrderId`, `UserId`, `Content`, `Sort`, `IsFirst`, `CreateUserID`, `CreateTime`, `ModifUserID`, `ModifTime`, `IsDelete`) " \
                   "SELECT  '%s', '%s', '%s', '%s',1, '%s', NOW(), '%s', NOW(), FALSE " \
                   "FROM DS_Order WHERE `Id`='%s' AND `UserId`='%s' AND `OrderStatus`=7 " \
-                  "AND NOT EXISTS (SELECT Id FROM U_Evaluate WHERE OrderId='%s') LIMIT 0,1;"
+                  "AND NOT EXISTS (SELECT Id FROM U_Evaluate WHERE OrderId='%s') LIMIT 0,1;" \
+                  "UPDATE `U_UserLable` ul,`DS_Order` o  SET ul.`Count`=ul.`Count`+1,ul.`ModifUserID`='%s',ul.`ModifTime`=NOW() " \
+                  "WHERE  o.`Id`='%s' AND o.`UserId`='%s' AND o.`OrderStatus`=7 AND ul.`UserId`=o.`PlannerUserId` AND ul.`LableName`='%s' ; " \
+                  "INSERT INTO `U_UserLable` (`UserId`,`LableName`,`Count`,`Sort`,`CreateUserID`,`CreateTime`,`ModifUserID` ,`ModifTime`,`IsDelete`) " \
+                  "SELECT o.`PlannerUserId`,'%s',1,0,'%s',NOW(),'%s',NOW(),FALSE FROM `DS_Order` o " \
+                  "WHERE  o.`Id`='%s' AND o.`UserId`='%s' AND o.`OrderStatus`=7  " \
+                  "AND NOT EXISTS (SELECT Id FROM U_UserLable WHERE UserId=o.PlannerUserId AND LableName='%s') LIMIT 0,1;"
 # 回复评论
 replay_evaluate = "INSERT INTO `U_Evaluate` ( `OrderId`, `UserId`, `Content`, `Sort`, `IsFirst`, `CreateUserID`, `CreateTime`, `ModifUserID`, `ModifTime`, `IsDelete`) " \
                   "SELECT  '%s', '%s', '%s', '%s',0, '%s', NOW(), '%s', NOW(), FALSE " \

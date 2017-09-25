@@ -27,8 +27,10 @@ def select_order_evaluate(orderId,page,size):
     if size<=0:
         size=10
     return mysql.get_list(order_sql.select_order_evaluate,(orderId,(page-1)*size,size))
-
-
+#获取指定订单的评论数量
+def select_order_is_evaluate(orderId):
+    total = mysql.get_object(order_sql.select_order_is_evaluate, (orderId))
+    return  total
 #新增评论
 def insert_evaluate(orderId,userId,content,sort,synthesis,quality,efficiency,lable):
     if synthesis<=0 or synthesis>5:
@@ -37,9 +39,11 @@ def insert_evaluate(orderId,userId,content,sort,synthesis,quality,efficiency,lab
         quality=5
     if efficiency<=0 or efficiency>5:
         efficiency=5
+
     return mysql.operate_object(order_sql.insert_evaluate,(content,synthesis,quality,efficiency,lable,orderId,userId,orderId
                                                            ,orderId,userId,orderId
-                                                           ,orderId,userId,content,sort,userId,userId,orderId,userId,orderId))
+                                                           ,orderId,userId,content,sort,userId,userId,orderId,userId,orderId
+                                                           , userId,orderId, userId, lable,lable, userId, userId,orderId, userId, lable))
 
 
 #回复评论
