@@ -35,7 +35,7 @@ Page({
       success: function (res, s, m) {
         if (s) {
           var msgs = that.data.msgs;
-          msgs.splice(0, 0, { UserId: '', Content: that.data.msg, Type: '1', Name: that.data.userName })
+          msgs.splice(msgs.length, 0, { UserId: '', Content: that.data.msg, Type: '1', Name: that.data.userName })
           that.setData({
             msgs: msgs,
             msg: ''

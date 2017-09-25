@@ -33,9 +33,9 @@ def insert_chat():
     system_content=user_info["Name"]+":发来一条消息";
     mysql.operate_object(chat_notice_sql.insert_chat_content,(guid,SendUserId,Content,SendUserId))
     existx_chat=mysql.get_object(chat_notice_sql.existx_chat_notice,(guid,ReceiveUserId))
-    print(existx_chat)
+
     if existx_chat["total"]==0:
-        mysql.operate_object(chat_notice_sql.insert_chat_notice, (ReceiveUserId, system_content, SendUserId,guid,ReceiveUserId))
+        mysql.operate_object(chat_notice_sql.insert_chat_notice, (ReceiveUserId, system_content, SendUserId,guid,SendUserId))
     else:
         mysql.operate_object(chat_notice_sql.update_chat_notice,(system_content,SendUserId,guid,ReceiveUserId))
 
