@@ -231,11 +231,11 @@ function loadCarouselImageList(){
 }
 
 function AddCarouselImage() {
-    $.Dialog('/Base/CarouselImageAdd.html','',650,400);
+    $.Dialog('/Base/CarouselImageAdd.html?r=12','',650,400);
     //parent.gotoPage('/User/UserEdit.html?id=' + id);
 }
 function EditCarouselImage(id) {
-    $.Dialog('/Base/CarouselImageEdit.html?id=' + id,'',650,400);
+    $.Dialog('/Base/CarouselImageEdit.html?r=12&id=' + id,'',650,400);
     //parent.gotoPage('/User/UserEdit.html?id=' + id);
 }
 
