@@ -368,11 +368,7 @@ function uploadFileImg(that, url, num) {
           })
         }
       } else {
-        wx.showToast({
-          title: '上传图片失败！',
-          image: '/img/error.png',
-          duration: 1500
-        })
+        AlertError('上传图片失败！')
       }
     },
     fail: function () { }

@@ -60,16 +60,9 @@ Page({
             msgFocus: false,
             msg:''
           })
-          wx.showToast({
-            title: "发送成功",
-            duration: 1500
-          })
+          common.Alert("发送成功");
         } else {
-          wx.showToast({
-            title: '发送消息失败！' + m,
-            image: '/img/error.png',
-            duration: 1500
-          })
+          common.AlertError('发送消息失败！');
         }
       },
       fail: function () { }
@@ -107,7 +100,7 @@ Page({
           if (res != null && res.planner != null) {
             res.planner.HeadImage = common.apiUrl + "/" + res.planner.HeadImage
           }
-          console.log(res)
+          //console.log(res)
           that.setData({
             isfllow: res.fllow_count,
             data:res,
@@ -181,6 +174,18 @@ Page({
   btnSelect: function(){
     wx.navigateTo({
       url: "/pages/service/ContractDataAdd/ContractDataAdd?plannerId=" + this.data.plannerId,
+    })
+  },
+
+  clickImg:function(e){
+    var items = this.data.data.albumList
+    var imgs = [];
+    for(var index in items){
+      imgs[index] = common.apiUrl + "/" + items[index].Url;
+    }
+    wx.previewImage({
+      current: e.currentTarget.dataset.url, // 当前显示图片的http链接
+      urls: imgs // 需要预览的图片http链接列表
     })
   },
 

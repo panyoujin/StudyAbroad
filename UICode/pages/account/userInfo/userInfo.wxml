@@ -46,13 +46,13 @@
       <label>已发布需求</label>
       <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>
-    <navigator class="clsView" url="/pages/planner/plannerMy/plannerMy" wx:if="{{UserType==1}}">
-        <image class="clsIcon" src="/img/account/uMyFollowPlanner.png"></image>
+    <navigator class="clsView" url="/pages/planner/plannerMy/plannerMy">
+        <image class="clsIcon" src="/img/account/uMyFollowPlanner.png" wx:if="{{UserType==1}}"></image>
         <label>我收藏的规划师</label>
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>
-    <navigator class="clsView" url="/pages/account/collection/collection" wx:if="{{UserType==1}}">
-        <image class="clsIcon" src="/img/account/uMyCollect.png"></image>
+    <navigator class="clsView" url="/pages/account/collection/collection">
+        <image class="clsIcon" src="/img/account/uMyCollect.png" wx:if="{{UserType==1}}"></image>
         <label>我的收藏</label>
         <image class="clsEnterIcon" src="/img/account/uEnter.png"></image>
     </navigator>

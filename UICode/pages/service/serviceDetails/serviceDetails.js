@@ -57,13 +57,13 @@ Page({
   btnFollow: function () {
     var that = this;
     var title = '收藏';
-    var content = '确定收藏该需求/服务';
+    var content = '确定收藏';
     var msg = "";
     var url = '/demand_service/collection';
     var isfllow = 1;
     if (that.data.service.isfllow == 1) {
       title = '取消收藏';
-      content = '确定取消收藏该需求/服务？';
+      content = '确定取消收藏';
       url = '/demand_service/uncollection';
       isfllow = 0;
     }
@@ -156,7 +156,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    var desc = '分享需求/服务：' + this.data.planner.Name;
+    var desc = '分享：' + this.data.planner.Name;
     var url = '/pages/service/serviceDetails/serviceDetails?id=' + this.data.service.Id;
     return {
       title: common.programName,
@@ -182,10 +182,7 @@ function addDertake (that){
     },
     success: function (res, s, m) {
       if (s) {
-        wx.showToast({
-          title: '承接需求成功',
-          duration: 1500
-        })
+        Alert('承接需求成功')
       } else {
         common.AlertError(m);
       }

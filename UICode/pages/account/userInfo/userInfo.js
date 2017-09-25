@@ -66,27 +66,16 @@ Page({
                       myInfo: myinfo
                     })
                     wx.setStorageSync('userLoginInfo', myinfo)
-                    wx.showToast({
-                      title: '修改成功！',
-                      duration: 1000
-                    })
+                    Alert('修改成功！')
                   } else {
-                    wx.showToast({
-                      title: '修改失败！' + m,
-                      image: '/img/error.png',
-                      duration: 1500
-                    })
+                    AlertError('修改失败！')
                   }
                 },
                 fail: function () { }
               })
             }
             else{
-              wx.showToast({
-                title: '修改失败！' + m,
-                image: '/img/error.png',
-                duration: 1500
-              })
+              AlertError('修改失败！')
             }
           },
           fail: function () { }

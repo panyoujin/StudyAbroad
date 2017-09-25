@@ -37,11 +37,7 @@ Page({
             dynamic: data,
           })
         } else {
-          wx.showToast({
-            title: '获取动态详情失败',
-            image: '/img/error.png',
-            duration: 1500
-          })
+          AlertError('获取详情失败')
         }
       },
       fail: function () { }

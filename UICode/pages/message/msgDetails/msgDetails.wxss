@@ -4,7 +4,7 @@
   font-size: 30rpx;
   background-color: #fff;
   border-radius: 8rpx;
-  padding-bottom: 500rpx;
+  padding: 20rpx 0;
 }
 
 .clsHead{
@@ -16,6 +16,5 @@
 }
 
 .clsContent{
-  width: 100%;
   padding: 20rpx;
 }

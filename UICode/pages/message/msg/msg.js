@@ -35,7 +35,8 @@ Page({
       success: function (res, s, m) {
         if (s) {
           var msgs = that.data.msgs;
-          msgs.splice(msgs.length, 0, { UserId: '', Content: that.data.msg, Type: '1', Name: that.data.userName })
+          //msgs.splice(msgs.length, 0, { UserId: '', Content: that.data.msg, Type: '1', Name: that.data.userName })
+          msgs = msgs.concat([{ UserId: '', Content: that.data.msg, Type: '1', Name: that.data.userName }]),
           that.setData({
             msgs: msgs,
             msg: ''
@@ -113,20 +114,22 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.setData({
-      msgs: [],
-      isSearch: true,
-      searchCount: 1,
-      pageIndex: 1
-    })
-    searchList(this, 1);
+    // this.setData({
+    //   msgs: [],
+    //   isSearch: true,
+    //   searchCount: 1,
+    //   pageIndex: 1
+    // })
+    // searchList(this, 1);
+
+    searchList(this, 2)
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    searchList(this, 2)
+    //searchList(this, 2)
   },
 
   /**
@@ -149,8 +152,9 @@ function searchList(that, sType = 1) {
     },
     success: function (res, s, m) {
       if (s && res.length != 0) {
+        
         that.setData({
-          msgs: that.data.msgs.concat(res),
+          msgs: res.concat(that.data.msgs),
           pageIndex: that.data.pageIndex + 1,
           searchCount: res.length
         })

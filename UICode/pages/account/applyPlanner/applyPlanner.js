@@ -41,11 +41,7 @@ Page({
             schedule: res
           })
         } else {
-          wx.showToast({
-              title: '获取信息失败',
-              image: '/img/error.png',
-              duration: 1500
-            })
+          AlertError('获取信息失败')
         }
       },
       fail: function () { }

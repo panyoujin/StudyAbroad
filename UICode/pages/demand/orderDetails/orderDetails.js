@@ -42,11 +42,7 @@ Page({
             headImage: common.apiUrl + "/" + res.HeadImage
           })
         } else {
-          wx.showToast({
-            title: m,
-            image: '/img/error.png',
-            duration: 1500
-          })
+          AlertError(m)
         }
       },
       fail: function () { }
@@ -98,11 +94,7 @@ Page({
             headImage: common.apiUrl + "/" + res.HeadImage
           })
         } else {
-          wx.showToast({
-            title: m,
-            image: '/img/error.png',
-            duration: 1500
-          })
+          AlertError(m)
         }
       },
       fail: function () { }

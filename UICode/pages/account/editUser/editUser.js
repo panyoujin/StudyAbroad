@@ -49,11 +49,7 @@ Page({
               pSex:res.Sex
             })
           } else {
-            wx.showToast({
-              title: '获取个人基本信息失败！',
-              image: '/img/error.png',
-              duration: 1500
-            })
+            AlertError('获取信息失败！')
           }
         },
         fail: function () { }
@@ -99,17 +95,10 @@ Page({
       },
       success: function (res, s, m) {
         if (s) {
-          wx.showToast({
-            title: '修改成功！',
-            duration: 1500
-          })
+          Alert('修改成功！')
           wx.navigateBack({})
         } else {
-          wx.showToast({
-            title: '修改失败！',
-            image: '/img/error.png',
-            duration: 1500
-          })
+          AlertError('修改失败！')
         }
         that.setData({
           btnTxt: "保存修改",

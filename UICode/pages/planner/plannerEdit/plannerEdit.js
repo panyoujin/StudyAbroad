@@ -158,11 +158,7 @@ Page({
             resours: res.resour,
           })
         } else {
-          wx.showToast({
-            title: '获取数据失败！' + m,
-            image: '/img/error.png',
-            duration: 1500
-          })
+          AlertError('获取数据失败！')
         }
       },
       fail: function () { }

@@ -54,16 +54,9 @@ Page({
           that.setData({
             msg: ''
           })
-          wx.showToast({
-            title: "发送成功",
-            duration: 1500
-          })
+          Alert('发送成功')
         } else {
-          wx.showToast({
-            title: m,
-            image: '/img/error.png',
-            duration: 1500
-          })
+          AlertError(m)
         }
       },
       fail: function () { }

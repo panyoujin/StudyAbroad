@@ -37,6 +37,7 @@
 .clsNewEvaluate{
   color: #727272;
   font-size:26rpx;
+  width: 90%;
 }
 .clsLables{
   display: flex;
@@ -68,4 +69,5 @@
   color:#727272;
   font-size:26rpx;
   text-align: right;
+  width: 80rpx;
 }

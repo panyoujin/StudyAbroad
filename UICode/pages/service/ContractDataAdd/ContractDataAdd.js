@@ -80,11 +80,7 @@ Page({
             })
           }
         } else {
-          wx.showToast({
-            title: '获取个人基本信息失败！',
-            image: '/img/error.png',
-            duration: 1500
-          })
+          AlertError('获取信息失败！')
         }
       },
       fail: function () { }
@@ -245,11 +241,7 @@ function uploadFileImg(that,url,num){
           })
         }
       }else{
-        wx.showToast({
-          title: '上传图片失败！',
-          image: '/img/error.png',
-          duration: 1500
-        })
+        AlertError('上传图片失败！')
       }
     },
     fail: function () { }

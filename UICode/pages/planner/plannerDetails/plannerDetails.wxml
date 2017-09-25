@@ -92,7 +92,7 @@
     <swiper class="swiperView" hidden="{{checkPlannerImgs}}" indicator-dots="false" autoplay="true" interval="{{3000}}" duration="{{500}}">
       <block wx:key="banerImg" wx:for="{{data.albumList}}">
         <swiper-item>
-          <image mode="aspectFit" src="{{apiUrl}}{{item.Url}}" />
+          <image mode="aspectFit" bindtap="clickImg" data-url="{{apiUrl}}{{item.Url}}" src="{{apiUrl}}{{item.Url}}" />
         </swiper-item>
       </block>
     </swiper>

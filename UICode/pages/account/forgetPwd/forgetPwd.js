@@ -170,11 +170,7 @@ Page({
 
 function validatemobile(mobile) {
   if (mobile.length == 0) {
-    wx.showToast({
-      title: '请输入手机号！',
-      image: '/img/error.png',
-      duration: 1500
-    })
+    AlertError('请输入手机号！')
     return false;
   }
   // if (mobile.length != 11) {
@@ -187,11 +183,7 @@ function validatemobile(mobile) {
   // }
   var myreg = /^1[0-9]{10}$/;
   if (!myreg.test(mobile)) {
-    wx.showToast({
-      title: '手机号有误！',
-      image: '/img/error.png',
-      duration: 1500
-    })
+    AlertError('手机号有误！')
     return false;
   }
   return true;

@@ -162,10 +162,6 @@ Page({
           wx.redirectTo({
             url: url,
           })
-          // wx.showToast({
-          //   title: '发布成功！',
-          //   duration: 1500
-          // })
         } else {
           that.setData({
             tip: m,
