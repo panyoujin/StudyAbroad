@@ -121,8 +121,8 @@
                 function (result) {
                     if (result.status=="200") {
                         $.alert("轮播修改成功", function () {
-                            //parent.gotoPage("/System/LableIndex.html");
-                            $(window.top.document).contents().find("#pageContent")[0].contentWindow.queryList(1);
+                            //parent.gotoPage("/Base/BaseInfo.html");
+                            $(window.top.document).contents().find("#pageContent")[0].contentWindow.loadCarouselImageList();
                             $.layerClose();
                         });
                     } else {

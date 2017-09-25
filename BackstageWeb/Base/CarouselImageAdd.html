@@ -122,8 +122,8 @@
                     function (result) {
                         if (result.status == "200") {
                             $.alert("新增成功", function () {
-                                parent.gotoPage("/Base/BaseInfo.html");
-//                                $(window.top.document).contents().find("#pageContent")[0].contentWindow.queryList(1);
+                                //parent.gotoPage("/Base/BaseInfo.html");
+                                $(window.top.document).contents().find("#pageContent")[0].contentWindow.loadCarouselImageList();
                                 $.layerClose();
                             });
                         } else {
