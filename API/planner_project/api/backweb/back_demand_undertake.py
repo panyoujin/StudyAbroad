@@ -41,7 +41,7 @@ def generate_order():
     myundertake = mysql.get_object(demand_service_sql.select_my_demand_undertake, (Id))
     if myundertake is None:
         raise custom_error.CustomFlaskErr(status_code=500, message="没有找到该承接的需求")
-    guid = str(uuid.uuid1())#生成订单id
+    guid = str(uuid.uuid1())  # 生成订单id
     sql_list = [demand_service_sql.insert_order,
                 demand_service_sql.insert_order_flowing,
                 demand_service_sql.update_demand_undertake_success,
@@ -56,19 +56,26 @@ def generate_order():
                  (userId, myundertake["DemandId"], Id),
                  (myundertake["DemandId"])]
     resultInt = mysql.operate__many(sql_list, args_list)
-    print(resultInt)
+
     if resultInt > 0:
-        #给发送需求的用户 发出通知
-        mysql.operate_object(system_notice_sql.insert_system_notice,(myundertake["UserId"], "您的需求已被承接.", userId))
-        #给承接用户需求的 规划师发出通知
+        miaoshu = ''
+        if len(myundertake["Description"]) > 10:
+            miaoshu = myundertake["Description"][0:10] + '...'
+        else:
+            miaoshu = myundertake["Description"]
+        # 给发送需求的用户 发出通知
+
+        mysql.operate_object(system_notice_sql.insert_system_notice,
+                             (myundertake["UserId"], "您的需求 " + miaoshu + " 已被承接.", userId))
+        # 给承接用户需求的 规划师发出通知
         notice_list = mysql.get_list(demand_service_sql.select_demand_undertake_notice_list, (myundertake["DemandId"]))
         for item in notice_list:
             if item["Id"] == Id:
                 mysql.operate_object(system_notice_sql.insert_system_notice,
-                                     (item["UserId"], "您申请的承接 "+myundertake["Name"]+" 的需求通过.", userId))
+                                     (item["UserId"], "您申请的承接 " + myundertake["Name"] + " 的需求通过.", userId))
             else:
                 mysql.operate_object(system_notice_sql.insert_system_notice,
-                                     (item["UserId"], "您申请的承接 "+myundertake["Name"]+" 的需求不通过.", userId))
+                                     (item["UserId"], "您申请的承接 " + myundertake["Name"] + " 的需求不通过.", userId))
     ApiResponse = api_response.ApiResponse()
     ApiResponse.message = "成功"
     ApiResponse.status = 200
