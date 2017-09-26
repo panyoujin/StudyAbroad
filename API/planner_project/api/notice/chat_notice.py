@@ -30,7 +30,7 @@ def insert_chat():
         guid=chat_main["Id"]
         mysql.operate_object(chat_notice_sql.update_chat_main,(Content,SendUserId,guid))
 
-    system_content=user_info["Name"]+":发来一条消息";
+    system_content=user_info["Name"]+" 发来一条消息";
     mysql.operate_object(chat_notice_sql.insert_chat_content,(guid,SendUserId,Content,SendUserId))
     existx_chat=mysql.get_object(chat_notice_sql.existx_chat_notice,(guid,ReceiveUserId))
 

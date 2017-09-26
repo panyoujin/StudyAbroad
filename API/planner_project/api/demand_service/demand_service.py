@@ -36,7 +36,7 @@ def demand_service_info():
     collection_count=0
     undertake_count=0
     user = request_helper.current_user()
-    if user != None and any(user) and data!=None and user["Id"]!=data["UserId"]:
+    if user != None and any(user) and data!=None: #and user["Id"]!=data["UserId"]:
         obj= demand_service_logic.get_whether_collection(user["Id"],demandServiceId)
         collection_count=obj["collection_count"]
         data_exists = mysql.get_object(demand_undertake.select_exists_demand_service, (demandServiceId, user["Id"]))
