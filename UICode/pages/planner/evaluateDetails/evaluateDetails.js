@@ -54,9 +54,9 @@ Page({
           that.setData({
             msg: ''
           })
-          Alert('发送成功')
+          common.Alert('发送成功')
         } else {
-          AlertError(m)
+          common.AlertError(m)
         }
       },
       fail: function () { }

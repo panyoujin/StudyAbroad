@@ -10,7 +10,9 @@
     </view>
     <view class="plannerHeadTxt">
       <view class="plannerBtnMsg">
-        <image src="/img/planner/pMsg.png" bindtap="showSendMsg" hidden="{{userType!=1&&userId!=plannerId?false:true}}">发送消息</image>
+        <navigator url="/pages/message/msg/msg?receiveUserId={{plannerId}}&id=">
+          <image src="/img/planner/pMsg.png" hidden="{{userType!=1&&userId!=plannerId?false:true}}">发送消息</image>
+        </navigator>
       </view>
       <view class="clsPlannerAreaService">
         <view>认证区域：</view>

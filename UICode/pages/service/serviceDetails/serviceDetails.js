@@ -182,7 +182,7 @@ function addDertake (that){
     },
     success: function (res, s, m) {
       if (s) {
-        Alert('承接需求成功')
+        common.Alert('承接需求成功')
       } else {
         common.AlertError(m);
       }

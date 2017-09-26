@@ -47,7 +47,7 @@ Page({
       },
       success: function (res, s, m) {
         if (s) {
-          Alert('更新成功！')
+          common.Alert('更新成功！')
           that.setData({
             orderStatus: that.data.orderStatus+1,
           })

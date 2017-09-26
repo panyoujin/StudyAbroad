@@ -368,7 +368,7 @@ function uploadFileImg(that, url, num) {
           })
         }
       } else {
-        AlertError('上传图片失败！')
+        common.AlertError('上传图片失败！')
       }
     },
     fail: function () { }

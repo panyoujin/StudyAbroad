@@ -158,7 +158,7 @@ Page({
             resours: res.resour,
           })
         } else {
-          AlertError('获取数据失败！')
+          common.AlertError('获取数据失败！')
         }
       },
       fail: function () { }

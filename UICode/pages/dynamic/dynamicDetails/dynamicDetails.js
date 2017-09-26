@@ -37,7 +37,7 @@ Page({
             dynamic: data,
           })
         } else {
-          AlertError('获取详情失败')
+          common.AlertError('获取详情失败')
         }
       },
       fail: function () { }

@@ -177,7 +177,7 @@ Page({
 
 function validatemobile(mobile) {
   if (mobile.length == 0) {
-    AlertError('请输入手机号！')
+    common.AlertError('请输入手机号！')
     return false;
   }
   // if (mobile.length != 11) {
@@ -190,7 +190,7 @@ function validatemobile(mobile) {
   // }
   var myreg = /^1[0-9]{10}$/;
   if (!myreg.test(mobile)) {
-    AlertError('手机号有误！')
+    common.AlertError('手机号有误！')
     return false;
   }
   return true;

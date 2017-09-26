@@ -56,7 +56,7 @@ Page({
     var that = this;
     var receiveUserId = options.receiveUserId;
     var id = options.id;
-    if (id == "undefined" ||　receiveUserId == "undefined") {
+    if (receiveUserId == "undefined") {
       return;
     }
     that.setData({
@@ -70,14 +70,17 @@ Page({
       })
     ]
 
-    common.POST({
-      url: "/notice/update_system_notice_status",
-      params: {
-        Id: id
-      },
-      success: function (res, s, m) { },
-      fail: function () { }
-    })
+    if (id != "" && id != "undefined" && id != undefined ) {
+      common.POST({
+        url: "/notice/update_system_notice_status",
+        params: {
+          Id: id
+        },
+        success: function (res, s, m) { },
+        fail: function () { }
+      })
+    }
+    
 
     searchList(that, 1)
   },

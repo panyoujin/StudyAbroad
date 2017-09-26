@@ -42,7 +42,7 @@ Page({
             headImage: common.apiUrl + "/" + res.HeadImage
           })
         } else {
-          AlertError(m)
+          common.AlertError(m)
         }
       },
       fail: function () { }
@@ -94,7 +94,7 @@ Page({
             headImage: common.apiUrl + "/" + res.HeadImage
           })
         } else {
-          AlertError(m)
+          common.AlertError(m)
         }
       },
       fail: function () { }

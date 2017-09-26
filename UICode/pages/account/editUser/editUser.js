@@ -49,7 +49,7 @@ Page({
               pSex:res.Sex
             })
           } else {
-            AlertError('获取信息失败！')
+            common.AlertError('获取信息失败！')
           }
         },
         fail: function () { }
@@ -95,10 +95,10 @@ Page({
       },
       success: function (res, s, m) {
         if (s) {
-          Alert('修改成功！')
+          common.Alert('修改成功！')
           wx.navigateBack({})
         } else {
-          AlertError('修改失败！')
+          common.AlertError('修改失败！')
         }
         that.setData({
           btnTxt: "保存修改",

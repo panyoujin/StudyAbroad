@@ -66,16 +66,16 @@ Page({
                       myInfo: myinfo
                     })
                     wx.setStorageSync('userLoginInfo', myinfo)
-                    Alert('修改成功！')
+                    common.Alert('修改成功！')
                   } else {
-                    AlertError('修改失败！')
+                    common.AlertError('修改失败！')
                   }
                 },
                 fail: function () { }
               })
             }
             else{
-              AlertError('修改失败！')
+              common.AlertError('修改失败！')
             }
           },
           fail: function () { }

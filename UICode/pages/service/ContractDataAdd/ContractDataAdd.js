@@ -80,7 +80,7 @@ Page({
             })
           }
         } else {
-          AlertError('获取信息失败！')
+          common.AlertError('获取信息失败！')
         }
       },
       fail: function () { }
@@ -241,7 +241,7 @@ function uploadFileImg(that,url,num){
           })
         }
       }else{
-        AlertError('上传图片失败！')
+        common.AlertError('上传图片失败！')
       }
     },
     fail: function () { }

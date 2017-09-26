@@ -41,7 +41,7 @@ Page({
             schedule: res
           })
         } else {
-          AlertError('获取信息失败')
+          common.AlertError('获取信息失败')
         }
       },
       fail: function () { }
