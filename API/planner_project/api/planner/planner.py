@@ -172,7 +172,7 @@ def complete_order_list():
         page = 1
     if size <= 0:
         size = 10
-    complete_order_list = order_logic.select_planner_complete_order_list(request_helper.current_user_mush_login()["Id"],page,size)
+    complete_order_list = order_logic.select_planner_complete_order_list(plannerId,page,size)
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     ApiResponse.data = complete_order_list
