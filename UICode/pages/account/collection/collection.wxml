@@ -24,7 +24,7 @@
         </navigator>
       </block>
       <view wx:if="{{searchCount==0}}">
-        <view class="pageMsg">没有关注的规划师</view>
+        <view class="pageMsg">没有收藏记录</view>
       </view>
       <view wx:if="{{searchCount==-1}}">
         <view class="pageMsg">没有更多的数据</view>

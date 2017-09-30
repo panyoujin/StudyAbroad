@@ -122,6 +122,22 @@ Page({
 })
 
 function init(that){
+  //获取首页banner
+  common.POST({
+    url: "/home/carousel",
+    params: {
+      count: 5
+    },
+    success: function (res, s, m) {
+      if (s && res.length != 0) {
+        that.setData({
+          imgUrls: res
+        })
+      } else {
+      }
+    },
+    fail: function () { }
+  })
   //配置信息
   common.POST({
     url: "/basic/get_config_all",
