@@ -66,7 +66,8 @@ def generate_order():
         # 给发送需求的用户 发出通知
 
         mysql.operate_object(system_notice_sql.insert_system_notice,
-                             (myundertake["UserId"], "您的需求 " + miaoshu + " 已被承接.", userId))
+                             (myundertake["UserId"], "您的需求 " + miaoshu + " 已被 " + myundertake["planerName"] + " 承接.",
+                              userId))
         # 给承接用户需求的 规划师发出通知
         notice_list = mysql.get_list(demand_service_sql.select_demand_undertake_notice_list, (myundertake["DemandId"]))
         for item in notice_list:
