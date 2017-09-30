@@ -1,6 +1,6 @@
 
 #查询动态列表
-select_dynamic_list ="SELECT d.`Id`,d.`UserId`,d.`Content`,d.`ImageUrl`,d.`DynamicType`,d.`ReadCount`,d.`CreateUserID`,d.`CreateTime`,ui.`Name` AS UserName,ui.`HeadImage`,d.`IsTop` " \
+select_dynamic_list ="SELECT d.`Id`,d.`UserId`,d.`Sort`,d.`Content`,d.`ImageUrl`,d.`DynamicType`,d.`ReadCount`,d.`CreateUserID`,d.`CreateTime`,ui.`Name` AS UserName,ui.`HeadImage`,d.`IsTop` " \
                         "FROM `MS_Dynamic` d " \
                         "LEFT JOIN `U_UserInfo` ui ON ui.`UserId`=d.`UserId` " \
                         "WHERE d.`IsDelete` =FALSE " \
@@ -9,13 +9,13 @@ select_dynamic_list ="SELECT d.`Id`,d.`UserId`,d.`Content`,d.`ImageUrl`,d.`Dynam
                         "LIMIT %s, %s "
 
 #动态信息
-select_dynamic_info="SELECT d.`Id`,d.`UserId`,d.`Content`,d.`ImageUrl`,d.`DynamicType`,d.`ReadCount`,d.`CreateUserID`,d.`CreateTime`,ui.`Name` AS UserName,ui.`HeadImage` " \
+select_dynamic_info="SELECT d.`Id`,d.`UserId`,d.`Sort`,d.`IsTop`,d.`Content`,d.`ImageUrl`,d.`DynamicType`,d.`ReadCount`,d.`CreateUserID`,d.`CreateTime`,ui.`Name` AS UserName,ui.`HeadImage` " \
                     "FROM `MS_Dynamic` d " \
                     "LEFT JOIN `U_UserInfo` ui ON ui.`UserId`=d.`UserId` " \
                     "WHERE d.`IsDelete` =FALSE AND d.`Id` = %s ;"
 
 #修改信息
-update_dynamic_info="UPDATE `MS_Dynamic` SET `Content`='%s',`ImageUrl`='%s',`IsTop`='%s',`Sort`='%s',ReadCount='%s',`ModifUserID`='%s',`ModifTime`=NOW()"\
+update_dynamic_info="UPDATE `MS_Dynamic` SET `Content`='%s',`ImageUrl`='%s',`IsTop`='%s',`Sort`=%s,ReadCount='%s',`ModifUserID`='%s',`ModifTime`=NOW() "\
                          "WHERE `Id`='%s' "
 
 
