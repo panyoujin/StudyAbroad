@@ -35,6 +35,7 @@
             <th width="13%">手机</th>
             <th width="13%">认证区域</th>
             <th width="15%">认证模块</th>
+            <th width="5%">排序</th>
             <th>是否置顶</th>
             <th>是否大V</th>
             <th>注册时间</th>
@@ -107,6 +108,7 @@
                         html += "<td>" + (list[i].Phone ? list[i].Phone : "") + "</td>";
                         html += "<td>" + (list[i].AreaName ? list[i].AreaName : "") + "</td>";
                         html += "<td>" + (list[i].TypeName ? list[i].TypeName : "") + "</td>";
+                        html += "<td>" + list[i].Sort + "</td>";
                         html += "<td>" + (list[i].IsTop == 1 ? "是" : "否") + "</td>";
                         html += "<td>" + (list[i].BigV == 1 ? "是" : "否") + "</td>";
                         html += "<td>" + (list[i].CreateTime ? list[i].CreateTime : "") + "</td>";

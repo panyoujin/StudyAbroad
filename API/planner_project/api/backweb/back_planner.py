@@ -60,9 +60,10 @@ def back_updateplanner():
     IDCardBack = request.form.get("IDCardBack", type=str, default=None)
     ServiceAreaId = request.form.get("ServiceAreaId", type=str, default=None)
     ServiceTypeId = request.form.get("ServiceTypeId", type=str, default=None)
+    Sort = request.form.get("Sort", type=int, default=0)
     user = request_back_helper.current_user_mush_login()
     data_register = back_planner_logic.update_planner(account, phone, userType, name,realName, sex, age, education, address,
-                                               email, headImage, IDCard, IDCardJust, IDCardBack,ServiceAreaId,ServiceTypeId, userid, user["UserId"])
+                                               email, headImage, IDCard, IDCardJust, IDCardBack,ServiceAreaId,ServiceTypeId, userid,Sort, user["UserId"])
     if data_register:
         ApiResponse.message = "修改成功"
         ApiResponse.status = 200
