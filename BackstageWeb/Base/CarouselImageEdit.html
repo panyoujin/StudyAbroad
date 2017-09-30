@@ -56,12 +56,12 @@
                             <input id="imageId"  name="imageId" value="" type="hidden">
                         </td>
                     </tr>
-                    <tr>
-                        <th width="100">跳转URL</th>
-                        <td colspan="3">
-                            <input id="ClickUrl" maxlength="256" name="ClickUrl" placeholder="输入跳转URL" value="" type="text">
-                        </td>
-                    </tr>
+                    <!--<tr>-->
+                        <!--<th width="100">跳转URL</th>-->
+                        <!--<td colspan="3">-->
+                            <!--<input id="ClickUrl" maxlength="256" name="ClickUrl" placeholder="输入跳转URL" value="" type="text">-->
+                        <!--</td>-->
+                    <!--</tr>-->
                     <tr>
                         <th width="100">url</th>
                         <td colspan="3">
@@ -145,7 +145,7 @@ $(function(){
                 if (!!result.data) {
                     $("#imageId").val(result.data.Id)
                     $("#Description").val(result.data.Description)
-                    $("#ClickUrl").val(result.data.ClickUrl)
+//                    $("#ClickUrl").val(result.data.ClickUrl)
                     $("#ImageUrl").val(result.data.ImageUrl)
                     $("#IsTop").val(result.data.IsTop)
                     $("#Sort").val(result.data.Sort)

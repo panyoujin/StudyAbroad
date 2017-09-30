@@ -5,18 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orderId:"",
+    orderId: "",
 
-    synthesisNum:0,
-    qualityNum:0,
-    efficiencyNum:0,
+    synthesisNum: 0,
+    qualityNum: 0,
+    efficiencyNum: 0,
     synthesisTxt: "很好",
     qualityTxt: "很好",
     efficiencyTxt: "很好",
 
-    lables:["好美啊","悲催的","有效率","服务态度好","very good","非常的差"],
+    lables: ["好美啊", "悲催的", "有效率", "服务态度好", "very good", "非常的差"],
 
-    lable:"",
+    lable: "",
     lableNum: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
   },
 
@@ -26,30 +26,30 @@ Page({
   onLoad: function (options) {
     var that = this;
     var id = options.id;
-    if (id == undefined){
-      id =""
+    if (id == undefined) {
+      id = ""
     }
-    that.setData({ 
+    that.setData({
       orderId: id
     })
     common.POST({
       url: "/planner/get_lable_list",
       params: {
-        page:1,
-        size:15,
+        page: 1,
+        size: 15,
       },
       success: function (res, s, m) {
         if (s) {
           that.setData({
             lables: res
           })
-        } else {}
+        } else { }
       },
       fail: function () { }
     })
   },
 
-  btnSubmit:function(e){
+  btnSubmit: function (e) {
     var that = this;
     var content = e.detail.value.content;
     var synthesisNum = that.data.synthesisNum;
@@ -58,13 +58,13 @@ Page({
     var lable = that.data.lable;
     var orderId = that.data.orderId;
 
-    if (orderId == null || orderId.length == 0){
+    if (orderId == null || orderId.length == 0) {
       that.setData({
         tip: '提示：评价订单不存在！'
       })
       return;
     }
-    if (content.length == 0 || synthesisNum == 0 || qualityNum == 0 || efficiencyNum == 0 ) {
+    if (content.length == 0 || synthesisNum == 0 || qualityNum == 0 || efficiencyNum == 0) {
       that.setData({
         tip: '提示：综合评价、质量评价、效率评价、评价内容不能为空！'
       })
@@ -87,7 +87,7 @@ Page({
       success: function (res, s, m) {
         if (s) {
           common.Alert("评价成功！");
-          setTimeout(function(){wx.navigateBack()},2000);
+          setTimeout(function () { wx.navigateBack() }, 2000);
         } else {
           that.setData({
             tip: m
@@ -99,12 +99,12 @@ Page({
 
   },
 
-  btnEvaluateNum: function (e){
+  btnEvaluateNum: function (e) {
     var that = this;
     var key = e.currentTarget.dataset.key;
     var value = e.currentTarget.dataset.value;
-    var txt ="很好";
-    switch(value){
+    var txt = "很好";
+    switch (value) {
       case 1:
         txt = "很差"
         break;
@@ -120,41 +120,47 @@ Page({
     }
 
 
-    if (key == "synthesis"){
+    if (key == "synthesis") {
       that.setData({
         synthesisNum: value,
-        synthesisTxt:txt,
+        synthesisTxt: txt,
 
       })
-    } else if (key == "quality"){
+    } else if (key == "quality") {
       that.setData({
         qualityNum: value,
         qualityTxt: txt,
       })
-    }else{
+    } else {
       that.setData({
         efficiencyNum: value,
-        efficiencyTxt:txt,
+        efficiencyTxt: txt,
       })
     }
   },
 
 
-  btnLable: function(e){
+  btnLable: function (e) {
     var that = this;
     var value = e.currentTarget.dataset.value;
     var key = e.currentTarget.dataset.key;
 
+    // console.log(value + '_' + key);
     var lable = that.data.lable;
-    if(lable.indexOf("," + value + ",") >= 0){
-      lable = lable.replace(value + ",", "");
-    }else{
-      lable = lable + "," + value + ","
-    }
-    lable = lable.replace(",,", ",");
+    lable = value;
+    // lable = lable.replace(",,", ",");
+    // var lable = that.data.lable;
+    // if(lable.indexOf("," + value + ",") >= 0){
+    //   lable = lable.replace(value + ",", "");
+    // }else{
+    //   lable = lable + "," + value + ","
+    // }
+    // lable = lable.replace(",,", ",");
 
-    var lableNum = that.data.lableNum;
-    lableNum[key] = !lableNum[key];
+    // var lableNum = that.data.lableNum;
+    // lableNum[key] = !lableNum[key];
+    var lableNum = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+    lableNum[key] = true;
 
     that.setData({
       lable: lable,
@@ -165,48 +171,48 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

@@ -109,11 +109,11 @@
             <table border="1" cellpadding="0" cellspacing="0" class="table" id="CarouselImageList">
                 <thead>
                     <tr>
-                        <th width="20%">轮播图详情url</th>    
-                        <th width="20%">轮播图描述</th>
-                        <th width="20%">轮播图图片</th>
-                        <th width="10%">是否置顶</th>
-                        <th width="10%">操作</th>
+                        <!--<th width="20%">轮播图详情url</th>    -->
+                        <th width="20%" style="text-align: center;">轮播图描述</th>
+                        <th width="20%" style="text-align: center;">轮播图图片</th>
+                        <th width="10%" style="text-align: center;">是否置顶</th>
+                        <th width="10%" style="text-align: center;">操作</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -208,7 +208,7 @@ function loadCarouselImageList(){
                 var html = "";
                 for (var i = 0; i < result.data.length; i++) {
                     html += "<tr " + (i % 2 == 1 ? "class='even'" : "") + ">";
-                    html += "<td>" + (list[i].ClickUrl ? list[i].ClickUrl : "") + "</td>";
+//                    html += "<td>" + (list[i].ClickUrl ? list[i].ClickUrl : "") + "</td>";
                     html += "<td>" + (list[i].Description ? list[i].Description : "") + "</td>";
                     html += "<td>" + (list[i].ImageUrl ? list[i].ImageUrl : "") + "</td>";
                     html += "<td>" + (list[i].IsTop==1 ? "是" : "否") + "</td>";
