@@ -7,17 +7,17 @@ Page({
   data: {
     imgUrls: [],
     userInfo: {},
-    plannerList:{},
+    plannerList: {},
     hidden: true,
     xuqiu: true,
     fuwu: true,
     dongtai: true,
-    apiUrl: common.apiUrl+'/',
+    apiUrl: common.apiUrl + '/',
 
-    phone:'',
-    followUrl:"",
-    vIcon:"",
-    areas:[]
+    phone: '',
+    followUrl: "",
+    vIcon: "",
+    areas: []
 
   },
   //点击浮动按钮事件
@@ -49,7 +49,7 @@ Page({
     });
   },
   //点击后隐藏
-  btnHideWindows:function(){
+  btnHideWindows: function () {
     this.setData({
       hidden: true
     });
@@ -62,7 +62,7 @@ Page({
 
   //banner图跳转
   swipclick: function (e) {
-    
+
   },
   //查询
   searchBtnClick: function () {
@@ -78,7 +78,7 @@ Page({
   },
 
   //流程
-  btnProcess:function(){
+  btnProcess: function () {
     wx.navigateTo({
       url: '/pages/sysInfo/process/process?img=' + this.data.followUrl,
     })
@@ -104,7 +104,7 @@ Page({
     common.POST({
       url: "/home/carousel",
       params: {
-        count:5
+        count: 5
       },
       success: function (res, s, m) {
         if (s && res.length != 0) {
@@ -121,7 +121,7 @@ Page({
 
 })
 
-function init(that){
+function init(that) {
   //获取首页banner
   common.POST({
     url: "/home/carousel",
@@ -183,10 +183,28 @@ function init(that){
     },
     success: function (res, s, m) {
       if (s && res.length != 0) {
-        for (var i = 0; i < res.length;i++){
-          if (res[i].Name.length>3){
-            res[i].Name = res[i].Name.substring(0,2)+'..'
+
+        for (var i = 0; i < res.length; i++) {
+          var len = 0;
+          var strLen = 0;
+
+          //判断名称中英文长度，然后截断
+          for (var k = 0; k < res[i].Name.length; k++) {
+            strLen++;
+            var c = res[i].Name.charCodeAt(k);
+            if ((c >= 0x0001 && c <= 0x007e) || (0xff60 <= c && c <= 0xff9f)) {
+              len++;
             }
+            else {
+              len += 2;
+            }
+            if (len > 12) {
+              res[i].Name = res[i].Name.substring(0, strLen - 1) + '..'
+              break;
+            }
+          }
+
+
         }
         that.setData({
           plannerList: res

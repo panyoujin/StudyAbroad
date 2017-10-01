@@ -22,73 +22,76 @@
     </view>
   </view>
   <include src="../../template/floatContent.wxml" />
-   <view class="planningPerson">
+  <view class="planningPerson">
     <block wx:for="{{plannerList}}" wx:key="item">
-    <navigator url="/pages/planner/plannerDetails/plannerDetails?id={{item.UserId}}"  class="planningPersonInfo" open-type="navigate" >
-        <image class="planningPersonImg" src="{{apiUrl}}{{item.HeadImage}}" mode="aspectFill"></image>
-        <!-- <view class="planningImgIcon">V</view> -->
-        <image class="planningImgIcon" src="{{vIcon}}" hidden="{{item.BigV=='1'?false:true}}" ></image>
-        <label>{{item.Name}}</label>
+      <navigator url="/pages/planner/plannerDetails/plannerDetails?id={{item.UserId}}" class="planningPersonInfo" open-type="navigate">
+        <view class="plannerPic">
+          <image class="planningPersonImg" src="{{apiUrl}}{{item.HeadImage}}" mode="aspectFill"></image>
+          <!-- <view class="planningImgIcon">V</view> -->
+          <image class="planningImgIcon" src="{{vIcon}}" hidden="{{item.BigV=='1'?false:true}}"></image>
+        </view>
+        <view class="plannerName"><label>{{item.Name}}</label></view>
+
       </navigator>
     </block>
-  </view> 
+  </view>
 
   <view class="moduleView">
-    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=留学" class="moduleInfo" open-type="navigate" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=留学" class="moduleInfo" open-type="navigate">
       <image class="moduleImg" src="/img/home/studyAbroad.png" mode="aspectFill"></image>
       <label>留学</label>
     </navigator>
-    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=语言培训" class="moduleInfo" open-type="navigate" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=语言培训" class="moduleInfo" open-type="navigate">
       <image class="moduleImg" src="/img/home/train.png" mode="aspectFill"></image>
       <label>语言培训</label>
     </navigator>
-    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=实习工作" class="moduleInfo" open-type="navigate" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=实习工作" class="moduleInfo" open-type="navigate">
       <image class="moduleImg" src="/img/home/work.png" mode="aspectFill"></image>
       <label>实习工作</label>
     </navigator>
-    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=定制旅游" class="moduleInfo" open-type="navigate" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=定制旅游" class="moduleInfo" open-type="navigate">
       <image class="moduleImg" src="/img/home/tourism.png" mode="aspectFill"></image>
       <label>定制旅游</label>
     </navigator>
-    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=签证移民" class="moduleInfo" open-type="navigate" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=签证移民" class="moduleInfo" open-type="navigate">
       <image class="moduleImg" src="/img/home/emigrant.png" mode="aspectFill"></image>
       <label>签证移民</label>
     </navigator>
-    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=生活辅助" class="moduleInfo" open-type="navigate" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=生活辅助" class="moduleInfo" open-type="navigate">
       <image class="moduleImg" src="/img/home/life.png" mode="aspectFill"></image>
       <label>生活辅助</label>
     </navigator>
-    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=游学指引" class="moduleInfo" open-type="navigate" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=游学指引" class="moduleInfo" open-type="navigate">
       <image class="moduleImg" src="/img/home/point.png" mode="aspectFill"></image>
       <label>游学指引</label>
     </navigator>
-    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=" class="moduleInfo" open-type="navigate" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=" class="moduleInfo" open-type="navigate">
       <image class="moduleImg" src="/img/home/other.png" mode="aspectFill"></image>
       <label>其他</label>
     </navigator>
   </view>
 
   <view class="moduleView moduleView02">
-    <navigator wx:for="{{areas}}" wx:key="item" url="/pages/planner/plannerSearch/plannerSearch?value={{item=='其它'?'':item}}" class="moduleInfo" open-type="navigate" >
+    <navigator wx:for="{{areas}}" wx:key="item" url="/pages/planner/plannerSearch/plannerSearch?value={{item=='其它'?'':item}}" class="moduleInfo" open-type="navigate">
       <label>{{item}}</label>
     </navigator>
   </view>
 
   <view class="serviceMap clsMap">
     <image class="clsImg" src="/img/home/map.png"></image>
-    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=美国" open-type="navigate" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=美国" open-type="navigate">
       <image class="imgMapDw clsDw01" src="/img/home/dw.png"></image>
     </navigator>
-    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=加拿大" open-type="navigate" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=加拿大" open-type="navigate">
       <image class="imgMapDw clsDw02" src="/img/home/dw.png"></image>
     </navigator>
-    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=英国" open-type="navigate" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=英国" open-type="navigate">
       <image class="imgMapDw clsDw03" src="/img/home/dw.png"></image>
     </navigator>
-    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=德国" open-type="navigate" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=德国" open-type="navigate">
       <image class="imgMapDw clsDw04" src="/img/home/dw.png"></image>
     </navigator>
-    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=土耳其" open-type="navigate" >
+    <navigator url="/pages/planner/plannerSearch/plannerSearch?value=土耳其" open-type="navigate">
       <image class="imgMapDw clsDw05" src="/img/home/dw.png"></image>
     </navigator>
   </view>
