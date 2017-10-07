@@ -100,7 +100,7 @@
                     sessionStorage["UToken"] = result.data.token;
                     sessionStorage.removeItem("user");
                     sessionStorage["user"] = result.data.user;
-                    window.location.href = "/";
+                    window.location.href = "/Index.html";
                 } else {
                     $("#loginInfo").show().html(result.message);
                     //refreshValidateCode();
