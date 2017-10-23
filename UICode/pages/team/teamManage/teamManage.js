@@ -71,7 +71,8 @@ Page({
           common.Alert("修改成功");
           myTeam.TeamName = that.data.editTeamName;
           that.setData({
-            myTeam: myTeam
+            myTeam: myTeam,
+            editTeamHidden:true
           })
         } else {
           common.AlertError(m);
