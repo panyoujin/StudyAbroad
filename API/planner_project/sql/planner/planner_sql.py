@@ -26,7 +26,7 @@ select_search_planner = "SELECT * FROM ( SELECT u.`Id`,ui.Sort,ui.`Name`,ui.`Hea
 planner_follw="INSERT INTO `U_Follow` (`UserId`,`FollwUserId`,`FollwTime`) VALUES('%s','%s',NOW()) " \
                           " ON DUPLICATE KEY UPDATE FollwTime=NOW() "
 #取消关注
-planner_unfollw="DELETE  FROM `StudyAbroad`.`U_Follow`  WHERE `UserId`='%s' AND `FollwUserId` = '%s' "
+planner_unfollw="DELETE  FROM `U_Follow`  WHERE `UserId`='%s' AND `FollwUserId` = '%s' "
 
 #是否已关注
 get_whether_follw="SELECT COUNT(0) as fllow_count FROM U_Follow WHERE FollwUserId='%s' AND UserId='%s';"

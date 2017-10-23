@@ -21,7 +21,7 @@ delete_sys_role="DELETE FROM `Sys_P_UserRole`  WHERE `RoleId`=%s;" \
 
 #菜单列表
 select_permission_list="SELECT `PermissionId`,`ParentId`,`Name`,`MenuName`,`Url`,`Orderby`,`Visible`,`Remark`,`Icon` "\
-                        "FROM`StudyAbroad`.`Sys_P_Permission` ORDER BY Orderby DESC"
+                        "FROM `Sys_P_Permission` ORDER BY Orderby DESC"
 
 
 #角色菜单ID列表

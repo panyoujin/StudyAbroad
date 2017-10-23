@@ -23,7 +23,7 @@ def insert_chat():
         raise custom_error.CustomFlaskErr(status_code=500, message="该用户不存在")
     chat_main = mysql.get_object(chat_notice_sql.select_chat_main, (SendUserId,ReceiveUserId,ReceiveUserId,SendUserId))
     guid = str(uuid.uuid1())
-    print(chat_main)
+
     if chat_main == None :
         mysql.operate_object(chat_notice_sql.insert_chat_main,(guid,SendUserId,ReceiveUserId,Content,SendUserId))
     else:

@@ -92,7 +92,7 @@ select_order_evaluate = "SELECT e.`OrderId`,e.`Content`,e.`CreateTime` ,ui.`Name
                         "ORDER BY e.`CreateTime` " \
                         "LIMIT %s , %s"
 
-insert_order = "INSERT INTO `StudyAbroad`.`DS_Order` (`Id`,`PlannerUserId`,`UserId`,`ContractId`,`Type`,`DemandServiceId`,`DemandServiceDescription`," \
+insert_order = "INSERT INTO `DS_Order` (`Id`,`PlannerUserId`,`UserId`,`ContractId`,`Type`,`DemandServiceId`,`DemandServiceDescription`," \
                "`Description`,`ServiceAreaId`,`ServiceTypeId`,`PriceStart`,`PriceEnd`,`TimeStart`,`TimeEnd`," \
                "`CreateUserID`,`CreateTime`) " \
                "VALUES (UUID(),'%s','%s',%s,%s,'%s','%s','%s',%s,%s,%s,%s,'%s','%s','%s',NOW())"

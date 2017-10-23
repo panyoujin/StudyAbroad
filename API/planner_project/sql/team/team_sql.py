@@ -59,7 +59,7 @@ select_team_adminid = "SELECT `Id`,`AdminUserId`,`Name` FROM `T_Team` WHERE `Id`
 select_team_notice_list = "SELECT tn.`Id`,tn.`UserId`,tn.`TeamId`,tn.`Message`,tn.`Status`,tn.`IsAdmin`,tn.`CreateTime`,t.`Name`,tn.`UnionId`  FROM T_TeamNotice tn JOIN `T_Team` t ON tn.`TeamId`=t.`Id`  WHERE UserId='%s'  ORDER BY IFNULL(tn.`ModifTime`,tn.`CreateTime`)  DESC LIMIT %s , %s "
 
 # 新增团队通知
-insert_team_notice = "INSERT INTO `StudyAbroad`.`T_TeamNotice` (`Id`,`UserId`,`TeamId`,`Message`,`Status`,`IsAdmin`,`CreateUserID`,`CreateTime`,`UnionId` ) VALUES(UUID(),'%s','%s','%s',%s,%s,'%s',NOW(),'%s')"
+insert_team_notice = "INSERT INTO `T_TeamNotice` (`Id`,`UserId`,`TeamId`,`Message`,`Status`,`IsAdmin`,`CreateUserID`,`CreateTime`,`UnionId` ) VALUES(UUID(),'%s','%s','%s',%s,%s,'%s',NOW(),'%s')"
 # 新增团队成员
 insert_team_member = "INSERT INTO `T_TeamMember` (`TeamId`,`UserId`,`CreateUserID`,`CreateTime`) VALUES ('%s','%s','%s',NOW())"
 # 修改管理员的团队通知
