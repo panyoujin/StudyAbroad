@@ -86,3 +86,7 @@ disband_team2 = "UPDATE  `T_TeamMember` SET `ModifUserID`='%s',`ModifTime`=NOW()
 update_planner_statistics_null = "UPDATE U_PlannerStatistics SET TeamId=NULL,`ModifTime`=NOW() WHERE UserId='%s'"
 # 删除团队通知
 delete_team_notice="UPDATE `T_TeamNotice` SET `ModifTime`=NOW(),`IsDelete`=TRUE WHERE `UserId`='%s' AND `TeamId`='%s'"
+#获取团队信息
+get_team_info="SELECT `Id`,`AdminUserId`,`Name` FROM `T_Team` WHERE Id='%s' "
+#修改团队名称
+update_team_name="UPDATE `T_Team` SET `Name`='%s' WHERE  Id='%s' AND `AdminUserId`='%s' "

@@ -608,4 +608,11 @@
         <FileParam></FileParam>
         <BodyParam></BodyParam>
     </Interface>
+    <Interface>
+        <Name>队长修改团队名称</Name>
+        <Url>http://localhost:5000/team/update_team_name</Url>
+        <PostParam>TeamId=c12d13de-a1e9-11e7-b71b-00163e08b8b6#;#TeamName=很屌的团队</PostParam>
+        <FileParam></FileParam>
+        <BodyParam></BodyParam>
+    </Interface>
 </InterfaceList>

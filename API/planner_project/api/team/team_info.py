@@ -140,3 +140,29 @@ def quit_team():
     ApiResponse.message = "成功"
     ApiResponse.status = 200
     return api_response.response_return(ApiResponse)
+
+
+# 修改团队名称
+@app.route("/team/update_team_name", methods=['POST'])
+def update_team_name():
+    ApiResponse = api_response.ApiResponse()
+    userId = request_helper.current_user_mush_login()["Id"]
+
+    TeamId = request.form.get("TeamId", type=str, default=None)
+    if TeamId is None or TeamId == '':
+        raise custom_error.CustomFlaskErr(status_code=500, message="团队id不能为空")
+    TeamName = request.form.get("TeamName", type=str, default=None)
+    if TeamName is None or TeamName == '':
+        raise custom_error.CustomFlaskErr(status_code=500, message="团队名称不能为空")
+
+    team_info = mysql.get_object(team_sql.get_team_info, (TeamId))
+    if team_info is None:
+        raise custom_error.CustomFlaskErr(status_code=500, message="没有该团队")
+    if team_info["AdminUserId"] != userId:
+        raise custom_error.CustomFlaskErr(status_code=500, message="您不是队长")
+    update_count=mysql.operate_object(team_sql.update_team_name, (TeamName,TeamId,userId))
+    if update_count <=0:
+        raise custom_error.CustomFlaskErr(status_code=500, message="修改失败")
+    ApiResponse.message = "成功"
+    ApiResponse.status = 200
+    return api_response.response_return(ApiResponse)
