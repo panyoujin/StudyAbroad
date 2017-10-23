@@ -47,6 +47,11 @@ page{
   font-family: "黑体";
   border: 2rpx solid #099aff;
 }
+.clsEditTeamName{
+  padding: 10rpx 0 10px 10px;
+  width: 38rpx;
+  height: 38rpx;
+}
 
 /**search**/
 .searchContainer{
@@ -131,7 +136,7 @@ page{
   line-height: 80rpx;
   vertical-align: middle;
   padding:10rpx 0;
-  padding-left: 10rpx;
+  padding-left: 45rpx;
 }
 .clsMsg .clsBtn{
   padding:10rpx 0;

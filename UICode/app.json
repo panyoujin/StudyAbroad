@@ -1,5 +1,7 @@
 {
   "pages": [
+"pages/team/teamManage/teamManage",
+
     "pages/index/index",
     "pages/logs/logs",
     "pages/sysInfo/ContactUs/ContactUs",

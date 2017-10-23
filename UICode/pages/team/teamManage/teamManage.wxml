@@ -2,7 +2,10 @@
 <view class="clsGroupr clsHeads" hidden="{{myTeam==null?true:false}}">
     <view class="clsGroupc clsHead01">
       <view class="clsTxt01">所在团队</view>
-      <view class="clsTxt02" bindtap="btnEditTeamNameShow">队名:{{myTeam.TeamName}}</view>
+      <view bindtap="btnEditTeamNameShow" class="clsGroupr">
+        <label class="clsTxt02">队名:{{myTeam.TeamName}}</label>
+        <image class="clsEditTeamName" src="/img/edit.png" hidden="{{iconHidden}}"></image>
+      </view>
       <view class="clsTxt03">队长:{{myTeam.UserName}}</view>
     </view>
     <view class="clsGroupc clsHead02">

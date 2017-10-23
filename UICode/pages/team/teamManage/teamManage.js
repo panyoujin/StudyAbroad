@@ -17,6 +17,7 @@ Page({
 
     editTeamName: "",
     teamFocus: false,
+    iconHidden: true,
     editTeamHidden:true,
   },
   /**
@@ -162,18 +163,6 @@ Page({
     that.setData({
       searchValue: value
     })
-
-    var loginInfo = wx.getStorageSync('userLoginInfo');
-    if (loginInfo == "") {
-      wx.redirectTo({
-        url: "/pages/account/login/login"
-      });
-    } else {
-      that.setData({
-        myInfo: loginInfo,
-      })
-    }
-    
   },
 
   /**
@@ -203,8 +192,18 @@ Page({
       },
       success: function (res, s, m) {
         if (s) {
+          var loginInfo = wx.getStorageSync('userLoginInfo');
+          if (loginInfo == "") {
+            wx.redirectTo({
+              url: "/pages/account/login/login"
+            });
+          }
+          var iconHidden = true;
+          if (res.UserName == loginInfo.Name) iconHidden = false;
           that.setData({
-            myTeam: res
+            myTeam: res,
+            iconHidden: iconHidden,
+            myInfo: loginInfo,
           })
         }
       },
