@@ -128,8 +128,8 @@ def quit_team():
         raise custom_error.CustomFlaskErr(status_code=500, message="团队id不能为空")
     is_team_admin = mysql.get_object(team_sql.is_team_admin, (TeamId, userId))
     if (is_team_admin["total"] > 0):  # 是团队管理员，解散团队
-        sql_list = [team_sql.disband_team1, team_sql.disband_team2, team_sql.update_planner_statistics_null,team_sql.delete_team_notice]
-        args_list = [(userId, TeamId, userId), (userId, TeamId), (userId),(userId, TeamId)]
+        sql_list = [team_sql.disband_team1, team_sql.disband_team2, team_sql.update_planner_statistics_null,team_sql.delete_team_notice_admin]
+        args_list = [(userId, TeamId, userId), (userId, TeamId), (userId),(TeamId)]
         resultInt = mysql.operate__many(sql_list, args_list)
     else:
         sql_list = [team_sql.quit_team, team_sql.update_planner_statistics_null,team_sql.delete_team_notice]
