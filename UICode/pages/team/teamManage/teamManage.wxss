@@ -113,3 +113,33 @@ page{
   font-family: "黑体";
   border: none;
 }
+
+
+/* 修改 */
+.clsMsg{
+  position: fixed;
+  background-color: #fff;
+  border-top: 2rpx solid #eee;
+  height: 100rpx;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.clsMsg input{
+  width: 80%;
+  height: 80rpx;
+  line-height: 80rpx;
+  vertical-align: middle;
+  padding:10rpx 0;
+  padding-left: 10rpx;
+}
+.clsMsg .clsBtn{
+  padding:10rpx 0;
+  line-height: 80rpx;
+  width: 20%;
+  margin: auto;
+  text-align: center;
+  vertical-align: middle;
+  color: #fff;
+  background-color: #099aff;
+}

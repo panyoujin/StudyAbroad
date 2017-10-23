@@ -2,7 +2,7 @@
 <view class="clsGroupr clsHeads" hidden="{{myTeam==null?true:false}}">
     <view class="clsGroupc clsHead01">
       <view class="clsTxt01">所在团队</view>
-      <view class="clsTxt02">队名:{{myTeam.TeamName}}</view>
+      <view class="clsTxt02" bindtap="btnEditTeamNameShow">队名:{{myTeam.TeamName}}</view>
       <view class="clsTxt03">队长:{{myTeam.UserName}}</view>
     </view>
     <view class="clsGroupc clsHead02">
@@ -56,4 +56,9 @@
         <view class="pageMsg">查询条件不能为空</view>
       </view>
     </view>
+</view>
+
+<view class="clsGroupr clsMsg" hidden="{{editTeamHidden}}">
+  <input bindinput="bindKeyInputTeamName" focus="{{teamFocus}}" confirm-type="修改" bindconfirm="sendMsg"  value="{{myTeam.TeamName}}" />
+  <view class="clsBtn" bindtap="btnEditTeamName">修改</view>
 </view>

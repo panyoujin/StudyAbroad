@@ -12,7 +12,12 @@ Page({
     searchValue: "",
     teams:[],
 
+    myInfo:null,
     myTeam:null,
+
+    editTeamName: "",
+    teamFocus: false,
+    editTeamHidden:true,
   },
   /**
    * 查询
@@ -34,6 +39,48 @@ Page({
     searchList(this);
   },
 
+  /**
+   * 修改团队名称
+   */
+  bindKeyInputTeamName: function (e) {
+    this.setData({
+      editTeamName: e.detail.value
+    })
+  },
+  btnEditTeamNameShow: function () {
+    var that = this;
+    if (that.data.myTeam.UserName != that.data.myInfo.Name)return;
+    that.setData({
+      editTeamHidden: !that.data.editTeamHidden,
+      teamFocus: true
+    })
+  },
+  btnEditTeamName:function(){
+    var that = this;
+    var myTeam = that.data.myTeam;
+    if (that.data.editTeamName == "")
+      return;
+    common.POST({
+      url: "/team/update_team_name",
+      params: {
+        TeamId: myTeam.Id,
+        TeamName: that.data.editTeamName
+      },
+      success: function (res, s, m) {
+        if (s) {
+          common.Alert("修改成功");
+          myTeam.TeamName = that.data.editTeamName;
+          that.setData({
+            myTeam: myTeam
+          })
+        } else {
+          common.AlertError(m);
+          
+        }
+      },
+      fail: function () { }
+    })
+  },
   /**
    * 团队详情
    */
@@ -114,6 +161,17 @@ Page({
     that.setData({
       searchValue: value
     })
+
+    var loginInfo = wx.getStorageSync('userLoginInfo');
+    if (loginInfo == "") {
+      wx.redirectTo({
+        url: "/pages/account/login/login"
+      });
+    } else {
+      that.setData({
+        myInfo: loginInfo,
+      })
+    }
     
   },
 
