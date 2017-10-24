@@ -10,15 +10,15 @@ Page({
     searchCount: 1,
     pageIndex: 1,
     searchValue: "",
-    teams:[],
+    teams: [],
 
-    myInfo:null,
-    myTeam:null,
+    myInfo: null,
+    myTeam: null,
 
     editTeamName: "",
     teamFocus: false,
     iconHidden: true,
-    editTeamHidden:true,
+    editTeamHidden: true,
   },
   /**
    * 查询
@@ -50,13 +50,13 @@ Page({
   },
   btnEditTeamNameShow: function () {
     var that = this;
-    if (that.data.myTeam.UserName != that.data.myInfo.Name)return;
+    if (that.data.myTeam.UserName != that.data.myInfo.Name) return;
     that.setData({
       editTeamHidden: !that.data.editTeamHidden,
       teamFocus: true
     })
   },
-  btnEditTeamName:function(){
+  btnEditTeamName: function () {
     var that = this;
     var myTeam = that.data.myTeam;
     if (that.data.editTeamName == "")
@@ -73,11 +73,11 @@ Page({
           myTeam.TeamName = that.data.editTeamName;
           that.setData({
             myTeam: myTeam,
-            editTeamHidden:true
+            editTeamHidden: true
           })
         } else {
           common.AlertError(m);
-          
+
         }
       },
       fail: function () { }
@@ -86,12 +86,12 @@ Page({
   /**
    * 团队详情
    */
-  btnLookTeam:function(){
+  btnLookTeam: function () {
     wx.navigateTo({
       url: '/pages/planner/plannerMy/plannerMy?url=team&temaId=' + this.data.myTeam.Id + '&temaName=' + this.data.myTeam.TeamName,
     })
   },
-  btnDelTeam:function(){
+  btnDelTeam: function () {
     var that = this;
     wx.showModal({
       title: "退出团队",
@@ -130,9 +130,9 @@ Page({
   /**
    * 团队申请加入
    */
-  btnJoin:function(e){
+  btnJoin: function (e) {
     var that = this;
-    if (e.currentTarget.dataset.Isjoin == 1){
+    if (e.currentTarget.dataset.Isjoin == 1) {
       common.Alert("已是团成员");
       return;
     }
@@ -169,7 +169,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
@@ -180,6 +180,7 @@ Page({
     searchList(that);
 
     var loginInfo = wx.getStorageSync('userLoginInfo');
+
     if (loginInfo == "") {
       wx.redirectTo({
         url: "/pages/account/login/login"
@@ -199,7 +200,7 @@ Page({
             });
           }
           var iconHidden = true;
-          if (res.UserName == loginInfo.Name) iconHidden = false;
+          if (res != null && res.UserName == loginInfo.Name) iconHidden = false;
           that.setData({
             myTeam: res,
             iconHidden: iconHidden,
@@ -215,14 +216,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
@@ -230,7 +231,7 @@ Page({
    */
   onPullDownRefresh: function () {
     this.setData({
-      teams: [], 
+      teams: [],
       isSearch: true,
       searchCount: 1,
       pageIndex: 1
@@ -249,7 +250,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })
 
