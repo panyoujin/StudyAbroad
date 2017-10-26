@@ -7,8 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    user:null,
-
+    user: null,
+    phone: '',
     imgUrl01: "",
     imgUrl02: "",
     imgSaveUrl01: "",
@@ -21,19 +21,19 @@ Page({
     apiUrl: common.apiUrl + "/",
     pSex: 1,
     pServeice: '',
-    pServeiceNum:[],
-    services:{},
-    pArea:'',
-    pAreaNum:[],
-    areas:{}
+    pServeiceNum: [],
+    services: {},
+    pArea: '',
+    pAreaNum: [],
+    areas: {}
   },
 
-  
+
 
   /**
    * 注册
    */
-  btnPlannerregister : function(e){
+  btnPlannerregister: function (e) {
     var that = this;
     var pName = e.detail.value.pName;
     var imgSaveUrl01 = that.data.imgSaveUrl01;
@@ -44,8 +44,8 @@ Page({
     var idcard = e.detail.value.idcard;
     var pSex = that.data.pSex;
     var pServeice = that.data.pServeice;
-    var pArea = that.data.pArea; 
-    if (pName.length == 0 || idcard.length == 0|| imgSaveUrl01.length == 0 || address.length == 0 || record.length == 0 || email.length == 0 || pServeice == -1 || pArea==-1){
+    var pArea = that.data.pArea;
+    if (pName.length == 0 || idcard.length == 0 || imgSaveUrl01.length == 0 || address.length == 0 || record.length == 0 || email.length == 0 || pServeice == -1 || pArea == -1) {
       that.setData({
         tip: '提示：姓名、身份证号码、身份证图片、所在地、资历、服务区域、邮箱、服务不能为空！'
       })
@@ -81,7 +81,7 @@ Page({
           wx.redirectTo({
             url: '/pages/planner/plannerRegisterSucceed/plannerRegisterSucceed'
           })
-        }else{
+        } else {
           that.setData({
             tip: m
           })
@@ -108,7 +108,7 @@ Page({
   /**
    * 性别选择
    */
-  radioSexChange:function(e){
+  radioSexChange: function (e) {
     this.setData({
       pSex: e.detail.value
     });
@@ -141,7 +141,7 @@ Page({
     var pArea = that.data.pArea;
     if (pArea.indexOf("," + value + ",") >= 0) {
       pArea = pArea.replace(value + ",", "");
-    }else{
+    } else {
       pArea = pArea + "," + value + ",";
     }
     pArea = pArea.replace(",,", ",");
@@ -167,7 +167,7 @@ Page({
     var pServeice = that.data.pServeice;
     if (pServeice.indexOf("," + value + ",") >= 0) {
       pServeice = pServeice.replace(value + ",", "");
-    }else{
+    } else {
       pServeice = pServeice + "," + value + ",";
     }
     pServeice = pServeice.replace(",,", ",");
@@ -181,6 +181,12 @@ Page({
     })
 
     // console.log(pServeice.substring(0, pServeice.length-1).substr(1));
+  },
+
+  payPhoneNum: function (e) {
+    wx.makePhoneCall({
+      phoneNumber: this.data.phone,
+    })
   },
 
   /**
@@ -197,7 +203,7 @@ Page({
         url: "/pages/account/login/login"
       });
       return;
-    } 
+    }
 
     common.POST({
       url: "/userinfo/get_user_info",
@@ -237,13 +243,13 @@ Page({
       success: function (res, s, m) {
         if (s) {
           that.setData({
-            services : res
+            services: res
           })
           for (var key in res) {
             var pServeice = that.data.pServeice;
             var pServeiceNum = that.data.pServeiceNum;
             var value = res[key].Id;
-            if (res[key].Name == "移民" || res[key].Name == "留学"){
+            if (res[key].Name == "移民" || res[key].Name == "留学") {
               if (pServeice.indexOf("," + value + ",") >= 0) {
                 pServeice = pServeice.replace(value + ",", "");
               } else {
@@ -265,71 +271,88 @@ Page({
       },
       fail: function () { }
     }),
+      common.POST({
+        url: "/basic/arealist",
+        params: {},
+        success: function (res, s, m) {
+          if (s) {
+            that.setData({
+              areas: res
+            })
+          } else {
+            that.setData({
+              tip: m
+            })
+          }
+        },
+        fail: function () { }
+      })
+
+    //配置信息
     common.POST({
-      url: "/basic/arealist",
-      params: {},
+      url: "/basic/get_config",
+      params: { Key: "phone" },
       success: function (res, s, m) {
+        console.log(res);
         if (s) {
+          var config = res;
           that.setData({
-            areas: res
-          })
-        } else {
-          that.setData({
-            tip: m
+            phone: config.Value
           })
         }
       },
       fail: function () { }
     })
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })
 

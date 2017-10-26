@@ -2,7 +2,7 @@
   <form bindsubmit="btnPlannerregister">
     <view class="clsView">
       <label class="clsTxt">姓名：</label>
-      <input class="clsInput"  placeholder="请输入姓名" name="pName" value='{{user.Name}}' />
+      <input class="clsInput" placeholder="请输入姓名" name="pName" value='{{user.Name}}' />
     </view>
 
     <view class="clsView clsRadio">
@@ -16,7 +16,7 @@
     </view>
     <view class="clsView">
       <label class="clsTxt">身份证号码：</label>
-      <input class="clsInput"  placeholder="请输入身份证号码：" name="idcard" value='{{user.IDCard}}' />
+      <input class="clsInput" placeholder="请输入身份证号码：" name="idcard" value='{{user.IDCard}}' />
     </view>
     <view class="clsView">
       <label class="clsTxt">身份证</label>
@@ -30,7 +30,7 @@
 
     <view class="clsView">
       <label class="clsTxt">所在地：</label>
-      <input class="clsInput"  placeholder="请输入所在地" name="address" value='{{user.Address}}' />
+      <input class="clsInput" placeholder="请输入所在地" name="address" value='{{user.Address}}' />
     </view>
 
     <view class="clsView">
@@ -48,10 +48,10 @@
       <view class="clsGroupr clsLables">
         <block wx:for="{{areas}}" wx:key="item">
           <block wx:if="{{pAreaNum[index]}}">
-            <view class="clsLable clsChecked" data-key="{{index}}" data-value="{{item.Name}}" bindtap="btnAreaChange" >{{item.Name}}</view>
+            <view class="clsLable clsChecked" data-key="{{index}}" data-value="{{item.Name}}" bindtap="btnAreaChange">{{item.Name}}</view>
           </block>
           <block wx:else>
-            <view class="clsLable" data-key="{{index}}" data-value="{{item.Name}}" bindtap="btnAreaChange" >{{item.Name}}</view>
+            <view class="clsLable" data-key="{{index}}" data-value="{{item.Name}}" bindtap="btnAreaChange">{{item.Name}}</view>
           </block>
         </block>
       </view>
@@ -72,15 +72,17 @@
       <view class="clsGroupr clsLables">
         <block wx:for="{{services}}" wx:key="item">
           <block wx:if="{{pServeiceNum[index]}}">
-            <view class="clsLable clsChecked" data-key="{{index}}" data-value="{{item.Name}}" bindtap="btnServiceChange" >{{item.Name}}</view>
+            <view class="clsLable clsChecked" data-key="{{index}}" data-value="{{item.Name}}" bindtap="btnServiceChange">{{item.Name}}</view>
           </block>
           <block wx:else>
-            <view class="clsLable" data-key="{{index}}" data-value="{{item.Name}}" bindtap="btnServiceChange" >{{item.Name}}</view>
+            <view class="clsLable" data-key="{{index}}" data-value="{{item.Name}}" bindtap="btnServiceChange">{{item.Name}}</view>
           </block>
         </block>
       </view>
     </view>
-
+    <view class="clsTxt" style="">
+      如有推荐人,请联系客服:<span bindtap="payPhoneNum" style="text-decoration: underline;color:#57b1fd">{{phone}}</span>
+    </view>
     <view class="errorMsg">{{tip}}</view>
     <button class="clsBtn" formType="submit">提交</button>
 
