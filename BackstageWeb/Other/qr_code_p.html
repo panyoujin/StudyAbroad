@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>龟划海外平台入口</title>
+    <script src="../Resource/Script/jquery.min.js"></script>
+</head>
+<body>
+<img id="backImg"  src="../pic/5f1ced9a-894d-11e7-8d3a-00163e08b8b6.png"/>
+<div style="position:absolute;top:50%;left: 50%;  margin-top: -350px; height:400px;">
+    <div style="font-size: 25px;color: #fefefe;font-weight:bold ;text-align:center; width:400px;">请升级到微信客户端较高版本，才支持使用小程序功能。
+        请用微信扫一扫下方二维码</div>
+    <img style="margin-top: 30px;width: 400px;height: 400px;" src="../pic/gh_578babf29034_430.jpg">
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var height = $(window).height();
+        var width = $(window).width();
+
+        if (width > height) {
+            height = width;
+        }
+        $("#backImg").css("height",height);
+    })
+</script>
+</body>
+</html>
